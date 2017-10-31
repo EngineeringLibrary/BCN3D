@@ -1,6 +1,6 @@
 <h2>BCN3D</h2>
 
-<a target="_blank">Trabalho de Robotica</a>
+<a target="_blank">Trabalho de Robótica</a>
 
 <a rel="attachment wp-att-3961" target="_blank"><img src="https://image.ibb.co/j3wfaw/Bra_6_large.jpg" alt="aspnet5-agnular2-03" class="alignnone size-full wp-image-3961"></a>
 
