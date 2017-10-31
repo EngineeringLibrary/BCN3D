@@ -38,3 +38,9 @@
 <li>Calcular a cinemática inversa. 30p</li>
 <li>Enviar as variáveis de junta. 20p</li>
 </ul>
+
+<h3>Hardware</h3>
+<ul>
+<li>Finalizar a parte fisica do braço. 30p</li>
+<li>Montar o circuito de acionamento para cada motor. 10p</li>
+</ul>
