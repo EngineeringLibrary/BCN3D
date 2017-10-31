@@ -14,24 +14,27 @@
 
 <h3>Firmware</h3>
 <ul>
-<li>Esperar que as variáveis de juntas sejam enviadas.</li>
-<li>Comparar as variáveis atuais com as anteriores.</li>
-<li>Fazer com que os motores posicionem as peças.</li>
+<li>Esperar que as variáveis de juntas sejam enviadas. 20p</li>
+<li>Comparar as variáveis atuais com as anteriores. 30p</li>
+<li>Fazer com que os motores posicionem as peças. 60p</li>
+<li>A4988. 20p</li>
+<li>Stepren. 20p</li>
+<li>Criar uma thred para cada variável de juntas. 20p</li>
 </ul>
 
 <h3>Software</h3>
 <ul>
-<li>Tirar foto.</li>
-<li>Identificar objeto.</li>
-<li>Receber a imagem.</li>
-<li>Extrair a cor.</li>
-<li>Aplicar Filtro (Se necessário).</li>
-<li>Binarizar.</li>
-<li>Usar Bound.</li>
-<li>Contar (Área).</li>
-<li>Centroid do Objeto.</li>
-<li>Converter a posição do centro do objeto em posição real.</li>
-<li>Transformar o objeto identificado em posição.</li>
-<li>Calcular a cinemática inversa.</li>
-<li>Enviar as variáveis de junta.</li>
+<li>Tirar foto. 5p</li>
+<li>Identificar objeto. 65p</li>
+<li>Receber a imagem. 1p</li>
+<li>Extrair a cor. 2p</li>
+<li>Aplicar Filtro (Se necessário). 10p</li>
+<li>Binarizar. 10p</li>
+<li>Usar Bound. 2p</li>
+<li>Contar (Área). 10p</li>
+<li>Centroid do Objeto. 10p</li>
+<li>Converter a posição do centro do objeto em posição real. 20p</li>
+<li>Transformar o objeto identificado em posição. 10p</li>
+<li>Calcular a cinemática inversa. 30p</li>
+<li>Enviar as variáveis de junta. 20p</li>
 </ul>
