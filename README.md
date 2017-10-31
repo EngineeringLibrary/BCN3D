@@ -19,7 +19,7 @@
 <li>Fazer com que os motores posicionem as peças. 60p</li>
 <li>A4988. 20p</li>
 <li>Stepren. 20p</li>
-<li>Criar uma thred para cada variável de juntas. 20p</li>
+<li>Criar uma thread para cada variável de juntas. 20p</li>
 </ul>
 
 <h3>Software</h3>
