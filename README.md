@@ -2,7 +2,7 @@
 
 <a target="_blank">Trabalho de Robotica</a>
 
-<a rel="attachment wp-att-3961" target="_blank"><img src="https://d7su5vtzm9ulg.cloudfront.net/uploaders/11417472/illustration-file/1469701718-32610-1451/Bra__6_large.jpg" alt="aspnet5-agnular2-03" class="alignnone size-full wp-image-3961"></a>
+<a rel="attachment wp-att-3961" target="_blank"><img src="https://image.ibb.co/j3wfaw/Bra_6_large.jpg" alt="aspnet5-agnular2-03" class="alignnone size-full wp-image-3961"></a>
 
 <h3>Estruturas - Ferramentas – Bibliotecas</h3>
 <ul>
