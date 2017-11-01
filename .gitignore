@@ -1,0 +1,7 @@
+*.Release
+*.Debug
+build-*
+*.exe
+moc_*
+*.user
+*.o

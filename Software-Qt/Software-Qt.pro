@@ -5,6 +5,8 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += multimedia
+QT       += multimediawidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -26,6 +28,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    SistemasdeControle/headers/primitiveLibs/LinAlg/matrix.h \
+    SistemasdeControle/src/primitiveLibs/LinAlg/matrix.hpp \
+    imageconversion.h \
+    imageconversion.hpp \
+    imageprocessing.h \
+    imageprocessing.hpp \
+    rgbimage.h \
+    rgbimage.hpp
 
 FORMS    += mainwindow.ui
