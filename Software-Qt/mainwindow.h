@@ -8,6 +8,8 @@
 #include <QDate>
 #include <QVideoWidget>
 #include <QCameraImageCapture>
+#include <QScreen>
+#include <QCameraInfo>
 #include "imageconversion.h"
 
 
@@ -28,7 +30,7 @@ private slots:
 
     void timerClock( unsigned clockTime);
 
-    void processCaptureImage(int requestId,const QImage &img,bool save);
+    void processCaptureImage(int requestId,const QImage &img);
 
 private:
     Ui::MainWindow *ui;
