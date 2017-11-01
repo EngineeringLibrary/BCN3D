@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(imageCapture,
             SIGNAL(imageCaptured(int,QImage)),
                    this,
-                   SLOT(processCaptureImage(int,QImage)));
+                   SLOT(processCaptureImage(int,QImage,false)));
 
     QTimer::singleShot(1,this,  SLOT(timerClock(1)));
 
@@ -50,11 +50,11 @@ void MainWindow::timerClock( unsigned clockTime){
     std::cout << "time: "<< QDate::currentDate().toString().toUtf8().toStdString() << std::endl;
 }
 
-void MainWindow::processCaptureImage(int requestId,const QImage& img){
+void MainWindow::processCaptureImage(int requestId,const QImage& img,bool save){
 
     QString fileName =  QDir::currentPath()+"/imageCaptured.jpg";
 
-    if(!fileName.isEmpty()){
+    if(!fileName.isEmpty() && save){
        img.save(fileName);
     }
 }

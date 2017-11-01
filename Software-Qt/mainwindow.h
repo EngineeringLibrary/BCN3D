@@ -28,7 +28,7 @@ private slots:
 
     void timerClock( unsigned clockTime);
 
-    void processCaptureImage(int requestId,const QImage &img);
+    void processCaptureImage(int requestId,const QImage &img,bool save);
 
 private:
     Ui::MainWindow *ui;
