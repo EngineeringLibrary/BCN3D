@@ -15,10 +15,10 @@
 <h3>Firmware</h3>
 <ul>
 <li>Esperar que as variáveis de juntas sejam enviadas. 20p</li>
-<li>Comparar as variáveis atuais com as anteriores. 30p</li>
+<li>Calcular a trajetória para cada motor. 30p</li>
 <li>Fazer com que os motores posicionem as peças. 60p</li>
 <li>A4988. 20p</li>
-<li>Stepren. 20p</li>
+<li>Stepper. 20p</li>
 <li>Criar uma thread para cada variável de juntas. 20p</li>
 </ul>
 
