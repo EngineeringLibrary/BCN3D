@@ -5,3 +5,4 @@ build-*
 moc_*
 *.user
 *.o
+*.jpg
