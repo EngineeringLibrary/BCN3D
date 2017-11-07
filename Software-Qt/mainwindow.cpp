@@ -141,25 +141,27 @@ void MainWindow::processCaptureImage(int requestId,const QImage& imgs){
     Qimg_blue[1] = ImageProcessing::RGBImage2QImage<unsigned>(rgb_blue);
     Qimg_red[1]  = ImageProcessing::RGBImage2QImage<unsigned>(rgb_red);
 
-     imgB =Qimg_blue[1];
-      imgR =Qimg_red[1];
 
-// binarizar pelo que entendi e passar pela dilataçao blue
-    ImageProcessing::BinaryImage bina_blue = (ImageProcessing::QImage2GrayImage<unsigned>(this->imgB) > ui->line_blue->text().toULong());
-    ImageProcessing::BinaryImage bina_red  = ImageProcessing::QImage2GrayImage<unsigned>(this->imgR) > ui->line_red->text().toULong();
-// dilataçao blue
-    bina_blue = ImageProcessing::dilation(bina_blue);
-    Qimg_blue[2] = ImageProcessing::BinaryImage2QImage<bool>(bina_blue);
-// dilataçao red
-    bina_red = ImageProcessing::dilation(bina_red);
-    Qimg_red[2] = ImageProcessing::BinaryImage2QImage<bool>(bina_red);
+// ---------------------------------------------   buguei fdd
+//     imgB =Qimg_blue[1];
+//      imgR =Qimg_red[1];
 
-// erosion blue
-    bina_blue = ImageProcessing::erosion(bina_blue);
-    Qimg_blue[3] =ImageProcessing::BinaryImage2QImage<bool>(bina_blue);
-// erosion blue
-    bina_red = ImageProcessing::erosion(bina_red);
-    Qimg_red[3] =ImageProcessing::BinaryImage2QImage<bool>(bina_red);
+//// binarizar pelo que entendi e passar pela dilataçao blue
+//    ImageProcessing::BinaryImage bina_blue = (ImageProcessing::QImage2GrayImage<unsigned>(this->imgB) > ui->line_blue->text().toULong());
+//    ImageProcessing::BinaryImage bina_red  = ImageProcessing::QImage2GrayImage<unsigned>(this->imgR) > ui->line_red->text().toULong();
+//// dilataçao blue
+//    bina_blue = ImageProcessing::dilation(bina_blue);
+//    Qimg_blue[2] = ImageProcessing::BinaryImage2QImage<bool>(bina_blue);
+//// dilataçao red
+//    bina_red = ImageProcessing::dilation(bina_red);
+//    Qimg_red[2] = ImageProcessing::BinaryImage2QImage<bool>(bina_red);
+
+//// erosion blue
+//    bina_blue = ImageProcessing::erosion(bina_blue);
+//    Qimg_blue[3] =ImageProcessing::BinaryImage2QImage<bool>(bina_blue);
+//// erosion blue
+//    bina_red = ImageProcessing::erosion(bina_red);
+//    Qimg_red[3] =ImageProcessing::BinaryImage2QImage<bool>(bina_red);
 ////    mostrando imagem azul
 //        result_view(Qimg_blue[0],false,false);
 ////    mostrando imagem vermelha
