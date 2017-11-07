@@ -36,6 +36,10 @@ HEADERS  += mainwindow.h \
     imageprocessing.h \
     imageprocessing.hpp \
     rgbimage.h \
-    rgbimage.hpp
+    rgbimage.hpp \
+    grayimage.h \
+    grayimage.hpp \
+    binaryimage.h \
+    binaryimage.hpp
 
 FORMS    += mainwindow.ui

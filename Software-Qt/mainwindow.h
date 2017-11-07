@@ -12,6 +12,7 @@
 #include <QScreen>
 #include <QCameraInfo>
 #include "imageconversion.h"
+#include "grayimage.h"
 
 
 namespace Ui {
@@ -31,7 +32,7 @@ private slots:
 
     void timerClock( unsigned clockTime);
 
-    void result_view(QImage &img,bool state = true);
+    void result_view(QImage &img,bool state = true,bool colors=true);
 
     void processCaptureImage(int requestId,const QImage &img);
 signals :
@@ -42,7 +43,7 @@ private:
     QCamera *camera;
     QVideoWidget *viewfinder;
     QCameraImageCapture *imageCapture;
-    QImage img;
+    QImage img,Qimg_blue,Qimg_red;
 //    QPixmap mypix;
     QPixmap *mypix ;
 

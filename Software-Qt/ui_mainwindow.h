@@ -14,8 +14,10 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -38,10 +40,16 @@ public:
     QWidget *webcam;
     QPushButton *pushButton;
     QWidget *tab_2;
-    QWidget *layoutWidget1;
+    QWidget *widget;
     QGridLayout *gridLayout_3;
+    QLineEdit *lineEdit;
+    QHBoxLayout *horizontalLayout_2;
+    QLabel *label_after_blue;
+    QLabel *label_after_red;
+    QLineEdit *lineEdit_5;
     QLabel *label_before;
-    QLabel *label_after;
+    QLabel *label;
+    QLabel *label_2;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -82,23 +90,54 @@ public:
         result->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
-        layoutWidget1 = new QWidget(tab_2);
-        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(10, 20, 971, 501));
-        gridLayout_3 = new QGridLayout(layoutWidget1);
+        widget = new QWidget(tab_2);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(0, 0, 981, 521));
+        gridLayout_3 = new QGridLayout(widget);
         gridLayout_3->setSpacing(6);
         gridLayout_3->setContentsMargins(11, 11, 11, 11);
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
         gridLayout_3->setContentsMargins(0, 0, 0, 0);
-        label_before = new QLabel(layoutWidget1);
+        lineEdit = new QLineEdit(widget);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+
+        gridLayout_3->addWidget(lineEdit, 2, 1, 1, 1);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        label_after_blue = new QLabel(widget);
+        label_after_blue->setObjectName(QStringLiteral("label_after_blue"));
+
+        horizontalLayout_2->addWidget(label_after_blue);
+
+        label_after_red = new QLabel(widget);
+        label_after_red->setObjectName(QStringLiteral("label_after_red"));
+
+        horizontalLayout_2->addWidget(label_after_red);
+
+
+        gridLayout_3->addLayout(horizontalLayout_2, 1, 0, 1, 2);
+
+        lineEdit_5 = new QLineEdit(widget);
+        lineEdit_5->setObjectName(QStringLiteral("lineEdit_5"));
+
+        gridLayout_3->addWidget(lineEdit_5, 2, 0, 1, 1);
+
+        label_before = new QLabel(widget);
         label_before->setObjectName(QStringLiteral("label_before"));
 
-        gridLayout_3->addWidget(label_before, 0, 0, 1, 1);
+        gridLayout_3->addWidget(label_before, 0, 0, 1, 2);
 
-        label_after = new QLabel(layoutWidget1);
-        label_after->setObjectName(QStringLiteral("label_after"));
+        label = new QLabel(widget);
+        label->setObjectName(QStringLiteral("label"));
 
-        gridLayout_3->addWidget(label_after, 1, 0, 1, 1);
+        gridLayout_3->addWidget(label, 3, 0, 1, 1);
+
+        label_2 = new QLabel(widget);
+        label_2->setObjectName(QStringLiteral("label_2"));
+
+        gridLayout_3->addWidget(label_2, 3, 1, 1, 1);
 
         result->addTab(tab_2, QString());
 
@@ -115,6 +154,7 @@ public:
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
+        QWidget::setTabOrder(pushButton, result);
 
         retranslateUi(MainWindow);
 
@@ -129,8 +169,11 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
         pushButton->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
         result->setTabText(result->indexOf(tab), QApplication::translate("MainWindow", "capture", Q_NULLPTR));
+        label_after_blue->setText(QString());
+        label_after_red->setText(QString());
         label_before->setText(QString());
-        label_after->setText(QString());
+        label->setText(QApplication::translate("MainWindow", "blue", Q_NULLPTR));
+        label_2->setText(QApplication::translate("MainWindow", "red", Q_NULLPTR));
         result->setTabText(result->indexOf(tab_2), QApplication::translate("MainWindow", "result", Q_NULLPTR));
     } // retranslateUi
 

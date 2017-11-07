@@ -215,6 +215,7 @@ DIST          = ../../../../Qt/5.9.2/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.9.2/gcc_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/5.9.2/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../../Qt/5.9.2/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../../Qt/5.9.2/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/5.9.2/gcc_64/mkspecs/features/toolchain.prf \
 		../../../../Qt/5.9.2/gcc_64/mkspecs/features/default_pre.prf \
@@ -242,7 +243,11 @@ DIST          = ../../../../Qt/5.9.2/gcc_64/mkspecs/features/spec_pre.prf \
 		imageprocessing.h \
 		imageprocessing.hpp \
 		rgbimage.h \
-		rgbimage.hpp main.cpp \
+		rgbimage.hpp \
+		grayimage.h \
+		grayimage.hpp \
+		binaryimage.h \
+		binaryimage.hpp main.cpp \
 		mainwindow.cpp
 QMAKE_TARGET  = Software-Qt
 DESTDIR       = 
@@ -415,6 +420,7 @@ Makefile: Software-Qt.pro ../../../../Qt/5.9.2/gcc_64/mkspecs/linux-g++/qmake.co
 		../../../../Qt/5.9.2/gcc_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/5.9.2/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../../Qt/5.9.2/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../../Qt/5.9.2/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/5.9.2/gcc_64/mkspecs/features/toolchain.prf \
 		../../../../Qt/5.9.2/gcc_64/mkspecs/features/default_pre.prf \
@@ -602,6 +608,7 @@ Makefile: Software-Qt.pro ../../../../Qt/5.9.2/gcc_64/mkspecs/linux-g++/qmake.co
 ../../../../Qt/5.9.2/gcc_64/mkspecs/features/qt_config.prf:
 ../../../../Qt/5.9.2/gcc_64/mkspecs/linux-g++/qmake.conf:
 ../../../../Qt/5.9.2/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../../Qt/5.9.2/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../../../../Qt/5.9.2/gcc_64/mkspecs/features/toolchain.prf:
 ../../../../Qt/5.9.2/gcc_64/mkspecs/features/default_pre.prf:
@@ -643,7 +650,7 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Qt/5.9.2/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.h SistemasdeControle/headers/primitiveLibs/LinAlg/matrix.h SistemasdeControle/src/primitiveLibs/LinAlg/matrix.hpp imageconversion.h imageconversion.hpp imageprocessing.h imageprocessing.hpp rgbimage.h rgbimage.hpp $(DISTDIR)/
+	$(COPY_FILE) --parents mainwindow.h SistemasdeControle/headers/primitiveLibs/LinAlg/matrix.h SistemasdeControle/src/primitiveLibs/LinAlg/matrix.hpp imageconversion.h imageconversion.hpp imageprocessing.h imageprocessing.hpp rgbimage.h rgbimage.hpp grayimage.h grayimage.hpp binaryimage.h binaryimage.hpp $(DISTDIR)/
 	$(COPY_FILE) --parents main.cpp mainwindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
 
@@ -804,6 +811,13 @@ moc_mainwindow.cpp: ../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QMainWindow \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimedia/qcameraviewfindersettings.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimedia/qvideoframe.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimedia/qabstractvideobuffer.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/QTimer \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/qtimer.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/qbasictimer.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/QDate \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/qdatetime.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/QThread \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/qthread.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimediaWidgets/QVideoWidget \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimediaWidgets/qvideowidget.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimediaWidgets/qtmultimediawidgetdefs.h \
@@ -811,6 +825,16 @@ moc_mainwindow.cpp: ../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QMainWindow \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimedia/QCameraImageCapture \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimedia/qcameraimagecapture.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimedia/qmediaencodersettings.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtGui/QScreen \
+		../../../../Qt/5.9.2/gcc_64/include/QtGui/qscreen.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/QList \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/QObject \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/QRect \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/QSize \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/QSizeF \
+		../../../../Qt/5.9.2/gcc_64/include/QtGui/QTransform \
+		../../../../Qt/5.9.2/gcc_64/include/QtMultimedia/QCameraInfo \
+		../../../../Qt/5.9.2/gcc_64/include/QtMultimedia/qcamerainfo.h \
 		imageconversion.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtGui/QImage \
 		../../../../Qt/5.9.2/gcc_64/include/QtGui/QColor \
@@ -824,6 +848,9 @@ moc_mainwindow.cpp: ../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QMainWindow \
 		imageprocessing.h \
 		imageprocessing.hpp \
 		rgbimage.hpp \
+		grayimage.h \
+		grayimage.hpp \
+		binaryimage.h \
 		imageconversion.hpp \
 		mainwindow.h \
 		moc_predefs.h \
@@ -974,6 +1001,13 @@ main.o: main.cpp mainwindow.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimedia/qcameraviewfindersettings.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimedia/qvideoframe.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimedia/qabstractvideobuffer.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/QTimer \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/qtimer.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/qbasictimer.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/QDate \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/qdatetime.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/QThread \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/qthread.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimediaWidgets/QVideoWidget \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimediaWidgets/qvideowidget.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimediaWidgets/qtmultimediawidgetdefs.h \
@@ -981,6 +1015,16 @@ main.o: main.cpp mainwindow.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimedia/QCameraImageCapture \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimedia/qcameraimagecapture.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimedia/qmediaencodersettings.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtGui/QScreen \
+		../../../../Qt/5.9.2/gcc_64/include/QtGui/qscreen.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/QList \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/QObject \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/QRect \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/QSize \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/QSizeF \
+		../../../../Qt/5.9.2/gcc_64/include/QtGui/QTransform \
+		../../../../Qt/5.9.2/gcc_64/include/QtMultimedia/QCameraInfo \
+		../../../../Qt/5.9.2/gcc_64/include/QtMultimedia/qcamerainfo.h \
 		imageconversion.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtGui/QImage \
 		../../../../Qt/5.9.2/gcc_64/include/QtGui/QColor \
@@ -994,6 +1038,9 @@ main.o: main.cpp mainwindow.h \
 		imageprocessing.h \
 		imageprocessing.hpp \
 		rgbimage.hpp \
+		grayimage.h \
+		grayimage.hpp \
+		binaryimage.h \
 		imageconversion.hpp \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QApplication \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qapplication.h \
@@ -1129,6 +1176,13 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimedia/qcameraviewfindersettings.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimedia/qvideoframe.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimedia/qabstractvideobuffer.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/QTimer \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/qtimer.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/qbasictimer.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/QDate \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/qdatetime.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/QThread \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/qthread.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimediaWidgets/QVideoWidget \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimediaWidgets/qvideowidget.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimediaWidgets/qtmultimediawidgetdefs.h \
@@ -1136,6 +1190,16 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimedia/QCameraImageCapture \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimedia/qcameraimagecapture.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtMultimedia/qmediaencodersettings.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtGui/QScreen \
+		../../../../Qt/5.9.2/gcc_64/include/QtGui/qscreen.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/QList \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/QObject \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/QRect \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/QSize \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/QSizeF \
+		../../../../Qt/5.9.2/gcc_64/include/QtGui/QTransform \
+		../../../../Qt/5.9.2/gcc_64/include/QtMultimedia/QCameraInfo \
+		../../../../Qt/5.9.2/gcc_64/include/QtMultimedia/qcamerainfo.h \
 		imageconversion.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtGui/QImage \
 		../../../../Qt/5.9.2/gcc_64/include/QtGui/QColor \
@@ -1149,8 +1213,60 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		imageprocessing.h \
 		imageprocessing.hpp \
 		rgbimage.hpp \
+		grayimage.h \
+		grayimage.hpp \
+		binaryimage.h \
 		imageconversion.hpp \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/QVariant \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QAction \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtGui/qinputmethod.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QButtonGroup \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QGridLayout \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QHeaderView \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QLabel \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qlabel.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QMenuBar \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qmenubar.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qmenu.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QStatusBar \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qstatusbar.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QTabWidget \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QToolBar \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qtoolbar.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
