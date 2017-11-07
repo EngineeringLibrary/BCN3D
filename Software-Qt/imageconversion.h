@@ -21,6 +21,10 @@ namespace ImageProcessing
     ImageProcessing::GrayImage<Type> RGBImage2GrayImage(const ImageProcessing::RGBImage<Type> &rgbimg);
     template <typename Type>
     QImage GrayImage2QImage(const ImageProcessing::GrayImage<Type> &grayImg); //ok
+
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> GrayImage2RGBImage(const ImageProcessing::GrayImage<Type> &grayImg);
+
     template <typename Type>
     ImageProcessing::GrayImage<Type> QImage2GrayImage(const QImage &img); //ok
 

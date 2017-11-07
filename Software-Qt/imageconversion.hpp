@@ -59,6 +59,18 @@ QImage ImageProcessing::GrayImage2QImage(const ImageProcessing::GrayImage<Type> 
     return ret;
 }
 
+template <typename Type>//DE GRAY PARA RGB
+ImageProcessing::RGBImage<Type> GrayImage2RGBImage(const ImageProcessing::GrayImage<Type> &grayImg){
+    LinAlg::Matrix<Type> gray = grayImg.getGray();
+    LinAlg::Matrix<Type> r(gray.width(),gray.height());
+    for (int i = 0; i < gray.width(); ++i){
+        for (int j = 0; j < gray.height(); ++j) {
+            r(i+1,j+1) = gray(i,j);
+        }
+    }
+    return ImageProcessing::RGBImage<Type>(r,r,r);
+}
+
 template <typename Type>
 ImageProcessing::GrayImage<Type> ImageProcessing::QImage2GrayImage(const QImage &img)
 {

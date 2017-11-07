@@ -110,6 +110,33 @@ namespace ImageProcessing {
     template <class Type>
     ImageProcessing::RGBImage<Type> reScale( ImageProcessing::RGBImage<Type> rgbImage,const double &scale);
 
+    // filtros
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> filterPrewittVertical(ImageProcessing::RGBImage<Type> RGBImage);
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> filterPrewittHorizontal(ImageProcessing::RGBImage<Type> RGBImage);
+
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> filterSobelVertical(ImageProcessing::RGBImage<Type> RGBImage);
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> filterSobelHorizontal(ImageProcessing::RGBImage<Type> RGBImage);
+
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> filterRobertsVertical(ImageProcessing::RGBImage<Type> RGBImage);
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> filterRobertsHorizontal(ImageProcessing::RGBImage<Type> RGBImage);
+
+    template <typename Type, typename OtherType>
+    ImageProcessing::RGBImage<Type> discreteLaplacian(ImageProcessing::RGBImage<Type> img, const OtherType &borderWeigth, const OtherType &maskWeigth);
+
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> averageFilter(ImageProcessing::RGBImage<Type> RGBImage, const unsigned &sizeMask);
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> medianFilter(ImageProcessing::RGBImage<Type> RGBImage, const unsigned &sizeMask);
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> selfreinforceFilter(ImageProcessing::RGBImage<Type> RGBImage, const unsigned &sizeMask, const double &reinforceWeigth);
+
+
 }
 #include "rgbimage.hpp"
 #endif // RGBIMAGE_H

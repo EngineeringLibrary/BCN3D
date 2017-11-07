@@ -161,22 +161,99 @@ ImageProcessing::RGBImage<Type> ImageProcessing::reScale( ImageProcessing::RGBIm
     return rgbImage;
 }
 
+template <typename Type>
+ImageProcessing::RGBImage<Type> ImageProcessing::filterPrewittVertical(ImageProcessing::RGBImage<Type> RGBImage)
+{
+    RGBImage.setRed(ImageProcessing::convolution2d<Type,int>(RGBImage.getRed(),"-1,0,1;-1,0,1;-1,0,1"));
+    RGBImage.setGreen(ImageProcessing::convolution2d<Type,int>(RGBImage.getGreen(),"-1,0,1;-1,0,1;-1,0,1"));
+    RGBImage.setBlue(ImageProcessing::convolution2d<Type,int>(RGBImage.getBlue(),"-1,0,1;-1,0,1;-1,0,1"));
+    return RGBImage;
+}
+
+template <typename Type>
+ImageProcessing::RGBImage<Type> ImageProcessing::filterPrewittHorizontal(ImageProcessing::RGBImage<Type> RGBImage)
+{
+    RGBImage.setRed(ImageProcessing::convolution2d<Type,int>(RGBImage.getRed(),"1,1,1;0,0,0;-1,-1,-1"));
+    RGBImage.setGreen(ImageProcessing::convolution2d<Type,int>(RGBImage.getGreen(),"1,1,1;0,0,0;-1,-1,-1"));
+    RGBImage.setBlue(ImageProcessing::convolution2d<Type,int>(RGBImage.getBlue(),"1,1,1;0,0,0;-1,-1,-1"));
+    return RGBImage;
+}
+
+template <typename Type>
+ImageProcessing::RGBImage<Type> ImageProcessing::filterSobelVertical(ImageProcessing::RGBImage<Type> RGBImage)
+{
+    RGBImage.setRed(ImageProcessing::convolution2d<Type,int>(RGBImage.getRed(),"-1,0,1;-2,0,2;-1,0,1"));
+    RGBImage.setGreen(ImageProcessing::convolution2d<Type,int>(RGBImage.getGreen(),"-1,0,1;-2,0,2;-1,0,1"));
+    RGBImage.setBlue(ImageProcessing::convolution2d<Type,int>(RGBImage.getBlue(),"-1,0,1;-2,0,2;-1,0,1"));
+    return RGBImage;
+}
+
+template <typename Type>
+ImageProcessing::RGBImage<Type> ImageProcessing::filterSobelHorizontal(ImageProcessing::RGBImage<Type> RGBImage)
+{
+    RGBImage.setRed(ImageProcessing::convolution2d<Type,int>(RGBImage.getRed(),"1,2,1;0,0,0;-1,-2,-1"));
+    RGBImage.setGreen(ImageProcessing::convolution2d<Type,int>(RGBImage.getGreen(),"1,2,1;0,0,0;-1,-2,-1"));
+    RGBImage.setBlue(ImageProcessing::convolution2d<Type,int>(RGBImage.getBlue(),"1,2,1;0,0,0;-1,-2,-1"));
+    return RGBImage;
+}
+
+template <typename Type>
+ImageProcessing::RGBImage<Type> ImageProcessing::filterRobertsVertical(ImageProcessing::RGBImage<Type> RGBImage)
+{
+    RGBImage.setRed(ImageProcessing::convolution2d<Type,int>(RGBImage.getRed(),"0,1;-1,0"));
+    RGBImage.setGreen(ImageProcessing::convolution2d<Type,int>(RGBImage.getGreen(),"0,1;-1,0"));
+    RGBImage.setBlue(ImageProcessing::convolution2d<Type,int>(RGBImage.getBlue(),"0,1;-1,0"));
+    return RGBImage;
+}
+
+template <typename Type>
+ImageProcessing::RGBImage<Type> ImageProcessing::filterRobertsHorizontal(ImageProcessing::RGBImage<Type> RGBImage)
+{
+    RGBImage.setRed(ImageProcessing::convolution2d<Type,int>(RGBImage.getRed(),"1,0;0,-1"));
+    RGBImage.setGreen(ImageProcessing::convolution2d<Type,int>(RGBImage.getGreen(),"1,0;0,-1"));
+    RGBImage.setBlue(ImageProcessing::convolution2d<Type,int>(RGBImage.getBlue(),"1,0;0,-1"));
+    return RGBImage;
+}
+// fim Aula 11
+
+// Aula 12
+template <typename Type, typename OtherType>
+ImageProcessing::RGBImage<Type> ImageProcessing::discreteLaplacian(ImageProcessing::RGBImage<Type> img, const OtherType &borderWeigth, const OtherType &maskWeigth)
+{
+    img.setRed(ImageProcessing::discreteLaplacian<Type,OtherType>(img.getRed(),borderWeigth, maskWeigth));
+    img.setGreen(ImageProcessing::discreteLaplacian<Type,OtherType>(img.getGreen(),borderWeigth, maskWeigth));
+    img.setBlue(ImageProcessing::discreteLaplacian<Type,OtherType>(img.getBlue(),borderWeigth, maskWeigth));
+    return img;
+}
+// fim Aula 12
 
 
+// Aula 13
+template <typename Type>
+ImageProcessing::RGBImage<Type> ImageProcessing::averageFilter(ImageProcessing::RGBImage<Type> RGBImage, const unsigned &sizeMask)
+{
+    LinAlg::Matrix<double> mask = LinAlg::Ones<double>(sizeMask,sizeMask)/(sizeMask*sizeMask);
+    RGBImage.setRed(ImageProcessing::convolution2d<Type,double>(RGBImage.getRed(),mask));
+    RGBImage.setGreen(ImageProcessing::convolution2d<Type,double>(RGBImage.getGreen(),mask));
+    RGBImage.setBlue(ImageProcessing::convolution2d<Type,double>(RGBImage.getBlue(),mask));
+    return RGBImage;
+}
 
+template <typename Type>
+ImageProcessing::RGBImage<Type> ImageProcessing::medianFilter(ImageProcessing::RGBImage<Type> RGBImage, const unsigned &sizeMask)
+{
+    RGBImage.setRed(ImageProcessing::medianFilter(RGBImage.getRed(),sizeMask));
+    RGBImage.setGreen(ImageProcessing::medianFilter(RGBImage.getGreen(),sizeMask));
+    RGBImage.setBlue(ImageProcessing::medianFilter(RGBImage.getBlue(),sizeMask));
+    return RGBImage;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+template <typename Type>
+ImageProcessing::RGBImage<Type> ImageProcessing::selfreinforceFilter(ImageProcessing::RGBImage<Type> RGBImage, const unsigned &sizeMask, const double &reinforceWeigth)
+{
+    ImageProcessing::RGBImage<Type> temp = ImageProcessing::averageFilter(RGBImage,sizeMask);
+    RGBImage.setRed(ImageProcessing::checkValue(reinforceWeigth*RGBImage.getRed() - temp.getRed()));
+    RGBImage.setGreen(ImageProcessing::checkValue(reinforceWeigth*RGBImage.getGreen() - temp.getGreen()));
+    RGBImage.setBlue(ImageProcessing::checkValue(reinforceWeigth*RGBImage.getBlue() - temp.getBlue()));
+    return RGBImage;
+}

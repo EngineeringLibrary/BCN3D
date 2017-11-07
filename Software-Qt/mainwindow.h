@@ -35,6 +35,11 @@ private slots:
     void result_view(QImage &img,bool state = true,bool colors=true);
 
     void processCaptureImage(int requestId,const QImage &img);
+
+    void on_select_blue_currentIndexChanged(int index);
+
+    void on_select_red_currentIndexChanged(int index);
+
 signals :
     void emit_result();
 
@@ -43,7 +48,7 @@ private:
     QCamera *camera;
     QVideoWidget *viewfinder;
     QCameraImageCapture *imageCapture;
-    QImage img,Qimg_blue,Qimg_red;
+    QImage img,Qimg_blue[6],Qimg_red[6];
 //    QPixmap mypix;
     QPixmap *mypix ;
 
