@@ -137,3 +137,80 @@ ImageProcessing::GrayImage<Type> ImageProcessing::contrastEnhancement(ImageProce
     grayImage.setGray(ImageProcessing::contrastEnhancement(grayImage.getGray(),position(1,1),position(1,2),position(1,3),position(1,4)));
     return grayImage;
 }
+
+// Aula 11
+template <typename Type>
+ImageProcessing::GrayImage<Type> ImageProcessing::filterPrewittVertical(ImageProcessing::GrayImage<Type> GrayImage)
+{
+    GrayImage.setGray(ImageProcessing::convolution2d<Type,int>(GrayImage.getGray(),"-1,0,1;-1,0,1;-1,0,1"));
+    return GrayImage;
+}
+
+template <typename Type>
+ImageProcessing::GrayImage<Type> ImageProcessing::filterPrewittHorizontal(ImageProcessing::GrayImage<Type> GrayImage)
+{
+    GrayImage.setGray(ImageProcessing::convolution2d<Type,int>(GrayImage.getGray(),"1,1,1;0,0,0;-1,-1,-1"));
+    return GrayImage;
+}
+
+template <typename Type>
+ImageProcessing::GrayImage<Type> ImageProcessing::filterSobelVertical(ImageProcessing::GrayImage<Type> GrayImage)
+{
+    GrayImage.setGray(ImageProcessing::convolution2d<Type,int>(GrayImage.getGray(),"-1,0,1;-2,0,2;-1,0,1"));
+    return GrayImage;
+}
+
+template <typename Type>
+ImageProcessing::GrayImage<Type> ImageProcessing::filterSobelHorizontal(ImageProcessing::GrayImage<Type> GrayImage)
+{
+    GrayImage.setGray(ImageProcessing::convolution2d<Type,int>(GrayImage.getGray(),"1,2,1;0,0,0;-1,-2,-1"));
+    return GrayImage;
+}
+
+template <typename Type>
+ImageProcessing::GrayImage<Type> ImageProcessing::filterRobertsVertical(ImageProcessing::GrayImage<Type> GrayImage)
+{
+    GrayImage.setGray(ImageProcessing::convolution2d<Type,int>(GrayImage.getGray(),"0,1;-1,0"));
+    return GrayImage;
+}
+
+template <typename Type>
+ImageProcessing::GrayImage<Type> ImageProcessing::filterRobertsHorizontal(ImageProcessing::GrayImage<Type> GrayImage)
+{
+    GrayImage.setGray(ImageProcessing::convolution2d<Type,int>(GrayImage.getGray(),"1,0;0,-1"));
+    return GrayImage;
+}
+// fim Aula 11
+
+// Aula 12
+template <typename Type, typename OtherType>
+ImageProcessing::GrayImage<Type> ImageProcessing::discreteLaplacian(ImageProcessing::GrayImage<Type> img, const OtherType &borderWeigth, const OtherType &maskWeigth)
+{
+    img.setGray(ImageProcessing::discreteLaplacian<Type,OtherType>(img.getGray(),borderWeigth, maskWeigth));
+    return img;
+}
+// fim Aula 12
+
+// Aula 13
+template <typename Type>
+ImageProcessing::GrayImage<Type> ImageProcessing::averageFilter(ImageProcessing::GrayImage<Type> GrayImage, const unsigned &sizeMask)
+{
+    LinAlg::Matrix<double> mask = LinAlg::Ones<double>(sizeMask,sizeMask)/(sizeMask*sizeMask);
+    GrayImage.setGray(ImageProcessing::convolution2d<Type,double>(GrayImage.getGray(),mask));
+    return GrayImage;
+}
+
+template <typename Type>
+ImageProcessing::GrayImage<Type> ImageProcessing::medianFilter(ImageProcessing::GrayImage<Type> GrayImage, const unsigned &sizeMask)
+{
+    GrayImage.setGray(ImageProcessing::medianFilter(GrayImage.getGray(),sizeMask));
+    return GrayImage;
+}
+
+template <typename Type>
+ImageProcessing::GrayImage<Type> ImageProcessing::selfreinforceFilter(ImageProcessing::GrayImage<Type> GrayImage, const unsigned &sizeMask, const double &reinforceWeigth)
+{
+    ImageProcessing::GrayImage<Type> temp = ImageProcessing::averageFilter(GrayImage,sizeMask);
+    GrayImage.setGray(ImageProcessing::checkValue(reinforceWeigth*GrayImage.getGray() - temp.getGray()));
+    return GrayImage;
+}

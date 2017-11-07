@@ -12,7 +12,12 @@ namespace ImageProcessing
             GrayImage(const LinAlg::Matrix<Type> &gray);
             GrayImage(const ImageProcessing::GrayImage<Type> &gray);
 
-            void setGray(LinAlg::Matrix<Type> gray) {this->gray = gray;}
+            void setGray(const ImageProcessing::GrayImage<Type> &gray) {
+                this->gray = gray.getGray();
+                 this->width = gray.getWidth();
+                 this->height = gray.getHeight();
+                 this->alpha = 255;
+            }
 
             void setWidth(unsigned width) {this->width = width;}
             void getHeight(unsigned height){this->height = height;}
@@ -88,6 +93,42 @@ namespace ImageProcessing
 
     template <typename Type>
     ImageProcessing::GrayImage<Type> contrastEnhancement(ImageProcessing::GrayImage<Type> grayImage,const LinAlg::Matrix<Type> &position);
+
+
+    // Aula 8
+    template <typename Type>
+    ImageProcessing::GrayImage<Type> contrastEnhancement(ImageProcessing::GrayImage<Type> grayImage,const LinAlg::Matrix<Type> &position);
+    // fim aula 8
+
+    // Aula 11
+    template <typename Type>
+    ImageProcessing::GrayImage<Type> filterPrewittVertical(ImageProcessing::GrayImage<Type> GrayImage);
+    template <typename Type>
+    ImageProcessing::GrayImage<Type> filterPrewittHorizontal(ImageProcessing::GrayImage<Type> GrayImage);
+
+    template <typename Type>
+    ImageProcessing::GrayImage<Type> filterSobelVertical(ImageProcessing::GrayImage<Type> GrayImage);
+    template <typename Type>
+    ImageProcessing::GrayImage<Type> filterSobelHorizontal(ImageProcessing::GrayImage<Type> GrayImage);
+
+    template <typename Type>
+    ImageProcessing::GrayImage<Type> filterRobertsVertical(ImageProcessing::GrayImage<Type> GrayImage);
+    template <typename Type>
+    ImageProcessing::GrayImage<Type> filterRobertsHorizontal(ImageProcessing::GrayImage<Type> GrayImage);
+    // fim aula 11
+    // Aula 12
+    template <typename Type, typename OtherType>
+    ImageProcessing::GrayImage<Type> discreteLaplacian(ImageProcessing::GrayImage<Type> img, const OtherType &borderWeigth, const OtherType &maskWeigth);
+    // fim aula 12
+
+    // Aula 13
+    template <typename Type>
+    ImageProcessing::GrayImage<Type> averageFilter(ImageProcessing::GrayImage<Type> GrayImage, const unsigned &sizeMask);
+    template <typename Type>
+    ImageProcessing::GrayImage<Type> medianFilter(ImageProcessing::GrayImage<Type> GrayImage, const unsigned &sizeMask);
+    template <typename Type>
+    ImageProcessing::GrayImage<Type> selfreinforceFilter(ImageProcessing::GrayImage<Type> GrayImage, const unsigned &sizeMask, const double &reinforceWeigth);
+    // fim aula 13
 
 }
 #include "grayimage.hpp"

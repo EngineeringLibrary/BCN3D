@@ -65,5 +65,5 @@ namespace ImageProcessing
 
 }
 
-//#include "binaryimage.cpp"
+//#include "binaryimage.hpp"
 #endif // BINARYIMAGE_H

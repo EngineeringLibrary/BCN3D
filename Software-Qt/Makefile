@@ -51,9 +51,11 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = main.cpp \
-		mainwindow.cpp moc_mainwindow.cpp
+		mainwindow.cpp \
+		binaryimage.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
+		binaryimage.o \
 		moc_mainwindow.o
 DIST          = ../../../../Qt/5.9.2/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.9.2/gcc_64/mkspecs/common/unix.conf \
@@ -246,9 +248,9 @@ DIST          = ../../../../Qt/5.9.2/gcc_64/mkspecs/features/spec_pre.prf \
 		rgbimage.hpp \
 		grayimage.h \
 		grayimage.hpp \
-		binaryimage.h \
-		binaryimage.hpp main.cpp \
-		mainwindow.cpp
+		binaryimage.h main.cpp \
+		mainwindow.cpp \
+		binaryimage.cpp
 QMAKE_TARGET  = Software-Qt
 DESTDIR       = 
 TARGET        = Software-Qt
@@ -650,8 +652,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Qt/5.9.2/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.h SistemasdeControle/headers/primitiveLibs/LinAlg/matrix.h SistemasdeControle/src/primitiveLibs/LinAlg/matrix.hpp imageconversion.h imageconversion.hpp imageprocessing.h imageprocessing.hpp rgbimage.h rgbimage.hpp grayimage.h grayimage.hpp binaryimage.h binaryimage.hpp $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents mainwindow.h SistemasdeControle/headers/primitiveLibs/LinAlg/matrix.h SistemasdeControle/src/primitiveLibs/LinAlg/matrix.hpp imageconversion.h imageconversion.hpp imageprocessing.h imageprocessing.hpp rgbimage.h rgbimage.hpp grayimage.h grayimage.hpp binaryimage.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp mainwindow.cpp binaryimage.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
 
 
@@ -1231,18 +1233,8 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtGui/qinputmethod.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QButtonGroup \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qbuttongroup.h \
-		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QHeaderView \
-		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qheaderview.h \
-		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qabstractitemview.h \
-		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt/5.9.2/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../../Qt/5.9.2/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QComboBox \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qcombobox.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qstyleoption.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qabstractspinbox.h \
@@ -1253,8 +1245,27 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qstyle.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qtabbar.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QGridLayout \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QHeaderView \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtCore/qitemselectionmodel.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QLabel \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qlabel.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QLineEdit \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qlineedit.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtGui/qtextcursor.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtGui/qtextformat.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtGui/qpen.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtGui/qtextoption.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QMenuBar \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qmenubar.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qmenu.h \
@@ -1266,8 +1277,22 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QTabWidget \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QToolBar \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qtoolbar.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
+
+binaryimage.o: binaryimage.cpp binaryimage.h \
+		SistemasdeControle/headers/primitiveLibs/LinAlg/linalg.h \
+		SistemasdeControle/headers/primitiveLibs/LinAlg/matrix.h \
+		SistemasdeControle/headers/primitiveLibs/primitives.h \
+		SistemasdeControle/headers/primitiveLibs/LinAlg/identifiers.h \
+		SistemasdeControle/src/primitiveLibs/LinAlg/matrix.hpp \
+		SistemasdeControle/src/primitiveLibs/LinAlg/linalg.hpp \
+		grayimage.h \
+		imageprocessing.h \
+		imageprocessing.hpp \
+		grayimage.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o binaryimage.o binaryimage.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

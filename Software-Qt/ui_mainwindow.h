@@ -37,7 +37,7 @@ public:
     QVBoxLayout *verticalLayout_2;
     QTabWidget *result;
     QWidget *tab;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QWidget *webcam;
     QPushButton *pushButton;
@@ -73,20 +73,20 @@ public:
         result->setObjectName(QStringLiteral("result"));
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
-        widget = new QWidget(tab);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(10, 10, 1251, 571));
-        verticalLayout = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(tab);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(10, 10, 1251, 571));
+        verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        webcam = new QWidget(widget);
+        webcam = new QWidget(layoutWidget);
         webcam->setObjectName(QStringLiteral("webcam"));
 
         verticalLayout->addWidget(webcam);
 
-        pushButton = new QPushButton(widget);
+        pushButton = new QPushButton(layoutWidget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
 
         verticalLayout->addWidget(pushButton);
@@ -186,8 +186,10 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
         pushButton->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
         result->setTabText(result->indexOf(tab), QApplication::translate("MainWindow", "capture", Q_NULLPTR));
+        line_red->setText(QApplication::translate("MainWindow", "100", Q_NULLPTR));
         label_after_blue->setText(QString());
         label_after_red->setText(QString());
+        line_blue->setText(QApplication::translate("MainWindow", "100", Q_NULLPTR));
         label_before->setText(QString());
         label->setText(QApplication::translate("MainWindow", "blue", Q_NULLPTR));
         label_2->setText(QApplication::translate("MainWindow", "red", Q_NULLPTR));
@@ -195,11 +197,15 @@ public:
         select_blue->insertItems(0, QStringList()
          << QApplication::translate("MainWindow", "escala de cinza", Q_NULLPTR)
          << QApplication::translate("MainWindow", "filtro mediano", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "dilata\303\247\303\243o", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "erosao", Q_NULLPTR)
         );
         select_red->clear();
         select_red->insertItems(0, QStringList()
          << QApplication::translate("MainWindow", "escala de cinza", Q_NULLPTR)
          << QApplication::translate("MainWindow", "filtro mediano", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "dilata\303\247\303\243o", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "erosao", Q_NULLPTR)
         );
         result->setTabText(result->indexOf(tab_2), QApplication::translate("MainWindow", "result", Q_NULLPTR));
     } // retranslateUi

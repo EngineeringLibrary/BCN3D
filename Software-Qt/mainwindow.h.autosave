@@ -53,7 +53,7 @@ private:
 
     ImageProcessing::RGBImage<unsigned>mat_complete,rgb_blue,rgb_red;
     ImageProcessing::GrayImage<unsigned>gray_blue,gray_red;
-//    QPixmap mypix;
+    ImageProcessing::BinaryImage bina_blue,bina_red;
     QPixmap *mypix ;
 
 };

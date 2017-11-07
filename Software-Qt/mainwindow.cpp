@@ -95,7 +95,7 @@ void MainWindow::result_view(QImage &img,bool state, bool colors){
 }
 
 void MainWindow::processCaptureImage(int requestId,const QImage& imgs){
-    img = imgs;
+    this->img = imgs;
     QString fileName =  QDir::currentPath()+"/imageCaptured.jpg";
     if(!fileName.isEmpty()){
        imgs.save(fileName);
@@ -106,66 +106,38 @@ void MainWindow::processCaptureImage(int requestId,const QImage& imgs){
 //   mostrando imagem antes do processamento
     result_view(img,true,true);
 //    separando a image por cor
-    ImageProcessing::RGBImage<unsigned>mat_complete,rgb_blue,rgb_red;
-    ImageProcessing::GrayImage<unsigned>gray_blue,gray_red;
 
     //convertendo de qimage para rgbimage
     mat_complete = ImageProcessing::QImage2RGBImage<unsigned>(img);
-
     gray_blue.setGray(mat_complete.getBlue());
-
     gray_red.setGray(mat_complete.getRed());
 
     Qimg_blue[0] = ImageProcessing::GrayImage2QImage<unsigned>(gray_blue);
     Qimg_red[0] = ImageProcessing::GrayImage2QImage<unsigned>(gray_red);
 
-//    filtros FAZER DE GRAY PARA RGB PQ TA LENTO
+    gray_blue = ImageProcessing::medianFilter(gray_blue,3);
+    gray_red  = ImageProcessing::medianFilter(gray_red,3);
+
     Qimg_blue[1] = ImageProcessing::GrayImage2QImage<unsigned>(gray_blue);
     Qimg_red[1]  = ImageProcessing::GrayImage2QImage<unsigned>(gray_red);
 
-//    fazer o comentado de baixo funcionar tbm, é mais rapido
-    rgb_blue = ImageProcessing::QImage2RGBImage<unsigned>(Qimg_blue[1]);
-    rgb_red  = ImageProcessing::QImage2RGBImage<unsigned>(Qimg_red[1]);
+// linearizar pelo que entendi e passar pela dilataçao blue
+    bina_blue = gray_blue > ui->line_blue->text().toULong();
+    bina_red  = gray_red > ui->line_red->text().toULong();
+    // dilataçao blue
+    bina_blue = ImageProcessing::dilation(bina_blue);
+    Qimg_blue[2] = ImageProcessing::BinaryImage2QImage<bool>(bina_blue);
+    // dilataçao red
+    bina_red = ImageProcessing::dilation(bina_red);
+    Qimg_red[2] = ImageProcessing::BinaryImage2QImage<bool>(bina_red);
 
-//    devo estar bugado já,deu ruim
-//    rgb_blue = ImageProcessing::GrayImage2RGBImage<unsigned>(gray_blue);
-//    rgb_red  = ImageProcessing::GrayImage2RGBImage<unsigned>(gray_red);
-
-    rgb_blue = ImageProcessing::medianFilter(rgb_blue,7);
-    rgb_red  = ImageProcessing::medianFilter(rgb_red,7);
-
-//voltando para gray depois de passar pelo filtro
-    gray_blue.setGray(rgb_blue.getBlue());
-    gray_red.setGray(rgb_red.getRed());
-
-    Qimg_blue[1] = ImageProcessing::RGBImage2QImage<unsigned>(rgb_blue);
-    Qimg_red[1]  = ImageProcessing::RGBImage2QImage<unsigned>(rgb_red);
-
-
-// ---------------------------------------------   buguei fdd
-//     imgB =Qimg_blue[1];
-//      imgR =Qimg_red[1];
-
-//// binarizar pelo que entendi e passar pela dilataçao blue
-//    ImageProcessing::BinaryImage bina_blue = (ImageProcessing::QImage2GrayImage<unsigned>(this->imgB) > ui->line_blue->text().toULong());
-//    ImageProcessing::BinaryImage bina_red  = ImageProcessing::QImage2GrayImage<unsigned>(this->imgR) > ui->line_red->text().toULong();
-//// dilataçao blue
-//    bina_blue = ImageProcessing::dilation(bina_blue);
-//    Qimg_blue[2] = ImageProcessing::BinaryImage2QImage<bool>(bina_blue);
-//// dilataçao red
-//    bina_red = ImageProcessing::dilation(bina_red);
-//    Qimg_red[2] = ImageProcessing::BinaryImage2QImage<bool>(bina_red);
-
-//// erosion blue
-//    bina_blue = ImageProcessing::erosion(bina_blue);
-//    Qimg_blue[3] =ImageProcessing::BinaryImage2QImage<bool>(bina_blue);
-//// erosion blue
-//    bina_red = ImageProcessing::erosion(bina_red);
-//    Qimg_red[3] =ImageProcessing::BinaryImage2QImage<bool>(bina_red);
-////    mostrando imagem azul
-//        result_view(Qimg_blue[0],false,false);
+    // erosion blue
+    bina_blue = ImageProcessing::erosion(bina_blue);
+    Qimg_blue[3] =ImageProcessing::BinaryImage2QImage<bool>(bina_blue);
+    // erosion blue
+    bina_red = ImageProcessing::erosion(bina_red);
+    Qimg_red[3] =ImageProcessing::BinaryImage2QImage<bool>(bina_red);
 ////    mostrando imagem vermelha
-//        result_view(Qimg_red[0],false,true);
 
 }
 
@@ -173,27 +145,34 @@ void MainWindow::on_select_blue_currentIndexChanged(int index)
 {
     switch (index) {
        case 0:
-        if(!this->Qimg_red[index].isNull()){
-            qDebug() <<"case 0:" <<index<<" blue:" << !this->Qimg_red[index].isNull() ;
+        if(!this->Qimg_blue[index].isNull()){
+            qDebug() <<"case 0:" <<index<<" blue:" << !this->Qimg_blue[index].isNull() ;
             result_view(this->Qimg_blue[index],false,false);
             break;
         }
        case 1:
-        if(!this->Qimg_red[index].isNull()){
-            qDebug() <<"case 1:" <<index<<" blue:" << !this->Qimg_red[index].isNull() ;
+        if(!this->Qimg_blue[index].isNull()){
+            qDebug() <<"case 1:" <<index<<" blue:" << !this->Qimg_blue[index].isNull() ;
             result_view(this->Qimg_blue[index],false,false);
             break;
         }
         case 2:
-         if(!this->Qimg_red[index].isNull()){
-             qDebug() <<"case 2:" <<index<<" blue:" << !this->Qimg_red[index].isNull() ;
+         if(!this->Qimg_blue[index].isNull()){
+             qDebug() <<"case 2:" <<index<<" blue:" << !this->Qimg_blue[index].isNull() ;
+             result_view(this->Qimg_blue[index],false,false);
+             break;
+         }
+        case 3:
+         if(!this->Qimg_blue[index].isNull()){
+             qDebug() <<"case 2:" <<index<<" blue:" << !this->Qimg_blue[index].isNull() ;
              result_view(this->Qimg_blue[index],false,false);
              break;
          }
        default:
-        qDebug() <<"case default" <<index<<" blue:" << !this->Qimg_red[0].isNull() ;
-        qDebug() <<"case default" <<index<<" blue:" << !this->Qimg_red[1].isNull() ;
-           std::cout << "default blue "<<std::endl;
+        qDebug() <<"case default" <<index<<" blue:" << !this->Qimg_blue[0].isNull() ;
+        qDebug() <<"case default" <<index<<" blue:" << !this->Qimg_blue[1].isNull() ;
+         qDebug() <<"default blue";
+
        }
 }
 
@@ -219,9 +198,15 @@ void MainWindow::on_select_red_currentIndexChanged(int index)
              result_view(this->Qimg_red[index],false,true);
              break;
          }
+        case 3:
+         if(!this->Qimg_red[index].isNull()){
+             qDebug() <<"case 2 red:" << this->Qimg_red[index].isNull() ;
+             result_view(this->Qimg_red[index],false,true);
+             break;
+         }
        default:
         qDebug() <<"case default red:" << this->Qimg_red[0].isNull() ;
         qDebug() <<"case default red:" << this->Qimg_red[1].isNull() ;
-           std::cout << "default red "<<std::endl;
+          qDebug() <<"default red";
        }
 }

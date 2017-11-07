@@ -8,8 +8,8 @@ QImage ImageProcessing::RGBImage2QImage(const ImageProcessing::RGBImage<Type> &r
                          b = rgbImg.getBlue();
     QImage ret(r.getNumberOfRows(), r.getNumberOfColumns(),
                QImage::Format_RGB32);
-    for (int i = 0; i < r.getNumberOfRows(); ++i)
-        for (int j = 0; j < r.getNumberOfColumns(); ++j)
+    for (unsigned i = 0; i < r.getNumberOfRows(); ++i)
+        for (unsigned j = 0; j < r.getNumberOfColumns(); ++j)
             ret.setPixelColor(i,j,
             QColor(r(i+1,j+1),g(i+1,j+1),b(i+1,j+1)));
     return ret;
