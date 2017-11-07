@@ -7,6 +7,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+//     mypix = (QDir::currentPath()+"/imageCaptured.jpg");
+//     ui->label_before->setPixmap(mypix);
+
+
     camera = new QCamera;
     viewfinder = new QVideoWidget(ui->webcam);
     viewfinder->setMinimumSize(
@@ -19,52 +23,22 @@ MainWindow::MainWindow(QWidget *parent) :
     );
 
     camera->setViewfinder(viewfinder);
-//    camera->setProperty("mirrored", false);
-//    viewfinder->setProperty("mirrored", true);
     viewfinder->show();
     imageCapture = new QCameraImageCapture(camera);
     camera->setCaptureMode(QCamera::CaptureStillImage);
-
-
-    // Assuming a QImage has been created from the QVideoFrame that needs to be presented
-    QImage videoFrame;
-    QCamera myCamera;
-    QCameraInfo cameraInfo(*camera);
-    videoFrame = img;
-
-//     Get the current display orientation
-     QScreen *screen = QGuiApplication::primaryScreen();
-     int screenAngle = screen->angleBetween(screen->nativeOrientation(), screen->orientation());
-
-     int rotation;
-     if (cameraInfo.position() == QCamera::BackFace) {
-         rotation = (cameraInfo.orientation() - screenAngle) % 360;
-     } else {
-         // Front position, compensate the mirror
-         rotation = (360 - cameraInfo.orientation() + screenAngle) % 360;
-     }
-
-
-    // Rotate the frame so it always shows in the correct orientation
-    img = img.transformed(QTransform().rotate(rotation));
-
-    QTimer *timer = new QTimer(this);
-
-    connect(timer,
-            SIGNAL(timeout()),
-                this,
-                SLOT(timerClock(1)));
-    timer->start(1000);
-
-
     camera->start();
+
     connect(imageCapture,
             SIGNAL(imageCaptured(int,QImage)),
                    this,
                    SLOT(processCaptureImage(int,QImage)));
 
-//    QTimer::singleShot(1,this,  SLOT(timerClock(1)));
-
+//    connect(imageCapture,
+//            SIGNAL(processCaptureImage(int.QImage)),
+//                   this,
+//                   SLOT(result_update));
+//client_tcp dentro da pasta robotica/rfc
+//    img = ui->label_before->pixmap()->toImage();
 }
 
 MainWindow::~MainWindow()
@@ -76,23 +50,50 @@ void MainWindow::on_pushButton_clicked()
 {
     camera->searchAndLock();
     imageCapture->capture();
-    std::cout << "time2: "<< QDate::currentDate().toString().toUtf8().toStdString() << std::endl;
+    QThread::sleep(2);
+
+    qDebug() <<"img:" << img.isNull() ;
+
+//    result_before(img);
+
 }
 
 void MainWindow::timerClock( unsigned clockTime){
 
-    std::cout << "time: "<< QDate::currentDate().toString().toUtf8().toStdString() << std::endl;
+    std::cout << "time: " << QDate::currentDate().toString().toUtf8().toStdString() << std::endl;
 }
 
-void MainWindow::processCaptureImage(int requestId,const QImage& img){
+void emit_result(){
+    return emit;
+}
 
+void MainWindow::result_view(QImage &img,bool state){
+    if (state){
+        ui->label_before->updatesEnabled();
+        ui->label_before->setPixmap(QPixmap::fromImage(img));
+        ui->label_before->setScaledContents( true );
+        ui->label_before->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
+        ui->label_before->update();
+        ui->label_before->show();
+    }else{
+        ui->label_after->updatesEnabled();
+        ui->label_after->setPixmap(QPixmap::fromImage(img));
+        ui->label_after->setScaledContents( true );
+        ui->label_after->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
+        ui->label_after->update();
+        ui->label_after->show();
+    }
+}
+
+void MainWindow::processCaptureImage(int requestId,const QImage& imgs){
+    img = imgs;
     QString fileName =  QDir::currentPath()+"/imageCaptured.jpg";
-
     if(!fileName.isEmpty()){
-       img.save(fileName);
+       imgs.save(fileName);
        std::cout << "save";
     }else{
-        img.save(fileName);
         std::cout << "no save";
     }
+    result_view(img);
+
 }

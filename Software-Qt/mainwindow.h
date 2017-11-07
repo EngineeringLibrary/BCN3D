@@ -6,6 +6,7 @@
 #include <QCamera>
 #include <QTimer>
 #include <QDate>
+#include <QThread>
 #include <QVideoWidget>
 #include <QCameraImageCapture>
 #include <QScreen>
@@ -30,7 +31,11 @@ private slots:
 
     void timerClock( unsigned clockTime);
 
+    void result_view(QImage &img,bool state = true);
+
     void processCaptureImage(int requestId,const QImage &img);
+signals :
+    void emit_result();
 
 private:
     Ui::MainWindow *ui;
@@ -38,6 +43,8 @@ private:
     QVideoWidget *viewfinder;
     QCameraImageCapture *imageCapture;
     QImage img;
+//    QPixmap mypix;
+    QPixmap *mypix ;
 
 };
 
