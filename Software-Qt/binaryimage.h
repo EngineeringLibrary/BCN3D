@@ -55,6 +55,14 @@ namespace ImageProcessing
     ImageProcessing::BinaryImage operator>= (const unsigned& value, const ImageProcessing::GrayImage<unsigned> &grayImage);
     ImageProcessing::BinaryImage operator<  (const unsigned& value, const ImageProcessing::GrayImage<unsigned> &grayImage);
     ImageProcessing::BinaryImage operator<= (const unsigned& value, const ImageProcessing::GrayImage<unsigned> &grayImage);
+
+    LinAlg::Matrix<bool> erosionMask(const ImageProcessing::BinaryImage &img, const unsigned &row, const unsigned &col);
+    ImageProcessing::BinaryImage erosion (const ImageProcessing::BinaryImage &img);
+    ImageProcessing::BinaryImage dilation(const ImageProcessing::BinaryImage &img);
+
+    ImageProcessing::BinaryImage closing (const ImageProcessing::BinaryImage &img);
+    ImageProcessing::BinaryImage opening (const ImageProcessing::BinaryImage &img);
+
 }
 
 //#include "binaryimage.cpp"

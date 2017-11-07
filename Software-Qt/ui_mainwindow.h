@@ -44,11 +44,11 @@ public:
     QWidget *tab_2;
     QGridLayout *gridLayout_4;
     QGridLayout *gridLayout_3;
-    QLineEdit *lineEdit;
+    QLineEdit *line_red;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_after_blue;
     QLabel *label_after_red;
-    QLineEdit *lineEdit_5;
+    QLineEdit *line_blue;
     QLabel *label_before;
     QLabel *label;
     QLabel *label_2;
@@ -101,10 +101,10 @@ public:
         gridLayout_3 = new QGridLayout();
         gridLayout_3->setSpacing(6);
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
-        lineEdit = new QLineEdit(tab_2);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        line_red = new QLineEdit(tab_2);
+        line_red->setObjectName(QStringLiteral("line_red"));
 
-        gridLayout_3->addWidget(lineEdit, 4, 1, 1, 1);
+        gridLayout_3->addWidget(line_red, 4, 1, 1, 1);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(6);
@@ -122,10 +122,10 @@ public:
 
         gridLayout_3->addLayout(horizontalLayout_2, 1, 0, 1, 2);
 
-        lineEdit_5 = new QLineEdit(tab_2);
-        lineEdit_5->setObjectName(QStringLiteral("lineEdit_5"));
+        line_blue = new QLineEdit(tab_2);
+        line_blue->setObjectName(QStringLiteral("line_blue"));
 
-        gridLayout_3->addWidget(lineEdit_5, 4, 0, 1, 1);
+        gridLayout_3->addWidget(line_blue, 4, 0, 1, 1);
 
         label_before = new QLabel(tab_2);
         label_before->setObjectName(QStringLiteral("label_before"));

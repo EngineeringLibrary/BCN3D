@@ -48,7 +48,7 @@ private:
     QCamera *camera;
     QVideoWidget *viewfinder;
     QCameraImageCapture *imageCapture;
-    QImage img,Qimg_blue[6],Qimg_red[6];
+    QImage img,Qimg_blue[6],Qimg_red[6],imgB,imgR;
 //    QPixmap mypix;
     QPixmap *mypix ;
 

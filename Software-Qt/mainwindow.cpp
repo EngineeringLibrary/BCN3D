@@ -131,12 +131,35 @@ void MainWindow::processCaptureImage(int requestId,const QImage& imgs){
 //    rgb_blue = ImageProcessing::GrayImage2RGBImage<unsigned>(gray_blue);
 //    rgb_red  = ImageProcessing::GrayImage2RGBImage<unsigned>(gray_red);
 
-    rgb_blue = ImageProcessing::medianFilter(rgb_blue,9);
-    rgb_red  = ImageProcessing::medianFilter(rgb_red,9);
+    rgb_blue = ImageProcessing::medianFilter(rgb_blue,7);
+    rgb_red  = ImageProcessing::medianFilter(rgb_red,7);
+
+//voltando para gray depois de passar pelo filtro
+    gray_blue.setGray(rgb_blue.getBlue());
+    gray_red.setGray(rgb_red.getRed());
 
     Qimg_blue[1] = ImageProcessing::RGBImage2QImage<unsigned>(rgb_blue);
     Qimg_red[1]  = ImageProcessing::RGBImage2QImage<unsigned>(rgb_red);
 
+     imgB =Qimg_blue[1];
+      imgR =Qimg_red[1];
+
+// binarizar pelo que entendi e passar pela dilataçao blue
+    ImageProcessing::BinaryImage bina_blue = (ImageProcessing::QImage2GrayImage<unsigned>(this->imgB) > ui->line_blue->text().toULong());
+    ImageProcessing::BinaryImage bina_red  = ImageProcessing::QImage2GrayImage<unsigned>(this->imgR) > ui->line_red->text().toULong();
+// dilataçao blue
+    bina_blue = ImageProcessing::dilation(bina_blue);
+    Qimg_blue[2] = ImageProcessing::BinaryImage2QImage<bool>(bina_blue);
+// dilataçao red
+    bina_red = ImageProcessing::dilation(bina_red);
+    Qimg_red[2] = ImageProcessing::BinaryImage2QImage<bool>(bina_red);
+
+// erosion blue
+    bina_blue = ImageProcessing::erosion(bina_blue);
+    Qimg_blue[3] =ImageProcessing::BinaryImage2QImage<bool>(bina_blue);
+// erosion blue
+    bina_red = ImageProcessing::erosion(bina_red);
+    Qimg_red[3] =ImageProcessing::BinaryImage2QImage<bool>(bina_red);
 ////    mostrando imagem azul
 //        result_view(Qimg_blue[0],false,false);
 ////    mostrando imagem vermelha
