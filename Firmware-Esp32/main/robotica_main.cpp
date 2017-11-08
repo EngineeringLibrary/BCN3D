@@ -32,10 +32,7 @@ void stepControlMotor(void*arg)
 }
 
 extern "C" void app_main()
-{   
+{
     xTaskCreate(controlMotor, "controlMotor", 1024 * 2, NULL, 5, NULL);
-    xTaskCreate(stepControlMotor, "step", 1024 * 2, NULL, 5, NULL);    
+    xTaskCreate(stepControlMotor, "step", 1024 * 2, NULL, 5, NULL);
 }
-
-
-

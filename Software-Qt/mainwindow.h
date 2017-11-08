@@ -14,7 +14,7 @@
 #include "imageconversion.h"
 #include "grayimage.h"
 #include "binaryimage.h"
-
+#include "client.h"
 
 namespace Ui {
 class MainWindow;
@@ -29,6 +29,12 @@ public:
     ~MainWindow();
 
 private slots:
+    void update();
+
+    void Conectado();
+
+    void dataHandler();
+
     void on_pushButton_clicked();
 
     void timerClock( unsigned clockTime);
@@ -49,6 +55,10 @@ private slots:
 
     void linearizar(const ImageProcessing::GrayImage<unsigned> &gray_blu,const ImageProcessing::GrayImage<unsigned> &gray_re,const unsigned scale_blue,const unsigned scale_red);
 
+    void on_pushButtonConnect_clicked();
+
+    void on_pushButton_Disconnect_clicked();
+
 signals :
     void emit_result();
 
@@ -64,6 +74,8 @@ private:
     ImageProcessing::BinaryImage bina_blue,bina_red;
 //    QPixmap mypix;
     QPixmap *mypix ;
+    Client *wifi;
+    QString dataToSend;
 
 };
 
