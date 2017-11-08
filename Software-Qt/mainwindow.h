@@ -41,6 +41,14 @@ private slots:
 
     void on_select_red_currentIndexChanged(int index);
 
+    void filtro(const ImageProcessing::GrayImage<unsigned> &gray_blu,const ImageProcessing::GrayImage<unsigned> &gray_re,const unsigned scale = 3);
+
+    void dilation(const ImageProcessing::BinaryImage &bin_blue,const ImageProcessing::BinaryImage &bin_red);
+
+    void erosion(const ImageProcessing::BinaryImage &bin_blue,const ImageProcessing::BinaryImage &bin_red);
+
+    void linearizar(const ImageProcessing::GrayImage<unsigned> &gray_blu,const ImageProcessing::GrayImage<unsigned> &gray_re,const unsigned scale_blue,const unsigned scale_red);
+
 signals :
     void emit_result();
 
@@ -53,6 +61,7 @@ private:
 
     ImageProcessing::RGBImage<unsigned>mat_complete,rgb_blue,rgb_red;
     ImageProcessing::GrayImage<unsigned>gray_blue,gray_red;
+    ImageProcessing::BinaryImage bina_blue,bina_red;
 //    QPixmap mypix;
     QPixmap *mypix ;
 

@@ -115,29 +115,52 @@ void MainWindow::processCaptureImage(int requestId,const QImage& imgs){
     Qimg_blue[0] = ImageProcessing::GrayImage2QImage<unsigned>(gray_blue);
     Qimg_red[0] = ImageProcessing::GrayImage2QImage<unsigned>(gray_red);
 
-    gray_blue = ImageProcessing::medianFilter(gray_blue,3);
-    gray_red  = ImageProcessing::medianFilter(gray_red,3);
+//    filtro(gray_blue,gray_red);
+
+//// linearizar pelo que entendi e passar pela dilataçao blue
+//    linearizar(gray_blue,gray_red,ui->line_blue->text().toULong(),ui->line_red->text().toULong());
+
+//    dilation(bina_blue,bina_red);
+
+//    erosion(bina_blue,bina_red);
+
+}
+
+void MainWindow::linearizar(const ImageProcessing::GrayImage<unsigned> &gray_blu,const ImageProcessing::GrayImage<unsigned> &gray_re,const unsigned scale_blue,const unsigned scale_red){
+// linearizar pelo que entendi e passar pela dilataçao blue
+    bina_blue = gray_blu > scale_blue;
+    bina_red  = gray_re > scale_red;
+
+}
+
+void MainWindow::filtro(const ImageProcessing::GrayImage<unsigned> &gray_blu,const ImageProcessing::GrayImage<unsigned> &gray_re,const unsigned scale){
+
+    gray_blue = ImageProcessing::medianFilter(gray_blu,scale);
+    gray_red  = ImageProcessing::medianFilter(gray_re,scale);
 
     Qimg_blue[1] = ImageProcessing::GrayImage2QImage<unsigned>(gray_blue);
-    Qimg_red[1]  = ImageProcessing::GrayImage2QImage<unsigned>(gray_red);
+    Qimg_red [1]  = ImageProcessing::GrayImage2QImage<unsigned>(gray_red);
 
-// linearizar pelo que entendi e passar pela dilataçao blue
-    bina_blue = gray_blue > ui->line_blue->text().toULong();
-    bina_red  = gray_red > ui->line_red->text().toULong();
-    // dilataçao blue
-    bina_blue = ImageProcessing::dilation(bina_blue);
+}
+
+void MainWindow::dilation(const ImageProcessing::BinaryImage &bin_blue,const ImageProcessing::BinaryImage &bin_red){
+
+    bina_blue = ImageProcessing::dilation(bin_blue);
     Qimg_blue[2] = ImageProcessing::BinaryImage2QImage<bool>(bina_blue);
     // dilataçao red
-    bina_red = ImageProcessing::dilation(bina_red);
+    bina_red = ImageProcessing::dilation(bin_red);
     Qimg_red[2] = ImageProcessing::BinaryImage2QImage<bool>(bina_red);
 
+}
+
+void MainWindow::erosion(const ImageProcessing::BinaryImage &bin_blue,const ImageProcessing::BinaryImage &bin_red){
+
     // erosion blue
-    bina_blue = ImageProcessing::erosion(bina_blue);
+    bina_blue = ImageProcessing::erosion(bin_blue);
     Qimg_blue[3] =ImageProcessing::BinaryImage2QImage<bool>(bina_blue);
     // erosion blue
-    bina_red = ImageProcessing::erosion(bina_red);
+    bina_red = ImageProcessing::erosion(bin_red);
     Qimg_red[3] =ImageProcessing::BinaryImage2QImage<bool>(bina_red);
-////    mostrando imagem vermelha
 
 }
 
@@ -145,29 +168,34 @@ void MainWindow::on_select_blue_currentIndexChanged(int index)
 {
     switch (index) {
        case 0:
-        if(!this->Qimg_blue[index].isNull()){
+//        if(!this->Qimg_blue[index].isNull()){
             qDebug() <<"case 0:" <<index<<" blue:" << !this->Qimg_blue[index].isNull() ;
             result_view(this->Qimg_blue[index],false,false);
             break;
-        }
+//        }
        case 1:
-        if(!this->Qimg_blue[index].isNull()){
+//        if(!this->Qimg_blue[index].isNull()){
             qDebug() <<"case 1:" <<index<<" blue:" << !this->Qimg_blue[index].isNull() ;
+            filtro(gray_blue,gray_red);
             result_view(this->Qimg_blue[index],false,false);
             break;
-        }
+//        }
         case 2:
-         if(!this->Qimg_blue[index].isNull()){
+//         if(!this->Qimg_blue[index].isNull()){
              qDebug() <<"case 2:" <<index<<" blue:" << !this->Qimg_blue[index].isNull() ;
+             linearizar(gray_blue,gray_red,ui->line_blue->text().toULong(),ui->line_red->text().toULong());
+             dilation(bina_blue,bina_red);
              result_view(this->Qimg_blue[index],false,false);
              break;
-         }
+//         }
         case 3:
-         if(!this->Qimg_blue[index].isNull()){
+//         if(!this->Qimg_blue[index].isNull()){
              qDebug() <<"case 2:" <<index<<" blue:" << !this->Qimg_blue[index].isNull() ;
+             linearizar(gray_blue,gray_red,ui->line_blue->text().toULong(),ui->line_red->text().toULong());
+              erosion(bina_blue,bina_red);
              result_view(this->Qimg_blue[index],false,false);
              break;
-         }
+//         }
        default:
         qDebug() <<"case default" <<index<<" blue:" << !this->Qimg_blue[0].isNull() ;
         qDebug() <<"case default" <<index<<" blue:" << !this->Qimg_blue[1].isNull() ;
@@ -180,30 +208,35 @@ void MainWindow::on_select_red_currentIndexChanged(int index)
 {
     switch (index) {
        case 0:
-        if(!this->Qimg_red[index].isNull()){
+//        if(!this->Qimg_red[index].isNull()){
             qDebug() <<"case 0 red:" << this->Qimg_red[index].isNull() ;
             result_view(this->Qimg_red[index],false,true);
             break;
-        }
+//        }
 
        case 1:
-        if(!this->Qimg_red[index].isNull()){
+//        if(!this->Qimg_red[index].isNull()){
             qDebug() <<"case 1 red:" << this->Qimg_red[index].isNull() ;
+            filtro(gray_blue,gray_red);
             result_view(this->Qimg_red[index],false,true);
             break;
-        }
+//        }
         case 2:
-         if(!this->Qimg_red[index].isNull()){
+//         if(!this->Qimg_red[index].isNull()){
              qDebug() <<"case 2 red:" << this->Qimg_red[index].isNull() ;
+             linearizar(gray_blue,gray_red,ui->line_blue->text().toULong(),ui->line_red->text().toULong());
+             dilation(bina_blue,bina_red);
              result_view(this->Qimg_red[index],false,true);
              break;
-         }
+//         }
         case 3:
-         if(!this->Qimg_red[index].isNull()){
+//         if(!this->Qimg_red[index].isNull()){
              qDebug() <<"case 2 red:" << this->Qimg_red[index].isNull() ;
+             linearizar(gray_blue,gray_red,ui->line_blue->text().toULong(),ui->line_red->text().toULong());
+              erosion(bina_blue,bina_red);
              result_view(this->Qimg_red[index],false,true);
              break;
-         }
+//         }
        default:
         qDebug() <<"case default red:" << this->Qimg_red[0].isNull() ;
         qDebug() <<"case default red:" << this->Qimg_red[1].isNull() ;

@@ -10,6 +10,7 @@ namespace ImageProcessing
     class BinaryImage
     {
     public:
+        BinaryImage(){}
         BinaryImage(const unsigned &height, const unsigned &width){ this->height = height; this->width = width; binary = LinAlg::Matrix<bool>(height,width);}
         BinaryImage(const LinAlg::Matrix<bool> &bin){this->binary = bin; this->height = bin.getNumberOfRows(); this->width = bin.getNumberOfColumns();}
         BinaryImage(const ImageProcessing::BinaryImage &bin){this->binary = bin.getBinaryImageMatrix(); this->height = bin.getHeight(); this->width = bin.getWidth();}
