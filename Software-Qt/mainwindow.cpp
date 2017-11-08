@@ -9,7 +9,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->widget->hide();
     dataToSend = "0000000000000";
-    arma = 0;
     this->wifi = nullptr;
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
