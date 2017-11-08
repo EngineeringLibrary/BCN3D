@@ -7,6 +7,14 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->widget->hide();
+    dataToSend = "0000000000000";
+    arma = 0;
+    this->wifi = nullptr;
+    QTimer *timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
+    timer->start(300);
+
 //     mypix = (QDir::currentPath()+"/imageCaptured.jpg");
 //     ui->label_before->setPixmap(mypix);
 
@@ -46,6 +54,8 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+    if(this->wifi)
+        delete this->wifi;
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -242,4 +252,42 @@ void MainWindow::on_select_red_currentIndexChanged(int index)
         qDebug() <<"case default red:" << this->Qimg_red[1].isNull() ;
           qDebug() <<"default red";
        }
+}
+
+void MainWindow::update()
+{
+    if(this->wifi)
+        this->wifi->writeData(this->dataToSend);
+    ui->lineEdit->setText(this->dataToSend);
+}
+
+void MainWindow::Conectado(){
+    QMessageBox msgBox;
+    msgBox.setText("Conexão Realizada com Sucesso!");
+    msgBox.exec();
+    ui->widget->show();
+}
+
+void MainWindow::dataHandler(){
+    std::string dadosWifi = this->wifi->dataReceived().toStdString();
+}
+
+void MainWindow::on_pushButtonConnect_clicked()
+{
+    QString ip = ui->lineEdit_IP->text();
+    quint16 port = ui->lineEdit_Port->text().toShort();
+
+    this->wifi = new Client("192.168.4.1",4000);
+    connect(wifi, SIGNAL(connectionSuccessful()),this,SLOT(Conectado()));
+    connect(wifi, SIGNAL(hasReadData()),this,SLOT(dataHandler()));
+}
+
+void MainWindow::on_pushButton_Disconnect_clicked()
+{
+    if(this->wifi){
+       disconnect(wifi, SIGNAL(hasReadData()),this,SLOT(dataHandler()));
+       delete this->wifi;
+       this->wifi = nullptr;
+    }
+    ui->widget->hide();
 }
