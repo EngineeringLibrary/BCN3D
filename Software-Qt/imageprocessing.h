@@ -18,6 +18,15 @@ namespace ImageProcessing
 
     template<typename Type>
     LinAlg::Matrix<Type> reScale(const LinAlg::Matrix<Type> &mat,  const double &scale);
+
+    template <typename Type, typename OtherType>
+    LinAlg::Matrix<Type> convolution2d(const LinAlg::Matrix<Type> &img, const LinAlg::Matrix<OtherType> &mask);
+
+    template <typename Type, typename OtherType>
+    LinAlg::Matrix<Type> discreteLaplacian(const LinAlg::Matrix<Type> &img, const OtherType &borderWeigth, const OtherType &maskWeigth);
+
+    template <typename Type>
+    LinAlg::Matrix<Type> medianFilter(const LinAlg::Matrix<Type> &img, const unsigned &sizeMask);
 }
 
 #include "imageprocessing.hpp"

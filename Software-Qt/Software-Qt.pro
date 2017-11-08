@@ -26,7 +26,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    binaryimage.cpp \
+    client.cpp
 
 HEADERS  += mainwindow.h \
     SistemasdeControle/headers/primitiveLibs/LinAlg/matrix.h \
@@ -36,6 +38,10 @@ HEADERS  += mainwindow.h \
     imageprocessing.h \
     imageprocessing.hpp \
     rgbimage.h \
-    rgbimage.hpp
+    rgbimage.hpp \
+    grayimage.h \
+    grayimage.hpp \
+    binaryimage.h \
+    client.h
 
 FORMS    += mainwindow.ui
