@@ -59,7 +59,8 @@ public:
     QWidget *tab_2;
     QGridLayout *gridLayout_4;
     QGridLayout *gridLayout_3;
-    QLineEdit *line_red;
+    QLineEdit *filter_red;
+    QLabel *label_red_filter;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_after_blue;
     QLabel *label_after_red;
@@ -67,8 +68,13 @@ public:
     QLabel *label_before;
     QLabel *label;
     QLabel *label_2;
-    QComboBox *select_blue;
     QComboBox *select_red;
+    QComboBox *select_blue;
+    QLineEdit *line_red;
+    QLabel *label_blue_filter;
+    QLineEdit *filter_blue;
+    QLabel *label_blue_linear;
+    QLabel *label_red_filter_2;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -90,7 +96,7 @@ public:
         tab_3->setObjectName(QStringLiteral("tab_3"));
         layoutWidget_2 = new QWidget(tab_3);
         layoutWidget_2->setObjectName(QStringLiteral("layoutWidget_2"));
-        layoutWidget_2->setGeometry(QRect(210, 110, 761, 55));
+        layoutWidget_2->setGeometry(QRect(210, 110, 761, 68));
         verticalLayout_3 = new QVBoxLayout(layoutWidget_2);
         verticalLayout_3->setSpacing(6);
         verticalLayout_3->setContentsMargins(11, 11, 11, 11);
@@ -181,10 +187,15 @@ public:
         gridLayout_3 = new QGridLayout();
         gridLayout_3->setSpacing(6);
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
-        line_red = new QLineEdit(tab_2);
-        line_red->setObjectName(QStringLiteral("line_red"));
+        filter_red = new QLineEdit(tab_2);
+        filter_red->setObjectName(QStringLiteral("filter_red"));
 
-        gridLayout_3->addWidget(line_red, 4, 1, 1, 1);
+        gridLayout_3->addWidget(filter_red, 7, 1, 1, 1);
+
+        label_red_filter = new QLabel(tab_2);
+        label_red_filter->setObjectName(QStringLiteral("label_red_filter"));
+
+        gridLayout_3->addWidget(label_red_filter, 5, 1, 1, 1);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(6);
@@ -205,7 +216,7 @@ public:
         line_blue = new QLineEdit(tab_2);
         line_blue->setObjectName(QStringLiteral("line_blue"));
 
-        gridLayout_3->addWidget(line_blue, 4, 0, 1, 1);
+        gridLayout_3->addWidget(line_blue, 9, 0, 1, 1);
 
         label_before = new QLabel(tab_2);
         label_before->setObjectName(QStringLiteral("label_before"));
@@ -215,23 +226,50 @@ public:
         label = new QLabel(tab_2);
         label->setObjectName(QStringLiteral("label"));
 
-        gridLayout_3->addWidget(label, 5, 0, 1, 1);
+        gridLayout_3->addWidget(label, 10, 0, 1, 1);
 
         label_2 = new QLabel(tab_2);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setMaximumSize(QSize(16777215, 50));
 
-        gridLayout_3->addWidget(label_2, 5, 1, 1, 1);
-
-        select_blue = new QComboBox(tab_2);
-        select_blue->setObjectName(QStringLiteral("select_blue"));
-
-        gridLayout_3->addWidget(select_blue, 2, 0, 1, 1);
+        gridLayout_3->addWidget(label_2, 10, 1, 1, 1);
 
         select_red = new QComboBox(tab_2);
         select_red->setObjectName(QStringLiteral("select_red"));
 
-        gridLayout_3->addWidget(select_red, 2, 1, 1, 1);
+        gridLayout_3->addWidget(select_red, 4, 1, 1, 1);
+
+        select_blue = new QComboBox(tab_2);
+        select_blue->setObjectName(QStringLiteral("select_blue"));
+
+        gridLayout_3->addWidget(select_blue, 4, 0, 1, 1);
+
+        line_red = new QLineEdit(tab_2);
+        line_red->setObjectName(QStringLiteral("line_red"));
+
+        gridLayout_3->addWidget(line_red, 9, 1, 1, 1);
+
+        label_blue_filter = new QLabel(tab_2);
+        label_blue_filter->setObjectName(QStringLiteral("label_blue_filter"));
+        label_blue_filter->setMaximumSize(QSize(16777215, 30));
+
+        gridLayout_3->addWidget(label_blue_filter, 5, 0, 1, 1);
+
+        filter_blue = new QLineEdit(tab_2);
+        filter_blue->setObjectName(QStringLiteral("filter_blue"));
+
+        gridLayout_3->addWidget(filter_blue, 7, 0, 1, 1);
+
+        label_blue_linear = new QLabel(tab_2);
+        label_blue_linear->setObjectName(QStringLiteral("label_blue_linear"));
+        label_blue_linear->setMaximumSize(QSize(16777215, 30));
+
+        gridLayout_3->addWidget(label_blue_linear, 8, 0, 1, 1);
+
+        label_red_filter_2 = new QLabel(tab_2);
+        label_red_filter_2->setObjectName(QStringLiteral("label_red_filter_2"));
+
+        gridLayout_3->addWidget(label_red_filter_2, 8, 1, 1, 1);
 
 
         gridLayout_4->addLayout(gridLayout_3, 0, 0, 1, 1);
@@ -243,7 +281,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1317, 21));
+        menuBar->setGeometry(QRect(0, 0, 1317, 25));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -254,7 +292,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        result->setCurrentIndex(0);
+        result->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -272,27 +310,35 @@ public:
         result->setTabText(result->indexOf(tab_3), QApplication::translate("MainWindow", "Conex\303\243o", Q_NULLPTR));
         pushButton->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
         result->setTabText(result->indexOf(tab), QApplication::translate("MainWindow", "capture", Q_NULLPTR));
-        line_red->setText(QApplication::translate("MainWindow", "100", Q_NULLPTR));
+        filter_red->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
+        label_red_filter->setText(QApplication::translate("MainWindow", "filter value", Q_NULLPTR));
         label_after_blue->setText(QString());
         label_after_red->setText(QString());
-        line_blue->setText(QApplication::translate("MainWindow", "100", Q_NULLPTR));
+        line_blue->setText(QApplication::translate("MainWindow", "50", Q_NULLPTR));
         label_before->setText(QString());
         label->setText(QApplication::translate("MainWindow", "blue", Q_NULLPTR));
         label_2->setText(QApplication::translate("MainWindow", "red", Q_NULLPTR));
-        select_blue->clear();
-        select_blue->insertItems(0, QStringList()
-         << QApplication::translate("MainWindow", "escala de cinza", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "filtro mediano", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "dilata\303\247\303\243o", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "erosao", Q_NULLPTR)
-        );
         select_red->clear();
         select_red->insertItems(0, QStringList()
          << QApplication::translate("MainWindow", "escala de cinza", Q_NULLPTR)
          << QApplication::translate("MainWindow", "filtro mediano", Q_NULLPTR)
          << QApplication::translate("MainWindow", "dilata\303\247\303\243o", Q_NULLPTR)
          << QApplication::translate("MainWindow", "erosao", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "bound", Q_NULLPTR)
         );
+        select_blue->clear();
+        select_blue->insertItems(0, QStringList()
+         << QApplication::translate("MainWindow", "escala de cinza", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "filtro mediano", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "dilata\303\247\303\243o", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "erosao", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "bound", Q_NULLPTR)
+        );
+        line_red->setText(QApplication::translate("MainWindow", "50", Q_NULLPTR));
+        label_blue_filter->setText(QApplication::translate("MainWindow", "filter value", Q_NULLPTR));
+        filter_blue->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
+        label_blue_linear->setText(QApplication::translate("MainWindow", "linear value", Q_NULLPTR));
+        label_red_filter_2->setText(QApplication::translate("MainWindow", "linear value", Q_NULLPTR));
         result->setTabText(result->indexOf(tab_2), QApplication::translate("MainWindow", "result", Q_NULLPTR));
     } // retranslateUi
 

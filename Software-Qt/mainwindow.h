@@ -47,13 +47,15 @@ private slots:
 
     void on_select_red_currentIndexChanged(int index);
 
-    void filtro(const ImageProcessing::GrayImage<unsigned> &gray_blu,const ImageProcessing::GrayImage<unsigned> &gray_re,const unsigned scale = 3);
+    void filtro(const ImageProcessing::GrayImage<unsigned> &gray_img,const unsigned filter_value,const bool color,const unsigned scale = 3);
 
     void dilation(const ImageProcessing::BinaryImage &bin_blue,const ImageProcessing::BinaryImage &bin_red);
 
     void erosion(const ImageProcessing::BinaryImage &bin_blue,const ImageProcessing::BinaryImage &bin_red);
 
     void linearizar(const ImageProcessing::GrayImage<unsigned> &gray_blu,const ImageProcessing::GrayImage<unsigned> &gray_re,const unsigned scale_blue,const unsigned scale_red);
+
+    void bound(const ImageProcessing::GrayImage<unsigned> &grayImgs,const ImageProcessing::BinaryImage &imgs,const bool color);
 
     void on_pushButtonConnect_clicked();
 

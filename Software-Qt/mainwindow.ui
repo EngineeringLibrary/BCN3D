@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="result">
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
@@ -159,10 +159,17 @@
        <layout class="QGridLayout" name="gridLayout_4">
         <item row="0" column="0">
          <layout class="QGridLayout" name="gridLayout_3">
-          <item row="4" column="1">
-           <widget class="QLineEdit" name="line_red">
+          <item row="7" column="1">
+           <widget class="QLineEdit" name="filter_red">
             <property name="text">
-             <string>100</string>
+             <string>2.5</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLabel" name="label_red_filter">
+            <property name="text">
+             <string>filter value</string>
             </property>
            </widget>
           </item>
@@ -184,10 +191,10 @@
             </item>
            </layout>
           </item>
-          <item row="4" column="0">
+          <item row="9" column="0">
            <widget class="QLineEdit" name="line_blue">
             <property name="text">
-             <string>100</string>
+             <string>50</string>
             </property>
            </widget>
           </item>
@@ -198,14 +205,14 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="0">
+          <item row="10" column="0">
            <widget class="QLabel" name="label">
             <property name="text">
              <string>blue</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="1">
+          <item row="10" column="1">
            <widget class="QLabel" name="label_2">
             <property name="maximumSize">
              <size>
@@ -218,31 +225,7 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
-           <widget class="QComboBox" name="select_blue">
-            <item>
-             <property name="text">
-              <string>escala de cinza</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>filtro mediano</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>dilatação</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>erosao</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="2" column="1">
+          <item row="4" column="1">
            <widget class="QComboBox" name="select_red">
             <item>
              <property name="text">
@@ -264,6 +247,87 @@
               <string>erosao</string>
              </property>
             </item>
+            <item>
+             <property name="text">
+              <string>bound</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QComboBox" name="select_blue">
+            <item>
+             <property name="text">
+              <string>escala de cinza</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>filtro mediano</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>dilatação</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>erosao</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>bound</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="9" column="1">
+           <widget class="QLineEdit" name="line_red">
+            <property name="text">
+             <string>50</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_blue_filter">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>filter value</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLineEdit" name="filter_blue">
+            <property name="text">
+             <string>2.5</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="0">
+           <widget class="QLabel" name="label_blue_linear">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>linear value</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="1">
+           <widget class="QLabel" name="label_red_filter_2">
+            <property name="text">
+             <string>linear value</string>
+            </property>
            </widget>
           </item>
          </layout>

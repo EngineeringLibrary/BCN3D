@@ -12,12 +12,7 @@ namespace ImageProcessing
             GrayImage(const LinAlg::Matrix<Type> &gray);
             GrayImage(const ImageProcessing::GrayImage<Type> &gray);
 
-            void setGray(const ImageProcessing::GrayImage<Type> &gray) {
-                this->gray = gray.getGray();
-                 this->width = gray.getWidth();
-                 this->height = gray.getHeight();
-                 this->alpha = 255;
-            }
+            void setGray(const LinAlg::Matrix<Type> &gray); //{this->gray = gray;}
 
             void setWidth(unsigned width) {this->width = width;}
             void getHeight(unsigned height){this->height = height;}
@@ -73,27 +68,26 @@ namespace ImageProcessing
     template <typename Type>
     ImageProcessing::GrayImage<Type> operator /(ImageProcessing::GrayImage<Type> lhs,const Type& rhs){return lhs /= rhs;}
 
+    // faz parte da aula 5
     template <typename Type>
     ImageProcessing::GrayImage<Type> reScale(ImageProcessing::GrayImage<Type> grayImage, const double &scale);
+    // fim da aula 5
 
+    // faz parte da aula6
     template <typename Type>
     ImageProcessing::GrayImage<Type> rotation(ImageProcessing::GrayImage<Type> grayImage, const double &angle);
-
     template <typename Type>
     ImageProcessing::GrayImage<Type> horizontalFlip(ImageProcessing::GrayImage<Type> mat);
-
     template <typename Type>
     ImageProcessing::GrayImage<Type> verticalFlip(ImageProcessing::GrayImage<Type> mat);
-
     template <typename Type>
     ImageProcessing::GrayImage<Type> translation(ImageProcessing::GrayImage<Type> mat, const double &xPos, const double &yPos);// fim da aula 6
+    // fim aula 6
 
+    // Aula 7
     template <typename Type>
     LinAlg::Matrix<Type> Histogram(const ImageProcessing::GrayImage<Type> &img);
-
-    template <typename Type>
-    ImageProcessing::GrayImage<Type> contrastEnhancement(ImageProcessing::GrayImage<Type> grayImage,const LinAlg::Matrix<Type> &position);
-
+    // fim aula 7
 
     // Aula 8
     template <typename Type>
@@ -129,8 +123,6 @@ namespace ImageProcessing
     template <typename Type>
     ImageProcessing::GrayImage<Type> selfreinforceFilter(ImageProcessing::GrayImage<Type> GrayImage, const unsigned &sizeMask, const double &reinforceWeigth);
     // fim aula 13
-
 }
 #include "grayimage.hpp"
-
 #endif // GRAYIMAGE_H
