@@ -46,62 +46,64 @@ namespace ImageProcessing
 
     template <typename Type>
     ImageProcessing::GrayImage<Type> operator +(ImageProcessing::GrayImage<Type> lhs,const Type& rhs){return lhs += rhs;}
+
     template <typename Type>
     ImageProcessing::GrayImage<Type> operator +(const Type& lhs,ImageProcessing::GrayImage<Type> rhs){return rhs += lhs;}
+
     template <typename Type>
     ImageProcessing::GrayImage<Type> operator +(ImageProcessing::GrayImage<Type> lhs,ImageProcessing::GrayImage<Type> rhs){return lhs += rhs;}
 
     template <typename Type>
     ImageProcessing::GrayImage<Type> operator -(ImageProcessing::GrayImage<Type> lhs,const Type& rhs){return lhs -= rhs;}
+
     template <typename Type>
     ImageProcessing::GrayImage<Type> operator -(const Type& lhs,ImageProcessing::GrayImage<Type> rhs){return rhs -= lhs;}
+
     template <typename Type>
     ImageProcessing::GrayImage<Type> operator -(ImageProcessing::GrayImage<Type> lhs,ImageProcessing::GrayImage<Type> rhs){return lhs -= rhs;}
 
     template <typename Type>
     ImageProcessing::GrayImage<Type> operator *(ImageProcessing::GrayImage<Type> lhs,const Type& rhs){return lhs *= rhs;}
+
     template <typename Type>
     ImageProcessing::GrayImage<Type> operator *(const Type& lhs,ImageProcessing::GrayImage<Type> rhs){return rhs *= lhs;}
+
     template <typename Type>
     ImageProcessing::GrayImage<Type> operator *(ImageProcessing::GrayImage<Type> lhs,ImageProcessing::GrayImage<Type> rhs){return lhs *= rhs;}
 
     template <typename Type>
     ImageProcessing::GrayImage<Type> operator /(ImageProcessing::GrayImage<Type> lhs,const Type& rhs){return lhs /= rhs;}
 
-    // faz parte da aula 5
     template <typename Type>
     ImageProcessing::GrayImage<Type> reScale(ImageProcessing::GrayImage<Type> grayImage, const double &scale);
-    // fim da aula 5
 
-    // faz parte da aula6
     template <typename Type>
     ImageProcessing::GrayImage<Type> rotation(ImageProcessing::GrayImage<Type> grayImage, const double &angle);
+
     template <typename Type>
     ImageProcessing::GrayImage<Type> horizontalFlip(ImageProcessing::GrayImage<Type> mat);
+
     template <typename Type>
     ImageProcessing::GrayImage<Type> verticalFlip(ImageProcessing::GrayImage<Type> mat);
-    template <typename Type>
-    ImageProcessing::GrayImage<Type> translation(ImageProcessing::GrayImage<Type> mat, const double &xPos, const double &yPos);// fim da aula 6
-    // fim aula 6
 
-    // Aula 7
+    template <typename Type>
+    ImageProcessing::GrayImage<Type> translation(ImageProcessing::GrayImage<Type> mat, const double &xPos, const double &yPos);
+
     template <typename Type>
     LinAlg::Matrix<Type> Histogram(const ImageProcessing::GrayImage<Type> &img);
-    // fim aula 7
 
-    // Aula 8
     template <typename Type>
     ImageProcessing::GrayImage<Type> contrastEnhancement(ImageProcessing::GrayImage<Type> grayImage,const LinAlg::Matrix<Type> &position);
-    // fim aula 8
 
-    // Aula 11
     template <typename Type>
     ImageProcessing::GrayImage<Type> filterPrewittVertical(ImageProcessing::GrayImage<Type> GrayImage);
+
     template <typename Type>
     ImageProcessing::GrayImage<Type> filterPrewittHorizontal(ImageProcessing::GrayImage<Type> GrayImage);
 
     template <typename Type>
     ImageProcessing::GrayImage<Type> filterSobelVertical(ImageProcessing::GrayImage<Type> GrayImage);
+
     template <typename Type>
     ImageProcessing::GrayImage<Type> filterSobelHorizontal(ImageProcessing::GrayImage<Type> GrayImage);
 
@@ -109,20 +111,18 @@ namespace ImageProcessing
     ImageProcessing::GrayImage<Type> filterRobertsVertical(ImageProcessing::GrayImage<Type> GrayImage);
     template <typename Type>
     ImageProcessing::GrayImage<Type> filterRobertsHorizontal(ImageProcessing::GrayImage<Type> GrayImage);
-    // fim aula 11
-    // Aula 12
+
     template <typename Type, typename OtherType>
     ImageProcessing::GrayImage<Type> discreteLaplacian(ImageProcessing::GrayImage<Type> img, const OtherType &borderWeigth, const OtherType &maskWeigth);
-    // fim aula 12
 
-    // Aula 13
     template <typename Type>
     ImageProcessing::GrayImage<Type> averageFilter(ImageProcessing::GrayImage<Type> GrayImage, const unsigned &sizeMask);
+
     template <typename Type>
     ImageProcessing::GrayImage<Type> medianFilter(ImageProcessing::GrayImage<Type> GrayImage, const unsigned &sizeMask);
+
     template <typename Type>
     ImageProcessing::GrayImage<Type> selfreinforceFilter(ImageProcessing::GrayImage<Type> GrayImage, const unsigned &sizeMask, const double &reinforceWeigth);
-    // fim aula 13
 }
 #include "grayimage.hpp"
 #endif // GRAYIMAGE_H
