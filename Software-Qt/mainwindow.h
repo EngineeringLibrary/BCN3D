@@ -51,7 +51,7 @@ private slots:
 
     void dilation(const ImageProcessing::BinaryImage &bin,const bool color);
 
-    void erosion(const ImageProcessing::BinaryImage &bin_blue,const ImageProcessing::BinaryImage &bin_red);
+    void erosion(const ImageProcessing::BinaryImage &bin, const bool color);
 
     void linearizar(const ImageProcessing::GrayImage<unsigned> &gray_img,const unsigned scale,const bool color,const unsigned index);
 
@@ -62,8 +62,6 @@ private slots:
     void on_pushButton_Disconnect_clicked();
 
     void on_select_blue_0_currentIndexChanged(int index);
-
-    void on_button_blue_2_clicked();
 
     void on_button_blue_0_clicked();
 
@@ -80,6 +78,22 @@ private slots:
     void on_select_blue_1_currentIndexChanged(int index);
 
     void on_button_blue_1_clicked();
+
+    void on_select_blue_2_currentIndexChanged(int index);
+
+    void on_button_blue_2_clicked();
+
+    void on_select_red_2_currentIndexChanged(int index);
+
+    void on_button_red_2_clicked();
+
+    void on_select_blue_3_currentIndexChanged(int index);
+
+    void on_button_blue_3_clicked();
+
+    void on_select_red_3_currentIndexChanged(int index);
+
+    void on_button_red_3_clicked();
 
 signals :
     void emit_result();

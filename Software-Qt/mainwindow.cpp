@@ -213,7 +213,7 @@ void MainWindow::linearizar(const ImageProcessing::GrayImage<unsigned> &gray_img
 
 
 void MainWindow::dilation(const ImageProcessing::BinaryImage &bin,const bool color){
-    if(!color){
+    if(!color){    // dilataçao blue
         bina_blue = ImageProcessing::dilation(bin);
         Qimg_blue[2] = ImageProcessing::BinaryImage2QImage<bool>(bina_blue);
     }else{   // dilataçao red
@@ -222,15 +222,16 @@ void MainWindow::dilation(const ImageProcessing::BinaryImage &bin,const bool col
     }
 }
 
-void MainWindow::erosion(const ImageProcessing::BinaryImage &bin_blue,const ImageProcessing::BinaryImage &bin_red){
+void MainWindow::erosion(const ImageProcessing::BinaryImage &bin,const bool color){
 
-    // erosion blue
-    bina_blue = ImageProcessing::erosion(bin_blue);
-    Qimg_blue[3] =ImageProcessing::BinaryImage2QImage<bool>(bina_blue);
-    // erosion blue
-    bina_red = ImageProcessing::erosion(bin_red);
-    Qimg_red[3] =ImageProcessing::BinaryImage2QImage<bool>(bina_red);
 
+    if(!color){    // erosion blue
+        bina_blue = ImageProcessing::erosion(bin);
+        Qimg_blue[3] =ImageProcessing::BinaryImage2QImage<bool>(bina_blue);
+    }else{     // erosion red
+        bina_red = ImageProcessing::erosion(bin);
+        Qimg_red[3] =ImageProcessing::BinaryImage2QImage<bool>(bina_red);
+    }
 }
 
 void MainWindow::bound(const ImageProcessing::GrayImage<unsigned> &grayImgs,const ImageProcessing::BinaryImage &imgs,const bool color){
@@ -302,7 +303,7 @@ void MainWindow::on_select_blue_currentIndexChanged(int index)
         case 3:
         //    qDebug() <<"case 2:" <<index<<" blue:" << !this->Qimg_blue[index].isNull() ;
             linearizar(gray_blue,ui->filter_blue->text().toULong(),false,1);
-            erosion(bina_blue,bina_red);
+            erosion(bina_blue,false);
             result_view(this->Qimg_blue[index],false,false);
             break;
         case 4:
@@ -340,7 +341,7 @@ void MainWindow::on_select_red_currentIndexChanged(int index)
         case 3:
         //            qDebug() <<"case 2 red:" << this->Qimg_red[index].isNull() ;
             linearizar(gray_red,ui->filter_red->text().toULong(),true,1);
-            erosion(bina_blue,bina_red);
+            erosion(bina_red, true);
             result_view(this->Qimg_red[index],false,true);
             break;
         case 4:
@@ -500,7 +501,7 @@ void MainWindow::on_select_red_0_currentIndexChanged(int index)
 
 void MainWindow::on_button_red_0_clicked()
 {
-    switch (select_red_0_index) {
+        switch (select_red_0_index) {
         case 1:
             gray_red = ImageProcessing::filterPrewittHorizontal(gray_red);
             Qimg_red_ = ImageProcessing::GrayImage2QImage(gray_red);
@@ -542,16 +543,7 @@ void MainWindow::on_button_red_0_clicked()
     }
 }
 
-void MainWindow::on_select_red_1_currentIndexChanged(int index)
-{
-    select_red_0_index = index;
-}
-
-void MainWindow::on_button_red_1_clicked()
-{
-    linearizar(gray_red,ui->filter_red_1->text().toInt(),false,select_red_1_index);
-}
-
+//BLUE 1
 void MainWindow::on_select_blue_1_currentIndexChanged(int index)
 {
      select_blue_0_index = index;
@@ -561,10 +553,69 @@ void MainWindow::on_button_blue_1_clicked()
 {
      linearizar(gray_blue,ui->filter_blue_1->text().toInt(),false,select_blue_1_index);
 }
+
+//RED 1
+void MainWindow::on_select_red_1_currentIndexChanged(int index)
+{
+    select_red_1_index = index;
+}
+
+void MainWindow::on_button_red_1_clicked()
+{
+    linearizar(gray_red,ui->filter_red_1->text().toInt(),false,select_red_1_index);
+}
+
+//BLUE 2
+void MainWindow::on_select_blue_2_currentIndexChanged(int index)
+{
+     select_blue_0_index = index;
+}
+
 void MainWindow::on_button_blue_2_clicked()
 {
     MainWindow::dilation(bina_blue,false);
 }
+
+//RED 2
+void MainWindow::on_select_red_2_currentIndexChanged(int index)
+{
+
+}
+
+void MainWindow::on_button_red_2_clicked()
+{
+
+}
+
+//BLUE 3
+void MainWindow::on_select_blue_3_currentIndexChanged(int index)
+{
+
+}
+
+void MainWindow::on_button_blue_3_clicked()
+{
+
+}
+
+//RED 3
+void MainWindow::on_select_red_3_currentIndexChanged(int index)
+{
+
+}
+
+void MainWindow::on_button_red_3_clicked()
+{
+
+}
+
+
+
+
+
+
+
+
 
 
 // wifi
@@ -605,6 +656,9 @@ void MainWindow::on_pushButton_Disconnect_clicked()
     }
     ui->widget->hide();
 }
+
+
+
 
 
 

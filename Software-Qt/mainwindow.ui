@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="result">
       <property name="currentIndex">
-       <number>1</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
@@ -339,7 +339,7 @@
            </widget>
           </item>
           <item row="8" column="1">
-           <widget class="QLabel" name="label_red_filter_2">
+           <widget class="QLabel" name="label_red_linear">
             <property name="text">
              <string>linear value</string>
             </property>
@@ -366,7 +366,7 @@
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_4">
             <item>
-             <widget class="QLabel" name="label_blue_filter_2">
+             <widget class="QLabel" name="label_red_filter_0">
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
@@ -461,7 +461,7 @@
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
-             <widget class="QLabel" name="label_blue_filter_3">
+             <widget class="QLabel" name="label_red_filter_1">
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
@@ -547,7 +547,7 @@
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_7">
             <item>
-             <widget class="QLabel" name="label_blue_filter_4">
+             <widget class="QLabel" name="label_red_filter_2">
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
@@ -562,19 +562,19 @@
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_8">
               <item>
-               <widget class="QLineEdit" name="filter_blue_4">
+               <widget class="QLineEdit" name="filter_red_2">
                 <property name="text">
                  <string>2.5</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="comboBox_4"/>
+               <widget class="QComboBox" name="select_red_2"/>
               </item>
              </layout>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_5">
+             <widget class="QPushButton" name="button_red_2">
               <property name="text">
                <string>PushButton</string>
               </property>
@@ -585,7 +585,7 @@
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_8">
             <item>
-             <widget class="QLabel" name="label_blue_filter_5">
+             <widget class="QLabel" name="label_red_filter_3">
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
@@ -600,19 +600,19 @@
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_9">
               <item>
-               <widget class="QLineEdit" name="filter_blue_5">
+               <widget class="QLineEdit" name="filter_red_3">
                 <property name="text">
                  <string>2.5</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="comboBox_5"/>
+               <widget class="QComboBox" name="select_red_3"/>
               </item>
              </layout>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_6">
+             <widget class="QPushButton" name="button_red_3">
               <property name="text">
                <string>PushButton</string>
               </property>
@@ -623,7 +623,7 @@
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_9">
             <item>
-             <widget class="QLabel" name="label_blue_filter_6">
+             <widget class="QLabel" name="label_red_filter_4">
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
@@ -638,19 +638,19 @@
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_10">
               <item>
-               <widget class="QLineEdit" name="filter_blue_6">
+               <widget class="QLineEdit" name="filter_red_4">
                 <property name="text">
                  <string>2.5</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="comboBox_6"/>
+               <widget class="QComboBox" name="select_red_4"/>
               </item>
              </layout>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_7">
+             <widget class="QPushButton" name="button_red_4">
               <property name="text">
                <string>PushButton</string>
               </property>
@@ -661,7 +661,7 @@
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_10">
             <item>
-             <widget class="QLabel" name="label_blue_filter_7">
+             <widget class="QLabel" name="label_red_filter_5">
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
@@ -676,19 +676,19 @@
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_11">
               <item>
-               <widget class="QLineEdit" name="filter_blue_7">
+               <widget class="QLineEdit" name="filter_red_5">
                 <property name="text">
                  <string>2.5</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="comboBox_7"/>
+               <widget class="QComboBox" name="select_red_5"/>
               </item>
              </layout>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_8">
+             <widget class="QPushButton" name="button_red_5">
               <property name="text">
                <string>PushButton</string>
               </property>
@@ -705,7 +705,7 @@
             <item>
              <layout class="QVBoxLayout" name="verticalLayout_11">
               <item>
-               <widget class="QLabel" name="label_blue_filter_8">
+               <widget class="QLabel" name="label_blue_filter_0">
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
@@ -800,7 +800,7 @@
             <item>
              <layout class="QVBoxLayout" name="verticalLayout_12">
               <item>
-               <widget class="QLabel" name="label_blue_filter_9">
+               <widget class="QLabel" name="label_blue_filter_1">
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
@@ -880,7 +880,7 @@
             <item>
              <layout class="QVBoxLayout" name="verticalLayout_13">
               <item>
-               <widget class="QLabel" name="label_blue_filter_10">
+               <widget class="QLabel" name="label_blue_filter_2">
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
@@ -918,7 +918,7 @@
             <item>
              <layout class="QVBoxLayout" name="verticalLayout_5">
               <item>
-               <widget class="QLabel" name="label_red_filter_4">
+               <widget class="QLabel" name="label_blue_filter_3">
                 <property name="text">
                  <string>filter value</string>
                 </property>
@@ -927,19 +927,19 @@
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_6">
                 <item>
-                 <widget class="QLineEdit" name="filter_red_2">
+                 <widget class="QLineEdit" name="filter_blue_3">
                   <property name="text">
                    <string>2.5</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QComboBox" name="comboBox_2"/>
+                 <widget class="QComboBox" name="select_blue_3"/>
                 </item>
                </layout>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_3">
+               <widget class="QPushButton" name="button_blue_3">
                 <property name="text">
                  <string>PushButton</string>
                 </property>
@@ -950,7 +950,7 @@
             <item>
              <layout class="QVBoxLayout" name="verticalLayout_14">
               <item>
-               <widget class="QLabel" name="label_blue_filter_11">
+               <widget class="QLabel" name="label_blue_filter_4">
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
@@ -965,19 +965,19 @@
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_15">
                 <item>
-                 <widget class="QLineEdit" name="filter_blue_11">
+                 <widget class="QLineEdit" name="filter_blue_4">
                   <property name="text">
                    <string>2.5</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QComboBox" name="comboBox_11"/>
+                 <widget class="QComboBox" name="select_blue_4"/>
                 </item>
                </layout>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_12">
+               <widget class="QPushButton" name="button_blue_4">
                 <property name="text">
                  <string>PushButton</string>
                 </property>
@@ -988,7 +988,7 @@
             <item>
              <layout class="QVBoxLayout" name="verticalLayout_15">
               <item>
-               <widget class="QLabel" name="label_blue_filter_12">
+               <widget class="QLabel" name="label_blue_filter_5">
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
@@ -1003,19 +1003,19 @@
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_16">
                 <item>
-                 <widget class="QLineEdit" name="filter_blue_12">
+                 <widget class="QLineEdit" name="filter_blue_5">
                   <property name="text">
                    <string>2.5</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QComboBox" name="comboBox_12"/>
+                 <widget class="QComboBox" name="select_blue_5"/>
                 </item>
                </layout>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_13">
+               <widget class="QPushButton" name="button_blue_5">
                 <property name="text">
                  <string>PushButton</string>
                 </property>
@@ -1069,7 +1069,7 @@
      <x>0</x>
      <y>0</y>
      <width>1317</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
