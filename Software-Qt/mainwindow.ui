@@ -7,18 +7,18 @@
     <x>0</x>
     <y>0</y>
     <width>1317</width>
-    <height>751</height>
+    <height>753</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout_2">
-    <item>
+   <layout class="QGridLayout" name="gridLayout_6">
+    <item row="0" column="0">
      <widget class="QTabWidget" name="result">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
@@ -30,7 +30,7 @@
           <x>210</x>
           <y>110</y>
           <width>761</width>
-          <height>55</height>
+          <height>68</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -129,28 +129,43 @@
        <attribute name="title">
         <string>capture</string>
        </attribute>
-       <widget class="QWidget" name="layoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>1251</width>
-          <height>571</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout">
-         <item>
-          <widget class="QWidget" name="webcam" native="true"/>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton">
-           <property name="text">
-            <string>PushButton</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QWidget" name="webcam" native="true">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <kerning>true</kerning>
+             </font>
+            </property>
+            <property name="mouseTracking">
+             <bool>false</bool>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(186, 189, 182);</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton">
+            <property name="text">
+             <string>PushButton</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
@@ -159,10 +174,24 @@
        <layout class="QGridLayout" name="gridLayout_4">
         <item row="0" column="0">
          <layout class="QGridLayout" name="gridLayout_3">
-          <item row="4" column="1">
-           <widget class="QLineEdit" name="line_red">
+          <item row="7" column="0">
+           <widget class="QLineEdit" name="filter_blue">
             <property name="text">
-             <string>100</string>
+             <string>2.5</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="2">
+           <widget class="QLabel" name="label_before">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLabel" name="label_red_filter">
+            <property name="text">
+             <string>filter value</string>
             </property>
            </widget>
           </item>
@@ -184,41 +213,20 @@
             </item>
            </layout>
           </item>
-          <item row="4" column="0">
-           <widget class="QLineEdit" name="line_blue">
-            <property name="text">
-             <string>100</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0" colspan="2">
-           <widget class="QLabel" name="label_before">
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
           <item row="5" column="0">
-           <widget class="QLabel" name="label">
-            <property name="text">
-             <string>blue</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1">
-           <widget class="QLabel" name="label_2">
+           <widget class="QLabel" name="label_blue_filter">
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>50</height>
+              <height>30</height>
              </size>
             </property>
             <property name="text">
-             <string>red</string>
+             <string>filter value</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
+          <item row="4" column="0">
            <widget class="QComboBox" name="select_blue">
             <item>
              <property name="text">
@@ -240,9 +248,28 @@
               <string>erosao</string>
              </property>
             </item>
+            <item>
+             <property name="text">
+              <string>bound</string>
+             </property>
+            </item>
            </widget>
           </item>
-          <item row="2" column="1">
+          <item row="10" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>blue</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QLineEdit" name="filter_red">
+            <property name="text">
+             <string>2.5</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
            <widget class="QComboBox" name="select_red">
             <item>
              <property name="text">
@@ -264,6 +291,768 @@
               <string>erosao</string>
              </property>
             </item>
+            <item>
+             <property name="text">
+              <string>bound</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="9" column="0">
+           <widget class="QLineEdit" name="line_blue">
+            <property name="text">
+             <string>50</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="0">
+           <widget class="QLabel" name="label_blue_linear">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>linear value</string>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="1">
+           <widget class="QLabel" name="label_2">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>red</string>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="1">
+           <widget class="QLineEdit" name="line_red">
+            <property name="text">
+             <string>50</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="1">
+           <widget class="QLabel" name="label_red_filter_2">
+            <property name="text">
+             <string>linear value</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="refresh">
+          <property name="text">
+           <string>atualizar imagens </string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="buttons">
+       <attribute name="title">
+        <string>Page</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="1" column="1">
+         <layout class="QVBoxLayout" name="coluna_Red">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <item>
+             <widget class="QLabel" name="label_blue_filter_2">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>value                  filter </string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_5">
+              <item>
+               <widget class="QLineEdit" name="filter_red_0">
+                <property name="maximumSize">
+                 <size>
+                  <width>100</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>2.5</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="select_red_0">
+                <item>
+                 <property name="text">
+                  <string>selecione o seu filtro</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>filterPrewittHorizontal</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>filterPrewittVertical</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>filterRobertsHorizontal</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>filterRobertsVertical</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>filterSobelHorizontal</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>filterSobelVertical</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>averageFilter</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>medianFilter</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>selfreinforceFilter</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QPushButton" name="button_red_0">
+              <property name="text">
+               <string>PushButton</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_6">
+            <item>
+             <widget class="QLabel" name="label_blue_filter_3">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>value                  operador </string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_7">
+              <item>
+               <widget class="QLineEdit" name="filter_red_1">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>100</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>2.5</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="select_red_1">
+                <item>
+                 <property name="text">
+                  <string>escolha um operador</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>==</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>!=</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>&gt;</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>&gt;=</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>&lt;</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>&lt;=</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QPushButton" name="button_red_1">
+              <property name="text">
+               <string>PushButton</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <item>
+             <widget class="QLabel" name="label_blue_filter_4">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>filter value</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_8">
+              <item>
+               <widget class="QLineEdit" name="filter_blue_4">
+                <property name="text">
+                 <string>2.5</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBox_4"/>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_5">
+              <property name="text">
+               <string>PushButton</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_8">
+            <item>
+             <widget class="QLabel" name="label_blue_filter_5">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>filter value</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_9">
+              <item>
+               <widget class="QLineEdit" name="filter_blue_5">
+                <property name="text">
+                 <string>2.5</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBox_5"/>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_6">
+              <property name="text">
+               <string>PushButton</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_9">
+            <item>
+             <widget class="QLabel" name="label_blue_filter_6">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>filter value</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_10">
+              <item>
+               <widget class="QLineEdit" name="filter_blue_6">
+                <property name="text">
+                 <string>2.5</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBox_6"/>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_7">
+              <property name="text">
+               <string>PushButton</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_10">
+            <item>
+             <widget class="QLabel" name="label_blue_filter_7">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>filter value</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_11">
+              <item>
+               <widget class="QLineEdit" name="filter_blue_7">
+                <property name="text">
+                 <string>2.5</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBox_7"/>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_8">
+              <property name="text">
+               <string>PushButton</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0">
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="1" column="1">
+           <layout class="QVBoxLayout" name="coluna_Blue">
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_11">
+              <item>
+               <widget class="QLabel" name="label_blue_filter_8">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>value                  filter </string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_12">
+                <item>
+                 <widget class="QLineEdit" name="filter_blue_0">
+                  <property name="maximumSize">
+                   <size>
+                    <width>100</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>2.5</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="select_blue_0">
+                  <item>
+                   <property name="text">
+                    <string>selecione o seu filtro</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>filterPrewittHorizontal</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>filterPrewittVertical</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>filterRobertsHorizontal</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>filterRobertsVertical</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>filterSobelHorizontal</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>filterSobelVertical</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>averageFilter</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>medianFilter</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>selfreinforceFilter</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <widget class="QPushButton" name="button_blue_0">
+                <property name="text">
+                 <string>PushButton</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_12">
+              <item>
+               <widget class="QLabel" name="label_blue_filter_9">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>value                  operador </string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_13">
+                <item>
+                 <widget class="QLineEdit" name="filter_blue_1">
+                  <property name="maximumSize">
+                   <size>
+                    <width>100</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>2.5</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="select_blue_1">
+                  <item>
+                   <property name="text">
+                    <string>escolha um operador</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>==</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>!=</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>&gt;</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>&gt;=</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>&lt;</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>&lt;=</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <widget class="QPushButton" name="button_blue_1">
+                <property name="text">
+                 <string>PushButton</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_13">
+              <item>
+               <widget class="QLabel" name="label_blue_filter_10">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>dilation</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_14">
+                <item>
+                 <widget class="QLineEdit" name="filter_blue_2">
+                  <property name="text">
+                   <string>2.5</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="select_blue_2"/>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <widget class="QPushButton" name="button_blue_2">
+                <property name="text">
+                 <string>PushButton</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_5">
+              <item>
+               <widget class="QLabel" name="label_red_filter_4">
+                <property name="text">
+                 <string>filter value</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_6">
+                <item>
+                 <widget class="QLineEdit" name="filter_red_2">
+                  <property name="text">
+                   <string>2.5</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="comboBox_2"/>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_3">
+                <property name="text">
+                 <string>PushButton</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_14">
+              <item>
+               <widget class="QLabel" name="label_blue_filter_11">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>filter value</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_15">
+                <item>
+                 <widget class="QLineEdit" name="filter_blue_11">
+                  <property name="text">
+                   <string>2.5</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="comboBox_11"/>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_12">
+                <property name="text">
+                 <string>PushButton</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_15">
+              <item>
+               <widget class="QLabel" name="label_blue_filter_12">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>filter value</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_16">
+                <item>
+                 <widget class="QLineEdit" name="filter_blue_12">
+                  <property name="text">
+                   <string>2.5</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="comboBox_12"/>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_13">
+                <property name="text">
+                 <string>PushButton</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item row="0" column="0" colspan="2">
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="QLabel" name="label_4">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>BLUE</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>RED</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
            </widget>
           </item>
          </layout>
@@ -280,7 +1069,7 @@
      <x>0</x>
      <y>0</y>
      <width>1317</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>
