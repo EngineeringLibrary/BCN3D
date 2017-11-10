@@ -4,5 +4,6 @@ build-*
 *.exe
 moc_*
 *.user
+Software-Qt/*.user
 *.o
 *.jpg
