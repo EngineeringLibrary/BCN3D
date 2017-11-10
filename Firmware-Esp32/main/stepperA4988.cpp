@@ -22,37 +22,41 @@ void stepperA4988::newStep(bool direction)
         this->direction = direction;
         gpio_set_level(this->direction_pin,this->direction);
       }
-      //vTaskDelay(15 / portTICK_PERIOD_MS);
+      vTaskDelay(15 / portTICK_PERIOD_MS);
       gpio_set_level(this->step_pin,0);
-      stepAcel(2400);
-      //vTaskDelay(15 / portTICK_PERIOD_MS);
+      vTaskDelay(15 / portTICK_PERIOD_MS);
       gpio_set_level(this->step_pin,1);
-      stepAcel(2400);
 }
 
 void stepAcel (int steps)
 {
-  int speedMax = 2000;
-  int speedMin = 100;
-  int MudSenti = 2;
+  int delays[STEPS];
+  float angle = 1;
+  float accel = 0.01;
+  float c0 = 2000 * sqrt(2 * angle/accel) * 0.67703;
+  float lastDeley = 0;
+  int highSpeed = 100;
 
-  int stopStepAcel = (speedMax - speedMin) / MudSenti;
-
-  if ( stopStepAcel > steps / 2 )
-    stopStepAcel = steps / 2;
-  int initStepAcel = steps - stopStepAcel;
-
-  int d = speedMax;
-
-  for( int i = 0; i < steps; ++i)
+  for(int i = 0; i < STEPS; ++i)
   {
-    gpio_set_level(this->step_pin,1);
-    gpio_set_level(this->step_pin,0);
-    vTaskDelay(d);
+    float d = c0;
 
-    if(i < stopStepAcel)
-      d -= MudSenti;
-    else if(i < stopStepAcel)
-      d += MudSenti;
+    if(i > 0)
+      d = lastDeley - (2 * lastDeley)/(4 * i + 1);
+    if(d < highSpeed)
+      d = highSpeed;
+    delays[i] = d;
+    lastDelay = d;
   }
+}
+
+int PID (int step, int setepRef)
+{
+  int kp = 2, ki = 0, kd = 0.5, dt = 1;
+  int E = stepRef - step;
+  int Ed = (E-Ea)/Dt;
+  Ea = E;
+  Ei += Dt * E;
+
+  return kp*E + ki*Ei + kd*Ed;
 }
