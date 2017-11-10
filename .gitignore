@@ -6,4 +6,4 @@ moc_*
 *.user
 Software-Qt/*.user
 *.o
-*.jpg
+Software-Qt/*.jpg
