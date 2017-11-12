@@ -2,6 +2,7 @@
 #define DIALOG_H
 
 #include <QDialog>
+//#include "mainwindow.h"
 
 namespace Ui {
 class Dialog;
@@ -15,8 +16,10 @@ public:
     explicit Dialog(QWidget *parent = 0);
     ~Dialog();
 
+    void set_result_view(QImage &img,bool state, bool colors);
+
 private slots:
-    void on_pushButton_clicked();
+
 
 private:
     Ui::Dialog *ui;
