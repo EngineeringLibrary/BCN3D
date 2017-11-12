@@ -28,7 +28,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp \
     binaryimage.cpp \
-    client.cpp
+    client.cpp \
+    dialog.cpp
 
 HEADERS  += mainwindow.h \
     SistemasdeControle/headers/primitiveLibs/LinAlg/matrix.h \
@@ -42,7 +43,9 @@ HEADERS  += mainwindow.h \
     grayimage.h \
     grayimage.hpp \
     binaryimage.h \
-    client.h
+    client.h \
+    dialog.h
 
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    dialog.ui

@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //     mypix = (QDir::currentPath()+"/imageCaptured.jpg");
 //     ui->label_before->setPixmap(mypix);
 
-
+    result_img = new Dialog(this);
     camera = new QCamera;
     viewfinder = new QVideoWidget(ui->webcam);
 
@@ -785,6 +785,7 @@ void MainWindow::on_pushButton_Disconnect_clicked()
 }
 
 
-
-
-
+void MainWindow::on_button_preview_clicked()
+{
+    result_img->show();
+}

@@ -173,6 +173,7 @@ public:
     QPushButton *button_blue_5;
     QPushButton *refresh;
     QPushButton *set_saved_img_0;
+    QPushButton *button_preview;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -192,7 +193,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1224, 750));
+        scrollAreaWidgetContents->setGeometry(QRect(0, -176, 1224, 784));
         gridLayout_8 = new QGridLayout(scrollAreaWidgetContents);
         gridLayout_8->setSpacing(6);
         gridLayout_8->setContentsMargins(11, 11, 11, 11);
@@ -964,12 +965,17 @@ public:
         refresh->setAutoDefault(false);
         refresh->setFlat(false);
 
-        gridLayout_8->addWidget(refresh, 2, 0, 1, 1);
+        gridLayout_8->addWidget(refresh, 3, 0, 1, 1);
 
         set_saved_img_0 = new QPushButton(scrollAreaWidgetContents);
         set_saved_img_0->setObjectName(QStringLiteral("set_saved_img_0"));
 
         gridLayout_8->addWidget(set_saved_img_0, 1, 0, 1, 1);
+
+        button_preview = new QPushButton(scrollAreaWidgetContents);
+        button_preview->setObjectName(QStringLiteral("button_preview"));
+
+        gridLayout_8->addWidget(button_preview, 2, 0, 1, 1);
 
         scrollArea->setWidget(scrollAreaWidgetContents);
 
@@ -982,7 +988,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        result->setCurrentIndex(3);
+        result->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1122,6 +1128,7 @@ public:
         result->setTabText(result->indexOf(buttons), QApplication::translate("MainWindow", "Buttons", Q_NULLPTR));
         refresh->setText(QApplication::translate("MainWindow", "ATUALIZAR IMAGENS", Q_NULLPTR));
         set_saved_img_0->setText(QApplication::translate("MainWindow", "USAR  IMAGEM SALVA", Q_NULLPTR));
+        button_preview->setText(QApplication::translate("MainWindow", "abriri preview", Q_NULLPTR));
     } // retranslateUi
 
 };

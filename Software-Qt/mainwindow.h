@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QFileDialog>
 #include <QCamera>
+#include <QtGui>
+#include <QtWidgets>
 #include <QTimer>
 #include <QDate>
 #include <QThread>
@@ -11,6 +13,7 @@
 #include <QCameraImageCapture>
 #include <QScreen>
 #include <QCameraInfo>
+#include "dialog.h"
 #include "imageconversion.h"
 #include "grayimage.h"
 #include "binaryimage.h"
@@ -116,10 +119,13 @@ private slots:
 
     void on_button_red_5_clicked();
 
+    void on_button_preview_clicked();
+
 signals :
     void emit_result();
 
 private:
+    Dialog *result_img;
     Ui::MainWindow *ui;
     QCamera *camera;
     QVideoWidget *viewfinder;
