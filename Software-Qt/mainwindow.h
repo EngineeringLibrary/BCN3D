@@ -125,18 +125,18 @@ private:
     QVideoWidget *viewfinder;
     QCameraImageCapture *imageCapture;
 //    ----
-    QImage img,Qimg_blue[6],Qimg_red[6];
-    QImage Qimg_blue_,Qimg_red_;
+    QImage *img,Qimg_blue[6],Qimg_red[6];
+    QImage *Qimg_blue_,*Qimg_red_;
 
-    ImageProcessing::RGBImage<unsigned>mat_complete,rgb_blue,rgb_red;
-    ImageProcessing::GrayImage<unsigned>gray_blue,gray_red;
-    LinAlg::Matrix<unsigned> histogramMatrix;
-    ImageProcessing::BinaryImage bina_blue,bina_red;
+    ImageProcessing::RGBImage<unsigned>*mat_complete,*rgb_blue,*rgb_red;
+    ImageProcessing::GrayImage<unsigned>*gray_blue,*gray_red;
+    LinAlg::Matrix<unsigned> *histogramMatrix;
+    ImageProcessing::BinaryImage *bina_blue,*bina_red;
     int select_blue_0_index,select_red_0_index;
     int select_blue_1_index,select_red_1_index;
 
 //   VARIAVEIS WIFI
-    QPixmap mypix ;
+    QPixmap mypix = (QDir::currentPath()+"/imageCaptured.jpg");
     Client *wifi;
     QString dataToSend;
 

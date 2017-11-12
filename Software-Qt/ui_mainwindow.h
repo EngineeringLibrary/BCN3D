@@ -192,7 +192,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, -142, 1224, 750));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1224, 750));
         gridLayout_8 = new QGridLayout(scrollAreaWidgetContents);
         gridLayout_8->setSpacing(6);
         gridLayout_8->setContentsMargins(11, 11, 11, 11);
@@ -982,7 +982,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        result->setCurrentIndex(3);
+        result->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
