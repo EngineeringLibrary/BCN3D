@@ -15,7 +15,7 @@ namespace ImageProcessing
                      const LinAlg::Matrix<Type> &g,
                      const LinAlg::Matrix<Type> &b);
             RGBImage(const ImageProcessing::RGBImage<Type> &rgb);
-//            ~RGBImage(){}
+            ~RGBImage(){}
 
             void setRed(LinAlg::Matrix<Type> red) {this->red = ImageProcessing::checkValue<Type>(red);}
             void setGreen(LinAlg::Matrix<Type> green) {this->green = ImageProcessing::checkValue<Type>(green);}
@@ -32,6 +32,8 @@ namespace ImageProcessing
             const unsigned& getWidth() const {return this->width;}
             const unsigned& getHeight()const {return this->height;}
             const unsigned& getAlpha() const {return this->alpha;}
+
+            ImageProcessing::RGBImage<Type>& operator! () const;
 
             ImageProcessing::RGBImage<Type>& operator =(const ImageProcessing::RGBImage<Type>& rgbImg);
 

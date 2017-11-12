@@ -1,6 +1,18 @@
 #include "rgbimage.h"
 
 template <typename Type>
+ImageProcessing::RGBImage<Type>& ImageProcessing::RGBImage<Type>::operator! () const
+{
+    ImageProcessing::RGBImage<Type> ret = (*this);
+    for(unsigned i = 1; i <= this->height; ++i)
+        for(unsigned j = 1; j <= this->width; ++j)
+            ret.binary(j,i) = !this->binary(j,i);
+
+    return ret;
+}
+
+
+template <typename Type>
 ImageProcessing::RGBImage<Type>::RGBImage(const LinAlg::Matrix<Type> &r, const LinAlg::Matrix<Type> &g, const LinAlg::Matrix<Type> &b)
 {
     this->red = ImageProcessing::checkValue<Type>(r);
