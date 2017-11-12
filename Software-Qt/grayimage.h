@@ -28,6 +28,7 @@ namespace ImageProcessing
             Type& operator() (unsigned row, unsigned column) {return this->gray(row,column);}
             Type  operator() (unsigned  row, unsigned column) const{return this->gray(row,column);}
 
+            ImageProcessing::GrayImage<Type>& operator! () const;
             ImageProcessing::GrayImage<Type>& operator+= (const ImageProcessing::GrayImage<Type>& grayImg);
             ImageProcessing::GrayImage<Type>& operator+= (const Type& value);
 
