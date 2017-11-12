@@ -44,4 +44,5 @@ HEADERS  += mainwindow.h \
     binaryimage.h \
     client.h
 
+
 FORMS    += mainwindow.ui

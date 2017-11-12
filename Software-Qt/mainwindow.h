@@ -39,6 +39,8 @@ private slots:
 
     void timerClock( unsigned clockTime);
 
+    void set_saved_img(const bool use);
+
     void result_view(QImage &img,bool state = true,bool colors=true);
 
     void processCaptureImage(int requestId,const QImage &img);
@@ -56,6 +58,11 @@ private slots:
     void linearizar(const ImageProcessing::GrayImage<unsigned> &gray_img,const unsigned scale,const bool color,const unsigned index);
 
     void bound(const ImageProcessing::GrayImage<unsigned> &grayImgs,const ImageProcessing::BinaryImage &imgs,const bool color);
+
+    void histrograma(const ImageProcessing::GrayImage<unsigned> &grayImg);
+
+    void centroid( ImageProcessing::BinaryImage &bin_img,  ImageProcessing::GrayImage<unsigned> &grayImg,const unsigned value);
+
 
     // eventos
     void on_pushButtonConnect_clicked();
@@ -96,6 +103,19 @@ private slots:
 
     void on_button_red_3_clicked();
 
+    void on_button_blue_5_clicked();
+
+    void on_check_saved_img_clicked(bool checked);
+
+    void on_button_blue_4_clicked();
+
+    void on_button_red_4_clicked();
+
+
+    void on_set_saved_img_0_clicked(bool checked);
+
+    void on_button_red_5_clicked();
+
 signals :
     void emit_result();
 
@@ -110,12 +130,13 @@ private:
 
     ImageProcessing::RGBImage<unsigned>mat_complete,rgb_blue,rgb_red;
     ImageProcessing::GrayImage<unsigned>gray_blue,gray_red;
+    LinAlg::Matrix<unsigned> histogramMatrix;
     ImageProcessing::BinaryImage bina_blue,bina_red;
     int select_blue_0_index,select_red_0_index;
     int select_blue_1_index,select_red_1_index;
 
 //   VARIAVEIS WIFI
-    QPixmap *mypix ;
+    QPixmap mypix ;
     Client *wifi;
     QString dataToSend;
 

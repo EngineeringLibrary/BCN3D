@@ -22,15 +22,15 @@ MainWindow::MainWindow(QWidget *parent) :
 //    ui->webcam->setScaledContents( true );
 //    ui->webcam->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
     viewfinder = new QVideoWidget(ui->webcam);
-    viewfinder->setMinimumSize(
-        (ui->webcam->geometry().width()*13),
-        (ui->webcam->geometry().height()*17)
-    );
-
 //    viewfinder->setMinimumSize(
-//        (ui->webcam->geometry().width()*1.5),
-//        (ui->webcam->geometry().height()*1.3)
+//        (ui->webcam->geometry().width()*13),
+//        (ui->webcam->geometry().height()*17)
 //    );
+
+    viewfinder->setMinimumSize(
+        (ui->webcam->geometry().width()*1.5),
+        (ui->webcam->geometry().height()*1.3)
+    );
 
     viewfinder->setMaximumSize(
         ui->webcam->maximumWidth(),
@@ -93,6 +93,7 @@ void MainWindow::result_view(QImage &img,bool state, bool colors){
         ui->label_before->update();
         ui->label_before->show();
     }else if (!state && colors){
+        Qimg_red_ = img;
         ui->label_after_red->updatesEnabled();
         ui->label_after_red->setPixmap(QPixmap::fromImage(img));
         ui->label_after_red->setScaledContents( true );
@@ -100,12 +101,40 @@ void MainWindow::result_view(QImage &img,bool state, bool colors){
         ui->label_after_red->update();
         ui->label_after_red->show();
     }else if(!state && !colors){
+        Qimg_blue_ = img;
         ui->label_after_blue->updatesEnabled();
         ui->label_after_blue->setPixmap(QPixmap::fromImage(img));
         ui->label_after_blue->setScaledContents( true );
         ui->label_after_blue->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
         ui->label_after_blue->update();
         ui->label_after_blue->show();
+    }
+}
+
+void MainWindow::on_refresh_clicked()
+{
+    result_view(Qimg_blue_,false,false);
+    result_view(Qimg_red_,false,true);
+}
+
+void MainWindow::set_saved_img(const bool use)
+{
+    QImage temp;
+    if(use){
+        mypix = (QDir::currentPath()+"/imageCaptured.jpg");
+//        ui->saved_img->setPixmap(mypix);
+        mat_complete = ImageProcessing::QImage2RGBImage<unsigned>(mypix.toImage());
+        temp = ImageProcessing::RGBImage2QImage<unsigned>(mat_complete);
+        result_view(temp,true,true);
+//        passa de rgb para  escala de cinza invertendo as cores
+        gray_blue.setGray(mat_complete.getBlue());
+        gray_red.setGray(mat_complete.getRed());
+
+        Qimg_blue[0] = ImageProcessing::GrayImage2QImage<unsigned>(gray_blue);
+        Qimg_red[0] = ImageProcessing::GrayImage2QImage<unsigned>(gray_red);
+//        mostra imagem em escala de cinza
+        result_view(Qimg_blue[0],false,false);
+        result_view(Qimg_red[0],false,true);
     }
 }
 
@@ -217,7 +246,6 @@ void MainWindow::linearizar(const ImageProcessing::GrayImage<unsigned> &gray_img
     }
 }
 
-
 void MainWindow::dilation(const ImageProcessing::BinaryImage &bin,const bool color){
     if(!color){    // dilataçao blue
         bina_blue = ImageProcessing::dilation(bin);
@@ -287,6 +315,73 @@ void MainWindow::bound(const ImageProcessing::GrayImage<unsigned> &grayImgs,cons
 //    grayImg.setGray(segmentedMatrix*2+10);
 //    ui->boundAfter->setPixmap(QPixmap::fromImage(ImageProcessing::GrayImage2QImage(grayImg)));
 }
+
+void MainWindow::histrograma(const ImageProcessing::GrayImage<unsigned> &grayImg){
+
+    histogramMatrix = ImageProcessing::Histogram<unsigned>(grayImg);
+    std::cout << (~(histogramMatrix||LinAlg::LineVector<unsigned>(0,255,1))) << std::endl;
+}
+
+void MainWindow::centroid( ImageProcessing::BinaryImage &bin_img,  ImageProcessing::GrayImage<unsigned> &grayImg,const unsigned value)
+{
+//    ImageProcessing::GrayImage<unsigned> grayImg = ImageProcessing::QImage2GrayImage<unsigned>(ui->boundBefore->pixmap()->toImage());
+
+    histrograma(grayImg);
+
+
+//    grayImg = ImageProcessing::averageFilter(grayImg,15);
+//    grayImg = ImageProcessing::discreteLaplacian(grayImg,0.1,0.1);
+//    grayImg = ImageProcessing::selfreinforceFilter(grayImg,3,ui->lineEdit_6->text().toDouble());
+//    ImageProcessing::BinaryImage bin_img;
+//    unsigned value = ui->lineEdit_8->text().toUInt();
+//    bin_img = (grayImg < value);
+    bin_img = (grayImg > 0) && (grayImg < 141);
+    bin_img = ImageProcessing::erosion(bin_img);
+
+//    img = (grayImg > 178) && (grayImg < 255);
+//    img = ImageProcessing::opening(img);
+
+    LinAlg::Matrix<unsigned> qdt, segmentedMatrix;
+    *(qdt, segmentedMatrix) = ImageProcessing::bound(bin_img);
+    std::cout << qdt << std::endl;
+
+//    for(unsigned i = 1; i <= qdt(1,1); ++i)
+//    {
+        LinAlg::Matrix<unsigned> centroid = ImageProcessing::centroid(ImageProcessing::BinaryImage(segmentedMatrix==(value+1)));
+        std::cout << centroid << std::endl;
+        std::cout << ImageProcessing::pixelToWorldMetric(segmentedMatrix,22,26,centroid) << std::endl;
+        bin_img = ImageProcessing::BinaryImage(segmentedMatrix==(value+1));
+        std::cout << ImageProcessing::area(bin_img) << std::endl;
+
+        bin_img(centroid(1,1)-1,centroid(1,2)-1) = 0;
+        bin_img(centroid(1,1)-1,centroid(1,2))   = 0;
+        bin_img(centroid(1,1),  centroid(1,2)-1) = 0;
+        bin_img(centroid(1,1),  centroid(1,2))   = 0;
+        bin_img(centroid(1,1)+1,centroid(1,2))   = 0;
+        bin_img(centroid(1,1),  centroid(1,2)+1) = 0;
+        bin_img(centroid(1,1)+1,centroid(1,2)+1) = 0;
+//    }
+    grayImg.setGray((!bin_img).getBinaryImageMatrix());
+    grayImg.setGray(grayImg.getGray()*100);
+    QImage oi ;
+    oi =ImageProcessing::GrayImage2QImage(grayImg);
+    result_view(oi,false,true);
+//    grayImg.setGray(segmentedMatrix*2+10);
+//    ui->boundAfter->setPixmap(QPixmap::fromImage(ImageProcessing::GrayImage2QImage(grayImg)));
+}
+
+//--------------------------------------------------------------EVENTS----------------------------------------------------------
+
+void MainWindow::on_check_saved_img_clicked(bool checked)
+{
+  set_saved_img(checked);
+}
+
+void MainWindow::on_set_saved_img_0_clicked(bool checked)
+{
+  set_saved_img(!checked);
+}
+
 
 
 void MainWindow::on_select_blue_currentIndexChanged(int index)
@@ -362,12 +457,6 @@ void MainWindow::on_select_red_currentIndexChanged(int index)
 //            qDebug() <<"case default red:" << this->Qimg_red[1].isNull() ;
             qDebug() <<"default red";
     }
-}
-
-void MainWindow::on_refresh_clicked()
-{
-    result_view(Qimg_blue_,false,false);
-    result_view(Qimg_red_,false,true);
 }
 
 void MainWindow::on_select_blue_0_currentIndexChanged(int index)
@@ -613,10 +702,28 @@ void MainWindow::on_button_red_3_clicked()
     MainWindow::erosion(bina_red,false);
 }
 
+void MainWindow::on_button_blue_4_clicked()
+{
+    histrograma(gray_blue);
+}
 
+void MainWindow::on_button_red_4_clicked()
+{
+    histrograma(gray_red);
+}
 
+void MainWindow::on_button_blue_5_clicked()
+{
+    centroid(bina_blue,gray_blue,ui->filter_blue_5->text().toInt());
+}
 
-//------------------------- wifi
+void MainWindow::on_button_red_5_clicked()
+{
+    centroid(bina_red,gray_red,ui->filter_red_5->text().toInt());
+}
+
+//------------------------- WIFI--------------------------------
+
 void MainWindow::update()
 {
     if(this->wifi)
@@ -654,8 +761,6 @@ void MainWindow::on_pushButton_Disconnect_clicked()
     }
     ui->widget->hide();
 }
-
-
 
 
 
