@@ -57,7 +57,7 @@ private slots:
 
     void linearizar(const ImageProcessing::GrayImage<unsigned> &gray_img,const unsigned scale,const bool color,const unsigned index);
 
-    void bound(const ImageProcessing::GrayImage<unsigned> &grayImgs,const ImageProcessing::BinaryImage &imgs,const bool color);
+    void bound(const ImageProcessing::GrayImage<unsigned> &grayImgs,const ImageProcessing::BinaryImage &imgs,const unsigned value,const bool color);
 
     void histrograma(const ImageProcessing::GrayImage<unsigned> &grayImg);
 

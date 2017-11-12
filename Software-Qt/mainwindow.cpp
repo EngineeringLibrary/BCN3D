@@ -277,9 +277,10 @@ void MainWindow::erosion(const ImageProcessing::BinaryImage &bin,const bool colo
     }
 }
 
-void MainWindow::bound(const ImageProcessing::GrayImage<unsigned> &grayImgs,const ImageProcessing::BinaryImage &imgs,const bool color){
+void MainWindow::bound(const ImageProcessing::GrayImage<unsigned> &grayImgs,const ImageProcessing::BinaryImage &imgs,const unsigned value,const bool color){
     ImageProcessing::GrayImage<unsigned> grayImg_ = grayImgs;
     ImageProcessing::BinaryImage bin = imgs;
+    LinAlg::Matrix<unsigned> qdt, segmentedMatrix;
 //    grayImg = ImageProcessing::averageFilter(grayImg,15);
 //    grayImg = ImageProcessing::discreteLaplacian(grayImg,0.1,0.1);
 //    grayImg = ImageProcessing::selfreinforceFilter(grayImg,3,ui->lineEdit_6->text().toDouble());
@@ -296,30 +297,42 @@ void MainWindow::bound(const ImageProcessing::GrayImage<unsigned> &grayImgs,cons
         *bina_blue = ImageProcessing::dilation(*bina_blue);
         *bina_blue = ImageProcessing::dilation(*bina_blue);
 
-    //    LinAlg::Matrix<unsigned> qdt, segmentedMatrix;
-    //    *(qdt, segmentedMatrix) = ImageProcessing::bound(img);
-    //    std::cout << qdt << std::endl;
+//        *bina_blue = (grayImg_ > 0) && (grayImg_ < 141);
+//        *bina_blue = ImageProcessing::opening(*bina_blue);
 
+        *bina_blue = (grayImg_ > 140) && (grayImg_ < 255);
+        *bina_blue = ImageProcessing::opening(*bina_blue);
+
+        *(qdt, segmentedMatrix) = ImageProcessing::bound(*bina_blue);
+        std::cout << qdt << std::endl;
+
+        *bina_blue = ImageProcessing::BinaryImage(segmentedMatrix==(value+1));
         gray_blue->setGray(this->bina_blue->getBinaryImageMatrix());
         gray_blue->setGray(gray_blue->getGray()*100);
-        Qimg_blue[4] =ImageProcessing::GrayImage2QImage<unsigned>(*gray_blue);
+        Qimg_blue[4] =   *Qimg_blue_ = ImageProcessing::GrayImage2QImage<unsigned>(*gray_blue);
     }else{
-        *bina_red = ImageProcessing::erosion(bin);
-        *bina_red = ImageProcessing::erosion(*bina_red);
-        *bina_red = ImageProcessing::erosion(*bina_red);
-        *bina_red = ImageProcessing::erosion(*bina_red);
-        *bina_red = ImageProcessing::erosion(*bina_red);
-        *bina_red = ImageProcessing::dilation(*bina_red);
-        *bina_red = ImageProcessing::dilation(*bina_red);
-        *bina_red = ImageProcessing::dilation(*bina_red);
+//        *bina_red = ImageProcessing::erosion(bin);
+//        *bina_red = ImageProcessing::erosion(*bina_red);
+//        *bina_red = ImageProcessing::erosion(*bina_red);
+//        *bina_red = ImageProcessing::erosion(*bina_red);
+//        *bina_red = ImageProcessing::erosion(*bina_red);
+//        *bina_red = ImageProcessing::dilation(*bina_red);
+//        *bina_red = ImageProcessing::dilation(*bina_red);
+//        *bina_red = ImageProcessing::dilation(*bina_red);
 
-    //    LinAlg::Matrix<unsigned> qdt, segmentedMatrix;
-    //    *(qdt, segmentedMatrix) = ImageProcessing::bound(img);
-    //    std::cout << qdt << std::endl;
+//        *bina_red = (grayImg_ > 0) && (grayImg_ < 141);
+//        *bina_red = ImageProcessing::opening(*bina_red);
 
+        *bina_red = (grayImg_ > 140) && (grayImg_ < 255);
+        *bina_red = ImageProcessing::opening(*bina_red);
+
+        *(qdt, segmentedMatrix) = ImageProcessing::bound(*bina_red);
+        std::cout << qdt << std::endl;
+
+        *bina_red = ImageProcessing::BinaryImage(segmentedMatrix==(value+1));
         this->gray_red->setGray(this->bina_red->getBinaryImageMatrix());
         this->gray_red->setGray(this->gray_red->getGray()*100);
-        Qimg_red[4] = ImageProcessing::GrayImage2QImage<unsigned>(*gray_red);
+        Qimg_red[4] =  *Qimg_red_ = ImageProcessing::GrayImage2QImage<unsigned>(*gray_red);
     }
 //    grayImg.setGray(segmentedMatrix*2+10);
 //    ui->boundAfter->setPixmap(QPixmap::fromImage(ImageProcessing::GrayImage2QImage(grayImg)));
@@ -418,7 +431,7 @@ void MainWindow::on_select_blue_currentIndexChanged(int index)
         case 4:
         //    qDebug() <<"case 2:" <<index<<" blue:" << !this->Qimg_blue[index].isNull() ;
             linearizar(*gray_blue,ui->filter_blue->text().toULong(),false,1);
-            bound(*gray_blue,*bina_blue,false);
+            bound(*gray_blue,*bina_blue,ui->filter_blue->text().toDouble(),false);
             result_view(this->Qimg_blue[index],false,false);
             break;
         default:
@@ -456,7 +469,7 @@ void MainWindow::on_select_red_currentIndexChanged(int index)
         case 4:
         //            qDebug() <<"case 2 red:" << this->Qimg_red[index].isNull() ;
             linearizar(*gray_red,ui->line_red->text().toULong(),ui->line_red->text().toULong(),1);
-            bound(*gray_red,*bina_red,true);
+            bound(*gray_red,*bina_red,ui->filter_red->text().toDouble(),true);
             result_view(this->Qimg_red[index],false,true);
             break;
         default:
@@ -712,11 +725,13 @@ void MainWindow::on_button_red_3_clicked()
 void MainWindow::on_button_blue_4_clicked()
 {
     histrograma(*gray_blue);
+    bound(*gray_blue,*bina_blue,ui->filter_blue_4->text().toDouble(),false);
 }
 
 void MainWindow::on_button_red_4_clicked()
 {
     histrograma(*gray_red);
+    bound(*gray_red,*bina_red,ui->filter_red_4->text().toDouble(),true);
 }
 
 void MainWindow::on_button_blue_5_clicked()

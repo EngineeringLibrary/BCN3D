@@ -62,7 +62,7 @@
              </sizepolicy>
             </property>
             <property name="currentIndex">
-             <number>1</number>
+             <number>3</number>
             </property>
             <widget class="QWidget" name="tab_3">
              <attribute name="title">
@@ -781,7 +781,7 @@
                      </size>
                     </property>
                     <property name="text">
-                     <string>histograma</string>
+                     <string>bound</string>
                     </property>
                    </widget>
                   </item>
@@ -802,7 +802,7 @@
                   <item>
                    <widget class="QPushButton" name="button_red_4">
                     <property name="text">
-                     <string>histograma</string>
+                     <string>bound</string>
                     </property>
                    </widget>
                   </item>
@@ -1144,7 +1144,7 @@
                        </size>
                       </property>
                       <property name="text">
-                       <string>histograma</string>
+                       <string>bound</string>
                       </property>
                      </widget>
                     </item>
@@ -1165,7 +1165,7 @@
                     <item>
                      <widget class="QPushButton" name="button_blue_4">
                       <property name="text">
-                       <string>histograma</string>
+                       <string>bound</string>
                       </property>
                      </widget>
                     </item>

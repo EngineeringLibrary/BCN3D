@@ -2019,6 +2019,9 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtGui/qinputmethod.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QButtonGroup \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QCheckBox \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qcheckbox.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qabstractbutton.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QComboBox \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qcombobox.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
@@ -2049,17 +2052,13 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtGui/qtextformat.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtGui/qpen.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QMenuBar \
-		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qmenubar.h \
-		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qmenu.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QPushButton \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QScrollArea \
+		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qscrollarea.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QStatusBar \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qstatusbar.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QTabWidget \
-		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QToolBar \
-		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/qtoolbar.h \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../../../Qt/5.9.2/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp

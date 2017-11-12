@@ -982,7 +982,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        result->setCurrentIndex(1);
+        result->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1070,9 +1070,9 @@ public:
         label_red_filter_3->setText(QApplication::translate("MainWindow", "erosion", Q_NULLPTR));
         filter_red_3->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
         button_red_3->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
-        label_red_filter_4->setText(QApplication::translate("MainWindow", "histograma", Q_NULLPTR));
+        label_red_filter_4->setText(QApplication::translate("MainWindow", "bound", Q_NULLPTR));
         filter_red_4->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
-        button_red_4->setText(QApplication::translate("MainWindow", "histograma", Q_NULLPTR));
+        button_red_4->setText(QApplication::translate("MainWindow", "bound", Q_NULLPTR));
         label_red_filter_5->setText(QApplication::translate("MainWindow", "centroid provisorio", Q_NULLPTR));
         filter_red_5->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
         button_red_5->setText(QApplication::translate("MainWindow", "centroid provisorio", Q_NULLPTR));
@@ -1113,9 +1113,9 @@ public:
         label_blue_filter_3->setText(QApplication::translate("MainWindow", "erosion", Q_NULLPTR));
         filter_blue_3->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
         button_blue_3->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
-        label_blue_filter_4->setText(QApplication::translate("MainWindow", "histograma", Q_NULLPTR));
+        label_blue_filter_4->setText(QApplication::translate("MainWindow", "bound", Q_NULLPTR));
         filter_blue_4->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
-        button_blue_4->setText(QApplication::translate("MainWindow", "histograma", Q_NULLPTR));
+        button_blue_4->setText(QApplication::translate("MainWindow", "bound", Q_NULLPTR));
         label_blue_filter_5->setText(QApplication::translate("MainWindow", "centroid provisorio", Q_NULLPTR));
         filter_blue_5->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
         button_blue_5->setText(QApplication::translate("MainWindow", "centroid provisorio", Q_NULLPTR));
