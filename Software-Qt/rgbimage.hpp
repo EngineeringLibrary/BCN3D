@@ -1,166 +1,239 @@
 #include "rgbimage.h"
 
 template <typename Type>
-ImageProcessing::RGBImage<Type>::RGBImage(const LinAlg::Matrix<Type> &red, const LinAlg::Matrix<Type> &green, const LinAlg::Matrix<Type> &blue)
+ImageProcessing::RGBImage<Type>& ImageProcessing::RGBImage<Type>::operator! () const
 {
-    this->red = red;
-    this->green = green;
-    this->blue = blue;
+    ImageProcessing::RGBImage<Type> ret = (*this);
+    for(unsigned i = 1; i <= this->height; ++i)
+        for(unsigned j = 1; j <= this->width; ++j)
+            ret.binary(j,i) = !this->binary(j,i);
 
-    this->width = red.getNumberOfRows();
-    this->height = red.getNumberOfColumns();
+    return ret;
+}
+
+
+template <typename Type>
+ImageProcessing::RGBImage<Type>::RGBImage(const LinAlg::Matrix<Type> &r, const LinAlg::Matrix<Type> &g, const LinAlg::Matrix<Type> &b)
+{
+    this->red = ImageProcessing::checkValue<Type>(r);
+    this->green = ImageProcessing::checkValue<Type>(g);
+    this->blue = ImageProcessing::checkValue<Type>(b);
+
+    this->width = r.getNumberOfRows();
+    this->height = r.getNumberOfColumns();
     this->alpha = 255;
 }
 
 template <typename Type>
-ImageProcessing::RGBImage<Type>::RGBImage( const ImageProcessing::RGBImage<Type> &rgb)
+ImageProcessing::RGBImage<Type>::RGBImage(const ImageProcessing::RGBImage<Type> &rgb)
 {
-    this->red = rgb.getRed();
-    this->green = rgb.getGreen();
-    this->blue = rgb.getBlue();
+    this->red = rgb.red;
+    this->green = rgb.green;
+    this->blue = rgb.blue;
 
-    this->width = rgb.getWidth();
-    this->height = rgb.getHeight();
-    this->alpha = rgb.getAlpha();
+    this->width = rgb.width;
+    this->height = rgb.height;
+    this->alpha = rgb.alpha;
 }
 
-template <typename Type>
-ImageProcessing::RGBImage<Type>& ImageProcessing::RGBImage<Type>::operator = (const ImageProcessing::RGBImage<Type>& rgbImg)
-{
-    this->red = rgbImg.getRed();
-    this->green = rgbImg.getGreen();
-    this->blue = rgbImg.getBlue();
 
-    this->width = rgbImg.getWidth();
-    this->height = rgbImg.getHeight();
-    this->alpha = rgbImg.getAlpha();
+template <typename Type>
+ImageProcessing::RGBImage<Type>& ImageProcessing::RGBImage<Type>::operator =(const ImageProcessing::RGBImage<Type>& rgbImg)
+{
+    this->width = rgbImg.width;
+    this->height = rgbImg.height;
+
+    this->red = rgbImg.red;
+    this->green = rgbImg.green;
+    this->blue = rgbImg.blue;
+
+    this->alpha = rgbImg.alpha;
 
     return *this;
 }
 
 template <typename Type>
-ImageProcessing::RGBImage<Type>& ImageProcessing::RGBImage<Type>::operator += (const ImageProcessing::RGBImage<Type>& rgbImg)
+ImageProcessing::RGBImage<Type>& ImageProcessing::RGBImage<Type>::operator +=(const Type& value)
 {
-    this->red = ImageProcessing::checkValue<Type>(
-                this->red + rgbImg.getRed());
-    this->green = ImageProcessing::checkValue<Type>(
-                this->green + rgbImg.getGreen());
-    this->blue = ImageProcessing::checkValue<Type>(
-                this->blue + rgbImg.getBlue());
+    this->red += value;
+    this->green += value;
+    this->blue += value;
+
+    this->red = ImageProcessing::checkValue<Type>(this->red);
+    this->green = ImageProcessing::checkValue<Type>(this->green);
+    this->blue = ImageProcessing::checkValue<Type>(this->blue);
+
     return *this;
 }
 
 template <typename Type>
-ImageProcessing::RGBImage<Type>& ImageProcessing::RGBImage<Type>::operator +=(const Type& rgbImg)
+ImageProcessing::RGBImage<Type>& ImageProcessing::RGBImage<Type>::operator +=(const ImageProcessing::RGBImage<Type>& rgbImg)
 {
-    this->red = ImageProcessing::checkValue<Type>(
-                this->red + rgbImg);
-    this->green = ImageProcessing::checkValue<Type>(
-                this->green + rgbImg);
-    this->blue = ImageProcessing::checkValue<Type>(
-                this->blue + rgbImg);
+    this->red = ImageProcessing::checkValue<Type>(this->red + rgbImg.red);
+    this->green = ImageProcessing::checkValue<Type>(this->green + rgbImg.green);
+    this->blue = ImageProcessing::checkValue<Type>(this->blue + rgbImg.blue);
+
     return *this;
 }
 
 template <typename Type>
-ImageProcessing::RGBImage<Type>& ImageProcessing::RGBImage<Type>::operator -= (const ImageProcessing::RGBImage<Type>& rgbImg)
+ImageProcessing::RGBImage<Type>& ImageProcessing::RGBImage<Type>::operator -=(const Type& value)
 {
-    this->red = ImageProcessing::checkValue<Type>(
-                this->red - rgbImg.getRed());
-    this->green = ImageProcessing::checkValue<Type>(
-                this->green - rgbImg.getGreen());
-    this->blue = ImageProcessing::checkValue<Type>(
-                this->blue - rgbImg.getBlue());
+    this->red -= value;
+    this->green -= value;
+    this->blue -= value;
+
+    this->red = ImageProcessing::checkValue<Type>(this->red);
+    this->green = ImageProcessing::checkValue<Type>(this->green);
+    this->blue = ImageProcessing::checkValue<Type>(this->blue);
+
+    return *this;
+}
+
+
+template <typename Type>
+ImageProcessing::RGBImage<Type>& ImageProcessing::RGBImage<Type>::operator -=(const ImageProcessing::RGBImage<Type>& rgbImg)
+{
+    this->red = ImageProcessing::checkValue<Type>(this->red + rgbImg.red);
+    this->green = ImageProcessing::checkValue<Type>(this->green + rgbImg.green);
+    this->blue = ImageProcessing::checkValue<Type>(this->blue + rgbImg.blue);
+
     return *this;
 }
 
 template <typename Type>
-ImageProcessing::RGBImage<Type>& ImageProcessing::RGBImage<Type>::operator -= (const Type& rgbImg)
+ImageProcessing::RGBImage<Type>& ImageProcessing::RGBImage<Type>::operator *=(const Type& value)
 {
-    this->red = ImageProcessing::checkValue<Type>(
-                this->red - rgbImg);
-    this->green = ImageProcessing::checkValue<Type>(
-                this->green - rgbImg);
-    this->blue = ImageProcessing::checkValue<Type>(
-                this->blue - rgbImg);
+    this->red *= value;
+    this->green *= value;
+    this->blue *= value;
+
+    this->red = ImageProcessing::checkValue<Type>(this->red);
+    this->green = ImageProcessing::checkValue<Type>(this->green);
+    this->blue = ImageProcessing::checkValue<Type>(this->blue);
+
+    return *this;
+}
+
+
+template <typename Type>
+ImageProcessing::RGBImage<Type>& ImageProcessing::RGBImage<Type>::operator *=(const ImageProcessing::RGBImage<Type>& rgbImg)
+{
+    LinAlg::Matrix<Type> aux = ImageProcessing::hadamardProduct<Type>(this->red,rgbImg.getRed());
+    this->red = ImageProcessing::checkValue<Type>(aux);
+
+    aux = ImageProcessing::hadamardProduct<Type>(this->green,rgbImg.getGreen());
+    this->green = ImageProcessing::checkValue<Type>(aux);
+
+    aux = ImageProcessing::hadamardProduct<Type>(this->blue,rgbImg.getBlue());
+    this->blue = ImageProcessing::checkValue<Type>(aux);
+
     return *this;
 }
 
 template <typename Type>
-ImageProcessing::RGBImage<Type>& ImageProcessing::RGBImage<Type>::operator *= (const ImageProcessing::RGBImage<Type>& rgbImg)
+ImageProcessing::RGBImage<Type>& ImageProcessing::RGBImage<Type>::operator /=(const Type& value)
 {
-    this->red = ImageProcessing::checkValue<Type>(
-                ImageProcessing::hadamardProduct(
-                    this->red,  rgbImg.getRed()));
-    this->green = ImageProcessing::checkValue<Type>(
-                ImageProcessing::hadamardProduct(
-                    this->green , rgbImg.getGreen()));
-    this->blue = ImageProcessing::checkValue<Type>(
-                ImageProcessing::hadamardProduct(
-                    this->blue, rgbImg.getBlue()));
+    this->red /= value;
+    this->green /= value;
+    this->blue /= value;
+
+    this->red = ImageProcessing::checkValue<Type>(this->red);
+    this->green = ImageProcessing::checkValue<Type>(this->green);
+    this->blue = ImageProcessing::checkValue<Type>(this->blue);
+
     return *this;
 }
 
 template <typename Type>
-ImageProcessing::RGBImage<Type>&ImageProcessing::RGBImage<Type>::operator *= (const Type& rgbImg)
+ImageProcessing::RGBImage<Type>& ImageProcessing::RGBImage<Type>::operator /=(const ImageProcessing::RGBImage<Type>& rgbImg)
 {
-    this->red = ImageProcessing::checkValue<Type>(
-                this->red * rgbImg);
-    this->green = ImageProcessing::checkValue<Type>(
-                this->green * rgbImg);
-    this->blue = ImageProcessing::checkValue<Type>(
-                this->blue * rgbImg);
+    LinAlg::Matrix<Type> aux = ImageProcessing::hadamardDivision<Type>(this->red,rgbImg.getRed());
+    this->red = ImageProcessing::checkValue<Type>(aux);
+
+    aux = ImageProcessing::hadamardDivision<Type>(this->green,rgbImg.getGreen());
+    this->green = ImageProcessing::checkValue<Type>(aux);
+
+    aux = ImageProcessing::hadamardDivision<Type>(this->blue,rgbImg.getBlue());
+    this->blue = ImageProcessing::checkValue<Type>(aux);
+
     return *this;
 }
 
 template <typename Type>
-ImageProcessing::RGBImage<Type>& ImageProcessing::RGBImage<Type>::operator /= (const ImageProcessing::RGBImage<Type>& rgbImg)
+ImageProcessing::RGBImage<Type>& ImageProcessing::RGBImage<Type>::operator~ ()
 {
-    this->red = ImageProcessing::checkValue<Type>(
-                ImageProcessing::hadamardDivision(
-                    this->red,  rgbImg.getRed()));
-    this->green = ImageProcessing::checkValue<Type>(
-                ImageProcessing::hadamardDivision(
-                    this->green , rgbImg.getGreen()));
-    this->blue = ImageProcessing::checkValue<Type>(
-                ImageProcessing::hadamardDivision(
-                    this->blue, rgbImg.getBlue()));
+    this->green = 255 - this->green;
+    this->blue  = 255 - this->blue;
+    this->red   = 255 - this->red;
+
     return *this;
 }
 
 template <typename Type>
-ImageProcessing::RGBImage<Type>& ImageProcessing::RGBImage<Type>::operator /= (const Type& rgbImg)
+ImageProcessing::RGBImage<Type> ImageProcessing::reScale(ImageProcessing::RGBImage<Type> rgbImage, const double &scale)
 {
-    this->red = ImageProcessing::checkValue<Type>(
-                this->red / rgbImg);
-    this->green = ImageProcessing::checkValue<Type>(
-                this->green / rgbImg);
-    this->blue = ImageProcessing::checkValue<Type>(
-                this->blue / rgbImg);
-    return *this;
-}
-
-template <typename Type>
-ImageProcessing::RGBImage<Type>& ImageProcessing::RGBImage<Type>::operator ~()
-{
-    this->red = ImageProcessing::checkValue<Type>(255 - this->red);
-    this->green = ImageProcessing::checkValue<Type>(255 - this->green);
-    this->blue = ImageProcessing::checkValue<Type>(255 - this->blue);
-    return *this;
-}
-
-
-template <class Type>
-ImageProcessing::RGBImage<Type> ImageProcessing::reScale( ImageProcessing::RGBImage<Type> rgbImage,const double     &scale){
-   rgbImage.setRed(ImageProcessing::reScale(rgbImage.getRed(),scale));
-
-   rgbImage.setGreen(ImageProcessing::reScale(rgbImage.getGreen(),scale));
-
-   rgbImage.setBlue(ImageProcessing::reScale(rgbImage.getBlue(),scale));
-
+    rgbImage.setBlue(ImageProcessing::reScale(rgbImage.getBlue(),scale));
+    rgbImage.setGreen(ImageProcessing::reScale(rgbImage.getGreen(),scale));
+    rgbImage.setRed(ImageProcessing::reScale(rgbImage.getRed(),scale));
     return rgbImage;
 }
 
+template <typename Type>
+ImageProcessing::RGBImage<Type> ImageProcessing::rotation(ImageProcessing::RGBImage<Type> rgbImage, const double &angle)
+{
+    rgbImage.setBlue(ImageProcessing::rotation(rgbImage.getBlue(),angle));
+    rgbImage.setGreen(ImageProcessing::rotation(rgbImage.getGreen(),angle));
+    rgbImage.setRed(ImageProcessing::rotation(rgbImage.getRed(),angle));
+    return rgbImage;
+}
+
+template <typename Type>
+ImageProcessing::RGBImage<Type> ImageProcessing::horizontalFlip(ImageProcessing::RGBImage<Type> rgbImage)
+{
+    rgbImage.setBlue(ImageProcessing::horizontalFlip(rgbImage.getBlue()));
+    rgbImage.setGreen(ImageProcessing::horizontalFlip(rgbImage.getGreen()));
+    rgbImage.setRed(ImageProcessing::horizontalFlip(rgbImage.getRed()));
+    return rgbImage;
+}
+
+template <typename Type>
+ImageProcessing::RGBImage<Type> ImageProcessing::verticalFlip(ImageProcessing::RGBImage<Type> rgbImage)
+{
+    rgbImage.setBlue(ImageProcessing::verticalFlip(rgbImage.getBlue()));
+    rgbImage.setGreen(ImageProcessing::verticalFlip(rgbImage.getGreen()));
+    rgbImage.setRed(ImageProcessing::verticalFlip(rgbImage.getRed()));
+    return rgbImage;
+}
+
+template <typename Type>
+ImageProcessing::RGBImage<Type> ImageProcessing::translation(ImageProcessing::RGBImage<Type> rgbImage, const double &xPos, const double &yPos)
+{
+    rgbImage.setBlue(ImageProcessing::translation(rgbImage.getBlue(),xPos,yPos));
+    rgbImage.setGreen(ImageProcessing::translation(rgbImage.getGreen(),xPos,yPos));
+    rgbImage.setRed(ImageProcessing::translation(rgbImage.getRed(),xPos,yPos));
+    return rgbImage;
+}
+
+template <typename Type>
+LinAlg::Matrix<Type> ImageProcessing::Histogram(const ImageProcessing::RGBImage<Type> &img)
+{
+    LinAlg::Matrix<Type> ret;
+    ret = ImageProcessing::Histogram(img.getRed()) || ImageProcessing::Histogram(img.getGreen()) || ImageProcessing::Histogram(img.getBlue());
+    return ret;
+}
+
+template <typename Type>
+ImageProcessing::RGBImage<Type> ImageProcessing::contrastEnhancement(ImageProcessing::RGBImage<Type> RGBImage,
+                                                                      const LinAlg::Matrix<Type> &positions)
+{
+    RGBImage.setRed(ImageProcessing::contrastEnhancement(RGBImage.getRed(),positions(1,1),positions(1,2),positions(1,3),positions(1,4)));
+    RGBImage.setGreen(ImageProcessing::contrastEnhancement(RGBImage.getGreen(),positions(2,1),positions(2,2),positions(2,3),positions(2,4)));
+    RGBImage.setBlue(ImageProcessing::contrastEnhancement(RGBImage.getBlue(),positions(3,1),positions(3,2),positions(3,3),positions(3,4)));
+    return RGBImage;
+}
+
+// Aula 11
 template <typename Type>
 ImageProcessing::RGBImage<Type> ImageProcessing::filterPrewittVertical(ImageProcessing::RGBImage<Type> RGBImage)
 {
@@ -257,3 +330,4 @@ ImageProcessing::RGBImage<Type> ImageProcessing::selfreinforceFilter(ImageProces
     RGBImage.setBlue(ImageProcessing::checkValue(reinforceWeigth*RGBImage.getBlue() - temp.getBlue()));
     return RGBImage;
 }
+// fim Aula 13
