@@ -57,6 +57,7 @@ private slots:
 
     void bound(const ImageProcessing::GrayImage<unsigned> &grayImgs,const ImageProcessing::BinaryImage &imgs,const bool color);
 
+    // eventos
     void on_pushButtonConnect_clicked();
 
     void on_pushButton_Disconnect_clicked();

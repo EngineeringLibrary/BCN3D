@@ -224,11 +224,11 @@ LinAlg::Matrix<bool> ImageProcessing::erosionMask(const ImageProcessing::BinaryI
 
 ImageProcessing::BinaryImage ImageProcessing::erosion(const ImageProcessing::BinaryImage &img)
 {
-    ImageProcessing::BinaryImage ret = img;
+    LinAlg::Matrix<bool> ret(img.getWidth(),img.getHeight());
     LinAlg::Matrix<bool> one = LinAlg::Ones<bool>(3,3);
 
-    for(unsigned i = 1; i < ret.getWidth(); ++i)
-        for(unsigned j = 1; j < ret.getHeight(); ++j)
+    for(unsigned i = 1; i < ret.getNumberOfRows(); ++i)
+        for(unsigned j = 1; j < ret.getNumberOfColumns(); ++j)
         {
             if(img(i,j) == 1){
                 LinAlg::Matrix<bool> mask = ImageProcessing::erosionMask(img,i,j);
@@ -247,9 +247,7 @@ ImageProcessing::BinaryImage ImageProcessing::dilation(const ImageProcessing::Bi
     ret = (!ret);
     return ret;
 }
-//fim Aula 14
 
-//Aula 15
 ImageProcessing::BinaryImage ImageProcessing::closing(const ImageProcessing::BinaryImage &img)
 {
     ImageProcessing::BinaryImage ret = ImageProcessing::dilation(img);
@@ -263,7 +261,6 @@ ImageProcessing::BinaryImage ImageProcessing::opening(const ImageProcessing::Bin
     ret = ImageProcessing::dilation(ret);
     return ret;
 }
-//fim Aula 15
 
 LinAlg::Matrix<LinAlg::Matrix<unsigned>* >* ImageProcessing::bound(const ImageProcessing::BinaryImage &mat)
 {
@@ -364,4 +361,44 @@ LinAlg::Matrix<LinAlg::Matrix<unsigned>* >* ImageProcessing::bound(const ImagePr
     (*((*t)(1,1))) = LinAlg::Matrix<unsigned>((unsigned)ret);
     (*((*t)(1,2))) = aux;
     return t;
+}
+
+unsigned ImageProcessing::area(const ImageProcessing::BinaryImage &img)
+{
+    unsigned ret = 0;
+    for(unsigned i = 1; i <= img.getWidth(); ++i)
+        for(unsigned j = 1; j <= img.getHeight(); ++j)
+            ret += img(i,j);
+    return ret;
+}
+
+LinAlg::Matrix<unsigned> ImageProcessing::centroid(const ImageProcessing::BinaryImage &img)
+{
+    unsigned inc=0, x = 0, y = 0;
+    for(unsigned i = 1; i <= img.getWidth(); ++i)
+    {
+        unsigned temp = 0;
+        for(unsigned j = 1; j <= img.getHeight(); ++j)
+            if(img(i,j)==1)
+                temp += 1;
+        x += i*temp;
+        inc += temp;
+    }
+    x /= inc;
+
+    inc = 0;
+    for(unsigned j = 1; j <= img.getHeight(); ++j)
+    {
+        unsigned temp = 0;
+        for(unsigned i = 1; i <= img.getWidth(); ++i)
+            if(img(i,j)==1)
+                temp += 1;
+        y += j*temp;
+        inc += temp;
+    }
+    y /= inc;
+
+    LinAlg::Matrix<unsigned> ret(1,2);
+    ret(1,1) = x; ret(1,2) = y;
+    return ret;
 }

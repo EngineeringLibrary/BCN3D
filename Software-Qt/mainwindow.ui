@@ -555,7 +555,7 @@
                </size>
               </property>
               <property name="text">
-               <string>filter value</string>
+               <string>dilation</string>
               </property>
              </widget>
             </item>
@@ -1069,7 +1069,7 @@
      <x>0</x>
      <y>0</y>
      <width>1317</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

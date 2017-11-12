@@ -23,9 +23,15 @@ MainWindow::MainWindow(QWidget *parent) :
 //    ui->webcam->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
     viewfinder = new QVideoWidget(ui->webcam);
     viewfinder->setMinimumSize(
-        (ui->webcam->geometry().width()*1.5),
-        (ui->webcam->geometry().height()*1.3)
+        (ui->webcam->geometry().width()*13),
+        (ui->webcam->geometry().height()*17)
     );
+
+//    viewfinder->setMinimumSize(
+//        (ui->webcam->geometry().width()*1.5),
+//        (ui->webcam->geometry().height()*1.3)
+//    );
+
     viewfinder->setMaximumSize(
         ui->webcam->maximumWidth(),
         ui->webcam->maximumHeight()
@@ -282,6 +288,7 @@ void MainWindow::bound(const ImageProcessing::GrayImage<unsigned> &grayImgs,cons
 //    ui->boundAfter->setPixmap(QPixmap::fromImage(ImageProcessing::GrayImage2QImage(grayImg)));
 }
 
+
 void MainWindow::on_select_blue_currentIndexChanged(int index)
 {
     switch (index) {
@@ -357,14 +364,11 @@ void MainWindow::on_select_red_currentIndexChanged(int index)
     }
 }
 
-
-
 void MainWindow::on_refresh_clicked()
 {
     result_view(Qimg_blue_,false,false);
     result_view(Qimg_red_,false,true);
 }
-
 
 void MainWindow::on_select_blue_0_currentIndexChanged(int index)
 {
@@ -568,7 +572,7 @@ void MainWindow::on_button_red_1_clicked()
 //BLUE 2
 void MainWindow::on_select_blue_2_currentIndexChanged(int index)
 {
-     select_blue_0_index = index;
+
 }
 
 void MainWindow::on_button_blue_2_clicked()
@@ -584,7 +588,7 @@ void MainWindow::on_select_red_2_currentIndexChanged(int index)
 
 void MainWindow::on_button_red_2_clicked()
 {
-
+    MainWindow::dilation(bina_red,false);
 }
 
 //BLUE 3
@@ -595,7 +599,7 @@ void MainWindow::on_select_blue_3_currentIndexChanged(int index)
 
 void MainWindow::on_button_blue_3_clicked()
 {
-
+    MainWindow::erosion(bina_blue,false);
 }
 
 //RED 3
@@ -606,19 +610,13 @@ void MainWindow::on_select_red_3_currentIndexChanged(int index)
 
 void MainWindow::on_button_red_3_clicked()
 {
-
+    MainWindow::erosion(bina_red,false);
 }
 
 
 
 
-
-
-
-
-
-
-// wifi
+//------------------------- wifi
 void MainWindow::update()
 {
     if(this->wifi)

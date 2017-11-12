@@ -1,116 +1,106 @@
 #ifndef RGBIMAGE_H
 #define RGBIMAGE_H
 #include "SistemasdeControle/headers/primitiveLibs/LinAlg/linalg.h"
+#include "SistemasdeControle/headers/primitiveLibs/LinAlg/matrix.h"
 #include "imageprocessing.h"
 
-namespace ImageProcessing {
+namespace ImageProcessing
+{
     template <class Type>
     class RGBImage
     {
-    public:
-        RGBImage(){}
-        RGBImage(const LinAlg::Matrix<Type> &red,
-                 const LinAlg::Matrix<Type> &green,
-                 const LinAlg::Matrix<Type> &blue);
-        RGBImage(const ImageProcessing::RGBImage<Type> &rgb);
+        public:
+            RGBImage(){}
+            RGBImage(const LinAlg::Matrix<Type> &r,
+                     const LinAlg::Matrix<Type> &g,
+                     const LinAlg::Matrix<Type> &b);
+            RGBImage(const ImageProcessing::RGBImage<Type> &rgb);
+//            ~RGBImage(){}
 
-        void setRed  (const LinAlg::Matrix<Type>  &red) { this->red = red;}
-        void setGreen(const LinAlg::Matrix<Type>&green) { this->green = green;}
-        void setBlue (const LinAlg::Matrix<Type> &blue) { this->blue = blue;}
+            void setRed(LinAlg::Matrix<Type> red) {this->red = ImageProcessing::checkValue<Type>(red);}
+            void setGreen(LinAlg::Matrix<Type> green) {this->green = ImageProcessing::checkValue<Type>(green);}
+            void setBlue(LinAlg::Matrix<Type> blue) {this->blue = ImageProcessing::checkValue<Type>(blue);}
 
-        void setWidth (const unsigned  &width) { this->width = width;}
-        void setHeight(const unsigned &height) { this->height = height;}
-        void setAlpha (const unsigned  &alpha) { this->alpha = alpha;}
+            void setWidth(unsigned width) const {this->width = width;}
+            void setHeight(unsigned height)const {this->height = height;}
+            void setAlpha(unsigned alpha) const {this->alpha = alpha;}
 
-        LinAlg::Matrix<Type> getRed () const{ return this->red;}
-        LinAlg::Matrix<Type> getGreen() const{ return this->green;}
-        LinAlg::Matrix<Type> getBlue () const{ return this->blue;}
+            const LinAlg::Matrix<Type>& getRed()   const {return this->red;}
+            const LinAlg::Matrix<Type>& getGreen() const {return this->green;}
+            const LinAlg::Matrix<Type>& getBlue()  const {return this->blue;}
 
-        const unsigned& getWidth () const{ return this->width;}
-        const unsigned& getHeight() const{ return this->height;}
-        const unsigned& getAlpha () const{ return this->alpha;}
+            const unsigned& getWidth() const {return this->width;}
+            const unsigned& getHeight()const {return this->height;}
+            const unsigned& getAlpha() const {return this->alpha;}
 
-        ImageProcessing::RGBImage<Type>& operator =
-        (const ImageProcessing::RGBImage<Type>& rgbImg);
+            ImageProcessing::RGBImage<Type>& operator =(const ImageProcessing::RGBImage<Type>& rgbImg);
 
-        ImageProcessing::RGBImage<Type>& operator +=
-        (const ImageProcessing::RGBImage<Type>& rgbImg);
-        ImageProcessing::RGBImage<Type>& operator +=
-        (const Type& rgbImg);
+            ImageProcessing::RGBImage<Type>& operator+= (const ImageProcessing::RGBImage<Type>& rgbImg);
+            ImageProcessing::RGBImage<Type>& operator+= (const Type& value);
 
-        ImageProcessing::RGBImage<Type>& operator -=
-        (const ImageProcessing::RGBImage<Type>& rgbImg);
-        ImageProcessing::RGBImage<Type>& operator -=
-        (const Type& rgbImg);
+            ImageProcessing::RGBImage<Type>& operator-= (const ImageProcessing::RGBImage<Type>& rgbImg);
+            ImageProcessing::RGBImage<Type>& operator-= (const Type& value);
 
-        ImageProcessing::RGBImage<Type>& operator *=
-        (const ImageProcessing::RGBImage<Type>& rgbImg);
-        ImageProcessing::RGBImage<Type>& operator *=
-        (const Type& rgbImg);
+            ImageProcessing::RGBImage<Type>& operator*= (const ImageProcessing::RGBImage<Type>& rgbImg);
+            ImageProcessing::RGBImage<Type>& operator*= (const Type& value);
 
-        ImageProcessing::RGBImage<Type>& operator /=
-        (const ImageProcessing::RGBImage<Type>& rgbImg);
-        ImageProcessing::RGBImage<Type>& operator /=
-        (const Type& rgbImg);
+            ImageProcessing::RGBImage<Type>& operator/= (const Type& value);
+            ImageProcessing::RGBImage<Type>& operator/= (const ImageProcessing::RGBImage<Type>& rgbImg);
 
-        ImageProcessing::RGBImage<Type>& operator ~();
-    private:
-        LinAlg::Matrix<Type> red, green, blue;
-        unsigned height, width, alpha;
+            ImageProcessing::RGBImage<Type>& operator~ ();
+
+        private:
+            LinAlg::Matrix<Type> red,green,blue;
+            unsigned height, width, alpha;
     };
 
-    template <class Type>
-    ImageProcessing::RGBImage<Type>& operator + (const ImageProcessing::RGBImage<Type>& lhs,
-        const ImageProcessing::RGBImage<Type>& rhs) { return lhs += rhs;}
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> operator +(ImageProcessing::RGBImage<Type> lhs,const Type& rhs){return lhs += rhs;}
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> operator +(const Type& lhs,ImageProcessing::RGBImage<Type> rhs){return rhs += lhs;}
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> operator +(ImageProcessing::RGBImage<Type> lhs,ImageProcessing::RGBImage<Type> rhs){return lhs += rhs;}
 
-    template <class Type>
-    ImageProcessing::RGBImage<Type>& operator + (const ImageProcessing::RGBImage<Type>& lhs,
-        const Type& rhs) { return lhs += rhs;}
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> operator -(ImageProcessing::RGBImage<Type> lhs,const Type& rhs){return lhs -= rhs;}
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> operator -(const Type& lhs,ImageProcessing::RGBImage<Type> rhs){return rhs -= lhs;}
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> operator -(ImageProcessing::RGBImage<Type> lhs,ImageProcessing::RGBImage<Type> rhs){return lhs -= rhs;}
 
-    template <class Type>
-    ImageProcessing::RGBImage<Type>& operator + (const Type& lhs,
-        const ImageProcessing::RGBImage<Type>& rhs){ return rhs += lhs;}
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> operator *(ImageProcessing::RGBImage<Type> lhs,const Type& rhs){return lhs *= rhs;}
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> operator *(const Type& lhs,ImageProcessing::RGBImage<Type> rhs){return rhs *= lhs;}
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> operator *(ImageProcessing::RGBImage<Type> lhs,ImageProcessing::RGBImage<Type> rhs){return lhs *= rhs;}
 
-    template <class Type>
-    ImageProcessing::RGBImage<Type>& operator - (const ImageProcessing::RGBImage<Type>& lhs,
-        const ImageProcessing::RGBImage<Type>& rhs) { return lhs -= rhs;}
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> operator /(ImageProcessing::RGBImage<Type> lhs,const Type& rhs){return lhs /= rhs;}
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> operator /(const Type& lhs,ImageProcessing::RGBImage<Type> rhs){return rhs /= lhs;}
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> operator /(ImageProcessing::RGBImage<Type> lhs,ImageProcessing::RGBImage<Type> rhs){return lhs /= rhs;}
 
-    template <class Type>
-    ImageProcessing::RGBImage<Type>& operator - (const ImageProcessing::RGBImage<Type>& lhs,
-        const Type& rhs) { return lhs -= rhs;}
 
-    template <class Type>
-    ImageProcessing::RGBImage<Type>& operator - (const Type& lhs,
-        const ImageProcessing::RGBImage<Type>& rhs){ return rhs -= lhs;}
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> reScale(ImageProcessing::RGBImage<Type> rgbImage, const double &scale);
 
-    template <class Type>
-    ImageProcessing::RGBImage<Type>& operator * (const ImageProcessing::RGBImage<Type>& lhs,
-        const ImageProcessing::RGBImage<Type>& rhs) { return lhs *= rhs;}
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> rotation(ImageProcessing::RGBImage<Type> rgbImage, const double &angle);
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> horizontalFlip(ImageProcessing::RGBImage<Type> mat);
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> verticalFlip(ImageProcessing::RGBImage<Type> mat);
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> translation(ImageProcessing::RGBImage<Type> mat, const double &xPos, const double &yPos);
 
-    template <class Type>
-    ImageProcessing::RGBImage<Type>& operator * (const ImageProcessing::RGBImage<Type>& lhs,
-        const Type& rhs) { return lhs *= rhs;}
+    template <typename Type>
+    LinAlg::Matrix<Type> Histogram(const ImageProcessing::RGBImage<Type> &img);
 
-    template <class Type>
-    ImageProcessing::RGBImage<Type>& operator * (const Type& lhs,
-        const ImageProcessing::RGBImage<Type>& rhs){ return rhs *= lhs;}
+    template <typename Type>
+    ImageProcessing::RGBImage<Type> contrastEnhancement(ImageProcessing::RGBImage<Type> RGBImage, const LinAlg::Matrix<Type> &positions);
 
-    template <class Type>
-    ImageProcessing::RGBImage<Type>& operator / (const ImageProcessing::RGBImage<Type>& lhs,
-        const ImageProcessing::RGBImage<Type>& rhs) { return lhs /= rhs;}
-
-    template <class Type>
-    ImageProcessing::RGBImage<Type>& operator / (const ImageProcessing::RGBImage<Type>& lhs,
-        const Type& rhs) { return lhs /= rhs;}
-
-    template <class Type>
-    ImageProcessing::RGBImage<Type>& operator / (const Type& lhs,
-        const ImageProcessing::RGBImage<Type>& rhs){ return rhs /= lhs;}
-
-    template <class Type>
-    ImageProcessing::RGBImage<Type> reScale( ImageProcessing::RGBImage<Type> rgbImage,const double &scale);
-
-    // filtros
     template <typename Type>
     ImageProcessing::RGBImage<Type> filterPrewittVertical(ImageProcessing::RGBImage<Type> RGBImage);
     template <typename Type>
@@ -136,7 +126,7 @@ namespace ImageProcessing {
     template <typename Type>
     ImageProcessing::RGBImage<Type> selfreinforceFilter(ImageProcessing::RGBImage<Type> RGBImage, const unsigned &sizeMask, const double &reinforceWeigth);
 
-
 }
+
 #include "rgbimage.hpp"
 #endif // RGBIMAGE_H

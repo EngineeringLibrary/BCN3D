@@ -74,85 +74,85 @@ public:
     QLabel *label_blue_linear;
     QLabel *label_2;
     QLineEdit *line_red;
-    QLabel *label_red_filter_2;
+    QLabel *label_red_linear;
     QPushButton *refresh;
     QWidget *buttons;
     QGridLayout *gridLayout_5;
     QVBoxLayout *coluna_Red;
     QVBoxLayout *verticalLayout_4;
-    QLabel *label_blue_filter_2;
+    QLabel *label_red_filter_0;
     QHBoxLayout *horizontalLayout_5;
     QLineEdit *filter_red_0;
     QComboBox *select_red_0;
     QPushButton *button_red_0;
     QVBoxLayout *verticalLayout_6;
-    QLabel *label_blue_filter_3;
+    QLabel *label_red_filter_1;
     QHBoxLayout *horizontalLayout_7;
     QLineEdit *filter_red_1;
     QComboBox *select_red_1;
     QPushButton *button_red_1;
     QVBoxLayout *verticalLayout_7;
-    QLabel *label_blue_filter_4;
+    QLabel *label_red_filter_2;
     QHBoxLayout *horizontalLayout_8;
-    QLineEdit *filter_blue_4;
-    QComboBox *comboBox_4;
-    QPushButton *pushButton_5;
+    QLineEdit *filter_red_2;
+    QComboBox *select_red_2;
+    QPushButton *button_red_2;
     QVBoxLayout *verticalLayout_8;
-    QLabel *label_blue_filter_5;
+    QLabel *label_red_filter_3;
     QHBoxLayout *horizontalLayout_9;
-    QLineEdit *filter_blue_5;
-    QComboBox *comboBox_5;
-    QPushButton *pushButton_6;
+    QLineEdit *filter_red_3;
+    QComboBox *select_red_3;
+    QPushButton *button_red_3;
     QVBoxLayout *verticalLayout_9;
-    QLabel *label_blue_filter_6;
+    QLabel *label_red_filter_4;
     QHBoxLayout *horizontalLayout_10;
-    QLineEdit *filter_blue_6;
-    QComboBox *comboBox_6;
-    QPushButton *pushButton_7;
+    QLineEdit *filter_red_4;
+    QComboBox *select_red_4;
+    QPushButton *button_red_4;
     QVBoxLayout *verticalLayout_10;
-    QLabel *label_blue_filter_7;
+    QLabel *label_red_filter_5;
     QHBoxLayout *horizontalLayout_11;
-    QLineEdit *filter_blue_7;
-    QComboBox *comboBox_7;
-    QPushButton *pushButton_8;
+    QLineEdit *filter_red_5;
+    QComboBox *select_red_5;
+    QPushButton *button_red_5;
     QGridLayout *gridLayout;
     QVBoxLayout *coluna_Blue;
     QVBoxLayout *verticalLayout_11;
-    QLabel *label_blue_filter_8;
+    QLabel *label_blue_filter_0;
     QHBoxLayout *horizontalLayout_12;
     QLineEdit *filter_blue_0;
     QComboBox *select_blue_0;
     QPushButton *button_blue_0;
     QVBoxLayout *verticalLayout_12;
-    QLabel *label_blue_filter_9;
+    QLabel *label_blue_filter_1;
     QHBoxLayout *horizontalLayout_13;
     QLineEdit *filter_blue_1;
     QComboBox *select_blue_1;
     QPushButton *button_blue_1;
     QVBoxLayout *verticalLayout_13;
-    QLabel *label_blue_filter_10;
+    QLabel *label_blue_filter_2;
     QHBoxLayout *horizontalLayout_14;
     QLineEdit *filter_blue_2;
     QComboBox *select_blue_2;
     QPushButton *button_blue_2;
     QVBoxLayout *verticalLayout_5;
-    QLabel *label_red_filter_4;
+    QLabel *label_blue_filter_3;
     QHBoxLayout *horizontalLayout_6;
-    QLineEdit *filter_red_2;
-    QComboBox *comboBox_2;
-    QPushButton *pushButton_3;
+    QLineEdit *filter_blue_3;
+    QComboBox *select_blue_3;
+    QPushButton *button_blue_3;
     QVBoxLayout *verticalLayout_14;
-    QLabel *label_blue_filter_11;
+    QLabel *label_blue_filter_4;
     QHBoxLayout *horizontalLayout_15;
-    QLineEdit *filter_blue_11;
-    QComboBox *comboBox_11;
-    QPushButton *pushButton_12;
+    QLineEdit *filter_blue_4;
+    QComboBox *select_blue_4;
+    QPushButton *button_blue_4;
     QVBoxLayout *verticalLayout_15;
-    QLabel *label_blue_filter_12;
+    QLabel *label_blue_filter_5;
     QHBoxLayout *horizontalLayout_16;
-    QLineEdit *filter_blue_12;
-    QComboBox *comboBox_12;
-    QPushButton *pushButton_13;
+    QLineEdit *filter_blue_5;
+    QComboBox *select_blue_5;
+    QPushButton *button_blue_5;
     QHBoxLayout *horizontalLayout_4;
     QLabel *label_4;
     QLabel *label_3;
@@ -360,10 +360,10 @@ public:
 
         gridLayout_3->addWidget(line_red, 9, 1, 1, 1);
 
-        label_red_filter_2 = new QLabel(tab_2);
-        label_red_filter_2->setObjectName(QStringLiteral("label_red_filter_2"));
+        label_red_linear = new QLabel(tab_2);
+        label_red_linear->setObjectName(QStringLiteral("label_red_linear"));
 
-        gridLayout_3->addWidget(label_red_filter_2, 8, 1, 1, 1);
+        gridLayout_3->addWidget(label_red_linear, 8, 1, 1, 1);
 
 
         gridLayout_4->addLayout(gridLayout_3, 0, 0, 1, 1);
@@ -386,11 +386,11 @@ public:
         verticalLayout_4 = new QVBoxLayout();
         verticalLayout_4->setSpacing(6);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-        label_blue_filter_2 = new QLabel(buttons);
-        label_blue_filter_2->setObjectName(QStringLiteral("label_blue_filter_2"));
-        label_blue_filter_2->setMaximumSize(QSize(16777215, 30));
+        label_red_filter_0 = new QLabel(buttons);
+        label_red_filter_0->setObjectName(QStringLiteral("label_red_filter_0"));
+        label_red_filter_0->setMaximumSize(QSize(16777215, 30));
 
-        verticalLayout_4->addWidget(label_blue_filter_2);
+        verticalLayout_4->addWidget(label_red_filter_0);
 
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setSpacing(6);
@@ -420,11 +420,11 @@ public:
         verticalLayout_6 = new QVBoxLayout();
         verticalLayout_6->setSpacing(6);
         verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
-        label_blue_filter_3 = new QLabel(buttons);
-        label_blue_filter_3->setObjectName(QStringLiteral("label_blue_filter_3"));
-        label_blue_filter_3->setMaximumSize(QSize(16777215, 30));
+        label_red_filter_1 = new QLabel(buttons);
+        label_red_filter_1->setObjectName(QStringLiteral("label_red_filter_1"));
+        label_red_filter_1->setMaximumSize(QSize(16777215, 30));
 
-        verticalLayout_6->addWidget(label_blue_filter_3);
+        verticalLayout_6->addWidget(label_red_filter_1);
 
         horizontalLayout_7 = new QHBoxLayout();
         horizontalLayout_7->setSpacing(6);
@@ -455,32 +455,32 @@ public:
         verticalLayout_7 = new QVBoxLayout();
         verticalLayout_7->setSpacing(6);
         verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
-        label_blue_filter_4 = new QLabel(buttons);
-        label_blue_filter_4->setObjectName(QStringLiteral("label_blue_filter_4"));
-        label_blue_filter_4->setMaximumSize(QSize(16777215, 30));
+        label_red_filter_2 = new QLabel(buttons);
+        label_red_filter_2->setObjectName(QStringLiteral("label_red_filter_2"));
+        label_red_filter_2->setMaximumSize(QSize(16777215, 30));
 
-        verticalLayout_7->addWidget(label_blue_filter_4);
+        verticalLayout_7->addWidget(label_red_filter_2);
 
         horizontalLayout_8 = new QHBoxLayout();
         horizontalLayout_8->setSpacing(6);
         horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
-        filter_blue_4 = new QLineEdit(buttons);
-        filter_blue_4->setObjectName(QStringLiteral("filter_blue_4"));
+        filter_red_2 = new QLineEdit(buttons);
+        filter_red_2->setObjectName(QStringLiteral("filter_red_2"));
 
-        horizontalLayout_8->addWidget(filter_blue_4);
+        horizontalLayout_8->addWidget(filter_red_2);
 
-        comboBox_4 = new QComboBox(buttons);
-        comboBox_4->setObjectName(QStringLiteral("comboBox_4"));
+        select_red_2 = new QComboBox(buttons);
+        select_red_2->setObjectName(QStringLiteral("select_red_2"));
 
-        horizontalLayout_8->addWidget(comboBox_4);
+        horizontalLayout_8->addWidget(select_red_2);
 
 
         verticalLayout_7->addLayout(horizontalLayout_8);
 
-        pushButton_5 = new QPushButton(buttons);
-        pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
+        button_red_2 = new QPushButton(buttons);
+        button_red_2->setObjectName(QStringLiteral("button_red_2"));
 
-        verticalLayout_7->addWidget(pushButton_5);
+        verticalLayout_7->addWidget(button_red_2);
 
 
         coluna_Red->addLayout(verticalLayout_7);
@@ -488,32 +488,32 @@ public:
         verticalLayout_8 = new QVBoxLayout();
         verticalLayout_8->setSpacing(6);
         verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
-        label_blue_filter_5 = new QLabel(buttons);
-        label_blue_filter_5->setObjectName(QStringLiteral("label_blue_filter_5"));
-        label_blue_filter_5->setMaximumSize(QSize(16777215, 30));
+        label_red_filter_3 = new QLabel(buttons);
+        label_red_filter_3->setObjectName(QStringLiteral("label_red_filter_3"));
+        label_red_filter_3->setMaximumSize(QSize(16777215, 30));
 
-        verticalLayout_8->addWidget(label_blue_filter_5);
+        verticalLayout_8->addWidget(label_red_filter_3);
 
         horizontalLayout_9 = new QHBoxLayout();
         horizontalLayout_9->setSpacing(6);
         horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
-        filter_blue_5 = new QLineEdit(buttons);
-        filter_blue_5->setObjectName(QStringLiteral("filter_blue_5"));
+        filter_red_3 = new QLineEdit(buttons);
+        filter_red_3->setObjectName(QStringLiteral("filter_red_3"));
 
-        horizontalLayout_9->addWidget(filter_blue_5);
+        horizontalLayout_9->addWidget(filter_red_3);
 
-        comboBox_5 = new QComboBox(buttons);
-        comboBox_5->setObjectName(QStringLiteral("comboBox_5"));
+        select_red_3 = new QComboBox(buttons);
+        select_red_3->setObjectName(QStringLiteral("select_red_3"));
 
-        horizontalLayout_9->addWidget(comboBox_5);
+        horizontalLayout_9->addWidget(select_red_3);
 
 
         verticalLayout_8->addLayout(horizontalLayout_9);
 
-        pushButton_6 = new QPushButton(buttons);
-        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
+        button_red_3 = new QPushButton(buttons);
+        button_red_3->setObjectName(QStringLiteral("button_red_3"));
 
-        verticalLayout_8->addWidget(pushButton_6);
+        verticalLayout_8->addWidget(button_red_3);
 
 
         coluna_Red->addLayout(verticalLayout_8);
@@ -521,32 +521,32 @@ public:
         verticalLayout_9 = new QVBoxLayout();
         verticalLayout_9->setSpacing(6);
         verticalLayout_9->setObjectName(QStringLiteral("verticalLayout_9"));
-        label_blue_filter_6 = new QLabel(buttons);
-        label_blue_filter_6->setObjectName(QStringLiteral("label_blue_filter_6"));
-        label_blue_filter_6->setMaximumSize(QSize(16777215, 30));
+        label_red_filter_4 = new QLabel(buttons);
+        label_red_filter_4->setObjectName(QStringLiteral("label_red_filter_4"));
+        label_red_filter_4->setMaximumSize(QSize(16777215, 30));
 
-        verticalLayout_9->addWidget(label_blue_filter_6);
+        verticalLayout_9->addWidget(label_red_filter_4);
 
         horizontalLayout_10 = new QHBoxLayout();
         horizontalLayout_10->setSpacing(6);
         horizontalLayout_10->setObjectName(QStringLiteral("horizontalLayout_10"));
-        filter_blue_6 = new QLineEdit(buttons);
-        filter_blue_6->setObjectName(QStringLiteral("filter_blue_6"));
+        filter_red_4 = new QLineEdit(buttons);
+        filter_red_4->setObjectName(QStringLiteral("filter_red_4"));
 
-        horizontalLayout_10->addWidget(filter_blue_6);
+        horizontalLayout_10->addWidget(filter_red_4);
 
-        comboBox_6 = new QComboBox(buttons);
-        comboBox_6->setObjectName(QStringLiteral("comboBox_6"));
+        select_red_4 = new QComboBox(buttons);
+        select_red_4->setObjectName(QStringLiteral("select_red_4"));
 
-        horizontalLayout_10->addWidget(comboBox_6);
+        horizontalLayout_10->addWidget(select_red_4);
 
 
         verticalLayout_9->addLayout(horizontalLayout_10);
 
-        pushButton_7 = new QPushButton(buttons);
-        pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
+        button_red_4 = new QPushButton(buttons);
+        button_red_4->setObjectName(QStringLiteral("button_red_4"));
 
-        verticalLayout_9->addWidget(pushButton_7);
+        verticalLayout_9->addWidget(button_red_4);
 
 
         coluna_Red->addLayout(verticalLayout_9);
@@ -554,32 +554,32 @@ public:
         verticalLayout_10 = new QVBoxLayout();
         verticalLayout_10->setSpacing(6);
         verticalLayout_10->setObjectName(QStringLiteral("verticalLayout_10"));
-        label_blue_filter_7 = new QLabel(buttons);
-        label_blue_filter_7->setObjectName(QStringLiteral("label_blue_filter_7"));
-        label_blue_filter_7->setMaximumSize(QSize(16777215, 30));
+        label_red_filter_5 = new QLabel(buttons);
+        label_red_filter_5->setObjectName(QStringLiteral("label_red_filter_5"));
+        label_red_filter_5->setMaximumSize(QSize(16777215, 30));
 
-        verticalLayout_10->addWidget(label_blue_filter_7);
+        verticalLayout_10->addWidget(label_red_filter_5);
 
         horizontalLayout_11 = new QHBoxLayout();
         horizontalLayout_11->setSpacing(6);
         horizontalLayout_11->setObjectName(QStringLiteral("horizontalLayout_11"));
-        filter_blue_7 = new QLineEdit(buttons);
-        filter_blue_7->setObjectName(QStringLiteral("filter_blue_7"));
+        filter_red_5 = new QLineEdit(buttons);
+        filter_red_5->setObjectName(QStringLiteral("filter_red_5"));
 
-        horizontalLayout_11->addWidget(filter_blue_7);
+        horizontalLayout_11->addWidget(filter_red_5);
 
-        comboBox_7 = new QComboBox(buttons);
-        comboBox_7->setObjectName(QStringLiteral("comboBox_7"));
+        select_red_5 = new QComboBox(buttons);
+        select_red_5->setObjectName(QStringLiteral("select_red_5"));
 
-        horizontalLayout_11->addWidget(comboBox_7);
+        horizontalLayout_11->addWidget(select_red_5);
 
 
         verticalLayout_10->addLayout(horizontalLayout_11);
 
-        pushButton_8 = new QPushButton(buttons);
-        pushButton_8->setObjectName(QStringLiteral("pushButton_8"));
+        button_red_5 = new QPushButton(buttons);
+        button_red_5->setObjectName(QStringLiteral("button_red_5"));
 
-        verticalLayout_10->addWidget(pushButton_8);
+        verticalLayout_10->addWidget(button_red_5);
 
 
         coluna_Red->addLayout(verticalLayout_10);
@@ -596,11 +596,11 @@ public:
         verticalLayout_11 = new QVBoxLayout();
         verticalLayout_11->setSpacing(6);
         verticalLayout_11->setObjectName(QStringLiteral("verticalLayout_11"));
-        label_blue_filter_8 = new QLabel(buttons);
-        label_blue_filter_8->setObjectName(QStringLiteral("label_blue_filter_8"));
-        label_blue_filter_8->setMaximumSize(QSize(16777215, 30));
+        label_blue_filter_0 = new QLabel(buttons);
+        label_blue_filter_0->setObjectName(QStringLiteral("label_blue_filter_0"));
+        label_blue_filter_0->setMaximumSize(QSize(16777215, 30));
 
-        verticalLayout_11->addWidget(label_blue_filter_8);
+        verticalLayout_11->addWidget(label_blue_filter_0);
 
         horizontalLayout_12 = new QHBoxLayout();
         horizontalLayout_12->setSpacing(6);
@@ -630,11 +630,11 @@ public:
         verticalLayout_12 = new QVBoxLayout();
         verticalLayout_12->setSpacing(6);
         verticalLayout_12->setObjectName(QStringLiteral("verticalLayout_12"));
-        label_blue_filter_9 = new QLabel(buttons);
-        label_blue_filter_9->setObjectName(QStringLiteral("label_blue_filter_9"));
-        label_blue_filter_9->setMaximumSize(QSize(16777215, 30));
+        label_blue_filter_1 = new QLabel(buttons);
+        label_blue_filter_1->setObjectName(QStringLiteral("label_blue_filter_1"));
+        label_blue_filter_1->setMaximumSize(QSize(16777215, 30));
 
-        verticalLayout_12->addWidget(label_blue_filter_9);
+        verticalLayout_12->addWidget(label_blue_filter_1);
 
         horizontalLayout_13 = new QHBoxLayout();
         horizontalLayout_13->setSpacing(6);
@@ -664,11 +664,11 @@ public:
         verticalLayout_13 = new QVBoxLayout();
         verticalLayout_13->setSpacing(6);
         verticalLayout_13->setObjectName(QStringLiteral("verticalLayout_13"));
-        label_blue_filter_10 = new QLabel(buttons);
-        label_blue_filter_10->setObjectName(QStringLiteral("label_blue_filter_10"));
-        label_blue_filter_10->setMaximumSize(QSize(16777215, 30));
+        label_blue_filter_2 = new QLabel(buttons);
+        label_blue_filter_2->setObjectName(QStringLiteral("label_blue_filter_2"));
+        label_blue_filter_2->setMaximumSize(QSize(16777215, 30));
 
-        verticalLayout_13->addWidget(label_blue_filter_10);
+        verticalLayout_13->addWidget(label_blue_filter_2);
 
         horizontalLayout_14 = new QHBoxLayout();
         horizontalLayout_14->setSpacing(6);
@@ -697,31 +697,31 @@ public:
         verticalLayout_5 = new QVBoxLayout();
         verticalLayout_5->setSpacing(6);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
-        label_red_filter_4 = new QLabel(buttons);
-        label_red_filter_4->setObjectName(QStringLiteral("label_red_filter_4"));
+        label_blue_filter_3 = new QLabel(buttons);
+        label_blue_filter_3->setObjectName(QStringLiteral("label_blue_filter_3"));
 
-        verticalLayout_5->addWidget(label_red_filter_4);
+        verticalLayout_5->addWidget(label_blue_filter_3);
 
         horizontalLayout_6 = new QHBoxLayout();
         horizontalLayout_6->setSpacing(6);
         horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
-        filter_red_2 = new QLineEdit(buttons);
-        filter_red_2->setObjectName(QStringLiteral("filter_red_2"));
+        filter_blue_3 = new QLineEdit(buttons);
+        filter_blue_3->setObjectName(QStringLiteral("filter_blue_3"));
 
-        horizontalLayout_6->addWidget(filter_red_2);
+        horizontalLayout_6->addWidget(filter_blue_3);
 
-        comboBox_2 = new QComboBox(buttons);
-        comboBox_2->setObjectName(QStringLiteral("comboBox_2"));
+        select_blue_3 = new QComboBox(buttons);
+        select_blue_3->setObjectName(QStringLiteral("select_blue_3"));
 
-        horizontalLayout_6->addWidget(comboBox_2);
+        horizontalLayout_6->addWidget(select_blue_3);
 
 
         verticalLayout_5->addLayout(horizontalLayout_6);
 
-        pushButton_3 = new QPushButton(buttons);
-        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        button_blue_3 = new QPushButton(buttons);
+        button_blue_3->setObjectName(QStringLiteral("button_blue_3"));
 
-        verticalLayout_5->addWidget(pushButton_3);
+        verticalLayout_5->addWidget(button_blue_3);
 
 
         coluna_Blue->addLayout(verticalLayout_5);
@@ -729,32 +729,32 @@ public:
         verticalLayout_14 = new QVBoxLayout();
         verticalLayout_14->setSpacing(6);
         verticalLayout_14->setObjectName(QStringLiteral("verticalLayout_14"));
-        label_blue_filter_11 = new QLabel(buttons);
-        label_blue_filter_11->setObjectName(QStringLiteral("label_blue_filter_11"));
-        label_blue_filter_11->setMaximumSize(QSize(16777215, 30));
+        label_blue_filter_4 = new QLabel(buttons);
+        label_blue_filter_4->setObjectName(QStringLiteral("label_blue_filter_4"));
+        label_blue_filter_4->setMaximumSize(QSize(16777215, 30));
 
-        verticalLayout_14->addWidget(label_blue_filter_11);
+        verticalLayout_14->addWidget(label_blue_filter_4);
 
         horizontalLayout_15 = new QHBoxLayout();
         horizontalLayout_15->setSpacing(6);
         horizontalLayout_15->setObjectName(QStringLiteral("horizontalLayout_15"));
-        filter_blue_11 = new QLineEdit(buttons);
-        filter_blue_11->setObjectName(QStringLiteral("filter_blue_11"));
+        filter_blue_4 = new QLineEdit(buttons);
+        filter_blue_4->setObjectName(QStringLiteral("filter_blue_4"));
 
-        horizontalLayout_15->addWidget(filter_blue_11);
+        horizontalLayout_15->addWidget(filter_blue_4);
 
-        comboBox_11 = new QComboBox(buttons);
-        comboBox_11->setObjectName(QStringLiteral("comboBox_11"));
+        select_blue_4 = new QComboBox(buttons);
+        select_blue_4->setObjectName(QStringLiteral("select_blue_4"));
 
-        horizontalLayout_15->addWidget(comboBox_11);
+        horizontalLayout_15->addWidget(select_blue_4);
 
 
         verticalLayout_14->addLayout(horizontalLayout_15);
 
-        pushButton_12 = new QPushButton(buttons);
-        pushButton_12->setObjectName(QStringLiteral("pushButton_12"));
+        button_blue_4 = new QPushButton(buttons);
+        button_blue_4->setObjectName(QStringLiteral("button_blue_4"));
 
-        verticalLayout_14->addWidget(pushButton_12);
+        verticalLayout_14->addWidget(button_blue_4);
 
 
         coluna_Blue->addLayout(verticalLayout_14);
@@ -762,32 +762,32 @@ public:
         verticalLayout_15 = new QVBoxLayout();
         verticalLayout_15->setSpacing(6);
         verticalLayout_15->setObjectName(QStringLiteral("verticalLayout_15"));
-        label_blue_filter_12 = new QLabel(buttons);
-        label_blue_filter_12->setObjectName(QStringLiteral("label_blue_filter_12"));
-        label_blue_filter_12->setMaximumSize(QSize(16777215, 30));
+        label_blue_filter_5 = new QLabel(buttons);
+        label_blue_filter_5->setObjectName(QStringLiteral("label_blue_filter_5"));
+        label_blue_filter_5->setMaximumSize(QSize(16777215, 30));
 
-        verticalLayout_15->addWidget(label_blue_filter_12);
+        verticalLayout_15->addWidget(label_blue_filter_5);
 
         horizontalLayout_16 = new QHBoxLayout();
         horizontalLayout_16->setSpacing(6);
         horizontalLayout_16->setObjectName(QStringLiteral("horizontalLayout_16"));
-        filter_blue_12 = new QLineEdit(buttons);
-        filter_blue_12->setObjectName(QStringLiteral("filter_blue_12"));
+        filter_blue_5 = new QLineEdit(buttons);
+        filter_blue_5->setObjectName(QStringLiteral("filter_blue_5"));
 
-        horizontalLayout_16->addWidget(filter_blue_12);
+        horizontalLayout_16->addWidget(filter_blue_5);
 
-        comboBox_12 = new QComboBox(buttons);
-        comboBox_12->setObjectName(QStringLiteral("comboBox_12"));
+        select_blue_5 = new QComboBox(buttons);
+        select_blue_5->setObjectName(QStringLiteral("select_blue_5"));
 
-        horizontalLayout_16->addWidget(comboBox_12);
+        horizontalLayout_16->addWidget(select_blue_5);
 
 
         verticalLayout_15->addLayout(horizontalLayout_16);
 
-        pushButton_13 = new QPushButton(buttons);
-        pushButton_13->setObjectName(QStringLiteral("pushButton_13"));
+        button_blue_5 = new QPushButton(buttons);
+        button_blue_5->setObjectName(QStringLiteral("button_blue_5"));
 
-        verticalLayout_15->addWidget(pushButton_13);
+        verticalLayout_15->addWidget(button_blue_5);
 
 
         coluna_Blue->addLayout(verticalLayout_15);
@@ -835,7 +835,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        result->setCurrentIndex(1);
+        result->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -881,10 +881,10 @@ public:
         label_blue_linear->setText(QApplication::translate("MainWindow", "linear value", Q_NULLPTR));
         label_2->setText(QApplication::translate("MainWindow", "red", Q_NULLPTR));
         line_red->setText(QApplication::translate("MainWindow", "50", Q_NULLPTR));
-        label_red_filter_2->setText(QApplication::translate("MainWindow", "linear value", Q_NULLPTR));
+        label_red_linear->setText(QApplication::translate("MainWindow", "linear value", Q_NULLPTR));
         refresh->setText(QApplication::translate("MainWindow", "atualizar imagens ", Q_NULLPTR));
         result->setTabText(result->indexOf(tab_2), QApplication::translate("MainWindow", "result", Q_NULLPTR));
-        label_blue_filter_2->setText(QApplication::translate("MainWindow", "value                  filter ", Q_NULLPTR));
+        label_red_filter_0->setText(QApplication::translate("MainWindow", "value                  filter ", Q_NULLPTR));
         filter_red_0->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
         select_red_0->clear();
         select_red_0->insertItems(0, QStringList()
@@ -900,7 +900,7 @@ public:
          << QApplication::translate("MainWindow", "selfreinforceFilter", Q_NULLPTR)
         );
         button_red_0->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
-        label_blue_filter_3->setText(QApplication::translate("MainWindow", "value                  operador ", Q_NULLPTR));
+        label_red_filter_1->setText(QApplication::translate("MainWindow", "value                  operador ", Q_NULLPTR));
         filter_red_1->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
         select_red_1->clear();
         select_red_1->insertItems(0, QStringList()
@@ -913,19 +913,19 @@ public:
          << QApplication::translate("MainWindow", "<=", Q_NULLPTR)
         );
         button_red_1->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
-        label_blue_filter_4->setText(QApplication::translate("MainWindow", "filter value", Q_NULLPTR));
-        filter_blue_4->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
-        pushButton_5->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
-        label_blue_filter_5->setText(QApplication::translate("MainWindow", "filter value", Q_NULLPTR));
-        filter_blue_5->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
-        pushButton_6->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
-        label_blue_filter_6->setText(QApplication::translate("MainWindow", "filter value", Q_NULLPTR));
-        filter_blue_6->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
-        pushButton_7->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
-        label_blue_filter_7->setText(QApplication::translate("MainWindow", "filter value", Q_NULLPTR));
-        filter_blue_7->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
-        pushButton_8->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
-        label_blue_filter_8->setText(QApplication::translate("MainWindow", "value                  filter ", Q_NULLPTR));
+        label_red_filter_2->setText(QApplication::translate("MainWindow", "filter value", Q_NULLPTR));
+        filter_red_2->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
+        button_red_2->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
+        label_red_filter_3->setText(QApplication::translate("MainWindow", "filter value", Q_NULLPTR));
+        filter_red_3->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
+        button_red_3->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
+        label_red_filter_4->setText(QApplication::translate("MainWindow", "filter value", Q_NULLPTR));
+        filter_red_4->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
+        button_red_4->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
+        label_red_filter_5->setText(QApplication::translate("MainWindow", "filter value", Q_NULLPTR));
+        filter_red_5->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
+        button_red_5->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
+        label_blue_filter_0->setText(QApplication::translate("MainWindow", "value                  filter ", Q_NULLPTR));
         filter_blue_0->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
         select_blue_0->clear();
         select_blue_0->insertItems(0, QStringList()
@@ -941,7 +941,7 @@ public:
          << QApplication::translate("MainWindow", "selfreinforceFilter", Q_NULLPTR)
         );
         button_blue_0->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
-        label_blue_filter_9->setText(QApplication::translate("MainWindow", "value                  operador ", Q_NULLPTR));
+        label_blue_filter_1->setText(QApplication::translate("MainWindow", "value                  operador ", Q_NULLPTR));
         filter_blue_1->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
         select_blue_1->clear();
         select_blue_1->insertItems(0, QStringList()
@@ -954,18 +954,18 @@ public:
          << QApplication::translate("MainWindow", "<=", Q_NULLPTR)
         );
         button_blue_1->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
-        label_blue_filter_10->setText(QApplication::translate("MainWindow", "dilation", Q_NULLPTR));
+        label_blue_filter_2->setText(QApplication::translate("MainWindow", "dilation", Q_NULLPTR));
         filter_blue_2->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
         button_blue_2->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
-        label_red_filter_4->setText(QApplication::translate("MainWindow", "filter value", Q_NULLPTR));
-        filter_red_2->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
-        pushButton_3->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
-        label_blue_filter_11->setText(QApplication::translate("MainWindow", "filter value", Q_NULLPTR));
-        filter_blue_11->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
-        pushButton_12->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
-        label_blue_filter_12->setText(QApplication::translate("MainWindow", "filter value", Q_NULLPTR));
-        filter_blue_12->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
-        pushButton_13->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
+        label_blue_filter_3->setText(QApplication::translate("MainWindow", "filter value", Q_NULLPTR));
+        filter_blue_3->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
+        button_blue_3->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
+        label_blue_filter_4->setText(QApplication::translate("MainWindow", "filter value", Q_NULLPTR));
+        filter_blue_4->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
+        button_blue_4->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
+        label_blue_filter_5->setText(QApplication::translate("MainWindow", "filter value", Q_NULLPTR));
+        filter_blue_5->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
+        button_blue_5->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
         label_4->setText(QApplication::translate("MainWindow", "BLUE", Q_NULLPTR));
         label_3->setText(QApplication::translate("MainWindow", "RED", Q_NULLPTR));
         result->setTabText(result->indexOf(buttons), QApplication::translate("MainWindow", "Page", Q_NULLPTR));
