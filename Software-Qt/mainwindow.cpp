@@ -93,6 +93,13 @@ void emit_result(){
 }
 
 void MainWindow::result_view(QImage &img,bool state, bool colors){
+//    coloca as mesmas img no result_view.ui
+    if(!
+            result_img->isHidden()){
+        qDebug() << "open";
+        result_img->set_result_view(img,state,colors);
+    }
+
     if (state){
         ui->label_before->updatesEnabled();
         ui->label_before->setPixmap(QPixmap::fromImage(img));
@@ -133,8 +140,8 @@ void MainWindow::set_saved_img(const bool use)
 //        ui->saved_img->setPixmap(mypix);
 
         *mat_complete = ImageProcessing::QImage2RGBImage<unsigned>(mypix.toImage());
-        temp = ImageProcessing::RGBImage2QImage<unsigned>(*mat_complete);
-        result_view(temp,true,true);
+        *img = ImageProcessing::RGBImage2QImage<unsigned>(*mat_complete);
+        result_view(*img,true,true);
 //        passa de rgb para  escala de cinza invertendo as cores
         gray_blue->setGray(mat_complete->getBlue());
         gray_red->setGray(mat_complete->getRed());
@@ -788,4 +795,59 @@ void MainWindow::on_pushButton_Disconnect_clicked()
 void MainWindow::on_button_preview_clicked()
 {
     result_img->show();
+}
+
+
+void MainWindow::on_actionExit_triggered()
+{
+  QApplication::quit();
+}
+
+void MainWindow::on_actionPreview_triggered()
+{
+    result_img->show();
+}
+
+void MainWindow::enableTab(int except){
+    for(int i= 0;i < ui->result->count();i++){
+        if(i!=except)
+            ui->result->setTabEnabled(i,true);
+    }
+}
+
+void MainWindow::disableTab(int except){
+    for(int i= 0;i < ui->result->count();i++){
+        if(i!=except)
+            ui->result->setTabEnabled(i,false);
+    }
+}
+
+void MainWindow::on_actionWebcam_triggered()
+{
+//    disableTab(ui->result->currentIndex());
+//    enableTab(1);
+    ui->result->currentWidget()->close();
+//    ui->result->
+//    ui->result->c(ui->gridLayout_4);
+//    ui->result->setLayout(ui->gridLayout_2);
+    ui->camera->show();
+}
+
+void MainWindow::on_actionButtons_triggered()
+{
+    ui->result->currentWidget()->close();
+    ui->buttons->show();
+}
+
+void MainWindow::on_actionConnect_triggered()
+{
+    ui->result->currentWidget()->close();
+    ui->connect->show();
+}
+
+void MainWindow::on_actionAlualizar_Imagem_triggered()
+{
+    result_view(*img,true,true);
+    result_view(*Qimg_blue_,false,false);
+    result_view(*Qimg_red_,false,true);
 }

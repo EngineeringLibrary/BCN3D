@@ -30,7 +30,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-176</y>
+         <y>0</y>
          <width>1224</width>
          <height>784</height>
         </rect>
@@ -62,9 +62,9 @@
              </sizepolicy>
             </property>
             <property name="currentIndex">
-             <number>2</number>
+             <number>3</number>
             </property>
-            <widget class="QWidget" name="tab_3">
+            <widget class="QWidget" name="connect">
              <attribute name="title">
               <string>Conexão</string>
              </attribute>
@@ -150,7 +150,7 @@
               </item>
              </layout>
             </widget>
-            <widget class="QWidget" name="tab">
+            <widget class="QWidget" name="camera">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
                <horstretch>0</horstretch>
@@ -235,7 +235,7 @@
               </item>
              </layout>
             </widget>
-            <widget class="QWidget" name="tab_2">
+            <widget class="QWidget" name="result_0">
              <attribute name="title">
               <string>result</string>
              </attribute>
@@ -1271,6 +1271,76 @@
    </layout>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1258</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menumenu">
+    <property name="title">
+     <string>menu</string>
+    </property>
+    <addaction name="actionConnect"/>
+    <addaction name="actionPreview"/>
+    <addaction name="actionWebcam"/>
+    <addaction name="actionButtons"/>
+    <addaction name="actionExit"/>
+    <addaction name="actionAlualizar_Imagem"/>
+   </widget>
+   <addaction name="menumenu"/>
+  </widget>
+  <action name="actionPreview">
+   <property name="text">
+    <string>preview</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>exit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
+   </property>
+  </action>
+  <action name="actionConnect">
+   <property name="text">
+    <string>connect</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+C</string>
+   </property>
+  </action>
+  <action name="actionButtons">
+   <property name="text">
+    <string>buttons</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+B</string>
+   </property>
+  </action>
+  <action name="actionWebcam">
+   <property name="text">
+    <string>webcam</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+W</string>
+   </property>
+  </action>
+  <action name="actionAlualizar_Imagem">
+   <property name="text">
+    <string>Alualizar Imagem</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>

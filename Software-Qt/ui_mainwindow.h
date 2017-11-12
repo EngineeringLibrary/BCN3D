@@ -21,6 +21,8 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QStatusBar>
@@ -33,6 +35,12 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
+    QAction *actionPreview;
+    QAction *actionExit;
+    QAction *actionConnect;
+    QAction *actionButtons;
+    QAction *actionWebcam;
+    QAction *actionAlualizar_Imagem;
     QWidget *centralWidget;
     QGridLayout *gridLayout_7;
     QScrollArea *scrollArea;
@@ -40,7 +48,7 @@ public:
     QGridLayout *gridLayout_8;
     QGridLayout *gridLayout_4;
     QTabWidget *result;
-    QWidget *tab_3;
+    QWidget *connect;
     QGridLayout *gridLayout_6;
     QVBoxLayout *verticalLayout_3;
     QHBoxLayout *horizontalLayout;
@@ -55,13 +63,13 @@ public:
     QWidget *widget;
     QLabel *label_SliderEsq;
     QLabel *label_SliderDir;
-    QWidget *tab;
+    QWidget *camera;
     QGridLayout *gridLayout_2;
     QVBoxLayout *verticalLayout;
     QWidget *webcam;
     QCheckBox *check_saved_img;
     QPushButton *pushButton;
-    QWidget *tab_2;
+    QWidget *result_0;
     QGridLayout *gridLayout_3;
     QVBoxLayout *verticalLayout_16;
     QVBoxLayout *ANTES_GERAL;
@@ -175,6 +183,8 @@ public:
     QPushButton *set_saved_img_0;
     QPushButton *button_preview;
     QStatusBar *statusBar;
+    QMenuBar *menuBar;
+    QMenu *menumenu;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -182,6 +192,18 @@ public:
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
         MainWindow->resize(1258, 653);
         MainWindow->setToolTipDuration(1);
+        actionPreview = new QAction(MainWindow);
+        actionPreview->setObjectName(QStringLiteral("actionPreview"));
+        actionExit = new QAction(MainWindow);
+        actionExit->setObjectName(QStringLiteral("actionExit"));
+        actionConnect = new QAction(MainWindow);
+        actionConnect->setObjectName(QStringLiteral("actionConnect"));
+        actionButtons = new QAction(MainWindow);
+        actionButtons->setObjectName(QStringLiteral("actionButtons"));
+        actionWebcam = new QAction(MainWindow);
+        actionWebcam->setObjectName(QStringLiteral("actionWebcam"));
+        actionAlualizar_Imagem = new QAction(MainWindow);
+        actionAlualizar_Imagem->setObjectName(QStringLiteral("actionAlualizar_Imagem"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gridLayout_7 = new QGridLayout(centralWidget);
@@ -193,7 +215,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, -176, 1224, 784));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1224, 784));
         gridLayout_8 = new QGridLayout(scrollAreaWidgetContents);
         gridLayout_8->setSpacing(6);
         gridLayout_8->setContentsMargins(11, 11, 11, 11);
@@ -210,9 +232,9 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(result->sizePolicy().hasHeightForWidth());
         result->setSizePolicy(sizePolicy);
-        tab_3 = new QWidget();
-        tab_3->setObjectName(QStringLiteral("tab_3"));
-        gridLayout_6 = new QGridLayout(tab_3);
+        connect = new QWidget();
+        connect->setObjectName(QStringLiteral("connect"));
+        gridLayout_6 = new QGridLayout(connect);
         gridLayout_6->setSpacing(6);
         gridLayout_6->setContentsMargins(11, 11, 11, 11);
         gridLayout_6->setObjectName(QStringLiteral("gridLayout_6"));
@@ -222,22 +244,22 @@ public:
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        label_IP = new QLabel(tab_3);
+        label_IP = new QLabel(connect);
         label_IP->setObjectName(QStringLiteral("label_IP"));
 
         horizontalLayout->addWidget(label_IP);
 
-        lineEdit_IP = new QLineEdit(tab_3);
+        lineEdit_IP = new QLineEdit(connect);
         lineEdit_IP->setObjectName(QStringLiteral("lineEdit_IP"));
 
         horizontalLayout->addWidget(lineEdit_IP);
 
-        label_Port = new QLabel(tab_3);
+        label_Port = new QLabel(connect);
         label_Port->setObjectName(QStringLiteral("label_Port"));
 
         horizontalLayout->addWidget(label_Port);
 
-        lineEdit_Port = new QLineEdit(tab_3);
+        lineEdit_Port = new QLineEdit(connect);
         lineEdit_Port->setObjectName(QStringLiteral("lineEdit_Port"));
 
         horizontalLayout->addWidget(lineEdit_Port);
@@ -248,12 +270,12 @@ public:
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setSpacing(6);
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        pushButtonConnect = new QPushButton(tab_3);
+        pushButtonConnect = new QPushButton(connect);
         pushButtonConnect->setObjectName(QStringLiteral("pushButtonConnect"));
 
         horizontalLayout_3->addWidget(pushButtonConnect);
 
-        pushButton_Disconnect = new QPushButton(tab_3);
+        pushButton_Disconnect = new QPushButton(connect);
         pushButton_Disconnect->setObjectName(QStringLiteral("pushButton_Disconnect"));
 
         horizontalLayout_3->addWidget(pushButton_Disconnect);
@@ -264,12 +286,12 @@ public:
 
         gridLayout_6->addLayout(verticalLayout_3, 0, 0, 1, 1);
 
-        lineEdit = new QLineEdit(tab_3);
+        lineEdit = new QLineEdit(connect);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
 
         gridLayout_6->addWidget(lineEdit, 1, 0, 1, 1);
 
-        widget = new QWidget(tab_3);
+        widget = new QWidget(connect);
         widget->setObjectName(QStringLiteral("widget"));
         label_SliderEsq = new QLabel(widget);
         label_SliderEsq->setObjectName(QStringLiteral("label_SliderEsq"));
@@ -280,22 +302,22 @@ public:
 
         gridLayout_6->addWidget(widget, 2, 0, 1, 1);
 
-        result->addTab(tab_3, QString());
-        tab = new QWidget();
-        tab->setObjectName(QStringLiteral("tab"));
+        result->addTab(connect, QString());
+        camera = new QWidget();
+        camera->setObjectName(QStringLiteral("camera"));
         QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Minimum);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(tab->sizePolicy().hasHeightForWidth());
-        tab->setSizePolicy(sizePolicy1);
-        gridLayout_2 = new QGridLayout(tab);
+        sizePolicy1.setHeightForWidth(camera->sizePolicy().hasHeightForWidth());
+        camera->setSizePolicy(sizePolicy1);
+        gridLayout_2 = new QGridLayout(camera);
         gridLayout_2->setSpacing(6);
         gridLayout_2->setContentsMargins(11, 11, 11, 11);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        webcam = new QWidget(tab);
+        webcam = new QWidget(camera);
         webcam->setObjectName(QStringLiteral("webcam"));
         sizePolicy1.setHeightForWidth(webcam->sizePolicy().hasHeightForWidth());
         webcam->setSizePolicy(sizePolicy1);
@@ -309,7 +331,7 @@ public:
 
         verticalLayout->addWidget(webcam);
 
-        check_saved_img = new QCheckBox(tab);
+        check_saved_img = new QCheckBox(camera);
         check_saved_img->setObjectName(QStringLiteral("check_saved_img"));
         QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Fixed);
         sizePolicy2.setHorizontalStretch(0);
@@ -325,7 +347,7 @@ public:
 
         verticalLayout->addWidget(check_saved_img);
 
-        pushButton = new QPushButton(tab);
+        pushButton = new QPushButton(camera);
         pushButton->setObjectName(QStringLiteral("pushButton"));
 
         verticalLayout->addWidget(pushButton);
@@ -333,10 +355,10 @@ public:
 
         gridLayout_2->addLayout(verticalLayout, 0, 0, 1, 1);
 
-        result->addTab(tab, QString());
-        tab_2 = new QWidget();
-        tab_2->setObjectName(QStringLiteral("tab_2"));
-        gridLayout_3 = new QGridLayout(tab_2);
+        result->addTab(camera, QString());
+        result_0 = new QWidget();
+        result_0->setObjectName(QStringLiteral("result_0"));
+        gridLayout_3 = new QGridLayout(result_0);
         gridLayout_3->setSpacing(6);
         gridLayout_3->setContentsMargins(11, 11, 11, 11);
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
@@ -346,14 +368,14 @@ public:
         ANTES_GERAL = new QVBoxLayout();
         ANTES_GERAL->setSpacing(6);
         ANTES_GERAL->setObjectName(QStringLiteral("ANTES_GERAL"));
-        texto_antes = new QLabel(tab_2);
+        texto_antes = new QLabel(result_0);
         texto_antes->setObjectName(QStringLiteral("texto_antes"));
         texto_antes->setMaximumSize(QSize(16777215, 20));
         texto_antes->setAlignment(Qt::AlignCenter);
 
         ANTES_GERAL->addWidget(texto_antes);
 
-        label_before = new QLabel(tab_2);
+        label_before = new QLabel(result_0);
         label_before->setObjectName(QStringLiteral("label_before"));
         label_before->setStyleSheet(QStringLiteral("background-color: rgb(85, 87, 83);"));
 
@@ -365,7 +387,7 @@ public:
         DEPOIS_GERAL = new QVBoxLayout();
         DEPOIS_GERAL->setSpacing(6);
         DEPOIS_GERAL->setObjectName(QStringLiteral("DEPOIS_GERAL"));
-        texto_depois = new QLabel(tab_2);
+        texto_depois = new QLabel(result_0);
         texto_depois->setObjectName(QStringLiteral("texto_depois"));
         texto_depois->setMaximumSize(QSize(16777215, 20));
         texto_depois->setAlignment(Qt::AlignCenter);
@@ -375,13 +397,13 @@ public:
         horizontalLayout_IMG = new QHBoxLayout();
         horizontalLayout_IMG->setSpacing(6);
         horizontalLayout_IMG->setObjectName(QStringLiteral("horizontalLayout_IMG"));
-        label_after_blue = new QLabel(tab_2);
+        label_after_blue = new QLabel(result_0);
         label_after_blue->setObjectName(QStringLiteral("label_after_blue"));
         label_after_blue->setStyleSheet(QStringLiteral("background-color: rgb(85, 87, 83);"));
 
         horizontalLayout_IMG->addWidget(label_after_blue);
 
-        label_after_red = new QLabel(tab_2);
+        label_after_red = new QLabel(result_0);
         label_after_red->setObjectName(QStringLiteral("label_after_red"));
         label_after_red->setStyleSheet(QStringLiteral("background-color: rgb(85, 87, 83);"));
 
@@ -396,14 +418,14 @@ public:
         verticalLayout_blueGeral = new QVBoxLayout();
         verticalLayout_blueGeral->setSpacing(6);
         verticalLayout_blueGeral->setObjectName(QStringLiteral("verticalLayout_blueGeral"));
-        texto_depoisBlue = new QLabel(tab_2);
+        texto_depoisBlue = new QLabel(result_0);
         texto_depoisBlue->setObjectName(QStringLiteral("texto_depoisBlue"));
         texto_depoisBlue->setMaximumSize(QSize(16777215, 20));
         texto_depoisBlue->setAlignment(Qt::AlignCenter);
 
         verticalLayout_blueGeral->addWidget(texto_depoisBlue);
 
-        select_blue = new QComboBox(tab_2);
+        select_blue = new QComboBox(result_0);
         select_blue->setObjectName(QStringLiteral("select_blue"));
 
         verticalLayout_blueGeral->addWidget(select_blue);
@@ -411,12 +433,12 @@ public:
         horizontalLayout_BLUE_0 = new QHBoxLayout();
         horizontalLayout_BLUE_0->setSpacing(6);
         horizontalLayout_BLUE_0->setObjectName(QStringLiteral("horizontalLayout_BLUE_0"));
-        filter_blue = new QLineEdit(tab_2);
+        filter_blue = new QLineEdit(result_0);
         filter_blue->setObjectName(QStringLiteral("filter_blue"));
 
         horizontalLayout_BLUE_0->addWidget(filter_blue);
 
-        label_blue_filter = new QLabel(tab_2);
+        label_blue_filter = new QLabel(result_0);
         label_blue_filter->setObjectName(QStringLiteral("label_blue_filter"));
         label_blue_filter->setMaximumSize(QSize(16777215, 30));
 
@@ -428,12 +450,12 @@ public:
         horizontalLayout_BLUE = new QHBoxLayout();
         horizontalLayout_BLUE->setSpacing(6);
         horizontalLayout_BLUE->setObjectName(QStringLiteral("horizontalLayout_BLUE"));
-        line_blue = new QLineEdit(tab_2);
+        line_blue = new QLineEdit(result_0);
         line_blue->setObjectName(QStringLiteral("line_blue"));
 
         horizontalLayout_BLUE->addWidget(line_blue);
 
-        label_blue_linear = new QLabel(tab_2);
+        label_blue_linear = new QLabel(result_0);
         label_blue_linear->setObjectName(QStringLiteral("label_blue_linear"));
         label_blue_linear->setMaximumSize(QSize(16777215, 30));
 
@@ -448,14 +470,14 @@ public:
         verticalLayout_redGeral = new QVBoxLayout();
         verticalLayout_redGeral->setSpacing(6);
         verticalLayout_redGeral->setObjectName(QStringLiteral("verticalLayout_redGeral"));
-        texto_depoisRED = new QLabel(tab_2);
+        texto_depoisRED = new QLabel(result_0);
         texto_depoisRED->setObjectName(QStringLiteral("texto_depoisRED"));
         texto_depoisRED->setMaximumSize(QSize(16777215, 20));
         texto_depoisRED->setAlignment(Qt::AlignCenter);
 
         verticalLayout_redGeral->addWidget(texto_depoisRED);
 
-        select_red = new QComboBox(tab_2);
+        select_red = new QComboBox(result_0);
         select_red->setObjectName(QStringLiteral("select_red"));
 
         verticalLayout_redGeral->addWidget(select_red);
@@ -463,12 +485,12 @@ public:
         horizontalLayout_RED = new QHBoxLayout();
         horizontalLayout_RED->setSpacing(6);
         horizontalLayout_RED->setObjectName(QStringLiteral("horizontalLayout_RED"));
-        filter_red = new QLineEdit(tab_2);
+        filter_red = new QLineEdit(result_0);
         filter_red->setObjectName(QStringLiteral("filter_red"));
 
         horizontalLayout_RED->addWidget(filter_red);
 
-        label_red_filter = new QLabel(tab_2);
+        label_red_filter = new QLabel(result_0);
         label_red_filter->setObjectName(QStringLiteral("label_red_filter"));
 
         horizontalLayout_RED->addWidget(label_red_filter);
@@ -479,12 +501,12 @@ public:
         horizontalLayout_RED_0 = new QHBoxLayout();
         horizontalLayout_RED_0->setSpacing(6);
         horizontalLayout_RED_0->setObjectName(QStringLiteral("horizontalLayout_RED_0"));
-        line_red = new QLineEdit(tab_2);
+        line_red = new QLineEdit(result_0);
         line_red->setObjectName(QStringLiteral("line_red"));
 
         horizontalLayout_RED_0->addWidget(line_red);
 
-        label_red_linear = new QLabel(tab_2);
+        label_red_linear = new QLabel(result_0);
         label_red_linear->setObjectName(QStringLiteral("label_red_linear"));
 
         horizontalLayout_RED_0->addWidget(label_red_linear);
@@ -504,7 +526,7 @@ public:
 
         gridLayout_3->addLayout(verticalLayout_16, 0, 0, 1, 1);
 
-        result->addTab(tab_2, QString());
+        result->addTab(result_0, QString());
         buttons = new QWidget();
         buttons->setObjectName(QStringLiteral("buttons"));
         gridLayout_5 = new QGridLayout(buttons);
@@ -985,10 +1007,24 @@ public:
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
+        menuBar = new QMenuBar(MainWindow);
+        menuBar->setObjectName(QStringLiteral("menuBar"));
+        menuBar->setGeometry(QRect(0, 0, 1258, 25));
+        menumenu = new QMenu(menuBar);
+        menumenu->setObjectName(QStringLiteral("menumenu"));
+        MainWindow->setMenuBar(menuBar);
+
+        menuBar->addAction(menumenu->menuAction());
+        menumenu->addAction(actionConnect);
+        menumenu->addAction(actionPreview);
+        menumenu->addAction(actionWebcam);
+        menumenu->addAction(actionButtons);
+        menumenu->addAction(actionExit);
+        menumenu->addAction(actionAlualizar_Imagem);
 
         retranslateUi(MainWindow);
 
-        result->setCurrentIndex(2);
+        result->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1000,15 +1036,39 @@ public:
 #ifndef QT_NO_TOOLTIP
         MainWindow->setToolTip(QString());
 #endif // QT_NO_TOOLTIP
+        actionPreview->setText(QApplication::translate("MainWindow", "preview", Q_NULLPTR));
+#ifndef QT_NO_SHORTCUT
+        actionPreview->setShortcut(QApplication::translate("MainWindow", "Ctrl+P", Q_NULLPTR));
+#endif // QT_NO_SHORTCUT
+        actionExit->setText(QApplication::translate("MainWindow", "exit", Q_NULLPTR));
+#ifndef QT_NO_SHORTCUT
+        actionExit->setShortcut(QApplication::translate("MainWindow", "Ctrl+E", Q_NULLPTR));
+#endif // QT_NO_SHORTCUT
+        actionConnect->setText(QApplication::translate("MainWindow", "connect", Q_NULLPTR));
+#ifndef QT_NO_SHORTCUT
+        actionConnect->setShortcut(QApplication::translate("MainWindow", "Ctrl+Alt+C", Q_NULLPTR));
+#endif // QT_NO_SHORTCUT
+        actionButtons->setText(QApplication::translate("MainWindow", "buttons", Q_NULLPTR));
+#ifndef QT_NO_SHORTCUT
+        actionButtons->setShortcut(QApplication::translate("MainWindow", "Ctrl+B", Q_NULLPTR));
+#endif // QT_NO_SHORTCUT
+        actionWebcam->setText(QApplication::translate("MainWindow", "webcam", Q_NULLPTR));
+#ifndef QT_NO_SHORTCUT
+        actionWebcam->setShortcut(QApplication::translate("MainWindow", "Ctrl+W", Q_NULLPTR));
+#endif // QT_NO_SHORTCUT
+        actionAlualizar_Imagem->setText(QApplication::translate("MainWindow", "Alualizar Imagem", Q_NULLPTR));
+#ifndef QT_NO_SHORTCUT
+        actionAlualizar_Imagem->setShortcut(QApplication::translate("MainWindow", "Ctrl+R", Q_NULLPTR));
+#endif // QT_NO_SHORTCUT
         label_IP->setText(QApplication::translate("MainWindow", "IP:", Q_NULLPTR));
         label_Port->setText(QApplication::translate("MainWindow", "Porta:", Q_NULLPTR));
         pushButtonConnect->setText(QApplication::translate("MainWindow", "Conectar", Q_NULLPTR));
         pushButton_Disconnect->setText(QApplication::translate("MainWindow", "Desconectar", Q_NULLPTR));
         label_SliderEsq->setText(QString());
         label_SliderDir->setText(QString());
-        result->setTabText(result->indexOf(tab_3), QApplication::translate("MainWindow", "Conex\303\243o", Q_NULLPTR));
+        result->setTabText(result->indexOf(connect), QApplication::translate("MainWindow", "Conex\303\243o", Q_NULLPTR));
         pushButton->setText(QApplication::translate("MainWindow", "TIRAR FOTO", Q_NULLPTR));
-        result->setTabText(result->indexOf(tab), QApplication::translate("MainWindow", "capture", Q_NULLPTR));
+        result->setTabText(result->indexOf(camera), QApplication::translate("MainWindow", "capture", Q_NULLPTR));
         texto_antes->setText(QApplication::translate("MainWindow", "ANTES DO PROCESSAMENTO", Q_NULLPTR));
         label_before->setText(QString());
         texto_depois->setText(QApplication::translate("MainWindow", "DEPOIS DO PROCESSAMENTO", Q_NULLPTR));
@@ -1040,7 +1100,7 @@ public:
         label_red_filter->setText(QApplication::translate("MainWindow", "filter value", Q_NULLPTR));
         line_red->setText(QApplication::translate("MainWindow", "50", Q_NULLPTR));
         label_red_linear->setText(QApplication::translate("MainWindow", "linear value", Q_NULLPTR));
-        result->setTabText(result->indexOf(tab_2), QApplication::translate("MainWindow", "result", Q_NULLPTR));
+        result->setTabText(result->indexOf(result_0), QApplication::translate("MainWindow", "result", Q_NULLPTR));
         label_red_filter_0->setText(QApplication::translate("MainWindow", "value                  filter ", Q_NULLPTR));
         filter_red_0->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
         select_red_0->clear();
@@ -1129,6 +1189,7 @@ public:
         refresh->setText(QApplication::translate("MainWindow", "ATUALIZAR IMAGENS", Q_NULLPTR));
         set_saved_img_0->setText(QApplication::translate("MainWindow", "USAR  IMAGEM SALVA", Q_NULLPTR));
         button_preview->setText(QApplication::translate("MainWindow", "abriri preview", Q_NULLPTR));
+        menumenu->setTitle(QApplication::translate("MainWindow", "menu", Q_NULLPTR));
     } // retranslateUi
 
 };

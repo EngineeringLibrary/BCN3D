@@ -29,7 +29,7 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     binaryimage.cpp \
     client.cpp \
-    dialog.cpp
+    result_view.cpp
 
 HEADERS  += mainwindow.h \
     SistemasdeControle/headers/primitiveLibs/LinAlg/matrix.h \
@@ -44,8 +44,9 @@ HEADERS  += mainwindow.h \
     grayimage.hpp \
     binaryimage.h \
     client.h \
-    dialog.h
+    result_view.h \
+    ui_result_view
 
 
 FORMS    += mainwindow.ui \
-    dialog.ui
+    result_view.ui

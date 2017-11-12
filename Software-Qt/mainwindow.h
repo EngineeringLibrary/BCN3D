@@ -13,7 +13,7 @@
 #include <QCameraImageCapture>
 #include <QScreen>
 #include <QCameraInfo>
-#include "dialog.h"
+#include "result_view.h"
 #include "imageconversion.h"
 #include "grayimage.h"
 #include "binaryimage.h"
@@ -31,6 +31,13 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    void set_saved_img(const bool use);
+
+    void on_refresh_clicked();
+
+public slots:
+
+
 private slots:
     void update();
 
@@ -42,16 +49,18 @@ private slots:
 
     void timerClock( unsigned clockTime);
 
-    void set_saved_img(const bool use);
-
     void result_view(QImage &img,bool state = true,bool colors=true);
+
+    void enableTab(int except);
+
+    void disableTab(int except);
 
     void processCaptureImage(int requestId,const QImage &img);
 
     void on_select_blue_currentIndexChanged(int index);
 
     void on_select_red_currentIndexChanged(int index);
-
+// funcoes matematicas
     void filtro(const ImageProcessing::GrayImage<unsigned> &gray_img,const double    filter_value,const bool color,const unsigned scale = 3);
 
     void dilation(const ImageProcessing::BinaryImage &bin,const bool color);
@@ -75,8 +84,6 @@ private slots:
     void on_select_blue_0_currentIndexChanged(int index);
 
     void on_button_blue_0_clicked();
-
-    void on_refresh_clicked();
 
     void on_select_red_0_currentIndexChanged(int index);
 
@@ -120,6 +127,21 @@ private slots:
     void on_button_red_5_clicked();
 
     void on_button_preview_clicked();
+
+
+
+    void on_actionExit_triggered();
+
+    void on_actionPreview_triggered();
+
+
+    void on_actionWebcam_triggered();
+
+    void on_actionButtons_triggered();
+
+    void on_actionConnect_triggered();
+
+    void on_actionAlualizar_Imagem_triggered();
 
 signals :
     void emit_result();
