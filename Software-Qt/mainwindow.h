@@ -55,11 +55,6 @@ private slots:
 
     void disableTab(int except);
 
-    void processCaptureImage(int requestId,const QImage &img);
-
-    void on_select_blue_currentIndexChanged(int index);
-
-    void on_select_red_currentIndexChanged(int index);
 // funcoes matematicas
     void filtro(const ImageProcessing::GrayImage<unsigned> &gray_img,const double    filter_value,const bool color,const unsigned scale = 3);
 
@@ -77,6 +72,13 @@ private slots:
 
 
     // eventos
+
+    void processCaptureImage(int requestId,const QImage &img);
+
+    void on_select_blue_currentIndexChanged(int index);
+
+    void on_select_red_currentIndexChanged(int index);
+
     void on_pushButtonConnect_clicked();
 
     void on_pushButton_Disconnect_clicked();
@@ -126,14 +128,9 @@ private slots:
 
     void on_button_red_5_clicked();
 
-    void on_button_preview_clicked();
-
-
-
     void on_actionExit_triggered();
 
     void on_actionPreview_triggered();
-
 
     void on_actionWebcam_triggered();
 
