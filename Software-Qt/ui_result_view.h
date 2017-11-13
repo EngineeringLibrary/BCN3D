@@ -42,6 +42,7 @@ public:
     {
         if (Dialog->objectName().isEmpty())
             Dialog->setObjectName(QStringLiteral("Dialog"));
+        Dialog->setWindowModality(Qt::ApplicationModal);
         Dialog->resize(674, 435);
         gridLayout_2 = new QGridLayout(Dialog);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));

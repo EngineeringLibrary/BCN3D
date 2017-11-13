@@ -32,7 +32,7 @@
          <x>0</x>
          <y>0</y>
          <width>1224</width>
-         <height>784</height>
+         <height>750</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_8">
@@ -62,7 +62,7 @@
              </sizepolicy>
             </property>
             <property name="currentIndex">
-             <number>3</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="connect">
              <attribute name="title">
@@ -1219,7 +1219,7 @@
           </item>
          </layout>
         </item>
-        <item row="3" column="0">
+        <item row="2" column="0">
          <widget class="QPushButton" name="refresh">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
@@ -1257,13 +1257,6 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="button_preview">
-          <property name="text">
-           <string>abriri preview</string>
-          </property>
-         </widget>
-        </item>
        </layout>
       </widget>
      </widget>
@@ -1279,6 +1272,9 @@
      <width>1258</width>
      <height>25</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(186, 189, 182);</string>
    </property>
    <widget class="QMenu" name="menumenu">
     <property name="title">

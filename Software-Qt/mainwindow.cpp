@@ -791,13 +791,6 @@ void MainWindow::on_pushButton_Disconnect_clicked()
     ui->widget->hide();
 }
 
-
-void MainWindow::on_button_preview_clicked()
-{
-    result_img->show();
-}
-
-
 void MainWindow::on_actionExit_triggered()
 {
   QApplication::quit();
