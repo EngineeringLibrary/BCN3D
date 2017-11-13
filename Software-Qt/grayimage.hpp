@@ -1,6 +1,17 @@
 #include "grayimage.h"
 
 template <typename Type>
+ImageProcessing::GrayImage<Type>& ImageProcessing::GrayImage<Type>::operator! () const
+{
+    ImageProcessing::GrayImage<Type> ret = (*this);
+    for(unsigned i = 1; i <= this->height; ++i)
+        for(unsigned j = 1; j <= this->width; ++j)
+            ret.binary(j,i) = !this->binary(j,i);
+
+    return ret;
+}
+
+template <typename Type>
 ImageProcessing::GrayImage<Type>::GrayImage(const LinAlg::Matrix<Type> &gray)
 {
     this->gray = ImageProcessing::checkValue<Type>(gray);
