@@ -1286,6 +1286,7 @@
     <addaction name="actionButtons"/>
     <addaction name="actionExit"/>
     <addaction name="actionAlualizar_Imagem"/>
+    <addaction name="actionusar_imagem_salva"/>
    </widget>
    <addaction name="menumenu"/>
   </widget>
@@ -1335,6 +1336,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionusar_imagem_salva">
+   <property name="text">
+    <string>usar imagem salva</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+U</string>
    </property>
   </action>
  </widget>

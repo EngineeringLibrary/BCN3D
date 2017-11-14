@@ -41,6 +41,7 @@ public:
     QAction *actionButtons;
     QAction *actionWebcam;
     QAction *actionAlualizar_Imagem;
+    QAction *actionusar_imagem_salva;
     QWidget *centralWidget;
     QGridLayout *gridLayout_7;
     QScrollArea *scrollArea;
@@ -203,6 +204,8 @@ public:
         actionWebcam->setObjectName(QStringLiteral("actionWebcam"));
         actionAlualizar_Imagem = new QAction(MainWindow);
         actionAlualizar_Imagem->setObjectName(QStringLiteral("actionAlualizar_Imagem"));
+        actionusar_imagem_salva = new QAction(MainWindow);
+        actionusar_imagem_salva->setObjectName(QStringLiteral("actionusar_imagem_salva"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gridLayout_7 = new QGridLayout(centralWidget);
@@ -1016,10 +1019,11 @@ public:
         menumenu->addAction(actionButtons);
         menumenu->addAction(actionExit);
         menumenu->addAction(actionAlualizar_Imagem);
+        menumenu->addAction(actionusar_imagem_salva);
 
         retranslateUi(MainWindow);
 
-        result->setCurrentIndex(1);
+        result->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1054,6 +1058,10 @@ public:
         actionAlualizar_Imagem->setText(QApplication::translate("MainWindow", "Alualizar Imagem", Q_NULLPTR));
 #ifndef QT_NO_SHORTCUT
         actionAlualizar_Imagem->setShortcut(QApplication::translate("MainWindow", "Ctrl+R", Q_NULLPTR));
+#endif // QT_NO_SHORTCUT
+        actionusar_imagem_salva->setText(QApplication::translate("MainWindow", "usar imagem salva", Q_NULLPTR));
+#ifndef QT_NO_SHORTCUT
+        actionusar_imagem_salva->setShortcut(QApplication::translate("MainWindow", "Ctrl+U", Q_NULLPTR));
 #endif // QT_NO_SHORTCUT
         label_IP->setText(QApplication::translate("MainWindow", "IP:", Q_NULLPTR));
         label_Port->setText(QApplication::translate("MainWindow", "Porta:", Q_NULLPTR));
