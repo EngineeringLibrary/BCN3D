@@ -68,7 +68,7 @@ private slots:
 
     void histrograma(const ImageProcessing::GrayImage<unsigned> &grayImg);
 
-    void centroid( ImageProcessing::BinaryImage &bin_img,  ImageProcessing::GrayImage<unsigned> &grayImg,const unsigned value);
+    void centroid( ImageProcessing::BinaryImage &bin_img,const unsigned color);
 
 
     // eventos
@@ -158,10 +158,13 @@ private:
     ImageProcessing::RGBImage<unsigned>*mat_complete,*rgb_blue,*rgb_red;
     ImageProcessing::GrayImage<unsigned>*gray_blue,*gray_red;
     LinAlg::Matrix<unsigned> *histogramMatrix;
+    LinAlg::Matrix<unsigned> qdt, segmentedMatrix;
+    LinAlg::Matrix<unsigned> centroids;
 //    LinAlg::Matrix<unsigned> *centroid;
     ImageProcessing::BinaryImage *bina_blue,*bina_red;
     int select_blue_0_index,select_red_0_index;
     int select_blue_1_index,select_red_1_index;
+    unsigned area_blue,area_red;
 
 //   VARIAVEIS WIFI
     QPixmap mypix = (QDir::currentPath()+"/compressedImage.jpg");
