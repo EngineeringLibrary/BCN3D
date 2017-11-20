@@ -94,6 +94,7 @@ public:
     QLabel *label_red_filter_1;
     QHBoxLayout *horizontalLayout_7;
     QLineEdit *filter_red_1;
+    QLineEdit *filter_red_1_0;
     QComboBox *select_red_1;
     QPushButton *button_red_1;
     QVBoxLayout *verticalLayout_7;
@@ -135,6 +136,7 @@ public:
     QLabel *label_blue_filter_1;
     QHBoxLayout *horizontalLayout_13;
     QLineEdit *filter_blue_1;
+    QLineEdit *filter_blue_1_0;
     QComboBox *select_blue_1;
     QPushButton *button_blue_1;
     QVBoxLayout *verticalLayout_13;
@@ -198,7 +200,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, -167, 1224, 750));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1224, 750));
         gridLayout_8 = new QGridLayout(scrollAreaWidgetContents);
         gridLayout_8->setSpacing(6);
         gridLayout_8->setContentsMargins(11, 11, 11, 11);
@@ -464,6 +466,12 @@ public:
 
         horizontalLayout_7->addWidget(filter_red_1);
 
+        filter_red_1_0 = new QLineEdit(buttons);
+        filter_red_1_0->setObjectName(QStringLiteral("filter_red_1_0"));
+        filter_red_1_0->setMaximumSize(QSize(100, 16777215));
+
+        horizontalLayout_7->addWidget(filter_red_1_0);
+
         select_red_1 = new QComboBox(buttons);
         select_red_1->setObjectName(QStringLiteral("select_red_1"));
 
@@ -693,6 +701,12 @@ public:
 
         horizontalLayout_13->addWidget(filter_blue_1);
 
+        filter_blue_1_0 = new QLineEdit(buttons);
+        filter_blue_1_0->setObjectName(QStringLiteral("filter_blue_1_0"));
+        filter_blue_1_0->setMaximumSize(QSize(70, 16777215));
+
+        horizontalLayout_13->addWidget(filter_blue_1_0);
+
         select_blue_1 = new QComboBox(buttons);
         select_blue_1->setObjectName(QStringLiteral("select_blue_1"));
 
@@ -896,7 +910,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        result->setCurrentIndex(2);
+        result->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -967,7 +981,7 @@ public:
          << QApplication::translate("MainWindow", "selfreinforceFilter", Q_NULLPTR)
         );
         button_red_0->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
-        label_red_filter_1->setText(QApplication::translate("MainWindow", "value                  operador ", Q_NULLPTR));
+        label_red_filter_1->setText(QApplication::translate("MainWindow", "scale                  scale2        operador ", Q_NULLPTR));
         filter_red_1->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
         select_red_1->clear();
         select_red_1->insertItems(0, QStringList()
@@ -978,6 +992,8 @@ public:
          << QApplication::translate("MainWindow", ">=", Q_NULLPTR)
          << QApplication::translate("MainWindow", "<", Q_NULLPTR)
          << QApplication::translate("MainWindow", "<=", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "(grayimg > scale) && (grayimg < scale2)", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "(grayimg >= scale) && (grayimg <= scale2)", Q_NULLPTR)
         );
         button_red_1->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
         label_red_filter_2->setText(QApplication::translate("MainWindow", "dilation", Q_NULLPTR));
@@ -1010,8 +1026,9 @@ public:
          << QApplication::translate("MainWindow", "selfreinforceFilter", Q_NULLPTR)
         );
         button_blue_0->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
-        label_blue_filter_1->setText(QApplication::translate("MainWindow", "value                  operador ", Q_NULLPTR));
+        label_blue_filter_1->setText(QApplication::translate("MainWindow", "scale                  scale2        operador ", Q_NULLPTR));
         filter_blue_1->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
+        filter_blue_1_0->setText(QApplication::translate("MainWindow", "0", Q_NULLPTR));
         select_blue_1->clear();
         select_blue_1->insertItems(0, QStringList()
          << QApplication::translate("MainWindow", "escolha um operador", Q_NULLPTR)
@@ -1021,6 +1038,8 @@ public:
          << QApplication::translate("MainWindow", ">=", Q_NULLPTR)
          << QApplication::translate("MainWindow", "<", Q_NULLPTR)
          << QApplication::translate("MainWindow", "<=", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "(grayimg > scale) && (grayimg < scale2)", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "(grayimg >= scale) && (grayimg <= scale2)", Q_NULLPTR)
         );
         button_blue_1->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
         label_blue_filter_2->setText(QApplication::translate("MainWindow", "dilation", Q_NULLPTR));

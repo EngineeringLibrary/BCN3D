@@ -30,7 +30,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-167</y>
+         <y>0</y>
          <width>1224</width>
          <height>750</height>
         </rect>
@@ -62,7 +62,7 @@
              </sizepolicy>
             </property>
             <property name="currentIndex">
-             <number>2</number>
+             <number>3</number>
             </property>
             <widget class="QWidget" name="connect">
              <attribute name="title">
@@ -433,7 +433,7 @@
                      </size>
                     </property>
                     <property name="text">
-                     <string>value                  operador </string>
+                     <string>scale                  scale2        operador </string>
                     </property>
                    </widget>
                   </item>
@@ -455,6 +455,16 @@
                       </property>
                       <property name="text">
                        <string>2.5</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="filter_red_1_0">
+                      <property name="maximumSize">
+                       <size>
+                        <width>100</width>
+                        <height>16777215</height>
+                       </size>
                       </property>
                      </widget>
                     </item>
@@ -493,6 +503,16 @@
                       <item>
                        <property name="text">
                         <string>&lt;=</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>(grayimg &gt; scale) &amp;&amp; (grayimg &lt; scale2)</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>(grayimg &gt;= scale) &amp;&amp; (grayimg &lt;= scale2)</string>
                        </property>
                       </item>
                      </widget>
@@ -808,7 +828,7 @@
                        </size>
                       </property>
                       <property name="text">
-                       <string>value                  operador </string>
+                       <string>scale                  scale2        operador </string>
                       </property>
                      </widget>
                     </item>
@@ -824,6 +844,19 @@
                         </property>
                         <property name="text">
                          <string>2.5</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="filter_blue_1_0">
+                        <property name="maximumSize">
+                         <size>
+                          <width>70</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>0</string>
                         </property>
                        </widget>
                       </item>
@@ -862,6 +895,16 @@
                         <item>
                          <property name="text">
                           <string>&lt;=</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>(grayimg &gt; scale) &amp;&amp; (grayimg &lt; scale2)</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>(grayimg &gt;= scale) &amp;&amp; (grayimg &lt;= scale2)</string>
                          </property>
                         </item>
                        </widget>

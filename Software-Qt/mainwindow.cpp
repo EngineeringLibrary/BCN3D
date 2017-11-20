@@ -134,8 +134,6 @@ void MainWindow::set_saved_img(const bool use)
 {
     QImage temp;
     if(use){
-//       this->mypix
-//        ui->saved_img->setPixmap(mypix);
 
         *mat_complete = ImageProcessing::QImage2RGBImage<unsigned>(mypix.toImage());
         *img = ImageProcessing::RGBImage2QImage<unsigned>(*mat_complete);
@@ -299,7 +297,7 @@ void MainWindow::filtro(const ImageProcessing::GrayImage<unsigned> &gray_img,con
     }
 }
 
-void MainWindow::linearizar(const ImageProcessing::GrayImage<unsigned> &gray_img,const unsigned scale,const bool color,const unsigned index){
+void MainWindow::linearizar(const ImageProcessing::GrayImage<unsigned> &gray_img,const unsigned scale,const unsigned scale2,const bool color,const unsigned index){
 // linearizar pelo que entendi e passar pela dilataçao blue
     if(!color){
         switch (index) {
@@ -323,6 +321,12 @@ void MainWindow::linearizar(const ImageProcessing::GrayImage<unsigned> &gray_img
                 break;
             case 6:
                 *bina_blue = gray_img <= scale;
+                break;
+            case 7:
+                *bina_blue = (gray_img > scale) && (gray_img < scale2);
+                break;
+            case 8:
+                *bina_blue = (gray_img >= scale) && (gray_img <= scale2);
                 break;
             default:
                 *bina_blue = gray_img > scale;
@@ -351,6 +355,12 @@ void MainWindow::linearizar(const ImageProcessing::GrayImage<unsigned> &gray_img
             case 6:
                 *bina_red = gray_img <= scale;
                 break;
+            case 7:
+                *bina_blue = (gray_img > scale) && (gray_img < scale2);
+                break;
+            case 8:
+                *bina_blue = (gray_img >= scale) && (gray_img <= scale2);
+                break;
             default:
                 qDebug() <<"escolha um tipo  :"<<": ";
                 break;
@@ -369,7 +379,6 @@ void MainWindow::dilation(const ImageProcessing::BinaryImage &bin,const bool col
 }
 
 void MainWindow::erosion(const ImageProcessing::BinaryImage &bin,const bool color){
-
 
     if(!color){    // erosion blue
         *bina_blue = ImageProcessing::erosion(bin);
@@ -399,9 +408,7 @@ void MainWindow::centroid( ImageProcessing::BinaryImage &bin_img,const unsigned 
 {
 
 //    ja devemos ter valores em qdt,segmentoMatrix
-
     if(!qdt.isNull() && !segmentedMatrix.isNull()){
-
 
         centroids = ImageProcessing::centroid(bin_img);
 
@@ -662,7 +669,7 @@ void MainWindow::on_select_blue_1_currentIndexChanged(int index)
 
 void MainWindow::on_button_blue_1_clicked()
 {
-     linearizar(*gray_blue,ui->filter_blue_1->text().toInt(),false,select_blue_1_index);
+     linearizar(*gray_blue,ui->filter_blue_1->text().toInt(),ui->filter_blue_1_0->text().toInt(),false,select_blue_1_index);
 }
 
 //RED 1
@@ -673,7 +680,7 @@ void MainWindow::on_select_red_1_currentIndexChanged(int index)
 
 void MainWindow::on_button_red_1_clicked()
 {
-    linearizar(*gray_red,ui->filter_red_1->text().toInt(),false,select_red_1_index);
+    linearizar(*gray_red,ui->filter_red_1->text().toInt(),ui->filter_red_1_0->text().toInt(),false,select_red_1_index);
 }
 
 //BLUE 2
@@ -723,13 +730,13 @@ void MainWindow::on_button_red_3_clicked()
 void MainWindow::on_button_blue_4_clicked()
 {
 //    histrograma(*gray_blue);
-    bound(*gray_blue,*bina_blue,ui->filter_blue_4->text().toDouble(),false);
+    bound(*bina_blue,false);
 }
 
 void MainWindow::on_button_red_4_clicked()
 {
 //    histrograma(*gray_red);
-    bound(*gray_red,*bina_red,ui->filter_red_4->text().toDouble(),true);
+    bound(*bina_red,true);
 }
 
 void MainWindow::on_button_blue_5_clicked()

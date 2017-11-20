@@ -62,7 +62,7 @@ private slots:
 
     void erosion(const ImageProcessing::BinaryImage &bin, const bool color);
 
-    void linearizar(const ImageProcessing::GrayImage<unsigned> &gray_img,const unsigned scale,const bool color,const unsigned index);
+    void linearizar(const ImageProcessing::GrayImage<unsigned> &gray_img,const unsigned scale,const unsigned scale2,const bool color,const unsigned index);
 
     void bound(const ImageProcessing::BinaryImage &imgs,const bool color);
 
