@@ -565,7 +565,6 @@ void MainWindow::on_button_blue_0_clicked()
             break;
         case 9:
             *gray_blue = ImageProcessing::selfreinforceFilter(*gray_blue,3,ui->filter_blue_0->text().toDouble());
-
             break;
         default:
             break;

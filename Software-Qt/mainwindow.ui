@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1258</width>
-    <height>653</height>
+    <width>1317</width>
+    <height>754</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,30 +30,15 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>0</y>
-         <width>1224</width>
-         <height>750</height>
+         <y>-58</y>
+         <width>1283</width>
+         <height>758</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_8">
-        <property name="leftMargin">
-         <number>5</number>
-        </property>
-        <property name="topMargin">
-         <number>5</number>
-        </property>
-        <property name="rightMargin">
-         <number>5</number>
-        </property>
-        <property name="bottomMargin">
-         <number>5</number>
-        </property>
-        <property name="horizontalSpacing">
-         <number>10</number>
-        </property>
         <item row="0" column="0">
          <layout class="QGridLayout" name="gridLayout_4">
-          <item row="1" column="0">
+          <item row="0" column="0">
            <widget class="QTabWidget" name="result">
             <property name="sizePolicy">
              <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
@@ -62,7 +47,7 @@
              </sizepolicy>
             </property>
             <property name="currentIndex">
-             <number>3</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="connect">
              <attribute name="title">
@@ -161,8 +146,39 @@
               <string>capture</string>
              </attribute>
              <layout class="QGridLayout" name="gridLayout_2">
-              <item row="0" column="0">
+              <item row="1" column="1">
+               <widget class="QLabel" name="label">
+                <property name="text">
+                 <string>cam</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1" colspan="2">
+               <widget class="QLabel" name="label_5">
+                <property name="text">
+                 <string>RESIZE</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="2">
+               <widget class="QSlider" name="resize_img">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QSlider" name="resize_cam">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
                <layout class="QVBoxLayout" name="verticalLayout">
+                <property name="sizeConstraint">
+                 <enum>QLayout::SetMaximumSize</enum>
+                </property>
                 <item>
                  <widget class="QWidget" name="webcam" native="true">
                   <property name="sizePolicy">
@@ -232,6 +248,13 @@
                  </widget>
                 </item>
                </layout>
+              </item>
+              <item row="1" column="2">
+               <widget class="QLabel" name="label_2">
+                <property name="text">
+                 <string>img</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -1076,6 +1099,13 @@
           </item>
          </layout>
         </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="set_saved_img_0">
+          <property name="text">
+           <string>USAR  IMAGEM SALVA</string>
+          </property>
+         </widget>
+        </item>
         <item row="2" column="0">
          <widget class="QPushButton" name="refresh">
           <property name="sizePolicy">
@@ -1107,13 +1137,6 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QPushButton" name="set_saved_img_0">
-          <property name="text">
-           <string>USAR  IMAGEM SALVA</string>
-          </property>
-         </widget>
-        </item>
        </layout>
       </widget>
      </widget>
@@ -1126,7 +1149,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1258</width>
+     <width>1317</width>
      <height>25</height>
     </rect>
    </property>
