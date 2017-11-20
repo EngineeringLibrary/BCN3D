@@ -64,7 +64,7 @@ private slots:
 
     void linearizar(const ImageProcessing::GrayImage<unsigned> &gray_img,const unsigned scale,const bool color,const unsigned index);
 
-    void bound(const ImageProcessing::GrayImage<unsigned> &grayImgs,const ImageProcessing::BinaryImage &imgs,const unsigned value,const bool color);
+    void bound(const ImageProcessing::BinaryImage &imgs,const bool color);
 
     void histrograma(const ImageProcessing::GrayImage<unsigned> &grayImg);
 
@@ -74,10 +74,6 @@ private slots:
     // eventos
 
     void processCaptureImage(int requestId,const QImage &img);
-
-    void on_select_blue_currentIndexChanged(int index);
-
-    void on_select_red_currentIndexChanged(int index);
 
     void on_pushButtonConnect_clicked();
 
@@ -164,7 +160,7 @@ private:
     ImageProcessing::BinaryImage *bina_blue,*bina_red;
     int select_blue_0_index,select_red_0_index;
     int select_blue_1_index,select_red_1_index;
-    unsigned area_blue,area_red;
+    unsigned area_blue[2],area_red[2];
 
 //   VARIAVEIS WIFI
     QPixmap mypix = (QDir::currentPath()+"/compressedImage.jpg");

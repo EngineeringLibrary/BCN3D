@@ -81,25 +81,6 @@ public:
     QHBoxLayout *horizontalLayout_IMG;
     QLabel *label_after_blue;
     QLabel *label_after_red;
-    QHBoxLayout *horizontalLayout_2;
-    QVBoxLayout *verticalLayout_blueGeral;
-    QLabel *texto_depoisBlue;
-    QComboBox *select_blue;
-    QHBoxLayout *horizontalLayout_BLUE_0;
-    QLineEdit *filter_blue;
-    QLabel *label_blue_filter;
-    QHBoxLayout *horizontalLayout_BLUE;
-    QLineEdit *line_blue;
-    QLabel *label_blue_linear;
-    QVBoxLayout *verticalLayout_redGeral;
-    QLabel *texto_depoisRED;
-    QComboBox *select_red;
-    QHBoxLayout *horizontalLayout_RED;
-    QLineEdit *filter_red;
-    QLabel *label_red_filter;
-    QHBoxLayout *horizontalLayout_RED_0;
-    QLineEdit *line_red;
-    QLabel *label_red_linear;
     QWidget *buttons;
     QGridLayout *gridLayout_5;
     QVBoxLayout *coluna_Red;
@@ -217,7 +198,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1224, 750));
+        scrollAreaWidgetContents->setGeometry(QRect(0, -167, 1224, 750));
         gridLayout_8 = new QGridLayout(scrollAreaWidgetContents);
         gridLayout_8->setSpacing(6);
         gridLayout_8->setContentsMargins(11, 11, 11, 11);
@@ -413,114 +394,6 @@ public:
 
 
         DEPOIS_GERAL->addLayout(horizontalLayout_IMG);
-
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setSpacing(6);
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        verticalLayout_blueGeral = new QVBoxLayout();
-        verticalLayout_blueGeral->setSpacing(6);
-        verticalLayout_blueGeral->setObjectName(QStringLiteral("verticalLayout_blueGeral"));
-        texto_depoisBlue = new QLabel(result_0);
-        texto_depoisBlue->setObjectName(QStringLiteral("texto_depoisBlue"));
-        texto_depoisBlue->setMaximumSize(QSize(16777215, 20));
-        texto_depoisBlue->setAlignment(Qt::AlignCenter);
-
-        verticalLayout_blueGeral->addWidget(texto_depoisBlue);
-
-        select_blue = new QComboBox(result_0);
-        select_blue->setObjectName(QStringLiteral("select_blue"));
-
-        verticalLayout_blueGeral->addWidget(select_blue);
-
-        horizontalLayout_BLUE_0 = new QHBoxLayout();
-        horizontalLayout_BLUE_0->setSpacing(6);
-        horizontalLayout_BLUE_0->setObjectName(QStringLiteral("horizontalLayout_BLUE_0"));
-        filter_blue = new QLineEdit(result_0);
-        filter_blue->setObjectName(QStringLiteral("filter_blue"));
-
-        horizontalLayout_BLUE_0->addWidget(filter_blue);
-
-        label_blue_filter = new QLabel(result_0);
-        label_blue_filter->setObjectName(QStringLiteral("label_blue_filter"));
-        label_blue_filter->setMaximumSize(QSize(16777215, 30));
-
-        horizontalLayout_BLUE_0->addWidget(label_blue_filter);
-
-
-        verticalLayout_blueGeral->addLayout(horizontalLayout_BLUE_0);
-
-        horizontalLayout_BLUE = new QHBoxLayout();
-        horizontalLayout_BLUE->setSpacing(6);
-        horizontalLayout_BLUE->setObjectName(QStringLiteral("horizontalLayout_BLUE"));
-        line_blue = new QLineEdit(result_0);
-        line_blue->setObjectName(QStringLiteral("line_blue"));
-
-        horizontalLayout_BLUE->addWidget(line_blue);
-
-        label_blue_linear = new QLabel(result_0);
-        label_blue_linear->setObjectName(QStringLiteral("label_blue_linear"));
-        label_blue_linear->setMaximumSize(QSize(16777215, 30));
-
-        horizontalLayout_BLUE->addWidget(label_blue_linear);
-
-
-        verticalLayout_blueGeral->addLayout(horizontalLayout_BLUE);
-
-
-        horizontalLayout_2->addLayout(verticalLayout_blueGeral);
-
-        verticalLayout_redGeral = new QVBoxLayout();
-        verticalLayout_redGeral->setSpacing(6);
-        verticalLayout_redGeral->setObjectName(QStringLiteral("verticalLayout_redGeral"));
-        texto_depoisRED = new QLabel(result_0);
-        texto_depoisRED->setObjectName(QStringLiteral("texto_depoisRED"));
-        texto_depoisRED->setMaximumSize(QSize(16777215, 20));
-        texto_depoisRED->setAlignment(Qt::AlignCenter);
-
-        verticalLayout_redGeral->addWidget(texto_depoisRED);
-
-        select_red = new QComboBox(result_0);
-        select_red->setObjectName(QStringLiteral("select_red"));
-
-        verticalLayout_redGeral->addWidget(select_red);
-
-        horizontalLayout_RED = new QHBoxLayout();
-        horizontalLayout_RED->setSpacing(6);
-        horizontalLayout_RED->setObjectName(QStringLiteral("horizontalLayout_RED"));
-        filter_red = new QLineEdit(result_0);
-        filter_red->setObjectName(QStringLiteral("filter_red"));
-
-        horizontalLayout_RED->addWidget(filter_red);
-
-        label_red_filter = new QLabel(result_0);
-        label_red_filter->setObjectName(QStringLiteral("label_red_filter"));
-
-        horizontalLayout_RED->addWidget(label_red_filter);
-
-
-        verticalLayout_redGeral->addLayout(horizontalLayout_RED);
-
-        horizontalLayout_RED_0 = new QHBoxLayout();
-        horizontalLayout_RED_0->setSpacing(6);
-        horizontalLayout_RED_0->setObjectName(QStringLiteral("horizontalLayout_RED_0"));
-        line_red = new QLineEdit(result_0);
-        line_red->setObjectName(QStringLiteral("line_red"));
-
-        horizontalLayout_RED_0->addWidget(line_red);
-
-        label_red_linear = new QLabel(result_0);
-        label_red_linear->setObjectName(QStringLiteral("label_red_linear"));
-
-        horizontalLayout_RED_0->addWidget(label_red_linear);
-
-
-        verticalLayout_redGeral->addLayout(horizontalLayout_RED_0);
-
-
-        horizontalLayout_2->addLayout(verticalLayout_redGeral);
-
-
-        DEPOIS_GERAL->addLayout(horizontalLayout_2);
 
 
         verticalLayout_16->addLayout(DEPOIS_GERAL);
@@ -1023,7 +896,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        result->setCurrentIndex(0);
+        result->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1077,32 +950,6 @@ public:
         texto_depois->setText(QApplication::translate("MainWindow", "DEPOIS DO PROCESSAMENTO", Q_NULLPTR));
         label_after_blue->setText(QString());
         label_after_red->setText(QString());
-        texto_depoisBlue->setText(QApplication::translate("MainWindow", "BLUE", Q_NULLPTR));
-        select_blue->clear();
-        select_blue->insertItems(0, QStringList()
-         << QApplication::translate("MainWindow", "escala de cinza", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "filtro mediano", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "dilata\303\247\303\243o", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "erosao", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "bound", Q_NULLPTR)
-        );
-        filter_blue->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
-        label_blue_filter->setText(QApplication::translate("MainWindow", "filter value", Q_NULLPTR));
-        line_blue->setText(QApplication::translate("MainWindow", "50", Q_NULLPTR));
-        label_blue_linear->setText(QApplication::translate("MainWindow", "linear value", Q_NULLPTR));
-        texto_depoisRED->setText(QApplication::translate("MainWindow", "RED", Q_NULLPTR));
-        select_red->clear();
-        select_red->insertItems(0, QStringList()
-         << QApplication::translate("MainWindow", "escala de cinza", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "filtro mediano", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "dilata\303\247\303\243o", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "erosao", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "bound", Q_NULLPTR)
-        );
-        filter_red->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
-        label_red_filter->setText(QApplication::translate("MainWindow", "filter value", Q_NULLPTR));
-        line_red->setText(QApplication::translate("MainWindow", "50", Q_NULLPTR));
-        label_red_linear->setText(QApplication::translate("MainWindow", "linear value", Q_NULLPTR));
         result->setTabText(result->indexOf(result_0), QApplication::translate("MainWindow", "result", Q_NULLPTR));
         label_red_filter_0->setText(QApplication::translate("MainWindow", "value                  filter ", Q_NULLPTR));
         filter_red_0->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));

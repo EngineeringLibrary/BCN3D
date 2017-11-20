@@ -30,7 +30,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>0</y>
+         <y>-167</y>
          <width>1224</width>
          <height>750</height>
         </rect>
@@ -62,7 +62,7 @@
              </sizepolicy>
             </property>
             <property name="currentIndex">
-             <number>0</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="connect">
              <attribute name="title">
@@ -311,192 +311,6 @@
                        <string/>
                       </property>
                      </widget>
-                    </item>
-                   </layout>
-                  </item>
-                  <item>
-                   <layout class="QHBoxLayout" name="horizontalLayout_2">
-                    <item>
-                     <layout class="QVBoxLayout" name="verticalLayout_blueGeral">
-                      <item>
-                       <widget class="QLabel" name="texto_depoisBlue">
-                        <property name="maximumSize">
-                         <size>
-                          <width>16777215</width>
-                          <height>20</height>
-                         </size>
-                        </property>
-                        <property name="text">
-                         <string>BLUE</string>
-                        </property>
-                        <property name="alignment">
-                         <set>Qt::AlignCenter</set>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QComboBox" name="select_blue">
-                        <item>
-                         <property name="text">
-                          <string>escala de cinza</string>
-                         </property>
-                        </item>
-                        <item>
-                         <property name="text">
-                          <string>filtro mediano</string>
-                         </property>
-                        </item>
-                        <item>
-                         <property name="text">
-                          <string>dilatação</string>
-                         </property>
-                        </item>
-                        <item>
-                         <property name="text">
-                          <string>erosao</string>
-                         </property>
-                        </item>
-                        <item>
-                         <property name="text">
-                          <string>bound</string>
-                         </property>
-                        </item>
-                       </widget>
-                      </item>
-                      <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_BLUE_0">
-                        <item>
-                         <widget class="QLineEdit" name="filter_blue">
-                          <property name="text">
-                           <string>2.5</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLabel" name="label_blue_filter">
-                          <property name="maximumSize">
-                           <size>
-                            <width>16777215</width>
-                            <height>30</height>
-                           </size>
-                          </property>
-                          <property name="text">
-                           <string>filter value</string>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </item>
-                      <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_BLUE">
-                        <item>
-                         <widget class="QLineEdit" name="line_blue">
-                          <property name="text">
-                           <string>50</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLabel" name="label_blue_linear">
-                          <property name="maximumSize">
-                           <size>
-                            <width>16777215</width>
-                            <height>30</height>
-                           </size>
-                          </property>
-                          <property name="text">
-                           <string>linear value</string>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </item>
-                     </layout>
-                    </item>
-                    <item>
-                     <layout class="QVBoxLayout" name="verticalLayout_redGeral">
-                      <item>
-                       <widget class="QLabel" name="texto_depoisRED">
-                        <property name="maximumSize">
-                         <size>
-                          <width>16777215</width>
-                          <height>20</height>
-                         </size>
-                        </property>
-                        <property name="text">
-                         <string>RED</string>
-                        </property>
-                        <property name="alignment">
-                         <set>Qt::AlignCenter</set>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QComboBox" name="select_red">
-                        <item>
-                         <property name="text">
-                          <string>escala de cinza</string>
-                         </property>
-                        </item>
-                        <item>
-                         <property name="text">
-                          <string>filtro mediano</string>
-                         </property>
-                        </item>
-                        <item>
-                         <property name="text">
-                          <string>dilatação</string>
-                         </property>
-                        </item>
-                        <item>
-                         <property name="text">
-                          <string>erosao</string>
-                         </property>
-                        </item>
-                        <item>
-                         <property name="text">
-                          <string>bound</string>
-                         </property>
-                        </item>
-                       </widget>
-                      </item>
-                      <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_RED">
-                        <item>
-                         <widget class="QLineEdit" name="filter_red">
-                          <property name="text">
-                           <string>2.5</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLabel" name="label_red_filter">
-                          <property name="text">
-                           <string>filter value</string>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </item>
-                      <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_RED_0">
-                        <item>
-                         <widget class="QLineEdit" name="line_red">
-                          <property name="text">
-                           <string>50</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLabel" name="label_red_linear">
-                          <property name="text">
-                           <string>linear value</string>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </item>
-                     </layout>
                     </item>
                    </layout>
                   </item>
