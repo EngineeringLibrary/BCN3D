@@ -64,10 +64,6 @@ void stepControlMotor05(void*arg)
       }
 
 
-void movimento(){
-
-      }
-
 //Cadastro das funções que vão trabalhar em paralelo
 extern "C" void app_main()
 {   

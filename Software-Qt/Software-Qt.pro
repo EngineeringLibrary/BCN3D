@@ -28,7 +28,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp \
     binaryimage.cpp \
-    client.cpp
+    client.cpp \
+    result_view.cpp
 
 HEADERS  += mainwindow.h \
     SistemasdeControle/headers/primitiveLibs/LinAlg/matrix.h \
@@ -42,6 +43,10 @@ HEADERS  += mainwindow.h \
     grayimage.h \
     grayimage.hpp \
     binaryimage.h \
-    client.h
+    client.h \
+    result_view.h \
+    ui_result_view
 
-FORMS    += mainwindow.ui
+
+FORMS    += mainwindow.ui \
+    result_view.ui

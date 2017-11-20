@@ -1,17 +1,6 @@
 #include "grayimage.h"
 
 template <typename Type>
-ImageProcessing::GrayImage<Type>& ImageProcessing::GrayImage<Type>::operator! () const
-{
-    ImageProcessing::GrayImage<Type> ret = (*this);
-    for(unsigned i = 1; i <= this->height; ++i)
-        for(unsigned j = 1; j <= this->width; ++j)
-            ret.binary(j,i) = !this->binary(j,i);
-
-    return ret;
-}
-
-template <typename Type>
 ImageProcessing::GrayImage<Type>::GrayImage(const LinAlg::Matrix<Type> &gray)
 {
     this->gray = ImageProcessing::checkValue<Type>(gray);
@@ -33,7 +22,7 @@ ImageProcessing::GrayImage<Type>::GrayImage(const ImageProcessing::GrayImage<Typ
 }
 
 template <typename Type>
-void ImageProcessing::GrayImage<Type>::setGray(const LinAlg::Matrix<Type> &gray)
+void ImageProcessing::GrayImage<Type>::setGray(LinAlg::Matrix<Type> gray)
 {
     this->gray = ImageProcessing::checkValue<Type>(gray);
 
@@ -233,7 +222,7 @@ template <typename Type>
 ImageProcessing::GrayImage<Type> ImageProcessing::selfreinforceFilter(ImageProcessing::GrayImage<Type> GrayImage, const unsigned &sizeMask, const double &reinforceWeigth)
 {
     ImageProcessing::GrayImage<Type> temp = ImageProcessing::averageFilter(GrayImage,sizeMask);
-    GrayImage.setGray(ImageProcessing::checkValue(ImageProcessing::checkValue(reinforceWeigth*GrayImage.getGray()) - temp.getGray()));
+    GrayImage.setGray(ImageProcessing::checkValue(reinforceWeigth*GrayImage.getGray() - temp.getGray()));
     return GrayImage;
 }
 // fim Aula 13
