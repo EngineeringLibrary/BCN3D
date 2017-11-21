@@ -25,6 +25,7 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
+#include <QtWidgets/QSlider>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QVBoxLayout>
@@ -41,6 +42,7 @@ public:
     QAction *actionButtons;
     QAction *actionWebcam;
     QAction *actionAlualizar_Imagem;
+    QAction *actionusar_imagem_salva;
     QWidget *centralWidget;
     QGridLayout *gridLayout_7;
     QScrollArea *scrollArea;
@@ -65,10 +67,15 @@ public:
     QLabel *label_SliderDir;
     QWidget *camera;
     QGridLayout *gridLayout_2;
+    QLabel *label;
+    QLabel *label_5;
+    QSlider *resize_img;
+    QSlider *resize_cam;
     QVBoxLayout *verticalLayout;
     QWidget *webcam;
     QCheckBox *check_saved_img;
     QPushButton *pushButton;
+    QLabel *label_2;
     QWidget *result_0;
     QGridLayout *gridLayout_3;
     QVBoxLayout *verticalLayout_16;
@@ -80,25 +87,6 @@ public:
     QHBoxLayout *horizontalLayout_IMG;
     QLabel *label_after_blue;
     QLabel *label_after_red;
-    QHBoxLayout *horizontalLayout_2;
-    QVBoxLayout *verticalLayout_blueGeral;
-    QLabel *texto_depoisBlue;
-    QComboBox *select_blue;
-    QHBoxLayout *horizontalLayout_BLUE_0;
-    QLineEdit *filter_blue;
-    QLabel *label_blue_filter;
-    QHBoxLayout *horizontalLayout_BLUE;
-    QLineEdit *line_blue;
-    QLabel *label_blue_linear;
-    QVBoxLayout *verticalLayout_redGeral;
-    QLabel *texto_depoisRED;
-    QComboBox *select_red;
-    QHBoxLayout *horizontalLayout_RED;
-    QLineEdit *filter_red;
-    QLabel *label_red_filter;
-    QHBoxLayout *horizontalLayout_RED_0;
-    QLineEdit *line_red;
-    QLabel *label_red_linear;
     QWidget *buttons;
     QGridLayout *gridLayout_5;
     QVBoxLayout *coluna_Red;
@@ -112,6 +100,7 @@ public:
     QLabel *label_red_filter_1;
     QHBoxLayout *horizontalLayout_7;
     QLineEdit *filter_red_1;
+    QLineEdit *filter_red_1_0;
     QComboBox *select_red_1;
     QPushButton *button_red_1;
     QVBoxLayout *verticalLayout_7;
@@ -153,6 +142,7 @@ public:
     QLabel *label_blue_filter_1;
     QHBoxLayout *horizontalLayout_13;
     QLineEdit *filter_blue_1;
+    QLineEdit *filter_blue_1_0;
     QComboBox *select_blue_1;
     QPushButton *button_blue_1;
     QVBoxLayout *verticalLayout_13;
@@ -179,8 +169,8 @@ public:
     QLineEdit *filter_blue_5;
     QComboBox *select_blue_5;
     QPushButton *button_blue_5;
-    QPushButton *refresh;
     QPushButton *set_saved_img_0;
+    QPushButton *refresh;
     QStatusBar *statusBar;
     QMenuBar *menuBar;
     QMenu *menumenu;
@@ -189,7 +179,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1258, 653);
+        MainWindow->resize(1317, 754);
         MainWindow->setToolTipDuration(1);
         actionPreview = new QAction(MainWindow);
         actionPreview->setObjectName(QStringLiteral("actionPreview"));
@@ -203,6 +193,8 @@ public:
         actionWebcam->setObjectName(QStringLiteral("actionWebcam"));
         actionAlualizar_Imagem = new QAction(MainWindow);
         actionAlualizar_Imagem->setObjectName(QStringLiteral("actionAlualizar_Imagem"));
+        actionusar_imagem_salva = new QAction(MainWindow);
+        actionusar_imagem_salva->setObjectName(QStringLiteral("actionusar_imagem_salva"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gridLayout_7 = new QGridLayout(centralWidget);
@@ -214,13 +206,11 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1224, 750));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1283, 758));
         gridLayout_8 = new QGridLayout(scrollAreaWidgetContents);
         gridLayout_8->setSpacing(6);
         gridLayout_8->setContentsMargins(11, 11, 11, 11);
         gridLayout_8->setObjectName(QStringLiteral("gridLayout_8"));
-        gridLayout_8->setHorizontalSpacing(10);
-        gridLayout_8->setContentsMargins(5, 5, 5, 5);
         gridLayout_4 = new QGridLayout();
         gridLayout_4->setSpacing(6);
         gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
@@ -313,9 +303,32 @@ public:
         gridLayout_2->setSpacing(6);
         gridLayout_2->setContentsMargins(11, 11, 11, 11);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        label = new QLabel(camera);
+        label->setObjectName(QStringLiteral("label"));
+
+        gridLayout_2->addWidget(label, 1, 1, 1, 1);
+
+        label_5 = new QLabel(camera);
+        label_5->setObjectName(QStringLiteral("label_5"));
+
+        gridLayout_2->addWidget(label_5, 0, 1, 1, 2);
+
+        resize_img = new QSlider(camera);
+        resize_img->setObjectName(QStringLiteral("resize_img"));
+        resize_img->setOrientation(Qt::Vertical);
+
+        gridLayout_2->addWidget(resize_img, 2, 2, 1, 1);
+
+        resize_cam = new QSlider(camera);
+        resize_cam->setObjectName(QStringLiteral("resize_cam"));
+        resize_cam->setOrientation(Qt::Vertical);
+
+        gridLayout_2->addWidget(resize_cam, 2, 1, 1, 1);
+
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setSizeConstraint(QLayout::SetMaximumSize);
         webcam = new QWidget(camera);
         webcam->setObjectName(QStringLiteral("webcam"));
         sizePolicy1.setHeightForWidth(webcam->sizePolicy().hasHeightForWidth());
@@ -352,7 +365,12 @@ public:
         verticalLayout->addWidget(pushButton);
 
 
-        gridLayout_2->addLayout(verticalLayout, 0, 0, 1, 1);
+        gridLayout_2->addLayout(verticalLayout, 2, 0, 1, 1);
+
+        label_2 = new QLabel(camera);
+        label_2->setObjectName(QStringLiteral("label_2"));
+
+        gridLayout_2->addWidget(label_2, 1, 2, 1, 1);
 
         result->addTab(camera, QString());
         result_0 = new QWidget();
@@ -410,114 +428,6 @@ public:
 
 
         DEPOIS_GERAL->addLayout(horizontalLayout_IMG);
-
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setSpacing(6);
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        verticalLayout_blueGeral = new QVBoxLayout();
-        verticalLayout_blueGeral->setSpacing(6);
-        verticalLayout_blueGeral->setObjectName(QStringLiteral("verticalLayout_blueGeral"));
-        texto_depoisBlue = new QLabel(result_0);
-        texto_depoisBlue->setObjectName(QStringLiteral("texto_depoisBlue"));
-        texto_depoisBlue->setMaximumSize(QSize(16777215, 20));
-        texto_depoisBlue->setAlignment(Qt::AlignCenter);
-
-        verticalLayout_blueGeral->addWidget(texto_depoisBlue);
-
-        select_blue = new QComboBox(result_0);
-        select_blue->setObjectName(QStringLiteral("select_blue"));
-
-        verticalLayout_blueGeral->addWidget(select_blue);
-
-        horizontalLayout_BLUE_0 = new QHBoxLayout();
-        horizontalLayout_BLUE_0->setSpacing(6);
-        horizontalLayout_BLUE_0->setObjectName(QStringLiteral("horizontalLayout_BLUE_0"));
-        filter_blue = new QLineEdit(result_0);
-        filter_blue->setObjectName(QStringLiteral("filter_blue"));
-
-        horizontalLayout_BLUE_0->addWidget(filter_blue);
-
-        label_blue_filter = new QLabel(result_0);
-        label_blue_filter->setObjectName(QStringLiteral("label_blue_filter"));
-        label_blue_filter->setMaximumSize(QSize(16777215, 30));
-
-        horizontalLayout_BLUE_0->addWidget(label_blue_filter);
-
-
-        verticalLayout_blueGeral->addLayout(horizontalLayout_BLUE_0);
-
-        horizontalLayout_BLUE = new QHBoxLayout();
-        horizontalLayout_BLUE->setSpacing(6);
-        horizontalLayout_BLUE->setObjectName(QStringLiteral("horizontalLayout_BLUE"));
-        line_blue = new QLineEdit(result_0);
-        line_blue->setObjectName(QStringLiteral("line_blue"));
-
-        horizontalLayout_BLUE->addWidget(line_blue);
-
-        label_blue_linear = new QLabel(result_0);
-        label_blue_linear->setObjectName(QStringLiteral("label_blue_linear"));
-        label_blue_linear->setMaximumSize(QSize(16777215, 30));
-
-        horizontalLayout_BLUE->addWidget(label_blue_linear);
-
-
-        verticalLayout_blueGeral->addLayout(horizontalLayout_BLUE);
-
-
-        horizontalLayout_2->addLayout(verticalLayout_blueGeral);
-
-        verticalLayout_redGeral = new QVBoxLayout();
-        verticalLayout_redGeral->setSpacing(6);
-        verticalLayout_redGeral->setObjectName(QStringLiteral("verticalLayout_redGeral"));
-        texto_depoisRED = new QLabel(result_0);
-        texto_depoisRED->setObjectName(QStringLiteral("texto_depoisRED"));
-        texto_depoisRED->setMaximumSize(QSize(16777215, 20));
-        texto_depoisRED->setAlignment(Qt::AlignCenter);
-
-        verticalLayout_redGeral->addWidget(texto_depoisRED);
-
-        select_red = new QComboBox(result_0);
-        select_red->setObjectName(QStringLiteral("select_red"));
-
-        verticalLayout_redGeral->addWidget(select_red);
-
-        horizontalLayout_RED = new QHBoxLayout();
-        horizontalLayout_RED->setSpacing(6);
-        horizontalLayout_RED->setObjectName(QStringLiteral("horizontalLayout_RED"));
-        filter_red = new QLineEdit(result_0);
-        filter_red->setObjectName(QStringLiteral("filter_red"));
-
-        horizontalLayout_RED->addWidget(filter_red);
-
-        label_red_filter = new QLabel(result_0);
-        label_red_filter->setObjectName(QStringLiteral("label_red_filter"));
-
-        horizontalLayout_RED->addWidget(label_red_filter);
-
-
-        verticalLayout_redGeral->addLayout(horizontalLayout_RED);
-
-        horizontalLayout_RED_0 = new QHBoxLayout();
-        horizontalLayout_RED_0->setSpacing(6);
-        horizontalLayout_RED_0->setObjectName(QStringLiteral("horizontalLayout_RED_0"));
-        line_red = new QLineEdit(result_0);
-        line_red->setObjectName(QStringLiteral("line_red"));
-
-        horizontalLayout_RED_0->addWidget(line_red);
-
-        label_red_linear = new QLabel(result_0);
-        label_red_linear->setObjectName(QStringLiteral("label_red_linear"));
-
-        horizontalLayout_RED_0->addWidget(label_red_linear);
-
-
-        verticalLayout_redGeral->addLayout(horizontalLayout_RED_0);
-
-
-        horizontalLayout_2->addLayout(verticalLayout_redGeral);
-
-
-        DEPOIS_GERAL->addLayout(horizontalLayout_2);
 
 
         verticalLayout_16->addLayout(DEPOIS_GERAL);
@@ -587,6 +497,12 @@ public:
         filter_red_1->setMaximumSize(QSize(100, 16777215));
 
         horizontalLayout_7->addWidget(filter_red_1);
+
+        filter_red_1_0 = new QLineEdit(buttons);
+        filter_red_1_0->setObjectName(QStringLiteral("filter_red_1_0"));
+        filter_red_1_0->setMaximumSize(QSize(100, 16777215));
+
+        horizontalLayout_7->addWidget(filter_red_1_0);
 
         select_red_1 = new QComboBox(buttons);
         select_red_1->setObjectName(QStringLiteral("select_red_1"));
@@ -817,6 +733,12 @@ public:
 
         horizontalLayout_13->addWidget(filter_blue_1);
 
+        filter_blue_1_0 = new QLineEdit(buttons);
+        filter_blue_1_0->setObjectName(QStringLiteral("filter_blue_1_0"));
+        filter_blue_1_0->setMaximumSize(QSize(70, 16777215));
+
+        horizontalLayout_13->addWidget(filter_blue_1_0);
+
         select_blue_1 = new QComboBox(buttons);
         select_blue_1->setObjectName(QStringLiteral("select_blue_1"));
 
@@ -972,10 +894,15 @@ public:
 
         result->addTab(buttons, QString());
 
-        gridLayout_4->addWidget(result, 1, 0, 1, 1);
+        gridLayout_4->addWidget(result, 0, 0, 1, 1);
 
 
         gridLayout_8->addLayout(gridLayout_4, 0, 0, 1, 1);
+
+        set_saved_img_0 = new QPushButton(scrollAreaWidgetContents);
+        set_saved_img_0->setObjectName(QStringLiteral("set_saved_img_0"));
+
+        gridLayout_8->addWidget(set_saved_img_0, 1, 0, 1, 1);
 
         refresh = new QPushButton(scrollAreaWidgetContents);
         refresh->setObjectName(QStringLiteral("refresh"));
@@ -988,11 +915,6 @@ public:
 
         gridLayout_8->addWidget(refresh, 2, 0, 1, 1);
 
-        set_saved_img_0 = new QPushButton(scrollAreaWidgetContents);
-        set_saved_img_0->setObjectName(QStringLiteral("set_saved_img_0"));
-
-        gridLayout_8->addWidget(set_saved_img_0, 1, 0, 1, 1);
-
         scrollArea->setWidget(scrollAreaWidgetContents);
 
         gridLayout_7->addWidget(scrollArea, 0, 0, 1, 1);
@@ -1003,7 +925,7 @@ public:
         MainWindow->setStatusBar(statusBar);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1258, 25));
+        menuBar->setGeometry(QRect(0, 0, 1317, 25));
         menuBar->setStyleSheet(QStringLiteral("background-color: rgb(186, 189, 182);"));
         menumenu = new QMenu(menuBar);
         menumenu->setObjectName(QStringLiteral("menumenu"));
@@ -1016,10 +938,11 @@ public:
         menumenu->addAction(actionButtons);
         menumenu->addAction(actionExit);
         menumenu->addAction(actionAlualizar_Imagem);
+        menumenu->addAction(actionusar_imagem_salva);
 
         retranslateUi(MainWindow);
 
-        result->setCurrentIndex(1);
+        result->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1055,6 +978,10 @@ public:
 #ifndef QT_NO_SHORTCUT
         actionAlualizar_Imagem->setShortcut(QApplication::translate("MainWindow", "Ctrl+R", Q_NULLPTR));
 #endif // QT_NO_SHORTCUT
+        actionusar_imagem_salva->setText(QApplication::translate("MainWindow", "usar imagem salva", Q_NULLPTR));
+#ifndef QT_NO_SHORTCUT
+        actionusar_imagem_salva->setShortcut(QApplication::translate("MainWindow", "Ctrl+U", Q_NULLPTR));
+#endif // QT_NO_SHORTCUT
         label_IP->setText(QApplication::translate("MainWindow", "IP:", Q_NULLPTR));
         label_Port->setText(QApplication::translate("MainWindow", "Porta:", Q_NULLPTR));
         pushButtonConnect->setText(QApplication::translate("MainWindow", "Conectar", Q_NULLPTR));
@@ -1062,39 +989,16 @@ public:
         label_SliderEsq->setText(QString());
         label_SliderDir->setText(QString());
         result->setTabText(result->indexOf(connect), QApplication::translate("MainWindow", "Conex\303\243o", Q_NULLPTR));
+        label->setText(QApplication::translate("MainWindow", "cam", Q_NULLPTR));
+        label_5->setText(QApplication::translate("MainWindow", "RESIZE", Q_NULLPTR));
         pushButton->setText(QApplication::translate("MainWindow", "TIRAR FOTO", Q_NULLPTR));
+        label_2->setText(QApplication::translate("MainWindow", "img", Q_NULLPTR));
         result->setTabText(result->indexOf(camera), QApplication::translate("MainWindow", "capture", Q_NULLPTR));
         texto_antes->setText(QApplication::translate("MainWindow", "ANTES DO PROCESSAMENTO", Q_NULLPTR));
         label_before->setText(QString());
         texto_depois->setText(QApplication::translate("MainWindow", "DEPOIS DO PROCESSAMENTO", Q_NULLPTR));
         label_after_blue->setText(QString());
         label_after_red->setText(QString());
-        texto_depoisBlue->setText(QApplication::translate("MainWindow", "BLUE", Q_NULLPTR));
-        select_blue->clear();
-        select_blue->insertItems(0, QStringList()
-         << QApplication::translate("MainWindow", "escala de cinza", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "filtro mediano", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "dilata\303\247\303\243o", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "erosao", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "bound", Q_NULLPTR)
-        );
-        filter_blue->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
-        label_blue_filter->setText(QApplication::translate("MainWindow", "filter value", Q_NULLPTR));
-        line_blue->setText(QApplication::translate("MainWindow", "50", Q_NULLPTR));
-        label_blue_linear->setText(QApplication::translate("MainWindow", "linear value", Q_NULLPTR));
-        texto_depoisRED->setText(QApplication::translate("MainWindow", "RED", Q_NULLPTR));
-        select_red->clear();
-        select_red->insertItems(0, QStringList()
-         << QApplication::translate("MainWindow", "escala de cinza", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "filtro mediano", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "dilata\303\247\303\243o", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "erosao", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "bound", Q_NULLPTR)
-        );
-        filter_red->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
-        label_red_filter->setText(QApplication::translate("MainWindow", "filter value", Q_NULLPTR));
-        line_red->setText(QApplication::translate("MainWindow", "50", Q_NULLPTR));
-        label_red_linear->setText(QApplication::translate("MainWindow", "linear value", Q_NULLPTR));
         result->setTabText(result->indexOf(result_0), QApplication::translate("MainWindow", "result", Q_NULLPTR));
         label_red_filter_0->setText(QApplication::translate("MainWindow", "value                  filter ", Q_NULLPTR));
         filter_red_0->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
@@ -1112,7 +1016,7 @@ public:
          << QApplication::translate("MainWindow", "selfreinforceFilter", Q_NULLPTR)
         );
         button_red_0->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
-        label_red_filter_1->setText(QApplication::translate("MainWindow", "value                  operador ", Q_NULLPTR));
+        label_red_filter_1->setText(QApplication::translate("MainWindow", "scale                  scale2        operador ", Q_NULLPTR));
         filter_red_1->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
         select_red_1->clear();
         select_red_1->insertItems(0, QStringList()
@@ -1123,6 +1027,8 @@ public:
          << QApplication::translate("MainWindow", ">=", Q_NULLPTR)
          << QApplication::translate("MainWindow", "<", Q_NULLPTR)
          << QApplication::translate("MainWindow", "<=", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "(grayimg > scale) && (grayimg < scale2)", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "(grayimg >= scale) && (grayimg <= scale2)", Q_NULLPTR)
         );
         button_red_1->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
         label_red_filter_2->setText(QApplication::translate("MainWindow", "dilation", Q_NULLPTR));
@@ -1155,8 +1061,9 @@ public:
          << QApplication::translate("MainWindow", "selfreinforceFilter", Q_NULLPTR)
         );
         button_blue_0->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
-        label_blue_filter_1->setText(QApplication::translate("MainWindow", "value                  operador ", Q_NULLPTR));
+        label_blue_filter_1->setText(QApplication::translate("MainWindow", "scale                  scale2        operador ", Q_NULLPTR));
         filter_blue_1->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
+        filter_blue_1_0->setText(QApplication::translate("MainWindow", "0", Q_NULLPTR));
         select_blue_1->clear();
         select_blue_1->insertItems(0, QStringList()
          << QApplication::translate("MainWindow", "escolha um operador", Q_NULLPTR)
@@ -1166,6 +1073,8 @@ public:
          << QApplication::translate("MainWindow", ">=", Q_NULLPTR)
          << QApplication::translate("MainWindow", "<", Q_NULLPTR)
          << QApplication::translate("MainWindow", "<=", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "(grayimg > scale) && (grayimg < scale2)", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "(grayimg >= scale) && (grayimg <= scale2)", Q_NULLPTR)
         );
         button_blue_1->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
         label_blue_filter_2->setText(QApplication::translate("MainWindow", "dilation", Q_NULLPTR));
@@ -1181,8 +1090,8 @@ public:
         filter_blue_5->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
         button_blue_5->setText(QApplication::translate("MainWindow", "centroid provisorio", Q_NULLPTR));
         result->setTabText(result->indexOf(buttons), QApplication::translate("MainWindow", "Buttons", Q_NULLPTR));
-        refresh->setText(QApplication::translate("MainWindow", "ATUALIZAR IMAGENS", Q_NULLPTR));
         set_saved_img_0->setText(QApplication::translate("MainWindow", "USAR  IMAGEM SALVA", Q_NULLPTR));
+        refresh->setText(QApplication::translate("MainWindow", "ATUALIZAR IMAGENS", Q_NULLPTR));
         menumenu->setTitle(QApplication::translate("MainWindow", "menu", Q_NULLPTR));
     } // retranslateUi
 

@@ -20,6 +20,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -27,8 +28,9 @@ class Ui_Dialog
 {
 public:
     QGridLayout *gridLayout_2;
+    QWidget *widget;
     QGridLayout *gridLayout;
-    QVBoxLayout *ANTES_GERAL;
+    QVBoxLayout *verticalLayout;
     QLabel *texto_antes;
     QLabel *label_before;
     QVBoxLayout *DEPOIS_GERAL;
@@ -46,29 +48,28 @@ public:
         Dialog->resize(674, 435);
         gridLayout_2 = new QGridLayout(Dialog);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
-        gridLayout = new QGridLayout();
+        widget = new QWidget(Dialog);
+        widget->setObjectName(QStringLiteral("widget"));
+        gridLayout = new QGridLayout(widget);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        ANTES_GERAL = new QVBoxLayout();
-        ANTES_GERAL->setObjectName(QStringLiteral("ANTES_GERAL"));
-        texto_antes = new QLabel(Dialog);
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        texto_antes = new QLabel(widget);
         texto_antes->setObjectName(QStringLiteral("texto_antes"));
         texto_antes->setMaximumSize(QSize(16777215, 20));
         texto_antes->setAlignment(Qt::AlignCenter);
 
-        ANTES_GERAL->addWidget(texto_antes);
+        verticalLayout->addWidget(texto_antes);
 
-        label_before = new QLabel(Dialog);
+        label_before = new QLabel(widget);
         label_before->setObjectName(QStringLiteral("label_before"));
         label_before->setStyleSheet(QStringLiteral("background-color: rgb(85, 87, 83);"));
 
-        ANTES_GERAL->addWidget(label_before);
-
-
-        gridLayout->addLayout(ANTES_GERAL, 0, 0, 1, 1);
+        verticalLayout->addWidget(label_before);
 
         DEPOIS_GERAL = new QVBoxLayout();
         DEPOIS_GERAL->setObjectName(QStringLiteral("DEPOIS_GERAL"));
-        texto_depois = new QLabel(Dialog);
+        texto_depois = new QLabel(widget);
         texto_depois->setObjectName(QStringLiteral("texto_depois"));
         texto_depois->setMaximumSize(QSize(16777215, 20));
         texto_depois->setAlignment(Qt::AlignCenter);
@@ -77,13 +78,13 @@ public:
 
         horizontalLayout_IMG = new QHBoxLayout();
         horizontalLayout_IMG->setObjectName(QStringLiteral("horizontalLayout_IMG"));
-        label_after_blue = new QLabel(Dialog);
+        label_after_blue = new QLabel(widget);
         label_after_blue->setObjectName(QStringLiteral("label_after_blue"));
         label_after_blue->setStyleSheet(QStringLiteral("background-color: rgb(85, 87, 83);"));
 
         horizontalLayout_IMG->addWidget(label_after_blue);
 
-        label_after_red = new QLabel(Dialog);
+        label_after_red = new QLabel(widget);
         label_after_red->setObjectName(QStringLiteral("label_after_red"));
         label_after_red->setStyleSheet(QStringLiteral("background-color: rgb(85, 87, 83);"));
 
@@ -93,15 +94,18 @@ public:
         DEPOIS_GERAL->addLayout(horizontalLayout_IMG);
 
 
-        gridLayout->addLayout(DEPOIS_GERAL, 1, 0, 1, 1);
+        verticalLayout->addLayout(DEPOIS_GERAL);
 
-        refresh = new QPushButton(Dialog);
+        refresh = new QPushButton(widget);
         refresh->setObjectName(QStringLiteral("refresh"));
 
-        gridLayout->addWidget(refresh, 2, 0, 1, 1);
+        verticalLayout->addWidget(refresh);
 
 
-        gridLayout_2->addLayout(gridLayout, 0, 0, 1, 1);
+        gridLayout->addLayout(verticalLayout, 0, 0, 1, 1);
+
+
+        gridLayout_2->addWidget(widget, 0, 0, 1, 1);
 
 
         retranslateUi(Dialog);
