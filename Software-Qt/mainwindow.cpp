@@ -130,6 +130,99 @@ void MainWindow::on_refresh_clicked()
     result_view(*Qimg_red_,false,true);
 }
 
+void MainWindow::processamentoImagem(){
+
+
+    //    PARTE AZUL
+
+    *bina_blue = (*gray_blue > 9) && (*gray_blue < 140);
+
+    erosion(*bina_blue,false);
+    erosion(*bina_blue,false);
+    erosion(*bina_blue,false);
+    erosion(*bina_blue,false);
+    erosion(*bina_blue,false);
+//    erosion(*bina_blue,false);
+
+
+    dilation(*bina_blue,false);
+    dilation(*bina_blue,false);
+    dilation(*bina_blue,false);
+    dilation(*bina_blue,false);
+    erosion(*bina_blue,false);
+    erosion(*bina_blue,false);
+
+
+
+    bound(*bina_blue,false);
+//            std::cout <<"blue: "<< qdt << std::endl;
+
+    centroid(*bina_blue,false);
+//        envia posições pra renato
+    qDebug() <<"area blue :" <<area_blue[0]<<" : "<< area_blue[1];
+
+    if(area_blue[0] > area_blue[1]){
+        std::cout << "quadrado blue p:0->" << area_blue[0] << std::endl;
+    }else{
+        std::cout << "quadrado blue p:1->" << area_blue[1] << std::endl;
+    }
+
+    //    PARTE VERMELHA
+
+//    histrograma(*gray_red);
+    *bina_red = (*gray_red > 8) && (*gray_red < 114);
+
+    erosion(*bina_red,true);
+    erosion(*bina_red,true);
+    erosion(*bina_red,true);
+    erosion(*bina_red,true);
+    dilation(*bina_red,true);
+    erosion(*bina_red,true);
+    dilation(*bina_red,true);
+    erosion(*bina_red,true);
+    erosion(*bina_red,true);
+    dilation(*bina_red,true);
+
+    dilation(*bina_red,true);
+    erosion(*bina_red,true);
+    erosion(*bina_red,true);
+    erosion(*bina_red,true);
+    erosion(*bina_red,true);
+    dilation(*bina_red,true);
+    dilation(*bina_red,true);
+    dilation(*bina_red,true);
+    dilation(*bina_red,true);
+    dilation(*bina_red,true);
+    dilation(*bina_red,true);
+    dilation(*bina_red,true);
+    dilation(*bina_red,true);
+    erosion(*bina_red,true);
+    erosion(*bina_red,true);
+    erosion(*bina_red,true);
+    erosion(*bina_red,true);
+
+    bound(*bina_red,true);
+
+    centroid(*bina_red,true);
+
+    qDebug() <<"area red :" <<area_red[0]<<" : "<< area_red[1];
+
+    if(area_red[0] > area_red[1]){
+        std::cout << "quadrado red p:0->" << area_red[0] << std::endl;
+    }else{
+        std::cout << "quadrado red p:1->" << area_red[1] << std::endl;
+    }
+    std::cout << "posicao: " << std::endl << posicao << std::endl;
+
+    //    FIM
+
+    Qimg_blue[0] = ImageProcessing::GrayImage2QImage<unsigned>(*gray_blue);
+    Qimg_red[0] = ImageProcessing::GrayImage2QImage<unsigned>(*gray_red);
+//        mostra imagem em escala de cinza
+    result_view(Qimg_blue[0],false,false);
+    result_view(Qimg_red[0],false,true);
+}
+
 void MainWindow::set_saved_img(const bool use)
 {
     QImage temp;
@@ -139,70 +232,12 @@ void MainWindow::set_saved_img(const bool use)
         *img = ImageProcessing::RGBImage2QImage<unsigned>(*mat_complete);
         result_view(*img,true,true);
 //        passa de rgb para  escala de cinza invertendo as cores
-        gray_blue->setGray(mat_complete->getBlue());
-        gray_red->setGray(mat_complete->getRed());
+        gray_blue->setGray(mat_complete->getRed());//pode parecer errado mais esta certo
+        gray_red->setGray(mat_complete->getBlue());//pode parecer errado mais esta certo
 
-        //    PARTE AZUL
-
-        *bina_blue = (*gray_blue > 9) && (*gray_blue < 140);
-
-        erosion(*bina_blue,false);
-        erosion(*bina_blue,false);
-        erosion(*bina_blue,false);
-        erosion(*bina_blue,false);
-        erosion(*bina_blue,false);
-        erosion(*bina_blue,false);
+        processamentoImagem();//faz todo o processamento da imagem encontra as posicoes reais dos objetos
 
 
-        bound(*bina_blue,false);
-//            std::cout <<"blue: "<< qdt << std::endl;
-
-        centroid(*bina_blue,false);
-
-        qDebug() <<"area blue :" <<area_blue[0]<<" : "<< area_blue[1];
-
-        if(area_blue[0] > area_blue[1]){
-            std::cout << "quadrado blue p:0->" << area_blue[0] << std::endl;
-        }else{
-            std::cout << "quadrado blue p:1->" << area_blue[1] << std::endl;
-        }
-
-        //    PARTE VERMELHA
-
-
-        *bina_red = (*gray_red > 0) && (*gray_red < 140);
-
-        erosion(*bina_red,true);
-        erosion(*bina_red,true);
-        erosion(*bina_red,true);
-        erosion(*bina_red,true);
-        erosion(*bina_red,true);
-
-        dilation(*bina_red,true);
-        dilation(*bina_red,true);
-        dilation(*bina_red,true);
-        dilation(*bina_red,true);
-        dilation(*bina_red,true);
-
-        bound(*bina_red,true);
-
-        centroid(*bina_red,true);
-
-        qDebug() <<"area red :" <<area_red[0]<<" : "<< area_red[1];
-
-        if(area_red[0] > area_red[1]){
-            std::cout << "quadrado red p:0->" << area_red[0] << std::endl;
-        }else{
-            std::cout << "quadrado red p:1->" << area_red[1] << std::endl;
-        }
-
-        //    FIM
-
-        Qimg_blue[0] = ImageProcessing::GrayImage2QImage<unsigned>(*gray_blue);
-        Qimg_red[0] = ImageProcessing::GrayImage2QImage<unsigned>(*gray_red);
-//        mostra imagem em escala de cinza
-        result_view(Qimg_blue[0],false,false);
-        result_view(Qimg_red[0],false,true);
     }
 }
 
@@ -218,68 +253,12 @@ void MainWindow::processCaptureImage(int requestId,const QImage& imgs){
     }
 //   mostrando imagem antes do processamento
     result_view(*img,true,true);
-//    separando a image por cor
-
-    //convertendo de qimage para rgbimage
     *mat_complete = ImageProcessing::QImage2RGBImage<unsigned>(*img);
     gray_blue->setGray(255-mat_complete->getBlue());
     gray_red->setGray(255-mat_complete->getRed());
 
-    Qimg_blue[0] = ImageProcessing::GrayImage2QImage<unsigned>(*gray_blue);
-    Qimg_red[0] = ImageProcessing::GrayImage2QImage<unsigned>(*gray_red);
+    processamentoImagem();
 
-//    PARTE AZUL
-
-    *bina_blue = (*gray_blue > 9) && (*gray_blue < 140);
-
-    erosion(*bina_blue,false);
-    erosion(*bina_blue,false);
-    erosion(*bina_blue,false);
-    erosion(*bina_blue,false);
-    erosion(*bina_blue,false);
-    erosion(*bina_blue,false);
-
-    bound(*bina_blue,false);
-
-    centroid(*bina_blue,false);
-
-    if(area_blue[0] > area_blue[1]){
-        std::cout << "quadrado" << area_blue[0] << std::endl;
-    }else{
-        std::cout << "triangulo" << area_blue[1] << std::endl;
-    }
-
-//    PARTE VERMELHA
-
-
-    *bina_red = (*gray_red > 0) && (*gray_red < 140);
-//        *bina_red = ImageProcessing::opening(*bina_red);
-    erosion(*bina_red,true);
-    erosion(*bina_red,true);
-    erosion(*bina_red,true);
-    erosion(*bina_red,true);
-    erosion(*bina_red,true);
-
-    dilation(*bina_red,true);
-    dilation(*bina_red,true);
-    dilation(*bina_red,true);
-    dilation(*bina_red,true);
-    dilation(*bina_red,true);
-
-    bound(*bina_red,true);
-
-    centroid(*bina_red,true);
-
-    if(area_red[0] > area_red[1]){
-        std::cout << "quadrado" << area_red[0] << std::endl;
-    }else{
-        std::cout << "triangulo" << area_red[1] << std::endl;
-    }
-
-//    FIM
-
-    result_view(Qimg_blue[0],false,false);
-    result_view(Qimg_red[0],false,true);
 }
 
 void MainWindow::filtro(const ImageProcessing::GrayImage<unsigned> &gray_img,const double filter_value,const bool color,const unsigned scale){
@@ -411,28 +390,25 @@ void MainWindow::centroid( ImageProcessing::BinaryImage &bin_img,const unsigned 
     if(!qdt.isNull() && !segmentedMatrix.isNull()){
 
         centroids = ImageProcessing::centroid(bin_img);
-
-//        std::cout <<"pixelToMetric: "<< ImageProcessing::pixelToWorldMetric(segmentedMatrix,22,26,centroids) << std::endl;
-
         if(!color){
-        //        pegando a area do objeto
-//            unsigned a;
-//            a = ImageProcessing::area(bin_img);
-            for(unsigned i =0; i < qdt(1,1);i++){
-                this->area_blue[i] = centroids(1,i+1);
-            }
+//          pegando a area do objeto
 
-        //    colocar um ponto no centro da imagem
             for(unsigned i =1;i<=qdt(1,1);++i){
-                LinAlg::Matrix<unsigned> centroid = ImageProcessing::centroid(segmentedMatrix==(i+1));
-        //      bina_blue[0] ->   coloco como ponto zero para pegar posição da memoria do ponteiro
-                bina_blue[0](centroid(1,1)-1,centroid(1,2)-1) = 0;
-                bina_blue[0](centroid(1,1)-1,centroid(1,2))   = 0;
-                bina_blue[0](centroid(1,1),  centroid(1,2)-1) = 0;
-                bina_blue[0](centroid(1,1),  centroid(1,2))   = 0;
-                bina_blue[0](centroid(1,1)+1,centroid(1,2))   = 0;
-                bina_blue[0](centroid(1,1),  centroid(1,2)+1) = 0;
-                bina_blue[0](centroid(1,1)+1,centroid(1,2)+1) = 0;
+                centroids = ImageProcessing::centroid(segmentedMatrix==(i+1));
+//              pegando posicoes dos objetos
+                posicao = posicao || ImageProcessing::pixelToWorldMetric(segmentedMatrix,22,26,centroids);
+                this->area_blue[(i-1)] = ImageProcessing::area(segmentedMatrix==(i+2));
+                std::cout << "centroid blue " << std::endl;
+                std::cout << centroids << std::endl;
+//              colocar um ponto no centro da imagem
+//              bina_blue[0] ->   coloco como ponto zero para pegar posição da memoria do ponteiro
+                bina_blue[0](centroids(1,1)-1,centroids(1,2)-1) = 0;
+                bina_blue[0](centroids(1,1)-1,centroids(1,2))   = 0;
+                bina_blue[0](centroids(1,1),  centroids(1,2)-1) = 0;
+                bina_blue[0](centroids(1,1),  centroids(1,2))   = 0;
+                bina_blue[0](centroids(1,1)+1,centroids(1,2))   = 0;
+                bina_blue[0](centroids(1,1),  centroids(1,2)+1) = 0;
+                bina_blue[0](centroids(1,1)+1,centroids(1,2)+1) = 0;
             }
         //pego a matriz binaria inverto e retorno invertida
            *bina_blue = ImageProcessing::BinaryImage((!bina_blue[0]).getBinaryImageMatrix());
@@ -443,21 +419,23 @@ void MainWindow::centroid( ImageProcessing::BinaryImage &bin_img,const unsigned 
            *Qimg_blue_ = ImageProcessing::GrayImage2QImage<unsigned>(*gray_blue);
         }else{
         //        pegando a area do objeto
-            for(unsigned i =0; i < qdt(1,1);i++){
-                this->area_red[i] = centroids(1,i+1);
-            }
 
-        //    colocar um ponto no centro da imagem
             for(unsigned i =1;i<=qdt(1,1);++i){
-                LinAlg::Matrix<unsigned> centroid = ImageProcessing::centroid(segmentedMatrix==(i+1));
-        //      bina_blue[0] ->   coloco como ponto zero para pegar posição da memoria do ponteiro
-                bina_red[0](centroid(1,1)-1,centroid(1,2)-1) = 0;
-                bina_red[0](centroid(1,1)-1,centroid(1,2))   = 0;
-                bina_red[0](centroid(1,1),  centroid(1,2)-1) = 0;
-                bina_red[0](centroid(1,1),  centroid(1,2))   = 0;
-                bina_red[0](centroid(1,1)+1,centroid(1,2))   = 0;
-                bina_red[0](centroid(1,1),  centroid(1,2)+1) = 0;
-                bina_red[0](centroid(1,1)+1,centroid(1,2)+1) = 0;
+                centroids = ImageProcessing::centroid(segmentedMatrix==(i+1));
+//              pegando posicoes dos objetos
+                posicao = posicao || ImageProcessing::pixelToWorldMetric(segmentedMatrix,22,26,centroids);
+                this->area_red[(i-1)]  = ImageProcessing::area(segmentedMatrix==(i+2));
+                std::cout << "centroid red " << std::endl;
+                std::cout << centroids << std::endl;
+//               colocar um ponto no centro da imagem
+//               bina_blue[0] ->   coloco como ponto zero para pegar posição da memoria do ponteiro
+                bina_red[0](centroids(1,1)-1,centroids(1,2)-1) = 0;
+                bina_red[0](centroids(1,1)-1,centroids(1,2))   = 0;
+                bina_red[0](centroids(1,1),  centroids(1,2)-1) = 0;
+                bina_red[0](centroids(1,1),  centroids(1,2))   = 0;
+                bina_red[0](centroids(1,1)+1,centroids(1,2))   = 0;
+                bina_red[0](centroids(1,1),  centroids(1,2)+1) = 0;
+                bina_red[0](centroids(1,1)+1,centroids(1,2)+1) = 0;
             }
         //pego a matriz binaria inverto e retorno invertida
            *bina_red = ImageProcessing::BinaryImage((!bina_red[0]).getBinaryImageMatrix());

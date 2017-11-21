@@ -35,6 +35,8 @@ public:
 
     void on_refresh_clicked();
 
+    void processamentoImagem();
+
 public slots:
 
 
@@ -154,8 +156,10 @@ private:
     ImageProcessing::RGBImage<unsigned>*mat_complete,*rgb_blue,*rgb_red;
     ImageProcessing::GrayImage<unsigned>*gray_blue,*gray_red;
     LinAlg::Matrix<unsigned> *histogramMatrix;
+    LinAlg::Matrix<unsigned> posicao;
     LinAlg::Matrix<unsigned> qdt, segmentedMatrix;
     LinAlg::Matrix<unsigned> centroids;
+
 //    LinAlg::Matrix<unsigned> *centroid;
     ImageProcessing::BinaryImage *bina_blue,*bina_red;
     int select_blue_0_index,select_red_0_index;
