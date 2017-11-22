@@ -13,7 +13,7 @@ private:
     LinAlg::Matrix<UsedType> V, X, P, G, GGen, GnTimes,
                      Xfitness, Pfitness, Gfitness,
                      GfitnessGen, GfitnessnTime, RunTime;
-    Model<UsedType> *model;
+//    Model<UsedType> *model;
 
 
     LinAlg::Matrix<UsedType> Evaluation(LinAlg::Matrix<UsedType> Matrix2Evaluate);
@@ -26,19 +26,19 @@ private:
     void FitnessUpdateMax();
 
 public:
-    PSO(Model<UsedType> *model);
-    PSO(Model<UsedType> *model, int    varNum, int PopSize, int GenSize);
-    PSO(Model<UsedType> *model, int    varNum, int PopSize, int GenSize,
+    PSO();
+    PSO(int    varNum, int PopSize, int GenSize);
+    PSO(int    varNum, int PopSize, int GenSize,
         double           phi1 , double phi2);
-    PSO(Model<UsedType> *model, int    varNum, int    PopSize, int  GenSize,
+    PSO(int    varNum, int    PopSize, int  GenSize,
         double           phi1 , double phi2  , double omega  , bool MinMax);
     ~PSO();
 
     void Optimize();
     void Run(int nTimes);
-    void setData(LinAlg::Matrix<UsedType> dataIn, LinAlg::Matrix<UsedType> dataOut);
+//    void setData(LinAlg::Matrix<UsedType> dataIn, LinAlg::Matrix<UsedType> dataOut);
 
-    double getTime();
+//    double getTime();
 };
 
 #endif // PSO_H
