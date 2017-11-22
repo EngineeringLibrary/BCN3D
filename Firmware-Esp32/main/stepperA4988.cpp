@@ -36,7 +36,7 @@ void stepperA4988::newStep(int step, bool direction, int acel)
   }
 }
 
-double PID (double step, double setepRef)
+double PIDM1 (double step, double setepRef)
 {
   double kp = 2, ki = 0, kd = 0.5, Dt = 1, Ea = 0, Ei = 0;
   double E = setepRef - step;
@@ -47,6 +47,49 @@ double PID (double step, double setepRef)
   return kp*E + ki*Ei + kd*Ed;
 }
 
+double PIDM2 (double step, double setepRef)
+{
+  double kp = 2, ki = 0, kd = 0.5, Dt = 1, Ea = 0, Ei = 0;
+  double E = setepRef - step;
+  double Ed = (E-Ea)/Dt;
+  Ea = E;
+  Ei += Dt * E;
+
+  return kp*E + ki*Ei + kd*Ed;
+}
+
+double PIDM3 (double step, double setepRef)
+{
+  double kp = 2, ki = 0, kd = 0.5, Dt = 1, Ea = 0, Ei = 0;
+  double E = setepRef - step;
+  double Ed = (E-Ea)/Dt;
+  Ea = E;
+  Ei += Dt * E;
+
+  return kp*E + ki*Ei + kd*Ed;
+}
+
+double PIDM4 (double step, double setepRef)
+{
+  double kp = 2, ki = 0, kd = 0.5, Dt = 1, Ea = 0, Ei = 0;
+  double E = setepRef - step;
+  double Ed = (E-Ea)/Dt;
+  Ea = E;
+  Ei += Dt * E;
+
+  return kp*E + ki*Ei + kd*Ed;
+}
+
+double PIDM5 (double step, double setepRef)
+{
+  double kp = 2, ki = 0, kd = 0.5, Dt = 1, Ea = 0, Ei = 0;
+  double E = setepRef - step;
+  double Ed = (E-Ea)/Dt;
+  Ea = E;
+  Ei += Dt * E;
+
+  return kp*E + ki*Ei + kd*Ed;
+}
 // void stepAcel (int steps)
 // {
 //   int speedMax = 2000;
