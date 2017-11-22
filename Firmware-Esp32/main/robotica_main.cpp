@@ -95,18 +95,6 @@ void stepControlMotor01(void *pvParameter)
     vTaskDelay(portMAX_DELAY);
 }
 
-void stepControlMotor01(void *pvParameter)
-{
-    while(true){
-        motor1->newStep(200,horario,15);
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-        motor1->newStep(200,antihorario,15);
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-
-    }
-    vTaskDelay(portMAX_DELAY);
-}
-
 //Cadastro das funções que vão trabalhar em paralelo
 extern "C" void app_main()
 {
