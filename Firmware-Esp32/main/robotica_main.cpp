@@ -1,11 +1,3 @@
-/* Hello World Example
-
-   This example code is in the Public Domain (or CC0 licensed, at your option.)
-
-   Unless required by applicable law or agreed to in writing, this
-   software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
-   CONDITIONS OF ANY KIND, either express or implied.
-*/
 #include <stdio.h>
 #include "driver/gpio.h"
 #include "freertos/FreeRTOS.h"
@@ -51,7 +43,7 @@ void stepControlMotor01(void *pvParameter)
 
     }
     vTaskDelay(portMAX_DELAY);
-    
+
 }
 
 void stepControlMotor02(void *pvParameter)
@@ -67,6 +59,53 @@ void stepControlMotor02(void *pvParameter)
     vTaskDelay(portMAX_DELAY);
 }
 
+void stepControlMotor01(void *pvParameter)
+{
+    while(true){
+        motor3->newStep(200,horario,15);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        motor3->newStep(200,antihorario,15);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+
+    }
+    vTaskDelay(portMAX_DELAY);
+}
+
+void stepControlMotor01(void *pvParameter)
+{
+    while(true){
+        motor4->newStep(200,horario,15);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        motor4->newStep(200,antihorario,15);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+
+    }
+    vTaskDelay(portMAX_DELAY);
+}
+
+void stepControlMotor01(void *pvParameter)
+{
+    while(true){
+        motor5->newStep(200,horario,15);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        motor5->newStep(200,antihorario,15);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+
+    }
+    vTaskDelay(portMAX_DELAY);
+}
+
+void stepControlMotor01(void *pvParameter)
+{
+    while(true){
+        motor1->newStep(200,horario,15);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        motor1->newStep(200,antihorario,15);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+
+    }
+    vTaskDelay(portMAX_DELAY);
+}
 
 //Cadastro das funções que vão trabalhar em paralelo
 extern "C" void app_main()
@@ -81,6 +120,4 @@ extern "C" void app_main()
       xTaskCreate(stepControlMotor05, "stepControlMotor05", configMINIMAL_STACK_SIZE, NULL, 5, NULL);
         sdk_os_delay_ms(10);
     }
-
-
 }
