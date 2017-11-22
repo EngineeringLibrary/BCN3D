@@ -41,34 +41,31 @@ servomotor garra(servoPin);
 // }
 
 //Funçãos para controlar os motores de passo
-void stepControlMotor01(void*arg)
+void stepControlMotor01(void *pvParameter)
+{
+    while(true){
+        motor1->newStep(200,horario,15);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        motor1->newStep(200,antihorario,15);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
 
-  for(int i = 0; i < step1; ++i){
-                motor1.newStep();
-      }
+    }
+    vTaskDelay(portMAX_DELAY);
+    
+}
 
-void stepControlMotor02(void*arg)
+void stepControlMotor02(void *pvParameter)
+{
+    while(true){
+        motor2->newStep(200,antihorario,15);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        motor2->newStep(200,horario,15);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
 
-  for(int i = 0; i < step2; ++i){
-                motor2.newStep();
-      }
+    }
 
-void stepControlMotor03(void*arg)
-
-  for(int i = 0; i < step3; ++i){
-                motor3.newStep();
-      }
-void stepControlMotor04(void*arg)
-
-  for(int i = 0; i < step4; ++i){
-                motor4.newStep();
-      }
-
-void stepControlMotor05(void*arg)
-
-  for(int i = 0; i < step5; ++i){
-                motor5.newStep();
-      }
+    vTaskDelay(portMAX_DELAY);
+}
 
 
 //Cadastro das funções que vão trabalhar em paralelo
