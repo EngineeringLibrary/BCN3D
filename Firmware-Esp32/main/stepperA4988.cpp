@@ -30,6 +30,17 @@ void stepperA4988::newStep(bool direction)
       stepAcel(2400);
 }
 
+int PID (int step, int setepRef)
+{
+  int kp = 2, ki = 0, kd = 0.5, Dt = 1, Ea = 0, Ei = 0;
+  int E = setepRef - step;
+  int Ed = (E-Ea)/Dt;
+  Ea = E;
+  Ei += Dt * E;
+
+  return kp*E + ki*Ei + kd*Ed;
+}
+
 void stepAcel (int steps)
 {
   int speedMax = 2000;
