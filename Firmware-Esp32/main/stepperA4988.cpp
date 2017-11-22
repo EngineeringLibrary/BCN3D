@@ -16,7 +16,7 @@ stepperA4988::stepperA4988(gpio_num_t step_pin, gpio_num_t direction_pin)
     return;
 }
 
-void stepperA4988::newStep(bool direction)
+void stepperA4988::newStep(int step, bool direction, int acel)
 {
   this->passos=step;
   this->aceleracao=acel;

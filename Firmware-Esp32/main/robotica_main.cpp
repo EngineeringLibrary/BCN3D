@@ -74,15 +74,15 @@ void stepControlMotor05(void*arg)
 //Cadastro das funções que vão trabalhar em paralelo
 extern "C" void app_main()
 {
-    xTaskCreate(controlMotor, "controlMotorGarra", 1024 * 2, NULL, 5, NULL);
+    //xTaskCreate(controlMotor, "controlMotorGarra", 1024 * 2, NULL, 5, NULL);
 
     while( true){
-         xTaskCreate(stepControlMotor01, "stepControlMotor01", 1024 * 2, NULL, 5, NULL);
-         xTaskCreate(stepControlMotor02, "stepControlMotor02", 1024 * 2, NULL, 5, NULL);
-         xTaskCreate(stepControlMotor03, "stepControlMotor03", 1024 * 2, NULL, 5, NULL);
-         xTaskCreate(stepControlMotor04, "stepControlMotor04", 1024 * 2, NULL, 5, NULL);
-         xTaskCreate(stepControlMotor05, "stepControlMotor05", 1024 * 2, NULL, 5, NULL); 
-      sdk_os_delay_ms(10);
+      xTaskCreate(stepControlMotor01, "stepControlMotor01", configMINIMAL_STACK_SIZE, NULL, 2, NULL);
+      xTaskCreate(stepControlMotor02, "stepControlMotor02", configMINIMAL_STACK_SIZE, NULL, 5, NULL);
+      xTaskCreate(stepControlMotor03, "stepControlMotor03", configMINIMAL_STACK_SIZE, NULL, 5, NULL);
+      xTaskCreate(stepControlMotor04, "stepControlMotor04", configMINIMAL_STACK_SIZE, NULL, 5, NULL);
+      xTaskCreate(stepControlMotor05, "stepControlMotor05", configMINIMAL_STACK_SIZE, NULL, 5, NULL);
+        sdk_os_delay_ms(10);
     }
 
 
