@@ -6,6 +6,7 @@
 #include "esp_spi_flash.h"
 #include "stepperA4988.h"
 #include "servomotor.h"
+#include "wifi.h"
 
  //Variavel Global
  gpio_num_t  stepPinMotor1 = GPIO_NUM_22, directionPinMotor1 = GPIO_NUM_21,
@@ -26,11 +27,11 @@ stepperA4988 *motor5=new stepperA4988(stepPinMotor5, directionPinMotor5);
 servomotor garra(servoPin);
 
 //Função para controlar o servo motor
-// void controlMotorGarra(void*arg)
-// {
-//     while(1)
-//         garra.setPosition(500);
-// }
+void controlMotorGarra(void*arg)
+{
+    while(1)
+        garra.setPosition(500);
+}
 
 //Funçãos para controlar os motores de passo
 void stepControlMotor01(void *pvParameter)
@@ -98,7 +99,15 @@ void stepControlMotor01(void *pvParameter)
 //Cadastro das funções que vão trabalhar em paralelo
 extern "C" void app_main()
 {
-    //xTaskCreate(controlMotor, "controlMotorGarra", 1024 * 2, NULL, 5, NULL);
+
+    ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
+    wifi_event_group = xEventGroupCreate();
+    start_dhcp_server();
+    initialise_wifi_in_ap();
+    xTaskCreate(&print_sta_info,"print_sta_info",4096,NULL,5,NULL);
+    xTaskCreate(&telnetTask,"telnetTask",4096,NULL,5,NULL);
+
+    xTaskCreate(controlMotor, "controlMotorGarra", 1024 * 2, NULL, 5, NULL);
 
     while( true){
       xTaskCreate(stepControlMotor01, "stepControlMotor01", configMINIMAL_STACK_SIZE, NULL, 2, NULL);
