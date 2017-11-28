@@ -1139,7 +1139,7 @@
               <property name="geometry">
                <rect>
                 <x>180</x>
-                <y>300</y>
+                <y>280</y>
                 <width>133</width>
                 <height>23</height>
                </rect>
@@ -1194,7 +1194,7 @@
               <property name="geometry">
                <rect>
                 <x>520</x>
-                <y>250</y>
+                <y>230</y>
                 <width>181</width>
                 <height>70</height>
                </rect>
@@ -1228,6 +1228,42 @@
                 </widget>
                </item>
               </layout>
+             </widget>
+             <widget class="QPushButton" name="pushButton_GenSteps">
+              <property name="geometry">
+               <rect>
+                <x>970</x>
+                <y>280</y>
+                <width>133</width>
+                <height>23</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Generate Steps</string>
+              </property>
+             </widget>
+             <widget class="QTextEdit" name="textEdit_StepTrack">
+              <property name="geometry">
+               <rect>
+                <x>830</x>
+                <y>350</y>
+                <width>406</width>
+                <height>192</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_12">
+              <property name="geometry">
+               <rect>
+                <x>840</x>
+                <y>330</y>
+                <width>391</width>
+                <height>16</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Trajetória convertida em passos:</string>
+              </property>
              </widget>
             </widget>
            </widget>

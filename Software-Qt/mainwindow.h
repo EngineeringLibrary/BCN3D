@@ -156,6 +156,10 @@ private slots:
 
     void on_pushButton_Enviar_clicked();
 
+    void on_lineEdit_returnPressed();
+
+    void on_pushButton_GenSteps_clicked();
+
 signals :
     void emit_result();
 
@@ -178,6 +182,9 @@ private:
     LinAlg::Matrix<unsigned> posicao;
     LinAlg::Matrix<double> angulos;
     LinAlg::Matrix<double> trajetoria;
+    LinAlg::Matrix<double> steps;
+    LinAlg::Matrix<double> stepstrack;
+
 
 //    LinAlg::Matrix<unsigned> *centroid;
     ImageProcessing::BinaryImage *bina_blue,*bina_red;

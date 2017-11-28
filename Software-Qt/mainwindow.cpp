@@ -11,7 +11,6 @@ MainWindow::MainWindow(QWidget *parent) :
     dataToSend = "0000000000000";
     this->wifi = nullptr;
 
-
     /* FIM MODULO WIFI */
 
     //     mypix = (QDir::currentPath()+"/imageCaptured.jpg");
@@ -799,7 +798,8 @@ void MainWindow::Conectado(){
 
 void MainWindow::dataHandler(){
     std::string dadosWifi = this->wifi->dataReceived().toStdString();
-    ui->textEdit_Console->setText(QString::fromStdString(dadosWifi));
+    ui->textEdit_Console->setText(ui->textEdit_Console->toPlainText()+QString::fromStdString(dadosWifi)+"\n");
+    ui->textEdit_Console->verticalScrollBar()->setSliderPosition(ui->textEdit_Console->verticalScrollBar()->maximum());
 }
 
 //--------------------------EVENTS: WIFI------------------------
@@ -832,6 +832,12 @@ void MainWindow::on_pushButton_Enviar_clicked()
     if(this->wifi){
         this->wifi->writeData(ui->lineEdit->text());
     }
+}
+
+
+void MainWindow::on_lineEdit_returnPressed()
+{
+    this->on_pushButton_Enviar_clicked();
 }
 
 // END --------------------------EVENTS: WIFI------------------------
@@ -869,6 +875,7 @@ void MainWindow::calcularAngulos(LinAlg::Matrix<double> posicoes){
 
     std::cout << posicao << std::endl;
     std::cout << angulos << std::endl;
+
 }
 
 void MainWindow::calcularTrajetoria(){
@@ -937,5 +944,28 @@ void MainWindow::on_pushButton_GetTrack_clicked()
     }
 }
 
+void MainWindow::on_pushButton_GenSteps_clicked()
+{
+    steps = angulos;
+    for (unsigned int i = 1; i<=steps.getNumberOfRows();++i){
+        for (unsigned int j = 1; j<=steps.getNumberOfColumns();++j){
+            steps(i,j) = steps(i,j)/0.1125;
+        }
+    }
+//    std::cout << steps << std::endl;
+
+    stepstrack = steps;
+    for (unsigned int i = 2; i<=steps.getNumberOfRows();++i){
+        for (unsigned int j = 1; j<=steps.getNumberOfColumns();++j){
+            stepstrack(i,j) = stepstrack(i,j)-steps(i-1,j);
+        }
+    }
+//    std::cout << stepstrack << std::endl;
+
+    string stepstrack_str; stepstrack_str << stepstrack;
+    ui->textEdit_StepTrack->setText(QString::fromStdString(stepstrack_str));
+    ui->lineEdit->setText(QString::fromStdString(stepstrack_str));
+}
 
 // END --------------------------EVENTS: CINEMÁTICA INVERSA------------------------
+

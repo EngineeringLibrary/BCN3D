@@ -190,6 +190,9 @@ public:
     QLabel *label_10;
     QLineEdit *lineEdit_Destino;
     QPushButton *pushButton_GetTrack;
+    QPushButton *pushButton_GenSteps;
+    QTextEdit *textEdit_StepTrack;
+    QLabel *label_12;
     QPushButton *set_saved_img_0;
     QPushButton *refresh;
     QStatusBar *statusBar;
@@ -934,7 +937,7 @@ public:
         label_QtdObj->setGeometry(QRect(220, 240, 47, 13));
         pushButton_GetPositions = new QPushButton(cinematica);
         pushButton_GetPositions->setObjectName(QStringLiteral("pushButton_GetPositions"));
-        pushButton_GetPositions->setGeometry(QRect(180, 300, 133, 23));
+        pushButton_GetPositions->setGeometry(QRect(180, 280, 133, 23));
         layoutWidget = new QWidget(cinematica);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
         layoutWidget->setGeometry(QRect(10, 10, 1231, 213));
@@ -975,7 +978,7 @@ public:
 
         layoutWidget1 = new QWidget(cinematica);
         layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(520, 250, 181, 70));
+        layoutWidget1->setGeometry(QRect(520, 230, 181, 70));
         gridLayout_10 = new QGridLayout(layoutWidget1);
         gridLayout_10->setSpacing(6);
         gridLayout_10->setContentsMargins(11, 11, 11, 11);
@@ -1002,6 +1005,15 @@ public:
 
         gridLayout_10->addWidget(pushButton_GetTrack, 2, 1, 1, 1);
 
+        pushButton_GenSteps = new QPushButton(cinematica);
+        pushButton_GenSteps->setObjectName(QStringLiteral("pushButton_GenSteps"));
+        pushButton_GenSteps->setGeometry(QRect(970, 280, 133, 23));
+        textEdit_StepTrack = new QTextEdit(cinematica);
+        textEdit_StepTrack->setObjectName(QStringLiteral("textEdit_StepTrack"));
+        textEdit_StepTrack->setGeometry(QRect(830, 350, 406, 192));
+        label_12 = new QLabel(cinematica);
+        label_12->setObjectName(QStringLiteral("label_12"));
+        label_12->setGeometry(QRect(840, 330, 391, 16));
         result->addTab(cinematica, QString());
 
         gridLayout_4->addWidget(result, 0, 0, 1, 1);
@@ -1210,6 +1222,8 @@ public:
         label_11->setText(QApplication::translate("MainWindow", "\" X, Y, Z\"", Q_NULLPTR));
         label_10->setText(QApplication::translate("MainWindow", "Destino:", Q_NULLPTR));
         pushButton_GetTrack->setText(QApplication::translate("MainWindow", "Get Track", Q_NULLPTR));
+        pushButton_GenSteps->setText(QApplication::translate("MainWindow", "Generate Steps", Q_NULLPTR));
+        label_12->setText(QApplication::translate("MainWindow", "Trajet\303\263ria convertida em passos:", Q_NULLPTR));
         result->setTabText(result->indexOf(cinematica), QApplication::translate("MainWindow", "Cinem\303\241tica", Q_NULLPTR));
         set_saved_img_0->setText(QApplication::translate("MainWindow", "USAR  IMAGEM SALVA", Q_NULLPTR));
         refresh->setText(QApplication::translate("MainWindow", "ATUALIZAR IMAGENS", Q_NULLPTR));
