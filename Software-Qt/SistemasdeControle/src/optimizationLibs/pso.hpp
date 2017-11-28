@@ -190,11 +190,18 @@ void PSO<UsedType>::FitnessUpdateMax()
 }
 
 template <class UsedType>
-LinAlg::Matrix<UsedType> PSO<UsedType>::Optimize(LinAlg::Matrix<UsedType> garra)
+LinAlg::Matrix<UsedType> PSO<UsedType>::Optimize(LinAlg::Matrix<UsedType> garra, LinAlg::Matrix<UsedType> gBest)
 {
 
     this->garra = garra;
     initAlgorithm();
+    if (gBest(1,1) != 0 && gBest.getNumberOfRows() != 1){
+        this->X = (LinAlg::Random<UsedType>(this->PopSize, this->varNum)-0.5)*0.005;
+        for (unsigned i = 1; i <= this->PopSize; ++i)
+            for(unsigned j = 1; j <= this->varNum; ++j)
+                this->X(i,j) += gBest(1,j);
+    }
+
 
     for(int i = 0; i < this->GenSize; i++)
     {

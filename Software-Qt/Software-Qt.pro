@@ -55,3 +55,8 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui \
     result_view.ui
+
+RC_FILE = myapp.rc
+
+DISTFILES += \
+    bcn3d.ico

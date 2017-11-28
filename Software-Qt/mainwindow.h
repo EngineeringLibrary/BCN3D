@@ -50,7 +50,6 @@ public slots:
 
 
 private slots:
-    void update();
 
     void Conectado();
 
@@ -65,6 +64,9 @@ private slots:
     void enableTab(int except);
 
     void disableTab(int except);
+
+
+
 
 // funcoes matematicas
     void filtro(const ImageProcessing::GrayImage<unsigned> &gray_img,const double    filter_value,const bool color,const unsigned scale = 3);
@@ -130,7 +132,6 @@ private slots:
 
     void on_button_red_4_clicked();
 
-
     void on_set_saved_img_0_clicked(bool checked);
 
     void on_button_red_5_clicked();
@@ -152,6 +153,8 @@ private slots:
     void on_pushButton_GetPositions_clicked();
 
     void on_pushButton_GetTrack_clicked();
+
+    void on_pushButton_Enviar_clicked();
 
 signals :
     void emit_result();

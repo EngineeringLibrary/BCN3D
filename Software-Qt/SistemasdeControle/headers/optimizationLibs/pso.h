@@ -35,7 +35,7 @@ public:
         double           phi1 , double phi2  , double omega  , bool MinMax);
 //    ~PSO();
 
-    LinAlg::Matrix<UsedType> Optimize(LinAlg::Matrix<UsedType> garra);
+    LinAlg::Matrix<UsedType> Optimize(LinAlg::Matrix<UsedType> garra, LinAlg::Matrix<UsedType> gBest = UsedType(0.0) );
     void Run(int nTimes);
 
     void SetPopSize(int p);

@@ -47,7 +47,7 @@
              </sizepolicy>
             </property>
             <property name="currentIndex">
-             <number>4</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="connect">
              <attribute name="title">
@@ -100,10 +100,10 @@
                 </item>
                </layout>
               </item>
-              <item row="1" column="0">
+              <item row="2" column="0">
                <widget class="QLineEdit" name="lineEdit"/>
               </item>
-              <item row="2" column="0">
+              <item row="4" column="0">
                <widget class="QWidget" name="widget" native="true">
                 <widget class="QLabel" name="label_SliderEsq">
                  <property name="geometry">
@@ -131,6 +131,16 @@
                   <string/>
                  </property>
                 </widget>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QTextEdit" name="textEdit_Console"/>
+              </item>
+              <item row="3" column="0">
+               <widget class="QPushButton" name="pushButton_Enviar">
+                <property name="text">
+                 <string>Enviar</string>
+                </property>
                </widget>
               </item>
              </layout>
@@ -1138,7 +1148,7 @@
                <string>Get Positions</string>
               </property>
              </widget>
-             <widget class="QWidget" name="">
+             <widget class="QWidget" name="layoutWidget">
               <property name="geometry">
                <rect>
                 <x>10</x>
@@ -1180,7 +1190,7 @@
                </item>
               </layout>
              </widget>
-             <widget class="QWidget" name="">
+             <widget class="QWidget" name="layoutWidget">
               <property name="geometry">
                <rect>
                 <x>520</x>

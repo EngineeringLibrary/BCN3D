@@ -66,6 +66,8 @@ public:
     QWidget *widget;
     QLabel *label_SliderEsq;
     QLabel *label_SliderDir;
+    QTextEdit *textEdit_Console;
+    QPushButton *pushButton_Enviar;
     QWidget *camera;
     QGridLayout *gridLayout_2;
     QLabel *label;
@@ -174,7 +176,7 @@ public:
     QLabel *label_7;
     QLabel *label_QtdObj;
     QPushButton *pushButton_GetPositions;
-    QWidget *widget1;
+    QWidget *layoutWidget;
     QGridLayout *gridLayout_9;
     QLabel *label_6;
     QLabel *label_9;
@@ -182,7 +184,7 @@ public:
     QTextEdit *textEdit_PosObj;
     QTextEdit *textEdit_Deslocamentos;
     QTextEdit *textEdit_Angulos;
-    QWidget *widget2;
+    QWidget *layoutWidget1;
     QGridLayout *gridLayout_10;
     QLabel *label_11;
     QLabel *label_10;
@@ -297,7 +299,7 @@ public:
         lineEdit = new QLineEdit(connect);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
 
-        gridLayout_6->addWidget(lineEdit, 1, 0, 1, 1);
+        gridLayout_6->addWidget(lineEdit, 2, 0, 1, 1);
 
         widget = new QWidget(connect);
         widget->setObjectName(QStringLiteral("widget"));
@@ -308,7 +310,17 @@ public:
         label_SliderDir->setObjectName(QStringLiteral("label_SliderDir"));
         label_SliderDir->setGeometry(QRect(320, 240, 47, 13));
 
-        gridLayout_6->addWidget(widget, 2, 0, 1, 1);
+        gridLayout_6->addWidget(widget, 4, 0, 1, 1);
+
+        textEdit_Console = new QTextEdit(connect);
+        textEdit_Console->setObjectName(QStringLiteral("textEdit_Console"));
+
+        gridLayout_6->addWidget(textEdit_Console, 1, 0, 1, 1);
+
+        pushButton_Enviar = new QPushButton(connect);
+        pushButton_Enviar->setObjectName(QStringLiteral("pushButton_Enviar"));
+
+        gridLayout_6->addWidget(pushButton_Enviar, 3, 0, 1, 1);
 
         result->addTab(connect, QString());
         camera = new QWidget();
@@ -923,69 +935,69 @@ public:
         pushButton_GetPositions = new QPushButton(cinematica);
         pushButton_GetPositions->setObjectName(QStringLiteral("pushButton_GetPositions"));
         pushButton_GetPositions->setGeometry(QRect(180, 300, 133, 23));
-        widget1 = new QWidget(cinematica);
-        widget1->setObjectName(QStringLiteral("widget1"));
-        widget1->setGeometry(QRect(10, 10, 1231, 213));
-        gridLayout_9 = new QGridLayout(widget1);
+        layoutWidget = new QWidget(cinematica);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(10, 10, 1231, 213));
+        gridLayout_9 = new QGridLayout(layoutWidget);
         gridLayout_9->setSpacing(6);
         gridLayout_9->setContentsMargins(11, 11, 11, 11);
         gridLayout_9->setObjectName(QStringLiteral("gridLayout_9"));
         gridLayout_9->setContentsMargins(0, 0, 0, 0);
-        label_6 = new QLabel(widget1);
+        label_6 = new QLabel(layoutWidget);
         label_6->setObjectName(QStringLiteral("label_6"));
 
         gridLayout_9->addWidget(label_6, 0, 0, 1, 1);
 
-        label_9 = new QLabel(widget1);
+        label_9 = new QLabel(layoutWidget);
         label_9->setObjectName(QStringLiteral("label_9"));
 
         gridLayout_9->addWidget(label_9, 0, 1, 1, 1);
 
-        label_8 = new QLabel(widget1);
+        label_8 = new QLabel(layoutWidget);
         label_8->setObjectName(QStringLiteral("label_8"));
 
         gridLayout_9->addWidget(label_8, 0, 2, 1, 1);
 
-        textEdit_PosObj = new QTextEdit(widget1);
+        textEdit_PosObj = new QTextEdit(layoutWidget);
         textEdit_PosObj->setObjectName(QStringLiteral("textEdit_PosObj"));
 
         gridLayout_9->addWidget(textEdit_PosObj, 1, 0, 1, 1);
 
-        textEdit_Deslocamentos = new QTextEdit(widget1);
+        textEdit_Deslocamentos = new QTextEdit(layoutWidget);
         textEdit_Deslocamentos->setObjectName(QStringLiteral("textEdit_Deslocamentos"));
 
         gridLayout_9->addWidget(textEdit_Deslocamentos, 1, 1, 1, 1);
 
-        textEdit_Angulos = new QTextEdit(widget1);
+        textEdit_Angulos = new QTextEdit(layoutWidget);
         textEdit_Angulos->setObjectName(QStringLiteral("textEdit_Angulos"));
 
         gridLayout_9->addWidget(textEdit_Angulos, 1, 2, 1, 1);
 
-        widget2 = new QWidget(cinematica);
-        widget2->setObjectName(QStringLiteral("widget2"));
-        widget2->setGeometry(QRect(520, 250, 181, 70));
-        gridLayout_10 = new QGridLayout(widget2);
+        layoutWidget1 = new QWidget(cinematica);
+        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(520, 250, 181, 70));
+        gridLayout_10 = new QGridLayout(layoutWidget1);
         gridLayout_10->setSpacing(6);
         gridLayout_10->setContentsMargins(11, 11, 11, 11);
         gridLayout_10->setObjectName(QStringLiteral("gridLayout_10"));
         gridLayout_10->setContentsMargins(0, 0, 0, 0);
-        label_11 = new QLabel(widget2);
+        label_11 = new QLabel(layoutWidget1);
         label_11->setObjectName(QStringLiteral("label_11"));
         label_11->setAlignment(Qt::AlignCenter);
 
         gridLayout_10->addWidget(label_11, 0, 1, 1, 1);
 
-        label_10 = new QLabel(widget2);
+        label_10 = new QLabel(layoutWidget1);
         label_10->setObjectName(QStringLiteral("label_10"));
 
         gridLayout_10->addWidget(label_10, 1, 0, 1, 1);
 
-        lineEdit_Destino = new QLineEdit(widget2);
+        lineEdit_Destino = new QLineEdit(layoutWidget1);
         lineEdit_Destino->setObjectName(QStringLiteral("lineEdit_Destino"));
 
         gridLayout_10->addWidget(lineEdit_Destino, 1, 1, 1, 1);
 
-        pushButton_GetTrack = new QPushButton(widget2);
+        pushButton_GetTrack = new QPushButton(layoutWidget1);
         pushButton_GetTrack->setObjectName(QStringLiteral("pushButton_GetTrack"));
 
         gridLayout_10->addWidget(pushButton_GetTrack, 2, 1, 1, 1);
@@ -1040,7 +1052,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        result->setCurrentIndex(4);
+        result->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1086,6 +1098,7 @@ public:
         pushButton_Disconnect->setText(QApplication::translate("MainWindow", "Desconectar", Q_NULLPTR));
         label_SliderEsq->setText(QString());
         label_SliderDir->setText(QString());
+        pushButton_Enviar->setText(QApplication::translate("MainWindow", "Enviar", Q_NULLPTR));
         result->setTabText(result->indexOf(connect), QApplication::translate("MainWindow", "Conex\303\243o", Q_NULLPTR));
         label->setText(QApplication::translate("MainWindow", "cam", Q_NULLPTR));
         label_5->setText(QApplication::translate("MainWindow", "RESIZE", Q_NULLPTR));
