@@ -183,7 +183,7 @@ private:
     LinAlg::Matrix<double> angulos;
     LinAlg::Matrix<double> trajetoria;
     LinAlg::Matrix<double> steps;
-    LinAlg::Matrix<double> stepstrack;
+    LinAlg::Matrix<int> stepstrack;
 
 
 //    LinAlg::Matrix<unsigned> *centroid;

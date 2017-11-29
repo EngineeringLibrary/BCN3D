@@ -961,9 +961,10 @@ void MainWindow::on_pushButton_GenSteps_clicked()
         }
     }
 //    std::cout << stepstrack << std::endl;
+    string str; str << stepstrack;
+    ui->textEdit_StepTrack->setText(QString::fromStdString(str));
 
-    string stepstrack_str; stepstrack_str << stepstrack;
-    ui->textEdit_StepTrack->setText(QString::fromStdString(stepstrack_str));
+    string stepstrack_str; stepstrack_str <<= stepstrack;
     ui->lineEdit->setText(QString::fromStdString(stepstrack_str));
 }
 
