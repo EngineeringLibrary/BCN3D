@@ -16,10 +16,27 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //     mypix = (QDir::currentPath()+"/imageCaptured.jpg");
     //     ui->label_before->setPixmap(mypix);
+//    if(checkCameras()){
+//        QList<QCameraInfo> cameras = QCameraInfo::availableCameras();
+
+//        foreach (const QCameraInfo &cameraInfo, cameras) {
+//            qDebug() << "Device Name  : " << cameraInfo.deviceName() << endl;
+//            qDebug() << "Description  : " << cameraInfo.description() << endl;
+//            qDebug() << "Position     : " << cameraInfo.position() << endl;
+//            qDebug() << "Cam Default  : " << cameraInfo.defaultCamera() << endl;
+//            qDebug() << "Orientation  : " << cameraInfo.orientation() << endl;
+//        }
+//    }
 
     result_img = new Dialog(this);
-    camera = new QCamera;
+    if(camCount > 1){
+       camera = new QCamera("/dev/video1");
+    }else{
+         camera = new QCamera;
+    }
+
     viewfinder = new QVideoWidget(ui->webcam);
+
 
     mat_complete = new ImageProcessing::RGBImage<unsigned>;
     gray_blue = new ImageProcessing::GrayImage<unsigned>;
@@ -33,17 +50,18 @@ MainWindow::MainWindow(QWidget *parent) :
     Qimg_red_ = new QImage;
     img = new QImage;
 
-    //    ui->webcam->setScaledContents( true );
-    //    ui->webcam->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
-    //    viewfinder->setMinimumSize(
-    //        (ui->webcam->geometry().width()*13),
-    //        (ui->webcam->geometry().height()*17)
-    //    );
+//        ui->webcam->setScaledContents( true );
+        ui->webcam->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
+        viewfinder->setMinimumSize(
+            (ui->webcam->geometry().width()*13),
+            (ui->webcam->geometry().height()*17)
+        );
 
-    viewfinder->setMinimumSize(
-                (ui->webcam->geometry().width()*1.5),
-                (ui->webcam->geometry().height()*1.3)
-                );
+
+//    viewfinder->setMinimumSize(
+//                (ui->webcam->geometry().width()*1.5),
+//                (ui->webcam->geometry().height()*1.3)
+//                );
 
     viewfinder->setMaximumSize(
                 ui->webcam->maximumWidth(),
@@ -54,7 +72,12 @@ MainWindow::MainWindow(QWidget *parent) :
     viewfinder->show();
     imageCapture = new QCameraImageCapture(camera);
     camera->setCaptureMode(QCamera::CaptureStillImage);
-    //    camera->start();
+    camera->start();
+
+    QImageEncoderSettings imageSettings;
+    imageSettings.setCodec("image/jpeg");
+    imageSettings.setResolution(1280, 720);
+    imageCapture->setEncodingSettings(imageSettings);
 
     connect(imageCapture,
             SIGNAL(imageCaptured(int,QImage)),
@@ -76,20 +99,24 @@ MainWindow::~MainWindow()
         delete this->wifi;
 }
 
+bool MainWindow::checkCameras()
+{
+     camCount = QCameraInfo::availableCameras().count();
+    if ( camCount > 0) {
+        qDebug() << "Cameras encontradas: " << camCount << endl;
+        return true;
+    }
+    else {
+        qDebug() << "Nenhuma camera foi detectada!" << endl;
+        return false;
+    }
+}
+
 void MainWindow::on_pushButton_clicked()
 {
     camera->searchAndLock();
     imageCapture->capture();
     //    QThread::sleep(2);
-}
-
-void MainWindow::timerClock( unsigned clockTime){
-
-    std::cout << "time: " << QDate::currentDate().toString().toUtf8().toStdString() << std::endl;
-}
-
-void emit_result(){
-    return emit;
 }
 
 void MainWindow::result_view(QImage &img,bool state, bool colors){
@@ -246,7 +273,7 @@ void MainWindow::processCaptureImage(int requestId,const QImage& imgs){
 
     QString fileName =  QDir::currentPath()+"/imageCaptured.jpg";
     if(!fileName.isEmpty()){
-        //       imgs.save(fileName);
+               imgs.save(fileName);
         std::cout << "save";
     }else{
         std::cout << "no save";

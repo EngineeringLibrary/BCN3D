@@ -52,13 +52,13 @@ public slots:
 private slots:
     void update();
 
+    bool checkCameras(void);
+
     void Conectado();
 
     void dataHandler();
 
     void on_pushButton_clicked();
-
-    void timerClock( unsigned clockTime);
 
     void result_view(QImage &img,bool state = true,bool colors=true);
 
@@ -154,7 +154,6 @@ private slots:
     void on_pushButton_GetTrack_clicked();
 
 signals :
-    void emit_result();
 
 private:
     Dialog *result_img;
@@ -177,6 +176,7 @@ private:
     LinAlg::Matrix<double> trajetoria;
 
 //    LinAlg::Matrix<unsigned> *centroid;
+    unsigned camCount;
     ImageProcessing::BinaryImage *bina_blue,*bina_red;
     int select_blue_0_index,select_red_0_index;
     int select_blue_1_index,select_red_1_index;
