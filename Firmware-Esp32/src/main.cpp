@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "driver/gpio.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -12,7 +13,7 @@
 //Cadastro das funções que vão trabalhar em paralelo
 extern "C" void app_main()
 {
-
+      
       ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
       wifi_event_group = xEventGroupCreate();
       start_dhcp_server();
