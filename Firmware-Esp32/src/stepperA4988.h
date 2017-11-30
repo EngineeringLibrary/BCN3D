@@ -10,10 +10,14 @@
 class stepperA4988{
   public:
     stepperA4988(gpio_num_t step_pin, gpio_num_t direction_pin);
-    void newStep(bool direction = false);
+    void newStep(int step = 0, bool direction = false, int acel = 10);
+
   private:
     gpio_num_t step_pin, direction_pin;
     bool direction;
+    int passos;
+    int aceleracao;
+
 };
 
 #endif

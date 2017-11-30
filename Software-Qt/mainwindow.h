@@ -50,7 +50,6 @@ public slots:
 
 
 private slots:
-    void update();
 
     bool checkCameras(void);
 
@@ -65,6 +64,9 @@ private slots:
     void enableTab(int except);
 
     void disableTab(int except);
+
+
+
 
 // funcoes matematicas
     void filtro(const ImageProcessing::GrayImage<unsigned> &gray_img,const double    filter_value,const bool color,const unsigned scale = 3);
@@ -130,7 +132,6 @@ private slots:
 
     void on_button_red_4_clicked();
 
-
     void on_set_saved_img_0_clicked(bool checked);
 
     void on_button_red_5_clicked();
@@ -153,6 +154,12 @@ private slots:
 
     void on_pushButton_GetTrack_clicked();
 
+    void on_pushButton_Enviar_clicked();
+
+    void on_lineEdit_returnPressed();
+
+    void on_pushButton_GenSteps_clicked();
+
 signals :
 
 private:
@@ -174,6 +181,9 @@ private:
     LinAlg::Matrix<unsigned> posicao;
     LinAlg::Matrix<double> angulos;
     LinAlg::Matrix<double> trajetoria;
+    LinAlg::Matrix<double> steps;
+    LinAlg::Matrix<int> stepstrack;
+
 
 //    LinAlg::Matrix<unsigned> *centroid;
     unsigned camCount;

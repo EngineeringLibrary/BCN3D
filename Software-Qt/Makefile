@@ -65,7 +65,8 @@ OBJECTS       = main.o \
 		moc_mainwindow.o \
 		moc_client.o \
 		moc_result_view.o
-DIST          = ../../../../Qt/5.9.2/gcc_64/mkspecs/features/spec_pre.prf \
+DIST          = bcn3d.ico \
+		../../../../Qt/5.9.2/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.9.2/gcc_64/mkspecs/common/unix.conf \
 		../../../../Qt/5.9.2/gcc_64/mkspecs/common/linux.conf \
 		../../../../Qt/5.9.2/gcc_64/mkspecs/common/sanitize.conf \

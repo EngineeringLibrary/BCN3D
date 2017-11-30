@@ -100,10 +100,10 @@
                 </item>
                </layout>
               </item>
-              <item row="1" column="0">
+              <item row="2" column="0">
                <widget class="QLineEdit" name="lineEdit"/>
               </item>
-              <item row="2" column="0">
+              <item row="4" column="0">
                <widget class="QWidget" name="widget" native="true">
                 <widget class="QLabel" name="label_SliderEsq">
                  <property name="geometry">
@@ -131,6 +131,16 @@
                   <string/>
                  </property>
                 </widget>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QTextEdit" name="textEdit_Console"/>
+              </item>
+              <item row="3" column="0">
+               <widget class="QPushButton" name="pushButton_Enviar">
+                <property name="text">
+                 <string>Enviar</string>
+                </property>
                </widget>
               </item>
              </layout>
@@ -1129,7 +1139,7 @@
               <property name="geometry">
                <rect>
                 <x>180</x>
-                <y>300</y>
+                <y>280</y>
                 <width>133</width>
                 <height>23</height>
                </rect>
@@ -1138,7 +1148,7 @@
                <string>Get Positions</string>
               </property>
              </widget>
-             <widget class="QWidget" name="">
+             <widget class="QWidget" name="layoutWidget">
               <property name="geometry">
                <rect>
                 <x>10</x>
@@ -1180,11 +1190,11 @@
                </item>
               </layout>
              </widget>
-             <widget class="QWidget" name="">
+             <widget class="QWidget" name="layoutWidget">
               <property name="geometry">
                <rect>
                 <x>520</x>
-                <y>250</y>
+                <y>230</y>
                 <width>181</width>
                 <height>70</height>
                </rect>
@@ -1218,6 +1228,42 @@
                 </widget>
                </item>
               </layout>
+             </widget>
+             <widget class="QPushButton" name="pushButton_GenSteps">
+              <property name="geometry">
+               <rect>
+                <x>970</x>
+                <y>280</y>
+                <width>133</width>
+                <height>23</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Generate Steps</string>
+              </property>
+             </widget>
+             <widget class="QTextEdit" name="textEdit_StepTrack">
+              <property name="geometry">
+               <rect>
+                <x>830</x>
+                <y>350</y>
+                <width>406</width>
+                <height>192</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_12">
+              <property name="geometry">
+               <rect>
+                <x>840</x>
+                <y>330</y>
+                <width>391</width>
+                <height>16</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Trajetória convertida em passos:</string>
+              </property>
              </widget>
             </widget>
            </widget>
@@ -1283,21 +1329,23 @@
    </property>
    <widget class="QMenu" name="menumenu">
     <property name="title">
-     <string>menu</string>
+     <string>Menu</string>
     </property>
     <addaction name="actionConnect"/>
+    <addaction name="separator"/>
     <addaction name="actionPreview"/>
     <addaction name="actionWebcam"/>
     <addaction name="actionButtons"/>
-    <addaction name="actionExit"/>
     <addaction name="actionAlualizar_Imagem"/>
     <addaction name="actionusar_imagem_salva"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
    </widget>
    <addaction name="menumenu"/>
   </widget>
   <action name="actionPreview">
    <property name="text">
-    <string>preview</string>
+    <string>Preview</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
@@ -1305,7 +1353,7 @@
   </action>
   <action name="actionExit">
    <property name="text">
-    <string>exit</string>
+    <string>Exit</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+E</string>
@@ -1313,7 +1361,7 @@
   </action>
   <action name="actionConnect">
    <property name="text">
-    <string>connect</string>
+    <string>Connect</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Alt+C</string>
@@ -1321,7 +1369,7 @@
   </action>
   <action name="actionButtons">
    <property name="text">
-    <string>buttons</string>
+    <string>Buttons</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+B</string>
@@ -1329,7 +1377,7 @@
   </action>
   <action name="actionWebcam">
    <property name="text">
-    <string>webcam</string>
+    <string>Webcam</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+W</string>
@@ -1337,7 +1385,7 @@
   </action>
   <action name="actionAlualizar_Imagem">
    <property name="text">
-    <string>Alualizar Imagem</string>
+    <string>Update Image</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
@@ -1345,7 +1393,7 @@
   </action>
   <action name="actionusar_imagem_salva">
    <property name="text">
-    <string>usar imagem salva</string>
+    <string>Use Saved Image</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+U</string>

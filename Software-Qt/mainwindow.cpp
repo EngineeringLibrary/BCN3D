@@ -6,13 +6,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    /* INICIO MODULO WIFI */
 
-    ui->widget->hide();
     dataToSend = "0000000000000";
     this->wifi = nullptr;
-    QTimer *timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-    timer->start(300);
+
+    /* FIM MODULO WIFI */
 
     //     mypix = (QDir::currentPath()+"/imageCaptured.jpg");
     //     ui->label_before->setPixmap(mypix);
@@ -99,6 +98,9 @@ MainWindow::~MainWindow()
         delete this->wifi;
 }
 
+
+//------------------------- PROCESSAMENTO DE IMAGENS--------------------------------
+
 bool MainWindow::checkCameras()
 {
      camCount = QCameraInfo::availableCameras().count();
@@ -151,10 +153,18 @@ void MainWindow::result_view(QImage &img,bool state, bool colors){
     }
 }
 
-void MainWindow::on_refresh_clicked()
-{
-    result_view(*Qimg_blue_,false,false);
-    result_view(*Qimg_red_,false,true);
+void MainWindow::enableTab(int except){
+    for(int i= 0;i < ui->result->count();i++){
+        if(i!=except)
+            ui->result->setTabEnabled(i,true);
+    }
+}
+
+void MainWindow::disableTab(int except){
+    for(int i= 0;i < ui->result->count();i++){
+        if(i!=except)
+            ui->result->setTabEnabled(i,false);
+    }
 }
 
 void MainWindow::processamentoImagem(){
@@ -477,7 +487,7 @@ void MainWindow::centroid( ImageProcessing::BinaryImage &bin_img,const unsigned 
     }
 }
 
-//--------------------------------------------------------------EVENTS----------------------------------------------------------
+//-------------------------------EVENTS: PROCESSAMENTO DE IMAGENS----------------------------------------------------------
 
 void MainWindow::on_check_saved_img_clicked(bool checked)
 {
@@ -753,46 +763,6 @@ void MainWindow::on_button_red_5_clicked()
     centroid(*bina_red,true);
 }
 
-//------------------------- WIFI--------------------------------
-
-void MainWindow::update()
-{
-    if(this->wifi)
-        this->wifi->writeData(this->dataToSend);
-    ui->lineEdit->setText(this->dataToSend);
-}
-
-void MainWindow::Conectado(){
-    QMessageBox msgBox;
-    msgBox.setText("Conexão Realizada com Sucesso!");
-    msgBox.exec();
-    ui->widget->show();
-}
-
-void MainWindow::dataHandler(){
-    std::string dadosWifi = this->wifi->dataReceived().toStdString();
-}
-
-void MainWindow::on_pushButtonConnect_clicked()
-{
-    QString ip = ui->lineEdit_IP->text();
-    quint16 port = ui->lineEdit_Port->text().toShort();
-
-    this->wifi = new Client("192.168.4.1",4000);
-    connect(wifi, SIGNAL(connectionSuccessful()),this,SLOT(Conectado()));
-    connect(wifi, SIGNAL(hasReadData()),this,SLOT(dataHandler()));
-}
-
-void MainWindow::on_pushButton_Disconnect_clicked()
-{
-    if(this->wifi){
-        disconnect(wifi, SIGNAL(hasReadData()),this,SLOT(dataHandler()));
-        delete this->wifi;
-        this->wifi = nullptr;
-    }
-    ui->widget->hide();
-}
-
 void MainWindow::on_actionExit_triggered()
 {
     QApplication::quit();
@@ -803,18 +773,10 @@ void MainWindow::on_actionPreview_triggered()
     result_img->show();
 }
 
-void MainWindow::enableTab(int except){
-    for(int i= 0;i < ui->result->count();i++){
-        if(i!=except)
-            ui->result->setTabEnabled(i,true);
-    }
-}
-
-void MainWindow::disableTab(int except){
-    for(int i= 0;i < ui->result->count();i++){
-        if(i!=except)
-            ui->result->setTabEnabled(i,false);
-    }
+void MainWindow::on_refresh_clicked()
+{
+    result_view(*Qimg_blue_,false,false);
+    result_view(*Qimg_red_,false,true);
 }
 
 void MainWindow::on_actionWebcam_triggered()
@@ -852,6 +814,63 @@ void MainWindow::on_actionusar_imagem_salva_triggered()
     set_saved_img(true);
 }
 
+// END -------------------------------EVENTS: PROCESSAMENTO DE IMAGENS----------------------------------------------------------
+
+//------------------------- WIFI--------------------------------
+
+void MainWindow::Conectado(){
+    QMessageBox msgBox;
+    msgBox.setText("Conexão Realizada com Sucesso!");
+    msgBox.exec();
+}
+
+void MainWindow::dataHandler(){
+    std::string dadosWifi = this->wifi->dataReceived().toStdString();
+    ui->textEdit_Console->setText(ui->textEdit_Console->toPlainText()+QString::fromStdString(dadosWifi)+"\n");
+    ui->textEdit_Console->verticalScrollBar()->setSliderPosition(ui->textEdit_Console->verticalScrollBar()->maximum());
+}
+
+//--------------------------EVENTS: WIFI------------------------
+
+void MainWindow::on_pushButtonConnect_clicked()
+{
+    QString ip = ui->lineEdit_IP->text();
+    quint16 port = ui->lineEdit_Port->text().toShort();
+
+    this->wifi = new Client(ip,port);
+    connect(wifi, SIGNAL(connectionSuccessful()),this,SLOT(Conectado()));
+    connect(wifi, SIGNAL(hasReadData()),this,SLOT(dataHandler()));
+}
+
+void MainWindow::on_pushButton_Disconnect_clicked()
+{
+    if(this->wifi){
+        disconnect(wifi, SIGNAL(hasReadData()),this,SLOT(dataHandler()));
+        delete this->wifi;
+        this->wifi = nullptr;
+
+        QMessageBox msgBox;
+        msgBox.setText("Dispositivo Desconectado!");
+        msgBox.exec();
+    }
+}
+
+void MainWindow::on_pushButton_Enviar_clicked()
+{
+    if(this->wifi){
+        this->wifi->writeData(ui->lineEdit->text());
+    }
+}
+
+
+void MainWindow::on_lineEdit_returnPressed()
+{
+    this->on_pushButton_Enviar_clicked();
+}
+
+// END --------------------------EVENTS: WIFI------------------------
+
+
 
 //------------------------- CINEMÁTICA INVERSA--------------------------------
 
@@ -884,6 +903,7 @@ void MainWindow::calcularAngulos(LinAlg::Matrix<double> posicoes){
 
     std::cout << posicao << std::endl;
     std::cout << angulos << std::endl;
+
 }
 
 void MainWindow::calcularTrajetoria(){
@@ -897,8 +917,8 @@ void MainWindow::calcularTrajetoria(){
     for (unsigned i =1;i<=new_posicao.getNumberOfRows();++i){
         track = track || new_posicao.getRow(i);
         track = track || MoveZ(new_posicao.getRow(i),10);
+        track = track || MoveZ(destino,10);
         track = track || destino;
-        track = track || MoveZ(destino,-10);
     }
 
     std::cout << track << std::endl;
@@ -934,6 +954,8 @@ LinAlg::Matrix<double> MainWindow::MoveZ(LinAlg::Matrix<double> posicao, double 
 
 }
 
+//--------------------------EVENTS: CINEMÁTICA INVERSA------------------------
+
 void MainWindow::on_pushButton_GetPositions_clicked()
 {
     if (!qdt.isNull()){
@@ -943,10 +965,36 @@ void MainWindow::on_pushButton_GetPositions_clicked()
     }
 }
 
-
 void MainWindow::on_pushButton_GetTrack_clicked()
 {
     if (!qdt.isNull()){
         calcularTrajetoria();
     }
 }
+
+void MainWindow::on_pushButton_GenSteps_clicked()
+{
+    steps = angulos;
+    for (unsigned int i = 1; i<=steps.getNumberOfRows();++i){
+        for (unsigned int j = 1; j<=steps.getNumberOfColumns();++j){
+            steps(i,j) = steps(i,j)/0.1125;
+        }
+    }
+//    std::cout << steps << std::endl;
+
+    stepstrack = steps;
+    for (unsigned int i = 2; i<=steps.getNumberOfRows();++i){
+        for (unsigned int j = 1; j<=steps.getNumberOfColumns();++j){
+            stepstrack(i,j) = stepstrack(i,j)-steps(i-1,j);
+        }
+    }
+//    std::cout << stepstrack << std::endl;
+    string str; str << stepstrack;
+    ui->textEdit_StepTrack->setText(QString::fromStdString(str));
+
+    string stepstrack_str; stepstrack_str <<= stepstrack;
+    ui->lineEdit->setText(QString::fromStdString(stepstrack_str));
+}
+
+// END --------------------------EVENTS: CINEMÁTICA INVERSA------------------------
+
