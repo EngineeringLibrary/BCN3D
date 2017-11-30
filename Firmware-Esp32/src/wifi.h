@@ -16,8 +16,6 @@
 #include <lwip/arch.h>
 #include <lwip/api.h>
 
-double THETA1, THETA2, THETA3, THETA4, THETA5;
-
 #define AP_SSID "BCN3D"
 #define AP_PASSPHARSE "bcn3d123"
 #define AP_SSID_HIDDEN 0

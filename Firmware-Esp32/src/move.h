@@ -12,8 +12,8 @@
 
 //Variavel Global
 bool horario = 1, antihorario = 0;
-const double THETA1 = 10, THETA2 = 10, THETA3 = 10, THETA4 = 10, THETA5 = 10;
-const double setepRef1 = 0, setepRef2 = 0, setepRef3 = 0, setepRef4 = 0, setepRef5 = 0;
+double THETA1 = 10, THETA2 = 10, THETA3 = 10, THETA4 = 10, THETA5 = 10;
+double setepRef1 = 0, setepRef2 = 0, setepRef3 = 0, setepRef4 = 0, setepRef5 = 0;
 
 gpio_num_t  stepPinMotor1 = GPIO_NUM_22, directionPinMotor1 = GPIO_NUM_21,
             stepPinMotor2 = GPIO_NUM_19, directionPinMotor2 = GPIO_NUM_18,
@@ -38,6 +38,11 @@ double PIDM1 (double step, double setepRef)
   Ea = E;
   Ei += Dt * E;
 
+  if(Ei > 200)
+    Ei = 200;
+  if(Ei< -200)
+    Ei = -200;
+
   return kp*E + ki*Ei + kd*Ed;
 }
 
@@ -48,6 +53,11 @@ double PIDM2 (double step, double setepRef)
   double Ed = (E-Ea)/Dt;
   Ea = E;
   Ei += Dt * E;
+
+  if(Ei > 200)
+    Ei = 200;
+  if(Ei< -200)
+    Ei = -200;
 
   return kp*E + ki*Ei + kd*Ed;
 }
@@ -60,6 +70,11 @@ double PIDM3 (double step, double setepRef)
   Ea = E;
   Ei += Dt * E;
 
+  if(Ei > 200)
+    Ei = 200;
+  if(Ei< -200)
+    Ei = -200;
+
   return kp*E + ki*Ei + kd*Ed;
 }
 
@@ -71,6 +86,11 @@ double PIDM4 (double step, double setepRef)
   Ea = E;
   Ei += Dt * E;
 
+  if(Ei > 200)
+    Ei = 200;
+  if(Ei< -200)
+    Ei = -200;
+
   return kp*E + ki*Ei + kd*Ed;
 }
 
@@ -81,6 +101,11 @@ double PIDM5 (double step, double setepRef)
   double Ed = (E-Ea)/Dt;
   Ea = E;
   Ei += Dt * E;
+
+  if(Ei > 200)
+    Ei = 200;
+  if(Ei< -200)
+    Ei = -200;
 
   return kp*E + ki*Ei + kd*Ed;
 }
@@ -97,10 +122,12 @@ void stepControlMotor01(void *pvParameter)
 {
    while(true){
      if(THETA1 > 0){
+       if(THETA1 > 200) THETA1 = 200;
        motor1->newStep(PIDM1(THETA1, setepRef1), horario,15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
      }
      if(THETA1 < 0){
+       if(THETA1 < -200) THETA1 = -200;
        motor1->newStep(PIDM1(THETA1, setepRef1), antihorario,15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
      }
@@ -112,10 +139,12 @@ void stepControlMotor02(void *pvParameter)
 {
    while(true){
      if(THETA2 > 0){
+       if(THETA2 > 200) THETA2 = 200;
        motor2->newStep(PIDM2(THETA2, setepRef2), antihorario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
      }
      if(THETA2 < 0){
+       if(THETA2 < -200) THETA2 = -200;
        motor2->newStep(PIDM2(THETA2, setepRef2), horario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
      }
@@ -127,10 +156,12 @@ void stepControlMotor03(void *pvParameter)
 {
    while(true){
      if(THETA3 > 0){
+       if(THETA3 > 200) THETA3 = 200;
        motor3->newStep(PIDM3(THETA3, setepRef3), horario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
      }
      if(THETA3 < 0){
+       if(THETA3 < -200) THETA3 = -200;
        motor3->newStep(PIDM3(THETA3, setepRef3), antihorario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
      }
@@ -142,10 +173,12 @@ void stepControlMotor04(void *pvParameter)
 {
    while(true){
      if(THETA4 > 0){
+       if(THETA4 > 200) THETA4 = 200;
        motor4->newStep(PIDM4(THETA4, setepRef4), horario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
      }
      if(THETA4 < 0){
+       if(THETA4 < -200) THETA4 = -200;
        motor4->newStep(PIDM4(THETA4, setepRef4), antihorario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
      }
@@ -157,10 +190,12 @@ void stepControlMotor05(void *pvParameter)
 {
    while(true){
      if(THETA5 > 0){
+       if(THETA5 > 200) THETA5 = 200;
        motor5->newStep(PIDM5(THETA5, setepRef5), horario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
      }
      if(THETA5 < 0){
+       if(THETA5 < -200) THETA5 = -200;
        motor5->newStep(PIDM5(THETA5, setepRef5), antihorario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
      }
