@@ -11,14 +11,16 @@
 #include "servomotor.h"
 
 //Variavel Global
+bool horario = 1, antihorario = 0;
+const double THETA1 = 10, THETA2 = 10, THETA3 = 10, THETA4 = 10, THETA5 = 10;
+const double setepRef1 = 0, setepRef2 = 0, setepRef3 = 0, setepRef4 = 0, setepRef5 = 0;
+
 gpio_num_t  stepPinMotor1 = GPIO_NUM_22, directionPinMotor1 = GPIO_NUM_21,
             stepPinMotor2 = GPIO_NUM_19, directionPinMotor2 = GPIO_NUM_18,
             stepPinMotor3 = GPIO_NUM_17, directionPinMotor3 = GPIO_NUM_16,
             stepPinMotor4 = GPIO_NUM_25, directionPinMotor4 = GPIO_NUM_26,
             stepPinMotor5 = GPIO_NUM_32, directionPinMotor5 = GPIO_NUM_33,
             servoPin = GPIO_NUM_14;
-
-bool horario = 1, antihorario = 0;
 
 stepperA4988 *motor1=new stepperA4988(stepPinMotor1, directionPinMotor1);
 stepperA4988 *motor2=new stepperA4988(stepPinMotor2, directionPinMotor2);
@@ -94,9 +96,9 @@ void controlMotorGarra(void*arg)
 void stepControlMotor01(void *pvParameter)
 {
    while(true){
-       motor1->newStep(PIDM1(10, 15), horario,15);
+       motor1->newStep(PIDM1(THETA1, setepRef1), horario,15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
-       motor1->newStep(PIDM1(10, 15), antihorario,15);
+       motor1->newStep(PIDM1(THETA1, setepRef1), antihorario,15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
 
    }
@@ -107,9 +109,9 @@ void stepControlMotor01(void *pvParameter)
 void stepControlMotor02(void *pvParameter)
 {
    while(true){
-       motor2->newStep(PIDM2(10, 15), antihorario, 15);
+       motor2->newStep(PIDM2(THETA2, setepRef2), antihorario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
-       motor2->newStep(PIDM2(10, 15), horario, 15);
+       motor2->newStep(PIDM2(THETA2, setepRef2), horario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
 
    }
@@ -120,9 +122,9 @@ void stepControlMotor02(void *pvParameter)
 void stepControlMotor03(void *pvParameter)
 {
    while(true){
-       motor3->newStep(PIDM3(10, 15), horario, 15);
+       motor3->newStep(PIDM3(THETA3, setepRef3), horario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
-       motor3->newStep(PIDM3(10, 15), antihorario, 15);
+       motor3->newStep(PIDM3(THETA3, setepRef3), antihorario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
 
    }
@@ -132,9 +134,9 @@ void stepControlMotor03(void *pvParameter)
 void stepControlMotor04(void *pvParameter)
 {
    while(true){
-       motor4->newStep(PIDM4(10, 15), horario, 15);
+       motor4->newStep(PIDM4(THETA4, setepRef4), horario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
-       motor4->newStep(PIDM4(10, 15), antihorario, 15);
+       motor4->newStep(PIDM4(THETA4, setepRef4), antihorario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
 
    }
@@ -144,11 +146,10 @@ void stepControlMotor04(void *pvParameter)
 void stepControlMotor05(void *pvParameter)
 {
    while(true){
-       motor5->newStep(PIDM5(10, 15), horario, 15);
+       motor5->newStep(PIDM5(THETA5, setepRef5), horario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
-       motor5->newStep(PIDM5(10, 15), antihorario, 15);
+       motor5->newStep(PIDM5(THETA5, setepRef5), antihorario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
-
    }
    vTaskDelay(portMAX_DELAY);
 }
