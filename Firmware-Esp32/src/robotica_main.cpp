@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "driver/gpio.h"
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
+//#include "FreeRTOS.h"
+#include "task.h"
 #include "esp_system.h"
 #include "esp_spi_flash.h"
 #include "stepperA4988.h"
@@ -110,11 +110,11 @@ extern "C" void app_main()
     xTaskCreate(controlMotor, "controlMotorGarra", 1024 * 2, NULL, 5, NULL);
 
     while( true){
-      xTaskCreate(stepControlMotor01, "stepControlMotor01", configMINIMAL_STACK_SIZE, NULL, 2, NULL);
-      xTaskCreate(stepControlMotor02, "stepControlMotor02", configMINIMAL_STACK_SIZE, NULL, 5, NULL);
-      xTaskCreate(stepControlMotor03, "stepControlMotor03", configMINIMAL_STACK_SIZE, NULL, 5, NULL);
-      xTaskCreate(stepControlMotor04, "stepControlMotor04", configMINIMAL_STACK_SIZE, NULL, 5, NULL);
+      xTaskCreate(stepControlMotor01, "stepControlMotor01", configMINIMAL_STACK_SIZE, NULL, 1, NULL);
+      xTaskCreate(stepControlMotor02, "stepControlMotor02", configMINIMAL_STACK_SIZE, NULL, 2, NULL);
+      xTaskCreate(stepControlMotor03, "stepControlMotor03", configMINIMAL_STACK_SIZE, NULL, 3, NULL);
+      xTaskCreate(stepControlMotor04, "stepControlMotor04", configMINIMAL_STACK_SIZE, NULL, 4, NULL);
       xTaskCreate(stepControlMotor05, "stepControlMotor05", configMINIMAL_STACK_SIZE, NULL, 5, NULL);
-        sdk_os_delay_ms(10);
+      //sdk_os_delay_ms(10);
     }
 }
