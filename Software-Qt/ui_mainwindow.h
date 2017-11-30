@@ -1055,16 +1055,18 @@ public:
 
         menuBar->addAction(menumenu->menuAction());
         menumenu->addAction(actionConnect);
+        menumenu->addSeparator();
         menumenu->addAction(actionPreview);
         menumenu->addAction(actionWebcam);
         menumenu->addAction(actionButtons);
-        menumenu->addAction(actionExit);
         menumenu->addAction(actionAlualizar_Imagem);
         menumenu->addAction(actionusar_imagem_salva);
+        menumenu->addSeparator();
+        menumenu->addAction(actionExit);
 
         retranslateUi(MainWindow);
 
-        result->setCurrentIndex(0);
+        result->setCurrentIndex(4);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1076,31 +1078,31 @@ public:
 #ifndef QT_NO_TOOLTIP
         MainWindow->setToolTip(QString());
 #endif // QT_NO_TOOLTIP
-        actionPreview->setText(QApplication::translate("MainWindow", "preview", Q_NULLPTR));
+        actionPreview->setText(QApplication::translate("MainWindow", "Preview", Q_NULLPTR));
 #ifndef QT_NO_SHORTCUT
         actionPreview->setShortcut(QApplication::translate("MainWindow", "Ctrl+P", Q_NULLPTR));
 #endif // QT_NO_SHORTCUT
-        actionExit->setText(QApplication::translate("MainWindow", "exit", Q_NULLPTR));
+        actionExit->setText(QApplication::translate("MainWindow", "Exit", Q_NULLPTR));
 #ifndef QT_NO_SHORTCUT
         actionExit->setShortcut(QApplication::translate("MainWindow", "Ctrl+E", Q_NULLPTR));
 #endif // QT_NO_SHORTCUT
-        actionConnect->setText(QApplication::translate("MainWindow", "connect", Q_NULLPTR));
+        actionConnect->setText(QApplication::translate("MainWindow", "Connect", Q_NULLPTR));
 #ifndef QT_NO_SHORTCUT
         actionConnect->setShortcut(QApplication::translate("MainWindow", "Ctrl+Alt+C", Q_NULLPTR));
 #endif // QT_NO_SHORTCUT
-        actionButtons->setText(QApplication::translate("MainWindow", "buttons", Q_NULLPTR));
+        actionButtons->setText(QApplication::translate("MainWindow", "Buttons", Q_NULLPTR));
 #ifndef QT_NO_SHORTCUT
         actionButtons->setShortcut(QApplication::translate("MainWindow", "Ctrl+B", Q_NULLPTR));
 #endif // QT_NO_SHORTCUT
-        actionWebcam->setText(QApplication::translate("MainWindow", "webcam", Q_NULLPTR));
+        actionWebcam->setText(QApplication::translate("MainWindow", "Webcam", Q_NULLPTR));
 #ifndef QT_NO_SHORTCUT
         actionWebcam->setShortcut(QApplication::translate("MainWindow", "Ctrl+W", Q_NULLPTR));
 #endif // QT_NO_SHORTCUT
-        actionAlualizar_Imagem->setText(QApplication::translate("MainWindow", "Alualizar Imagem", Q_NULLPTR));
+        actionAlualizar_Imagem->setText(QApplication::translate("MainWindow", "Update Image", Q_NULLPTR));
 #ifndef QT_NO_SHORTCUT
         actionAlualizar_Imagem->setShortcut(QApplication::translate("MainWindow", "Ctrl+R", Q_NULLPTR));
 #endif // QT_NO_SHORTCUT
-        actionusar_imagem_salva->setText(QApplication::translate("MainWindow", "usar imagem salva", Q_NULLPTR));
+        actionusar_imagem_salva->setText(QApplication::translate("MainWindow", "Use Saved Image", Q_NULLPTR));
 #ifndef QT_NO_SHORTCUT
         actionusar_imagem_salva->setShortcut(QApplication::translate("MainWindow", "Ctrl+U", Q_NULLPTR));
 #endif // QT_NO_SHORTCUT
@@ -1227,7 +1229,7 @@ public:
         result->setTabText(result->indexOf(cinematica), QApplication::translate("MainWindow", "Cinem\303\241tica", Q_NULLPTR));
         set_saved_img_0->setText(QApplication::translate("MainWindow", "USAR  IMAGEM SALVA", Q_NULLPTR));
         refresh->setText(QApplication::translate("MainWindow", "ATUALIZAR IMAGENS", Q_NULLPTR));
-        menumenu->setTitle(QApplication::translate("MainWindow", "menu", Q_NULLPTR));
+        menumenu->setTitle(QApplication::translate("MainWindow", "Menu", Q_NULLPTR));
     } // retranslateUi
 
 };
