@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.9.1
+** Created by: Qt User Interface Compiler version 5.9.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -70,15 +70,10 @@ public:
     QPushButton *pushButton_Enviar;
     QWidget *camera;
     QGridLayout *gridLayout_2;
-    QLabel *label;
-    QLabel *label_5;
-    QSlider *resize_img;
-    QSlider *resize_cam;
     QVBoxLayout *verticalLayout;
     QWidget *webcam;
     QCheckBox *check_saved_img;
     QPushButton *pushButton;
-    QLabel *label_2;
     QWidget *result_0;
     QGridLayout *gridLayout_3;
     QVBoxLayout *verticalLayout_16;
@@ -90,6 +85,8 @@ public:
     QHBoxLayout *horizontalLayout_IMG;
     QLabel *label_after_blue;
     QLabel *label_after_red;
+    QSlider *resizeImg;
+    QLabel *label;
     QWidget *buttons;
     QGridLayout *gridLayout_5;
     QVBoxLayout *coluna_Red;
@@ -195,6 +192,7 @@ public:
     QLabel *label_12;
     QPushButton *set_saved_img_0;
     QPushButton *refresh;
+    QPushButton *ImageProcess;
     QStatusBar *statusBar;
     QMenuBar *menuBar;
     QMenu *menumenu;
@@ -230,7 +228,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1297, 693));
+        scrollAreaWidgetContents->setGeometry(QRect(0, -74, 1283, 792));
         gridLayout_8 = new QGridLayout(scrollAreaWidgetContents);
         gridLayout_8->setSpacing(6);
         gridLayout_8->setContentsMargins(11, 11, 11, 11);
@@ -337,28 +335,6 @@ public:
         gridLayout_2->setSpacing(6);
         gridLayout_2->setContentsMargins(11, 11, 11, 11);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
-        label = new QLabel(camera);
-        label->setObjectName(QStringLiteral("label"));
-
-        gridLayout_2->addWidget(label, 1, 1, 1, 1);
-
-        label_5 = new QLabel(camera);
-        label_5->setObjectName(QStringLiteral("label_5"));
-
-        gridLayout_2->addWidget(label_5, 0, 1, 1, 2);
-
-        resize_img = new QSlider(camera);
-        resize_img->setObjectName(QStringLiteral("resize_img"));
-        resize_img->setOrientation(Qt::Vertical);
-
-        gridLayout_2->addWidget(resize_img, 2, 2, 1, 1);
-
-        resize_cam = new QSlider(camera);
-        resize_cam->setObjectName(QStringLiteral("resize_cam"));
-        resize_cam->setOrientation(Qt::Vertical);
-
-        gridLayout_2->addWidget(resize_cam, 2, 1, 1, 1);
-
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
@@ -399,12 +375,7 @@ public:
         verticalLayout->addWidget(pushButton);
 
 
-        gridLayout_2->addLayout(verticalLayout, 2, 0, 1, 1);
-
-        label_2 = new QLabel(camera);
-        label_2->setObjectName(QStringLiteral("label_2"));
-
-        gridLayout_2->addWidget(label_2, 1, 2, 1, 1);
+        gridLayout_2->addLayout(verticalLayout, 0, 0, 1, 1);
 
         result->addTab(camera, QString());
         result_0 = new QWidget();
@@ -468,6 +439,17 @@ public:
 
 
         gridLayout_3->addLayout(verticalLayout_16, 0, 0, 1, 1);
+
+        resizeImg = new QSlider(result_0);
+        resizeImg->setObjectName(QStringLiteral("resizeImg"));
+        resizeImg->setOrientation(Qt::Vertical);
+
+        gridLayout_3->addWidget(resizeImg, 0, 1, 1, 1);
+
+        label = new QLabel(result_0);
+        label->setObjectName(QStringLiteral("label"));
+
+        gridLayout_3->addWidget(label, 1, 1, 1, 1);
 
         result->addTab(result_0, QString());
         buttons = new QWidget();
@@ -978,7 +960,7 @@ public:
 
         layoutWidget1 = new QWidget(cinematica);
         layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(520, 230, 181, 70));
+        layoutWidget1->setGeometry(QRect(520, 230, 181, 90));
         gridLayout_10 = new QGridLayout(layoutWidget1);
         gridLayout_10->setSpacing(6);
         gridLayout_10->setContentsMargins(11, 11, 11, 11);
@@ -1024,7 +1006,7 @@ public:
         set_saved_img_0 = new QPushButton(scrollAreaWidgetContents);
         set_saved_img_0->setObjectName(QStringLiteral("set_saved_img_0"));
 
-        gridLayout_8->addWidget(set_saved_img_0, 1, 0, 1, 1);
+        gridLayout_8->addWidget(set_saved_img_0, 2, 0, 1, 1);
 
         refresh = new QPushButton(scrollAreaWidgetContents);
         refresh->setObjectName(QStringLiteral("refresh"));
@@ -1035,7 +1017,12 @@ public:
         refresh->setAutoDefault(false);
         refresh->setFlat(false);
 
-        gridLayout_8->addWidget(refresh, 2, 0, 1, 1);
+        gridLayout_8->addWidget(refresh, 3, 0, 1, 1);
+
+        ImageProcess = new QPushButton(scrollAreaWidgetContents);
+        ImageProcess->setObjectName(QStringLiteral("ImageProcess"));
+
+        gridLayout_8->addWidget(ImageProcess, 1, 0, 1, 1);
 
         scrollArea->setWidget(scrollAreaWidgetContents);
 
@@ -1047,7 +1034,7 @@ public:
         MainWindow->setStatusBar(statusBar);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1317, 21));
+        menuBar->setGeometry(QRect(0, 0, 1317, 25));
         menuBar->setStyleSheet(QStringLiteral("background-color: rgb(186, 189, 182);"));
         menumenu = new QMenu(menuBar);
         menumenu->setObjectName(QStringLiteral("menumenu"));
@@ -1066,7 +1053,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        result->setCurrentIndex(4);
+        result->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1114,16 +1101,14 @@ public:
         label_SliderDir->setText(QString());
         pushButton_Enviar->setText(QApplication::translate("MainWindow", "Enviar", Q_NULLPTR));
         result->setTabText(result->indexOf(connect), QApplication::translate("MainWindow", "Conex\303\243o", Q_NULLPTR));
-        label->setText(QApplication::translate("MainWindow", "cam", Q_NULLPTR));
-        label_5->setText(QApplication::translate("MainWindow", "RESIZE", Q_NULLPTR));
         pushButton->setText(QApplication::translate("MainWindow", "TIRAR FOTO", Q_NULLPTR));
-        label_2->setText(QApplication::translate("MainWindow", "img", Q_NULLPTR));
         result->setTabText(result->indexOf(camera), QApplication::translate("MainWindow", "Capture", Q_NULLPTR));
         texto_antes->setText(QApplication::translate("MainWindow", "ANTES DO PROCESSAMENTO", Q_NULLPTR));
         label_before->setText(QString());
         texto_depois->setText(QApplication::translate("MainWindow", "DEPOIS DO PROCESSAMENTO", Q_NULLPTR));
         label_after_blue->setText(QString());
         label_after_red->setText(QString());
+        label->setText(QString());
         result->setTabText(result->indexOf(result_0), QApplication::translate("MainWindow", "Result", Q_NULLPTR));
         label_red_filter_0->setText(QApplication::translate("MainWindow", "value                  filter ", Q_NULLPTR));
         filter_red_0->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
@@ -1229,6 +1214,7 @@ public:
         result->setTabText(result->indexOf(cinematica), QApplication::translate("MainWindow", "Cinem\303\241tica", Q_NULLPTR));
         set_saved_img_0->setText(QApplication::translate("MainWindow", "USAR  IMAGEM SALVA", Q_NULLPTR));
         refresh->setText(QApplication::translate("MainWindow", "ATUALIZAR IMAGENS", Q_NULLPTR));
+        ImageProcess->setText(QApplication::translate("MainWindow", "PROCESSAR IMAGEM", Q_NULLPTR));
         menumenu->setTitle(QApplication::translate("MainWindow", "Menu", Q_NULLPTR));
     } // retranslateUi
 

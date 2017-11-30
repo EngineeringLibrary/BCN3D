@@ -160,6 +160,8 @@ private slots:
 
     void on_pushButton_GenSteps_clicked();
 
+    void on_ImageProcess_clicked();
+
 signals :
 
 private:

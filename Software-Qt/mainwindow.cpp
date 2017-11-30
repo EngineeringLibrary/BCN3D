@@ -114,6 +114,12 @@ bool MainWindow::checkCameras()
     }
 }
 
+void MainWindow::on_ImageProcess_clicked()
+{
+    processamentoImagem();//faz todo o processamento da imagem encontra as posicoes reais dos objetos
+}
+
+
 void MainWindow::on_pushButton_clicked()
 {
     camera->searchAndLock();
@@ -168,6 +174,9 @@ void MainWindow::disableTab(int except){
 }
 
 void MainWindow::processamentoImagem(){
+
+    gray_blue->setGray(mat_complete->getRed());//pode parecer errado mais esta certo
+    gray_red->setGray(mat_complete->getBlue());//pode parecer errado mais esta certo
 
 
     //    PARTE AZUL
@@ -269,11 +278,6 @@ void MainWindow::set_saved_img(const bool use)
         *img = ImageProcessing::RGBImage2QImage<unsigned>(*mat_complete);
         result_view(*img,true,true);
         //        passa de rgb para  escala de cinza invertendo as cores
-        gray_blue->setGray(mat_complete->getRed());//pode parecer errado mais esta certo
-        gray_red->setGray(mat_complete->getBlue());//pode parecer errado mais esta certo
-
-        processamentoImagem();//faz todo o processamento da imagem encontra as posicoes reais dos objetos
-
 
     }
 }
@@ -291,10 +295,6 @@ void MainWindow::processCaptureImage(int requestId,const QImage& imgs){
     //   mostrando imagem antes do processamento
     result_view(*img,true,true);
     *mat_complete = ImageProcessing::QImage2RGBImage<unsigned>(*img);
-    gray_blue->setGray(255-mat_complete->getBlue());
-    gray_red->setGray(255-mat_complete->getRed());
-
-    processamentoImagem();
 
 }
 
@@ -775,6 +775,8 @@ void MainWindow::on_actionPreview_triggered()
 
 void MainWindow::on_refresh_clicked()
 {
+    QImage temp = ImageProcessing::RGBImage2QImage(*mat_complete);
+    result_view(temp,false,false);
     result_view(*Qimg_blue_,false,false);
     result_view(*Qimg_red_,false,true);
 }
@@ -997,4 +999,5 @@ void MainWindow::on_pushButton_GenSteps_clicked()
 }
 
 // END --------------------------EVENTS: CINEMÁTICA INVERSA------------------------
+
 
