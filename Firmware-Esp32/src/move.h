@@ -2,6 +2,7 @@
 #define MOVE_H
 
 #include <stdio.h>
+#include <string.h>
 #include "driver/gpio.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -122,12 +123,12 @@ void stepControlMotor01(void *pvParameter)
 {
    while(true){
      if(THETA1 > 0){
-       if(THETA1 > 200) THETA1 = 200;
+       if(THETA1 > 800) THETA1 = 800;
        motor1->newStep(PIDM1(THETA1, setepRef1), horario,15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
      }
      if(THETA1 < 0){
-       if(THETA1 < -200) THETA1 = -200;
+       if(THETA1 < -800) THETA1 = -800;
        motor1->newStep(PIDM1(THETA1, setepRef1), antihorario,15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
      }
@@ -139,12 +140,12 @@ void stepControlMotor02(void *pvParameter)
 {
    while(true){
      if(THETA2 > 0){
-       if(THETA2 > 200) THETA2 = 200;
+       if(THETA2 > 1066) THETA2 = 1066;
        motor2->newStep(PIDM2(THETA2, setepRef2), antihorario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
      }
      if(THETA2 < 0){
-       if(THETA2 < -200) THETA2 = -200;
+       if(THETA2 < -1066) THETA2 = -1066;
        motor2->newStep(PIDM2(THETA2, setepRef2), horario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
      }
@@ -156,12 +157,12 @@ void stepControlMotor03(void *pvParameter)
 {
    while(true){
      if(THETA3 > 0){
-       if(THETA3 > 200) THETA3 = 200;
+       if(THETA3 > 1066) THETA3 = 1066;
        motor3->newStep(PIDM3(THETA3, setepRef3), horario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
      }
      if(THETA3 < 0){
-       if(THETA3 < -200) THETA3 = -200;
+       if(THETA3 < -1066) THETA3 = -1066;
        motor3->newStep(PIDM3(THETA3, setepRef3), antihorario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
      }
@@ -173,12 +174,12 @@ void stepControlMotor04(void *pvParameter)
 {
    while(true){
      if(THETA4 > 0){
-       if(THETA4 > 200) THETA4 = 200;
+       if(THETA4 > 3200) THETA4 = 3200;
        motor4->newStep(PIDM4(THETA4, setepRef4), horario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
      }
      if(THETA4 < 0){
-       if(THETA4 < -200) THETA4 = -200;
+       if(THETA4 < -3200) THETA4 = -3200;
        motor4->newStep(PIDM4(THETA4, setepRef4), antihorario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
      }
@@ -190,12 +191,12 @@ void stepControlMotor05(void *pvParameter)
 {
    while(true){
      if(THETA5 > 0){
-       if(THETA5 > 200) THETA5 = 200;
+       if(THETA5 > 800) THETA5 = 800;
        motor5->newStep(PIDM5(THETA5, setepRef5), horario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
      }
      if(THETA5 < 0){
-       if(THETA5 < -200) THETA5 = -200;
+       if(THETA5 < -800) THETA5 = -800;
        motor5->newStep(PIDM5(THETA5, setepRef5), antihorario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
      }
@@ -203,4 +204,13 @@ void stepControlMotor05(void *pvParameter)
    vTaskDelay(portMAX_DELAY);
 }
 
+void moveHndler(char *THETAS){
+  //char len = strlen(THETAS);
+  for(int i = 0; i < strlen(THETAS); ++i){
+    if(THETAS[i] == 32){
+      if(THETAS[i] != 32 && THETAS[i] != 44)
+        THETA1 = THETAS[i];
+    }
+  }
+}
 #endif
