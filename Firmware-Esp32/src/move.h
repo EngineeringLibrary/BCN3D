@@ -96,37 +96,44 @@ void controlMotorGarra(void*arg)
 void stepControlMotor01(void *pvParameter)
 {
    while(true){
+     if(THETA1 > 0){
        motor1->newStep(PIDM1(THETA1, setepRef1), horario,15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
+     }
+     if(THETA1 < 0){
        motor1->newStep(PIDM1(THETA1, setepRef1), antihorario,15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
-
+     }
    }
    vTaskDelay(portMAX_DELAY);
-
 }
 
 void stepControlMotor02(void *pvParameter)
 {
    while(true){
+     if(THETA2 > 0){
        motor2->newStep(PIDM2(THETA2, setepRef2), antihorario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
+     }
+     if(THETA2 < 0){
        motor2->newStep(PIDM2(THETA2, setepRef2), horario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
-
+     }
    }
-
    vTaskDelay(portMAX_DELAY);
 }
 
 void stepControlMotor03(void *pvParameter)
 {
    while(true){
+     if(THETA3 > 0){
        motor3->newStep(PIDM3(THETA3, setepRef3), horario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
+     }
+     if(THETA3 < 0){
        motor3->newStep(PIDM3(THETA3, setepRef3), antihorario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
-
+     }
    }
    vTaskDelay(portMAX_DELAY);
 }
@@ -134,11 +141,14 @@ void stepControlMotor03(void *pvParameter)
 void stepControlMotor04(void *pvParameter)
 {
    while(true){
+     if(THETA4 > 0){
        motor4->newStep(PIDM4(THETA4, setepRef4), horario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
+     }
+     if(THETA4 < 0){
        motor4->newStep(PIDM4(THETA4, setepRef4), antihorario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
-
+     }
    }
    vTaskDelay(portMAX_DELAY);
 }
@@ -146,10 +156,14 @@ void stepControlMotor04(void *pvParameter)
 void stepControlMotor05(void *pvParameter)
 {
    while(true){
+     if(THETA5 > 0){
        motor5->newStep(PIDM5(THETA5, setepRef5), horario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
+     }
+     if(THETA5 < 0){
        motor5->newStep(PIDM5(THETA5, setepRef5), antihorario, 15);
        vTaskDelay(1000 / portTICK_PERIOD_MS);
+     }
    }
    vTaskDelay(portMAX_DELAY);
 }
