@@ -31,8 +31,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1283</width>
-         <height>758</height>
+         <width>1297</width>
+         <height>693</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_8">
@@ -47,7 +47,7 @@
              </sizepolicy>
             </property>
             <property name="currentIndex">
-             <number>2</number>
+             <number>4</number>
             </property>
             <widget class="QWidget" name="connect">
              <attribute name="title">
@@ -100,10 +100,10 @@
                 </item>
                </layout>
               </item>
-              <item row="1" column="0">
+              <item row="2" column="0">
                <widget class="QLineEdit" name="lineEdit"/>
               </item>
-              <item row="2" column="0">
+              <item row="4" column="0">
                <widget class="QWidget" name="widget" native="true">
                 <widget class="QLabel" name="label_SliderEsq">
                  <property name="geometry">
@@ -133,6 +133,16 @@
                 </widget>
                </widget>
               </item>
+              <item row="1" column="0">
+               <widget class="QTextEdit" name="textEdit_Console"/>
+              </item>
+              <item row="3" column="0">
+               <widget class="QPushButton" name="pushButton_Enviar">
+                <property name="text">
+                 <string>Enviar</string>
+                </property>
+               </widget>
+              </item>
              </layout>
             </widget>
             <widget class="QWidget" name="camera">
@@ -143,7 +153,7 @@
               </sizepolicy>
              </property>
              <attribute name="title">
-              <string>capture</string>
+              <string>Capture</string>
              </attribute>
              <layout class="QGridLayout" name="gridLayout_2">
               <item row="1" column="1">
@@ -260,7 +270,7 @@
             </widget>
             <widget class="QWidget" name="result_0">
              <attribute name="title">
-              <string>result</string>
+              <string>Result</string>
              </attribute>
              <layout class="QGridLayout" name="gridLayout_3">
               <item row="0" column="0">
@@ -1095,6 +1105,167 @@
               </item>
              </layout>
             </widget>
+            <widget class="QWidget" name="cinematica">
+             <attribute name="title">
+              <string>Cinemática</string>
+             </attribute>
+             <widget class="QLabel" name="label_7">
+              <property name="geometry">
+               <rect>
+                <x>130</x>
+                <y>237</y>
+                <width>91</width>
+                <height>16</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Qtd. Objetos:</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_QtdObj">
+              <property name="geometry">
+               <rect>
+                <x>220</x>
+                <y>240</y>
+                <width>47</width>
+                <height>13</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="pushButton_GetPositions">
+              <property name="geometry">
+               <rect>
+                <x>180</x>
+                <y>280</y>
+                <width>133</width>
+                <height>23</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Get Positions</string>
+              </property>
+             </widget>
+             <widget class="QWidget" name="layoutWidget">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>10</y>
+                <width>1231</width>
+                <height>213</height>
+               </rect>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_9">
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_6">
+                 <property name="text">
+                  <string>Posição dos Objetos:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLabel" name="label_9">
+                 <property name="text">
+                  <string>Deslocamentos:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <widget class="QLabel" name="label_8">
+                 <property name="text">
+                  <string>Angulos para o movimento das juntas:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QTextEdit" name="textEdit_PosObj"/>
+               </item>
+               <item row="1" column="1">
+                <widget class="QTextEdit" name="textEdit_Deslocamentos"/>
+               </item>
+               <item row="1" column="2">
+                <widget class="QTextEdit" name="textEdit_Angulos"/>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="layoutWidget">
+              <property name="geometry">
+               <rect>
+                <x>520</x>
+                <y>230</y>
+                <width>181</width>
+                <height>70</height>
+               </rect>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_10">
+               <item row="0" column="1">
+                <widget class="QLabel" name="label_11">
+                 <property name="text">
+                  <string>&quot; X, Y, Z&quot;</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_10">
+                 <property name="text">
+                  <string>Destino:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLineEdit" name="lineEdit_Destino"/>
+               </item>
+               <item row="2" column="1">
+                <widget class="QPushButton" name="pushButton_GetTrack">
+                 <property name="text">
+                  <string>Get Track</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QPushButton" name="pushButton_GenSteps">
+              <property name="geometry">
+               <rect>
+                <x>970</x>
+                <y>280</y>
+                <width>133</width>
+                <height>23</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Generate Steps</string>
+              </property>
+             </widget>
+             <widget class="QTextEdit" name="textEdit_StepTrack">
+              <property name="geometry">
+               <rect>
+                <x>830</x>
+                <y>350</y>
+                <width>406</width>
+                <height>192</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_12">
+              <property name="geometry">
+               <rect>
+                <x>840</x>
+                <y>330</y>
+                <width>391</width>
+                <height>16</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Trajetória convertida em passos:</string>
+              </property>
+             </widget>
+            </widget>
            </widget>
           </item>
          </layout>
@@ -1150,7 +1321,7 @@
      <x>0</x>
      <y>0</y>
      <width>1317</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -1158,21 +1329,23 @@
    </property>
    <widget class="QMenu" name="menumenu">
     <property name="title">
-     <string>menu</string>
+     <string>Menu</string>
     </property>
     <addaction name="actionConnect"/>
+    <addaction name="separator"/>
     <addaction name="actionPreview"/>
     <addaction name="actionWebcam"/>
     <addaction name="actionButtons"/>
-    <addaction name="actionExit"/>
     <addaction name="actionAlualizar_Imagem"/>
     <addaction name="actionusar_imagem_salva"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
    </widget>
    <addaction name="menumenu"/>
   </widget>
   <action name="actionPreview">
    <property name="text">
-    <string>preview</string>
+    <string>Preview</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
@@ -1180,7 +1353,7 @@
   </action>
   <action name="actionExit">
    <property name="text">
-    <string>exit</string>
+    <string>Exit</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+E</string>
@@ -1188,7 +1361,7 @@
   </action>
   <action name="actionConnect">
    <property name="text">
-    <string>connect</string>
+    <string>Connect</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Alt+C</string>
@@ -1196,7 +1369,7 @@
   </action>
   <action name="actionButtons">
    <property name="text">
-    <string>buttons</string>
+    <string>Buttons</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+B</string>
@@ -1204,7 +1377,7 @@
   </action>
   <action name="actionWebcam">
    <property name="text">
-    <string>webcam</string>
+    <string>Webcam</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+W</string>
@@ -1212,7 +1385,7 @@
   </action>
   <action name="actionAlualizar_Imagem">
    <property name="text">
-    <string>Alualizar Imagem</string>
+    <string>Update Image</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
@@ -1220,7 +1393,7 @@
   </action>
   <action name="actionusar_imagem_salva">
    <property name="text">
-    <string>usar imagem salva</string>
+    <string>Use Saved Image</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+U</string>

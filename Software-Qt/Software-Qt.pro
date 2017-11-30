@@ -24,6 +24,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+QMAKE_CXXFLAGS += -std=c++11
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -45,8 +46,17 @@ HEADERS  += mainwindow.h \
     binaryimage.h \
     client.h \
     result_view.h \
-    ui_result_view
+    ui_result_view \
+    SistemasdeControle/headers/optimizationLibs/pso.h \
+    SistemasdeControle/src/optimizationLibs/pso.hpp \
+    SistemasdeControle/headers/primitiveLibs/LinAlg/linalg.h \
+    SistemasdeControle/src/primitiveLibs/LinAlg/linalg.hpp
 
 
 FORMS    += mainwindow.ui \
     result_view.ui
+
+RC_FILE = myapp.rc
+
+DISTFILES += \
+    bcn3d.ico

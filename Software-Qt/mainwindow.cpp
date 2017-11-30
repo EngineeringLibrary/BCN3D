@@ -6,16 +6,15 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    /* INICIO MODULO WIFI */
 
-    ui->widget->hide();
     dataToSend = "0000000000000";
     this->wifi = nullptr;
-    QTimer *timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-    timer->start(300);
 
-//     mypix = (QDir::currentPath()+"/imageCaptured.jpg");
-//     ui->label_before->setPixmap(mypix);
+    /* FIM MODULO WIFI */
+
+    //     mypix = (QDir::currentPath()+"/imageCaptured.jpg");
+    //     ui->label_before->setPixmap(mypix);
 
     result_img = new Dialog(this);
     camera = new QCamera;
@@ -33,40 +32,40 @@ MainWindow::MainWindow(QWidget *parent) :
     Qimg_red_ = new QImage;
     img = new QImage;
 
-//    ui->webcam->setScaledContents( true );
-//    ui->webcam->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
-//    viewfinder->setMinimumSize(
-//        (ui->webcam->geometry().width()*13),
-//        (ui->webcam->geometry().height()*17)
-//    );
+    //    ui->webcam->setScaledContents( true );
+    //    ui->webcam->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
+    //    viewfinder->setMinimumSize(
+    //        (ui->webcam->geometry().width()*13),
+    //        (ui->webcam->geometry().height()*17)
+    //    );
 
     viewfinder->setMinimumSize(
-        (ui->webcam->geometry().width()*1.5),
-        (ui->webcam->geometry().height()*1.3)
-    );
+                (ui->webcam->geometry().width()*1.5),
+                (ui->webcam->geometry().height()*1.3)
+                );
 
     viewfinder->setMaximumSize(
-        ui->webcam->maximumWidth(),
-        ui->webcam->maximumHeight()
-    );
+                ui->webcam->maximumWidth(),
+                ui->webcam->maximumHeight()
+                );
 
     camera->setViewfinder(viewfinder);
     viewfinder->show();
     imageCapture = new QCameraImageCapture(camera);
     camera->setCaptureMode(QCamera::CaptureStillImage);
-    camera->start();
+    //    camera->start();
 
     connect(imageCapture,
             SIGNAL(imageCaptured(int,QImage)),
-                   this,
-                   SLOT(processCaptureImage(int,QImage)));
+            this,
+            SLOT(processCaptureImage(int,QImage)));
 
-//    connect(imageCapture,
-//            SIGNAL(processCaptureImage(int.QImage)),
-//                   this,
-//                   SLOT(result_update));
-//client_tcp dentro da pasta robotica/rfc
-//    img = ui->label_before->pixmap()->toImage();
+    //    connect(imageCapture,
+    //            SIGNAL(processCaptureImage(int.QImage)),
+    //                   this,
+    //                   SLOT(result_update));
+    //client_tcp dentro da pasta robotica/rfc
+    //    img = ui->label_before->pixmap()->toImage();
 }
 
 MainWindow::~MainWindow()
@@ -76,11 +75,13 @@ MainWindow::~MainWindow()
         delete this->wifi;
 }
 
+//------------------------- PROCESSAMENTO DE IMAGENS--------------------------------
+
 void MainWindow::on_pushButton_clicked()
 {
     camera->searchAndLock();
     imageCapture->capture();
-//    QThread::sleep(2);
+    //    QThread::sleep(2);
 }
 
 void MainWindow::timerClock( unsigned clockTime){
@@ -93,7 +94,7 @@ void emit_result(){
 }
 
 void MainWindow::result_view(QImage &img,bool state, bool colors){
-//    coloca as mesmas img no result_view.ui
+    //    coloca as mesmas img no result_view.ui
     if(!result_img->isHidden()){
         result_img->set_result_view(img,state,colors);
     }
@@ -124,10 +125,18 @@ void MainWindow::result_view(QImage &img,bool state, bool colors){
     }
 }
 
-void MainWindow::on_refresh_clicked()
-{
-    result_view(*Qimg_blue_,false,false);
-    result_view(*Qimg_red_,false,true);
+void MainWindow::enableTab(int except){
+    for(int i= 0;i < ui->result->count();i++){
+        if(i!=except)
+            ui->result->setTabEnabled(i,true);
+    }
+}
+
+void MainWindow::disableTab(int except){
+    for(int i= 0;i < ui->result->count();i++){
+        if(i!=except)
+            ui->result->setTabEnabled(i,false);
+    }
 }
 
 void MainWindow::processamentoImagem(){
@@ -142,7 +151,7 @@ void MainWindow::processamentoImagem(){
     erosion(*bina_blue,false);
     erosion(*bina_blue,false);
     erosion(*bina_blue,false);
-//    erosion(*bina_blue,false);
+    //    erosion(*bina_blue,false);
 
 
     dilation(*bina_blue,false);
@@ -155,10 +164,10 @@ void MainWindow::processamentoImagem(){
 
 
     bound(*bina_blue,false);
-//            std::cout <<"blue: "<< qdt << std::endl;
+    //            std::cout <<"blue: "<< qdt << std::endl;
 
     centroid(*bina_blue,false);
-//        envia posições pra renato
+    //        envia posições pra renato
     qDebug() <<"area blue :" <<area_blue[0]<<" : "<< area_blue[1];
 
     if(area_blue[0] > area_blue[1]){
@@ -169,7 +178,7 @@ void MainWindow::processamentoImagem(){
 
     //    PARTE VERMELHA
 
-//    histrograma(*gray_red);
+    //    histrograma(*gray_red);
     *bina_red = (*gray_red > 8) && (*gray_red < 114);
 
     erosion(*bina_red,true);
@@ -218,7 +227,7 @@ void MainWindow::processamentoImagem(){
 
     Qimg_blue[0] = ImageProcessing::GrayImage2QImage<unsigned>(*gray_blue);
     Qimg_red[0] = ImageProcessing::GrayImage2QImage<unsigned>(*gray_red);
-//        mostra imagem em escala de cinza
+    //        mostra imagem em escala de cinza
     result_view(Qimg_blue[0],false,false);
     result_view(Qimg_red[0],false,true);
 }
@@ -231,7 +240,7 @@ void MainWindow::set_saved_img(const bool use)
         *mat_complete = ImageProcessing::QImage2RGBImage<unsigned>(mypix.toImage());
         *img = ImageProcessing::RGBImage2QImage<unsigned>(*mat_complete);
         result_view(*img,true,true);
-//        passa de rgb para  escala de cinza invertendo as cores
+        //        passa de rgb para  escala de cinza invertendo as cores
         gray_blue->setGray(mat_complete->getRed());//pode parecer errado mais esta certo
         gray_red->setGray(mat_complete->getBlue());//pode parecer errado mais esta certo
 
@@ -246,12 +255,12 @@ void MainWindow::processCaptureImage(int requestId,const QImage& imgs){
 
     QString fileName =  QDir::currentPath()+"/imageCaptured.jpg";
     if(!fileName.isEmpty()){
-//       imgs.save(fileName);
-       std::cout << "save";
+        //       imgs.save(fileName);
+        std::cout << "save";
     }else{
         std::cout << "no save";
     }
-//   mostrando imagem antes do processamento
+    //   mostrando imagem antes do processamento
     result_view(*img,true,true);
     *mat_complete = ImageProcessing::QImage2RGBImage<unsigned>(*img);
     gray_blue->setGray(255-mat_complete->getBlue());
@@ -277,72 +286,72 @@ void MainWindow::filtro(const ImageProcessing::GrayImage<unsigned> &gray_img,con
 }
 
 void MainWindow::linearizar(const ImageProcessing::GrayImage<unsigned> &gray_img,const unsigned scale,const unsigned scale2,const bool color,const unsigned index){
-// linearizar pelo que entendi e passar pela dilataçao blue
+    // linearizar pelo que entendi e passar pela dilataçao blue
     if(!color){
         switch (index) {
-            case 0:
-                qDebug() <<"escolha um tipo  :"<<": ";
-                break;
-            case 1:
-                *bina_blue = gray_img == scale;
-                break;
-            case 2:
-                *bina_blue = gray_img != scale;
-                break;
-            case 3:
-                *bina_blue = gray_img > scale;
-                break;
-            case 4:
-                *bina_blue = gray_img >= scale;
-                break;
-            case 5:
-                *bina_blue = gray_img < scale;
-                break;
-            case 6:
-                *bina_blue = gray_img <= scale;
-                break;
-            case 7:
-                *bina_blue = (gray_img > scale) && (gray_img < scale2);
-                break;
-            case 8:
-                *bina_blue = (gray_img >= scale) && (gray_img <= scale2);
-                break;
-            default:
-                *bina_blue = gray_img > scale;
+        case 0:
+            qDebug() <<"escolha um tipo  :"<<": ";
+            break;
+        case 1:
+            *bina_blue = gray_img == scale;
+            break;
+        case 2:
+            *bina_blue = gray_img != scale;
+            break;
+        case 3:
+            *bina_blue = gray_img > scale;
+            break;
+        case 4:
+            *bina_blue = gray_img >= scale;
+            break;
+        case 5:
+            *bina_blue = gray_img < scale;
+            break;
+        case 6:
+            *bina_blue = gray_img <= scale;
+            break;
+        case 7:
+            *bina_blue = (gray_img > scale) && (gray_img < scale2);
+            break;
+        case 8:
+            *bina_blue = (gray_img >= scale) && (gray_img <= scale2);
+            break;
+        default:
+            *bina_blue = gray_img > scale;
         }
 
     }else{
         switch (index) {
-            case 0:
-                qDebug() <<"escolha um tipo  :"<<": ";
-                break;
-            case 1:
-                *bina_red = gray_img == scale;
-                break;
-            case 2:
-                *bina_red = gray_img != scale;
-                break;
-            case 3:
-                *bina_red = gray_img > scale;
-                break;
-            case 4:
-                *bina_red = gray_img >= scale;
-                break;
-            case 5:
-                *bina_red = gray_img < scale;
-                break;
-            case 6:
-                *bina_red = gray_img <= scale;
-                break;
-            case 7:
-                *bina_blue = (gray_img > scale) && (gray_img < scale2);
-                break;
-            case 8:
-                *bina_blue = (gray_img >= scale) && (gray_img <= scale2);
-                break;
-            default:
-                qDebug() <<"escolha um tipo  :"<<": ";
-                break;
+        case 0:
+            qDebug() <<"escolha um tipo  :"<<": ";
+            break;
+        case 1:
+            *bina_red = gray_img == scale;
+            break;
+        case 2:
+            *bina_red = gray_img != scale;
+            break;
+        case 3:
+            *bina_red = gray_img > scale;
+            break;
+        case 4:
+            *bina_red = gray_img >= scale;
+            break;
+        case 5:
+            *bina_red = gray_img < scale;
+            break;
+        case 6:
+            *bina_red = gray_img <= scale;
+            break;
+        case 7:
+            *bina_blue = (gray_img > scale) && (gray_img < scale2);
+            break;
+        case 8:
+            *bina_blue = (gray_img >= scale) && (gray_img <= scale2);
+            break;
+        default:
+            qDebug() <<"escolha um tipo  :"<<": ";
+            break;
         }
     }
 }
@@ -386,22 +395,22 @@ void MainWindow::histrograma(const ImageProcessing::GrayImage<unsigned> &grayImg
 void MainWindow::centroid( ImageProcessing::BinaryImage &bin_img,const unsigned color)
 {
 
-//    ja devemos ter valores em qdt,segmentoMatrix
+    //    ja devemos ter valores em qdt,segmentoMatrix
     if(!qdt.isNull() && !segmentedMatrix.isNull()){
 
         centroids = ImageProcessing::centroid(bin_img);
         if(!color){
-//          pegando a area do objeto
+            //          pegando a area do objeto
 
             for(unsigned i =1;i<=qdt(1,1);++i){
                 centroids = ImageProcessing::centroid(segmentedMatrix==(i+1));
-//              pegando posicoes dos objetos
+                //              pegando posicoes dos objetos
                 posicao = posicao || ImageProcessing::pixelToWorldMetric(segmentedMatrix,22,26,centroids);
                 this->area_blue[(i-1)] = ImageProcessing::area(segmentedMatrix==(i+2));
                 std::cout << "centroid blue " << std::endl;
                 std::cout << centroids << std::endl;
-//              colocar um ponto no centro da imagem
-//              bina_blue[0] ->   coloco como ponto zero para pegar posição da memoria do ponteiro
+                //              colocar um ponto no centro da imagem
+                //              bina_blue[0] ->   coloco como ponto zero para pegar posição da memoria do ponteiro
                 bina_blue[0](centroids(1,1)-1,centroids(1,2)-1) = 0;
                 bina_blue[0](centroids(1,1)-1,centroids(1,2))   = 0;
                 bina_blue[0](centroids(1,1),  centroids(1,2)-1) = 0;
@@ -410,25 +419,25 @@ void MainWindow::centroid( ImageProcessing::BinaryImage &bin_img,const unsigned 
                 bina_blue[0](centroids(1,1),  centroids(1,2)+1) = 0;
                 bina_blue[0](centroids(1,1)+1,centroids(1,2)+1) = 0;
             }
-        //pego a matriz binaria inverto e retorno invertida
-           *bina_blue = ImageProcessing::BinaryImage((!bina_blue[0]).getBinaryImageMatrix());
-        //    de binario para escala de cinza
+            //pego a matriz binaria inverto e retorno invertida
+            *bina_blue = ImageProcessing::BinaryImage((!bina_blue[0]).getBinaryImageMatrix());
+            //    de binario para escala de cinza
             gray_blue->setGray(this->bina_blue->getBinaryImageMatrix());
-        //    expandindo de binario para escala de cinza
+            //    expandindo de binario para escala de cinza
             gray_blue->setGray(gray_blue->getGray()*100);
-           *Qimg_blue_ = ImageProcessing::GrayImage2QImage<unsigned>(*gray_blue);
+            *Qimg_blue_ = ImageProcessing::GrayImage2QImage<unsigned>(*gray_blue);
         }else{
-        //        pegando a area do objeto
+            //        pegando a area do objeto
 
             for(unsigned i =1;i<=qdt(1,1);++i){
                 centroids = ImageProcessing::centroid(segmentedMatrix==(i+1));
-//              pegando posicoes dos objetos
+                //              pegando posicoes dos objetos
                 posicao = posicao || ImageProcessing::pixelToWorldMetric(segmentedMatrix,22,26,centroids);
                 this->area_red[(i-1)]  = ImageProcessing::area(segmentedMatrix==(i+2));
                 std::cout << "centroid red " << std::endl;
                 std::cout << centroids << std::endl;
-//               colocar um ponto no centro da imagem
-//               bina_blue[0] ->   coloco como ponto zero para pegar posição da memoria do ponteiro
+                //               colocar um ponto no centro da imagem
+                //               bina_blue[0] ->   coloco como ponto zero para pegar posição da memoria do ponteiro
                 bina_red[0](centroids(1,1)-1,centroids(1,2)-1) = 0;
                 bina_red[0](centroids(1,1)-1,centroids(1,2))   = 0;
                 bina_red[0](centroids(1,1),  centroids(1,2)-1) = 0;
@@ -437,115 +446,115 @@ void MainWindow::centroid( ImageProcessing::BinaryImage &bin_img,const unsigned 
                 bina_red[0](centroids(1,1),  centroids(1,2)+1) = 0;
                 bina_red[0](centroids(1,1)+1,centroids(1,2)+1) = 0;
             }
-        //pego a matriz binaria inverto e retorno invertida
-           *bina_red = ImageProcessing::BinaryImage((!bina_red[0]).getBinaryImageMatrix());
-        //    de binario para escala de cinza
+            //pego a matriz binaria inverto e retorno invertida
+            *bina_red = ImageProcessing::BinaryImage((!bina_red[0]).getBinaryImageMatrix());
+            //    de binario para escala de cinza
             gray_red->setGray(this->bina_red->getBinaryImageMatrix());
-        //    expandindo de binario para escala de cinza
+            //    expandindo de binario para escala de cinza
             gray_red->setGray(gray_red->getGray()*100);
-           *Qimg_red_ = ImageProcessing::GrayImage2QImage<unsigned>(*gray_red);
+            *Qimg_red_ = ImageProcessing::GrayImage2QImage<unsigned>(*gray_red);
         }
     }else{
-         qDebug() <<"voce deve calcular bound primeiro ";
+        qDebug() <<"voce deve calcular bound primeiro ";
     }
 }
 
-//--------------------------------------------------------------EVENTS----------------------------------------------------------
+//-------------------------------EVENTS: PROCESSAMENTO DE IMAGENS----------------------------------------------------------
 
 void MainWindow::on_check_saved_img_clicked(bool checked)
 {
-  set_saved_img(checked);
+    set_saved_img(checked);
 }
 
 void MainWindow::on_set_saved_img_0_clicked(bool checked)
 {
-  set_saved_img(!checked);
+    set_saved_img(!checked);
 }
 
 void MainWindow::on_select_blue_0_currentIndexChanged(int index)
 {
     select_blue_0_index = index;
     switch (index) {
-        case 1:
-            *gray_blue = ImageProcessing::filterPrewittHorizontal(*gray_blue);
-            *Qimg_blue_ = ImageProcessing::GrayImage2QImage(*gray_blue);
-            break;
-        case 2:
-            *gray_blue = ImageProcessing::filterPrewittVertical(*gray_blue);
-            *Qimg_blue_ = ImageProcessing::GrayImage2QImage(*gray_blue);
-            break;
-        case 3:
-            *gray_blue = ImageProcessing::filterRobertsHorizontal(*gray_blue);
-            *Qimg_blue_ = ImageProcessing::GrayImage2QImage(*gray_blue);
-            break;
-        case 4:
-            *gray_blue = ImageProcessing::filterRobertsVertical(*gray_blue);
-            *Qimg_blue_ = ImageProcessing::GrayImage2QImage(*gray_blue);
-            break;
-        case 5:
-            *gray_blue = ImageProcessing::filterSobelHorizontal(*gray_blue);
-            *Qimg_blue_ = ImageProcessing::GrayImage2QImage(*gray_blue);
-            break;
-        case 6:
-            *gray_blue = ImageProcessing::filterSobelVertical(*gray_blue);
-            *Qimg_blue_ = ImageProcessing::GrayImage2QImage(*gray_blue);
-            break;
-        case 7:
-            *gray_blue = ImageProcessing::averageFilter(*gray_blue,3);
-            *Qimg_blue_ = ImageProcessing::GrayImage2QImage(*gray_blue);
-            break;
-        case 8:
-            *gray_blue = ImageProcessing::medianFilter(*gray_blue,3);
-            *Qimg_blue_ = ImageProcessing::GrayImage2QImage(*gray_blue);
-            break;
-        case 9:
-            *gray_blue = ImageProcessing::selfreinforceFilter(*gray_blue,3,ui->filter_blue_0->text().toDouble());
-            *Qimg_blue_ = ImageProcessing::GrayImage2QImage(*gray_blue);
-            break;
-        default:
-            break;
+    case 1:
+        *gray_blue = ImageProcessing::filterPrewittHorizontal(*gray_blue);
+        *Qimg_blue_ = ImageProcessing::GrayImage2QImage(*gray_blue);
+        break;
+    case 2:
+        *gray_blue = ImageProcessing::filterPrewittVertical(*gray_blue);
+        *Qimg_blue_ = ImageProcessing::GrayImage2QImage(*gray_blue);
+        break;
+    case 3:
+        *gray_blue = ImageProcessing::filterRobertsHorizontal(*gray_blue);
+        *Qimg_blue_ = ImageProcessing::GrayImage2QImage(*gray_blue);
+        break;
+    case 4:
+        *gray_blue = ImageProcessing::filterRobertsVertical(*gray_blue);
+        *Qimg_blue_ = ImageProcessing::GrayImage2QImage(*gray_blue);
+        break;
+    case 5:
+        *gray_blue = ImageProcessing::filterSobelHorizontal(*gray_blue);
+        *Qimg_blue_ = ImageProcessing::GrayImage2QImage(*gray_blue);
+        break;
+    case 6:
+        *gray_blue = ImageProcessing::filterSobelVertical(*gray_blue);
+        *Qimg_blue_ = ImageProcessing::GrayImage2QImage(*gray_blue);
+        break;
+    case 7:
+        *gray_blue = ImageProcessing::averageFilter(*gray_blue,3);
+        *Qimg_blue_ = ImageProcessing::GrayImage2QImage(*gray_blue);
+        break;
+    case 8:
+        *gray_blue = ImageProcessing::medianFilter(*gray_blue,3);
+        *Qimg_blue_ = ImageProcessing::GrayImage2QImage(*gray_blue);
+        break;
+    case 9:
+        *gray_blue = ImageProcessing::selfreinforceFilter(*gray_blue,3,ui->filter_blue_0->text().toDouble());
+        *Qimg_blue_ = ImageProcessing::GrayImage2QImage(*gray_blue);
+        break;
+    default:
+        break;
     }
 }
 
 void MainWindow::on_button_blue_0_clicked()
 {
     switch (select_blue_0_index) {
-        case 1:
-            *gray_blue = ImageProcessing::filterPrewittHorizontal(*gray_blue);
+    case 1:
+        *gray_blue = ImageProcessing::filterPrewittHorizontal(*gray_blue);
 
-            break;
-        case 2:
-            *gray_blue = ImageProcessing::filterPrewittVertical(*gray_blue);
-            break;
-        case 3:
-            *gray_blue = ImageProcessing::filterRobertsHorizontal(*gray_blue);
+        break;
+    case 2:
+        *gray_blue = ImageProcessing::filterPrewittVertical(*gray_blue);
+        break;
+    case 3:
+        *gray_blue = ImageProcessing::filterRobertsHorizontal(*gray_blue);
 
-            break;
-        case 4:
-            *gray_blue = ImageProcessing::filterRobertsVertical(*gray_blue);
+        break;
+    case 4:
+        *gray_blue = ImageProcessing::filterRobertsVertical(*gray_blue);
 
-            break;
-        case 5:
-            *gray_blue = ImageProcessing::filterSobelHorizontal(*gray_blue);
+        break;
+    case 5:
+        *gray_blue = ImageProcessing::filterSobelHorizontal(*gray_blue);
 
-            break;
-        case 6:
-            *gray_blue = ImageProcessing::filterSobelVertical(*gray_blue);
+        break;
+    case 6:
+        *gray_blue = ImageProcessing::filterSobelVertical(*gray_blue);
 
-            break;
-        case 7:
-            *gray_blue = ImageProcessing::averageFilter(*gray_blue,3);
+        break;
+    case 7:
+        *gray_blue = ImageProcessing::averageFilter(*gray_blue,3);
 
-            break;
-        case 8:
-            *gray_blue = ImageProcessing::medianFilter(*gray_blue,3);
+        break;
+    case 8:
+        *gray_blue = ImageProcessing::medianFilter(*gray_blue,3);
 
-            break;
-        case 9:
-            *gray_blue = ImageProcessing::selfreinforceFilter(*gray_blue,3,ui->filter_blue_0->text().toDouble());
-            break;
-        default:
-            break;
+        break;
+    case 9:
+        *gray_blue = ImageProcessing::selfreinforceFilter(*gray_blue,3,ui->filter_blue_0->text().toDouble());
+        break;
+    default:
+        break;
     }
 }
 
@@ -553,100 +562,100 @@ void MainWindow::on_select_red_0_currentIndexChanged(int index)
 {
     select_red_0_index =  index;
     switch (select_red_0_index) {
-        case 1:
-            *gray_red = ImageProcessing::filterPrewittHorizontal(*gray_red);
-            *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
-            break;
-        case 2:
-            *gray_red = ImageProcessing::filterPrewittVertical(*gray_red);
-            *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
-            break;
-        case 3:
-            *gray_red = ImageProcessing::filterRobertsHorizontal(*gray_red);
-            *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
-            break;
-        case 4:
-            *gray_red = ImageProcessing::filterRobertsVertical(*gray_red);
-            *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
-            break;
-        case 5:
-            *gray_red = ImageProcessing::filterSobelHorizontal(*gray_red);
-            *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
-            break;
-        case 6:
-            *gray_red = ImageProcessing::filterSobelVertical(*gray_red);
-            *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
-            break;
-        case 7:
-            *gray_red = ImageProcessing::averageFilter(*gray_red,3);
-            *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
-            break;
-        case 8:
-            *gray_red = ImageProcessing::medianFilter(*gray_red,3);
-            *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
-            break;
-        case 9:
-            *gray_red = ImageProcessing::selfreinforceFilter(*gray_red,3,ui->filter_red_0->text().toDouble());
-            *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
-            break;
-        default:
-            break;
+    case 1:
+        *gray_red = ImageProcessing::filterPrewittHorizontal(*gray_red);
+        *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
+        break;
+    case 2:
+        *gray_red = ImageProcessing::filterPrewittVertical(*gray_red);
+        *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
+        break;
+    case 3:
+        *gray_red = ImageProcessing::filterRobertsHorizontal(*gray_red);
+        *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
+        break;
+    case 4:
+        *gray_red = ImageProcessing::filterRobertsVertical(*gray_red);
+        *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
+        break;
+    case 5:
+        *gray_red = ImageProcessing::filterSobelHorizontal(*gray_red);
+        *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
+        break;
+    case 6:
+        *gray_red = ImageProcessing::filterSobelVertical(*gray_red);
+        *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
+        break;
+    case 7:
+        *gray_red = ImageProcessing::averageFilter(*gray_red,3);
+        *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
+        break;
+    case 8:
+        *gray_red = ImageProcessing::medianFilter(*gray_red,3);
+        *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
+        break;
+    case 9:
+        *gray_red = ImageProcessing::selfreinforceFilter(*gray_red,3,ui->filter_red_0->text().toDouble());
+        *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
+        break;
+    default:
+        break;
     }
 }
 
 void MainWindow::on_button_red_0_clicked()
 {
-        switch (select_red_0_index) {
-        case 1:
-            *gray_red = ImageProcessing::filterPrewittHorizontal(*gray_red);
-            *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
-            break;
-        case 2:
-            *gray_red = ImageProcessing::filterPrewittVertical(*gray_red);
-            *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
-            break;
-        case 3:
-            *gray_red = ImageProcessing::filterRobertsHorizontal(*gray_red);
-            *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
-            break;
-        case 4:
-            *gray_red = ImageProcessing::filterRobertsVertical(*gray_red);
-            *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
-            break;
-        case 5:
-            *gray_red = ImageProcessing::filterSobelHorizontal(*gray_red);
-            *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
-            break;
-        case 6:
-            *gray_red = ImageProcessing::filterSobelVertical(*gray_red);
+    switch (select_red_0_index) {
+    case 1:
+        *gray_red = ImageProcessing::filterPrewittHorizontal(*gray_red);
+        *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
+        break;
+    case 2:
+        *gray_red = ImageProcessing::filterPrewittVertical(*gray_red);
+        *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
+        break;
+    case 3:
+        *gray_red = ImageProcessing::filterRobertsHorizontal(*gray_red);
+        *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
+        break;
+    case 4:
+        *gray_red = ImageProcessing::filterRobertsVertical(*gray_red);
+        *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
+        break;
+    case 5:
+        *gray_red = ImageProcessing::filterSobelHorizontal(*gray_red);
+        *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
+        break;
+    case 6:
+        *gray_red = ImageProcessing::filterSobelVertical(*gray_red);
 
-            break;
-        case 7:
-            *gray_red = ImageProcessing::averageFilter(*gray_red,3);
-            *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
-            break;
-        case 8:
-            *gray_red = ImageProcessing::medianFilter(*gray_red,3);
-            *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
-            break;
-        case 9:
-            *gray_red = ImageProcessing::selfreinforceFilter(*gray_red,3,ui->filter_red_0->text().toDouble());
-            *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
-            break;
-        default:
-            break;
+        break;
+    case 7:
+        *gray_red = ImageProcessing::averageFilter(*gray_red,3);
+        *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
+        break;
+    case 8:
+        *gray_red = ImageProcessing::medianFilter(*gray_red,3);
+        *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
+        break;
+    case 9:
+        *gray_red = ImageProcessing::selfreinforceFilter(*gray_red,3,ui->filter_red_0->text().toDouble());
+        *Qimg_red_ = ImageProcessing::GrayImage2QImage(*gray_red);
+        break;
+    default:
+        break;
     }
 }
 
 //BLUE 1
 void MainWindow::on_select_blue_1_currentIndexChanged(int index)
 {
-     select_blue_0_index = index;
+    select_blue_0_index = index;
 }
 
 void MainWindow::on_button_blue_1_clicked()
 {
-     linearizar(*gray_blue,ui->filter_blue_1->text().toInt(),ui->filter_blue_1_0->text().toInt(),false,select_blue_1_index);
+    linearizar(*gray_blue,ui->filter_blue_1->text().toInt(),ui->filter_blue_1_0->text().toInt(),false,select_blue_1_index);
 }
 
 //RED 1
@@ -706,13 +715,13 @@ void MainWindow::on_button_red_3_clicked()
 
 void MainWindow::on_button_blue_4_clicked()
 {
-//    histrograma(*gray_blue);
+    //    histrograma(*gray_blue);
     bound(*bina_blue,false);
 }
 
 void MainWindow::on_button_red_4_clicked()
 {
-//    histrograma(*gray_red);
+    //    histrograma(*gray_red);
     bound(*bina_red,true);
 }
 
@@ -726,49 +735,9 @@ void MainWindow::on_button_red_5_clicked()
     centroid(*bina_red,true);
 }
 
-//------------------------- WIFI--------------------------------
-
-void MainWindow::update()
-{
-    if(this->wifi)
-        this->wifi->writeData(this->dataToSend);
-    ui->lineEdit->setText(this->dataToSend);
-}
-
-void MainWindow::Conectado(){
-    QMessageBox msgBox;
-    msgBox.setText("Conexão Realizada com Sucesso!");
-    msgBox.exec();
-    ui->widget->show();
-}
-
-void MainWindow::dataHandler(){
-    std::string dadosWifi = this->wifi->dataReceived().toStdString();
-}
-
-void MainWindow::on_pushButtonConnect_clicked()
-{
-    QString ip = ui->lineEdit_IP->text();
-    quint16 port = ui->lineEdit_Port->text().toShort();
-
-    this->wifi = new Client("192.168.4.1",4000);
-    connect(wifi, SIGNAL(connectionSuccessful()),this,SLOT(Conectado()));
-    connect(wifi, SIGNAL(hasReadData()),this,SLOT(dataHandler()));
-}
-
-void MainWindow::on_pushButton_Disconnect_clicked()
-{
-    if(this->wifi){
-       disconnect(wifi, SIGNAL(hasReadData()),this,SLOT(dataHandler()));
-       delete this->wifi;
-       this->wifi = nullptr;
-    }
-    ui->widget->hide();
-}
-
 void MainWindow::on_actionExit_triggered()
 {
-  QApplication::quit();
+    QApplication::quit();
 }
 
 void MainWindow::on_actionPreview_triggered()
@@ -776,28 +745,20 @@ void MainWindow::on_actionPreview_triggered()
     result_img->show();
 }
 
-void MainWindow::enableTab(int except){
-    for(int i= 0;i < ui->result->count();i++){
-        if(i!=except)
-            ui->result->setTabEnabled(i,true);
-    }
-}
-
-void MainWindow::disableTab(int except){
-    for(int i= 0;i < ui->result->count();i++){
-        if(i!=except)
-            ui->result->setTabEnabled(i,false);
-    }
+void MainWindow::on_refresh_clicked()
+{
+    result_view(*Qimg_blue_,false,false);
+    result_view(*Qimg_red_,false,true);
 }
 
 void MainWindow::on_actionWebcam_triggered()
 {
-//    disableTab(ui->result->currentIndex());
-//    enableTab(1);
+    //    disableTab(ui->result->currentIndex());
+    //    enableTab(1);
     ui->result->currentWidget()->close();
-//    ui->result->
-//    ui->result->c(ui->gridLayout_4);
-//    ui->result->setLayout(ui->gridLayout_2);
+    //    ui->result->
+    //    ui->result->c(ui->gridLayout_4);
+    //    ui->result->setLayout(ui->gridLayout_2);
     ui->camera->show();
 }
 
@@ -822,5 +783,190 @@ void MainWindow::on_actionAlualizar_Imagem_triggered()
 
 void MainWindow::on_actionusar_imagem_salva_triggered()
 {
-     set_saved_img(true);
+    set_saved_img(true);
 }
+
+// END -------------------------------EVENTS: PROCESSAMENTO DE IMAGENS----------------------------------------------------------
+
+//------------------------- WIFI--------------------------------
+
+void MainWindow::Conectado(){
+    QMessageBox msgBox;
+    msgBox.setText("Conexão Realizada com Sucesso!");
+    msgBox.exec();
+}
+
+void MainWindow::dataHandler(){
+    std::string dadosWifi = this->wifi->dataReceived().toStdString();
+    ui->textEdit_Console->setText(ui->textEdit_Console->toPlainText()+QString::fromStdString(dadosWifi)+"\n");
+    ui->textEdit_Console->verticalScrollBar()->setSliderPosition(ui->textEdit_Console->verticalScrollBar()->maximum());
+}
+
+//--------------------------EVENTS: WIFI------------------------
+
+void MainWindow::on_pushButtonConnect_clicked()
+{
+    QString ip = ui->lineEdit_IP->text();
+    quint16 port = ui->lineEdit_Port->text().toShort();
+
+    this->wifi = new Client(ip,port);
+    connect(wifi, SIGNAL(connectionSuccessful()),this,SLOT(Conectado()));
+    connect(wifi, SIGNAL(hasReadData()),this,SLOT(dataHandler()));
+}
+
+void MainWindow::on_pushButton_Disconnect_clicked()
+{
+    if(this->wifi){
+        disconnect(wifi, SIGNAL(hasReadData()),this,SLOT(dataHandler()));
+        delete this->wifi;
+        this->wifi = nullptr;
+
+        QMessageBox msgBox;
+        msgBox.setText("Dispositivo Desconectado!");
+        msgBox.exec();
+    }
+}
+
+void MainWindow::on_pushButton_Enviar_clicked()
+{
+    if(this->wifi){
+        this->wifi->writeData(ui->lineEdit->text());
+    }
+}
+
+
+void MainWindow::on_lineEdit_returnPressed()
+{
+    this->on_pushButton_Enviar_clicked();
+}
+
+// END --------------------------EVENTS: WIFI------------------------
+
+
+
+//------------------------- CINEMÁTICA INVERSA--------------------------------
+
+
+void MainWindow::calcularAngulos(LinAlg::Matrix<double> posicoes){
+
+    LinAlg::Matrix<double> target;
+    PSO<double> p;
+
+    for (unsigned i =1;i<=posicoes.getNumberOfRows();++i){
+        target = posicoes.getRow(i);
+
+        LinAlg::Matrix<double> resultado = p.Optimize(target);
+
+        double O1 = resultado(1,1), O2 = resultado(1,2), O3 = resultado(1,3), O4 = resultado(1,4), O5 = resultado(1,5);
+
+        double x = 10*cos(O5)*(cos(O1)*cos(O2)*sin(O3) + cos(O1)*cos(O3)*sin(O2)) + 24*cos(O1)*cos(O2) + 10*sin(O5)*(cos(O4)*(cos(O1)*cos(O2)*cos(O3) - cos(O1)*sin(O2)*sin(O3)) + sin(O1)*sin(O4)) + 14*cos(O1)*cos(O2)*sin(O3) + 14*cos(O1)*cos(O3)*sin(O2);
+        double y = 10*cos(O5)*(cos(O2)*sin(O1)*sin(O3) + cos(O3)*sin(O1)*sin(O2)) + 24*cos(O2)*sin(O1) + 10*sin(O5)*(cos(O4)*(cos(O2)*cos(O3)*sin(O1) - sin(O1)*sin(O2)*sin(O3)) - cos(O1)*sin(O4)) + 14*cos(O2)*sin(O1)*sin(O3) + 14*cos(O3)*sin(O1)*sin(O2);
+        double z = 24*sin(O2) - 14*cos(O2 + O3) + 5*sin(O2 + O3)*sin(O4 + O5) - 10*cos(O2 + O3)*cos(O5) - 5*sin(O2 + O3)*sin(O4 - O5) + 8;
+
+        angulos = angulos || resultado;
+
+    }
+
+    std::string qposicao ; qposicao << posicoes;
+    ui->textEdit_Deslocamentos->setText(QString::fromStdString(qposicao));
+
+    std::string qangulos; qangulos << angulos;
+    ui->textEdit_Angulos->setText(QString::fromStdString(qangulos));
+
+    std::cout << posicao << std::endl;
+    std::cout << angulos << std::endl;
+
+}
+
+void MainWindow::calcularTrajetoria(){
+
+    LinAlg::Matrix<double> new_posicao, track, destino;
+
+    new_posicao = posicao | LinAlg::Matrix<double>(3,1);
+
+    destino = ui->lineEdit_Destino->text().toStdString().c_str();
+
+    for (unsigned i =1;i<=new_posicao.getNumberOfRows();++i){
+        track = track || new_posicao.getRow(i);
+        track = track || MoveZ(new_posicao.getRow(i),10);
+        track = track || MoveZ(destino,10);
+        track = track || destino;
+    }
+
+    std::cout << track << std::endl;
+
+    calcularAngulos(track);
+
+}
+
+LinAlg::Matrix<double> MainWindow::MoveX(LinAlg::Matrix<double> posicao, double p){
+    LinAlg::Matrix<double> temp = posicao;
+
+    temp(1,1) = temp(1,1)+p;
+
+    return temp;
+
+}
+
+LinAlg::Matrix<double> MainWindow::MoveY(LinAlg::Matrix<double> posicao, double p){
+    LinAlg::Matrix<double> temp = posicao;
+
+    temp(1,2) = temp(1,2)+p;
+
+    return temp;
+
+}
+
+LinAlg::Matrix<double> MainWindow::MoveZ(LinAlg::Matrix<double> posicao, double p){
+    LinAlg::Matrix<double> temp = posicao;
+
+    temp(1,3) = temp(1,3)+p;
+
+    return temp;
+
+}
+
+//--------------------------EVENTS: CINEMÁTICA INVERSA------------------------
+
+void MainWindow::on_pushButton_GetPositions_clicked()
+{
+    if (!qdt.isNull()){
+        std::string qposicao ; qposicao << posicao;
+        ui->textEdit_PosObj->setText(QString::fromStdString(qposicao));
+        ui->label_QtdObj->setText(QString::fromStdString(std::to_string(posicao.getNumberOfRows())));
+    }
+}
+
+void MainWindow::on_pushButton_GetTrack_clicked()
+{
+    if (!qdt.isNull()){
+        calcularTrajetoria();
+    }
+}
+
+void MainWindow::on_pushButton_GenSteps_clicked()
+{
+    steps = angulos;
+    for (unsigned int i = 1; i<=steps.getNumberOfRows();++i){
+        for (unsigned int j = 1; j<=steps.getNumberOfColumns();++j){
+            steps(i,j) = steps(i,j)/0.1125;
+        }
+    }
+//    std::cout << steps << std::endl;
+
+    stepstrack = steps;
+    for (unsigned int i = 2; i<=steps.getNumberOfRows();++i){
+        for (unsigned int j = 1; j<=steps.getNumberOfColumns();++j){
+            stepstrack(i,j) = stepstrack(i,j)-steps(i-1,j);
+        }
+    }
+//    std::cout << stepstrack << std::endl;
+    string str; str << stepstrack;
+    ui->textEdit_StepTrack->setText(QString::fromStdString(str));
+
+    string stepstrack_str; stepstrack_str <<= stepstrack;
+    ui->lineEdit->setText(QString::fromStdString(stepstrack_str));
+}
+
+// END --------------------------EVENTS: CINEMÁTICA INVERSA------------------------
+

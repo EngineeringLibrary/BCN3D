@@ -7,6 +7,7 @@
 #include <complex>//numeros complexos
 #include <cfloat>
 #include <cmath>
+#include <QtMath>
 
 
 namespace LinAlg {

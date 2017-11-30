@@ -1,10 +1,9 @@
 #ifndef __PSO_H_INCLUDED
 #define __PSO_H_INCLUDED
-#include "SistemasdeControle/headers/optimizationLibs/optimization.h"
-#include "SistemasdeControle/headers/modelLibs/model.h"
+#include "SistemasdeControle/headers/primitiveLibs/LinAlg/linalg.h"
 
 template <class UsedType>
-class PSO : public  Optimization<UsedType>
+class PSO
 {
 private:
     bool MinMax;
@@ -12,8 +11,8 @@ private:
     double phi1, phi2, omega, Stime;
     LinAlg::Matrix<UsedType> V, X, P, G, GGen, GnTimes,
                      Xfitness, Pfitness, Gfitness,
-                     GfitnessGen, GfitnessnTime, RunTime;
-    Model<UsedType> *model;
+                     GfitnessGen, GfitnessnTime, RunTime, garra;
+//    Model<UsedType> *model;
 
 
     LinAlg::Matrix<UsedType> Evaluation(LinAlg::Matrix<UsedType> Matrix2Evaluate);
@@ -25,20 +24,25 @@ private:
     void FitnessUpdateMin();
     void FitnessUpdateMax();
 
+
+
 public:
-    PSO(Model<UsedType> *model);
-    PSO(Model<UsedType> *model, int    varNum, int PopSize, int GenSize);
-    PSO(Model<UsedType> *model, int    varNum, int PopSize, int GenSize,
+    PSO();
+    PSO(int    varNum, int PopSize, int GenSize);
+    PSO(int    varNum, int PopSize, int GenSize,
         double           phi1 , double phi2);
-    PSO(Model<UsedType> *model, int    varNum, int    PopSize, int  GenSize,
+    PSO(int    varNum, int    PopSize, int  GenSize,
         double           phi1 , double phi2  , double omega  , bool MinMax);
-    ~PSO();
+//    ~PSO();
 
-    void Optimize();
+    LinAlg::Matrix<UsedType> Optimize(LinAlg::Matrix<UsedType> garra, LinAlg::Matrix<UsedType> gBest = UsedType(0.0) );
     void Run(int nTimes);
-    void setData(LinAlg::Matrix<UsedType> dataIn, LinAlg::Matrix<UsedType> dataOut);
 
-    double getTime();
+    void SetPopSize(int p);
+    void SetGenSize(int p);
+    void SetPhi1(double p);
+    void SetPhi2(double p);
 };
 
+#include "SistemasdeControle/src/optimizationLibs/pso.hpp"
 #endif // PSO_H
