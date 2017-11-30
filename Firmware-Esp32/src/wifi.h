@@ -26,6 +26,8 @@ static EventGroupHandle_t wifi_event_group;
 const int CLIENT_CONNECTED_BIT = BIT0;
 const int CLIENT_DISCONNECTED_BIT = BIT1;
 wifi_config_t ap_config;
+uint16_t TCPgate = 4000;
+void (*FunctionToBeCalledWhenADataHasBeenReceived)(const char*);
 
 void printStationList();
 static void start_dhcp_server();
@@ -33,6 +35,8 @@ void print_sta_info   (void *pvParam);
 static void telnetTask(void *pvParameters);
 static void initialise_wifi_in_ap(void);
 static esp_err_t event_handler   (void *ctx, system_event_t *event);
+void wifi_TCP_server_init(void);
+
 // #include "wifi.h"
 
 
@@ -72,8 +76,8 @@ static void start_dhcp_server(){
         // assign a static IP to the network interface
         tcpip_adapter_ip_info_t info;
         memset(&info, 0, sizeof(info));
-        IP4_ADDR(&info.ip, 192, 168, 1, 1);
-        IP4_ADDR(&info.gw, 192, 168, 1, 1);//ESP acts as router, so gw addr will be its own addr
+        IP4_ADDR(&info.ip, 192, 168, 0, 100);
+        IP4_ADDR(&info.gw, 192, 168, 0, 100);//ESP acts as router, so gw addr will be its own addr
         IP4_ADDR(&info.netmask, 255, 255, 255, 0);
         ESP_ERROR_CHECK(tcpip_adapter_set_ip_info(TCPIP_ADAPTER_IF_AP, &info));
         // start the DHCP server
@@ -96,7 +100,7 @@ static void telnetTask(void *pvParameters)
   struct netconn *conn, *newconn;
   err_t err;
   conn = netconn_new(NETCONN_TCP);  //cria um novo identificador de conexão
-  netconn_bind(conn,NULL,4000); //associa a conexão à porta 4000
+  netconn_bind(conn,NULL,TCPgate); //associa a conexão à porta 4000
   netconn_listen(conn); //começa a escutar a conexão
   while(1)
   {
@@ -113,6 +117,8 @@ static void telnetTask(void *pvParameters)
           netbuf_data(buf,&data,&len);//lê os dados recebidos e coloca no buffer
           data_char = (char*)data; //convertendo os dados recebidos para caracter
           printf("%s\n", data_char);
+
+          ((*FunctionToBeCalledWhenADataHasBeenReceived)(data_char));
           //é aqui que vocês recebem o sinal do wifi e convertem em controle para o robô
 					//data_char = moveHndler(data_char);//retornar que finalizou a tarefa
           err = netconn_write(newconn, data_char, strlen(data_char), NETCONN_COPY);//envia um dado via wifi
@@ -164,6 +170,19 @@ static esp_err_t event_handler(void *ctx, system_event_t *event)
         break;
     }
     return ESP_OK;
+}
+
+void wifi_TCP_server_init(void (*_FunctionToBeCalledWhenADataHasBeenReceived)(const char*) = 0, uint16_t _TCPgate = 4000)
+{
+  TCPgate = _TCPgate;
+  FunctionToBeCalledWhenADataHasBeenReceived = _FunctionToBeCalledWhenADataHasBeenReceived;
+
+  ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
+  wifi_event_group = xEventGroupCreate();
+  start_dhcp_server();
+  initialise_wifi_in_ap();
+  xTaskCreate(&print_sta_info,"print_sta_info",4096,NULL,5,NULL);
+  xTaskCreate(&telnetTask,"telnetTask",4096,NULL,5,NULL);
 }
 
 #endif
