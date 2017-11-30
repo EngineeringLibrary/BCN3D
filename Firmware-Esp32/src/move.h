@@ -12,8 +12,8 @@
 
 //Variavel Global
 bool horario = 1, antihorario = 0;
-const double THETA1 = 10, THETA2 = 10, THETA3 = 10, THETA4 = 10, THETA5 = 10;
-const double setepRef1 = 0, setepRef2 = 0, setepRef3 = 0, setepRef4 = 0, setepRef5 = 0;
+double THETA1 = 10, THETA2 = 10, THETA3 = 10, THETA4 = 10, THETA5 = 10;
+double setepRef1 = 0, setepRef2 = 0, setepRef3 = 0, setepRef4 = 0, setepRef5 = 0;
 
 gpio_num_t  stepPinMotor1 = GPIO_NUM_22, directionPinMotor1 = GPIO_NUM_21,
             stepPinMotor2 = GPIO_NUM_19, directionPinMotor2 = GPIO_NUM_18,
@@ -38,6 +38,11 @@ double PIDM1 (double step, double setepRef)
   Ea = E;
   Ei += Dt * E;
 
+  if(Ei > 200)
+    Ei = 200;
+  if(Ei< -200)
+    Ei = -200;
+
   return kp*E + ki*Ei + kd*Ed;
 }
 
@@ -48,6 +53,11 @@ double PIDM2 (double step, double setepRef)
   double Ed = (E-Ea)/Dt;
   Ea = E;
   Ei += Dt * E;
+
+  if(Ei > 200)
+    Ei = 200;
+  if(Ei< -200)
+    Ei = -200;
 
   return kp*E + ki*Ei + kd*Ed;
 }
@@ -60,6 +70,11 @@ double PIDM3 (double step, double setepRef)
   Ea = E;
   Ei += Dt * E;
 
+  if(Ei > 200)
+    Ei = 200;
+  if(Ei< -200)
+    Ei = -200;
+
   return kp*E + ki*Ei + kd*Ed;
 }
 
@@ -71,6 +86,11 @@ double PIDM4 (double step, double setepRef)
   Ea = E;
   Ei += Dt * E;
 
+  if(Ei > 200)
+    Ei = 200;
+  if(Ei< -200)
+    Ei = -200;
+
   return kp*E + ki*Ei + kd*Ed;
 }
 
@@ -81,6 +101,11 @@ double PIDM5 (double step, double setepRef)
   double Ed = (E-Ea)/Dt;
   Ea = E;
   Ei += Dt * E;
+
+  if(Ei > 200)
+    Ei = 200;
+  if(Ei< -200)
+    Ei = -200;
 
   return kp*E + ki*Ei + kd*Ed;
 }
