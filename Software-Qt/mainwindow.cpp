@@ -15,17 +15,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //     mypix = (QDir::currentPath()+"/imageCaptured.jpg");
     //     ui->label_before->setPixmap(mypix);
-    if(checkCameras()){
-        QList<QCameraInfo> cameras = QCameraInfo::availableCameras();
+//    if(checkCameras()){
+//        QList<QCameraInfo> cameras = QCameraInfo::availableCameras();
 
-        foreach (const QCameraInfo &cameraInfo, cameras) {
-            qDebug() << "Device Name  : " << cameraInfo.deviceName() << endl;
-            qDebug() << "Description  : " << cameraInfo.description() << endl;
-            qDebug() << "Position     : " << cameraInfo.position() << endl;
-            qDebug() << "Cam Default  : " << cameraInfo.defaultCamera() << endl;
-            qDebug() << "Orientation  : " << cameraInfo.orientation() << endl;
-        }
-    }
+//        foreach (const QCameraInfo &cameraInfo, cameras) {
+//            qDebug() << "Device Name  : " << cameraInfo.deviceName() << endl;
+//            qDebug() << "Description  : " << cameraInfo.description() << endl;
+//            qDebug() << "Position     : " << cameraInfo.position() << endl;
+//            qDebug() << "Cam Default  : " << cameraInfo.defaultCamera() << endl;
+//            qDebug() << "Orientation  : " << cameraInfo.orientation() << endl;
+//        }
+//    }
 
     result_img = new Dialog(this);
     if(camCount > 1){
