@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.9.2
+** Created by: Qt User Interface Compiler version 5.9.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -86,7 +86,7 @@ public:
     QLabel *label_after_blue;
     QLabel *label_after_red;
     QSlider *resizeImg;
-    QLabel *label;
+    QLabel *resultRescale;
     QWidget *buttons;
     QGridLayout *gridLayout_5;
     QVBoxLayout *coluna_Red;
@@ -228,7 +228,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, -74, 1283, 792));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1297, 693));
         gridLayout_8 = new QGridLayout(scrollAreaWidgetContents);
         gridLayout_8->setSpacing(6);
         gridLayout_8->setContentsMargins(11, 11, 11, 11);
@@ -442,14 +442,17 @@ public:
 
         resizeImg = new QSlider(result_0);
         resizeImg->setObjectName(QStringLiteral("resizeImg"));
+        resizeImg->setMinimum(1);
+        resizeImg->setMaximum(1000);
+        resizeImg->setValue(1000);
         resizeImg->setOrientation(Qt::Vertical);
 
         gridLayout_3->addWidget(resizeImg, 0, 1, 1, 1);
 
-        label = new QLabel(result_0);
-        label->setObjectName(QStringLiteral("label"));
+        resultRescale = new QLabel(result_0);
+        resultRescale->setObjectName(QStringLiteral("resultRescale"));
 
-        gridLayout_3->addWidget(label, 1, 1, 1, 1);
+        gridLayout_3->addWidget(resultRescale, 1, 1, 1, 1);
 
         result->addTab(result_0, QString());
         buttons = new QWidget();
@@ -1034,7 +1037,7 @@ public:
         MainWindow->setStatusBar(statusBar);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1317, 25));
+        menuBar->setGeometry(QRect(0, 0, 1317, 21));
         menuBar->setStyleSheet(QStringLiteral("background-color: rgb(186, 189, 182);"));
         menumenu = new QMenu(menuBar);
         menumenu->setObjectName(QStringLiteral("menumenu"));
@@ -1108,7 +1111,7 @@ public:
         texto_depois->setText(QApplication::translate("MainWindow", "DEPOIS DO PROCESSAMENTO", Q_NULLPTR));
         label_after_blue->setText(QString());
         label_after_red->setText(QString());
-        label->setText(QString());
+        resultRescale->setText(QApplication::translate("MainWindow", "0", Q_NULLPTR));
         result->setTabText(result->indexOf(result_0), QApplication::translate("MainWindow", "Result", Q_NULLPTR));
         label_red_filter_0->setText(QApplication::translate("MainWindow", "value                  filter ", Q_NULLPTR));
         filter_red_0->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));

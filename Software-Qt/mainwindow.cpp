@@ -15,17 +15,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //     mypix = (QDir::currentPath()+"/imageCaptured.jpg");
     //     ui->label_before->setPixmap(mypix);
-//    if(checkCameras()){
-//        QList<QCameraInfo> cameras = QCameraInfo::availableCameras();
+    if(checkCameras()){
+        QList<QCameraInfo> cameras = QCameraInfo::availableCameras();
 
-//        foreach (const QCameraInfo &cameraInfo, cameras) {
-//            qDebug() << "Device Name  : " << cameraInfo.deviceName() << endl;
-//            qDebug() << "Description  : " << cameraInfo.description() << endl;
-//            qDebug() << "Position     : " << cameraInfo.position() << endl;
-//            qDebug() << "Cam Default  : " << cameraInfo.defaultCamera() << endl;
-//            qDebug() << "Orientation  : " << cameraInfo.orientation() << endl;
-//        }
-//    }
+        foreach (const QCameraInfo &cameraInfo, cameras) {
+            qDebug() << "Device Name  : " << cameraInfo.deviceName() << endl;
+            qDebug() << "Description  : " << cameraInfo.description() << endl;
+            qDebug() << "Position     : " << cameraInfo.position() << endl;
+            qDebug() << "Cam Default  : " << cameraInfo.defaultCamera() << endl;
+            qDebug() << "Orientation  : " << cameraInfo.orientation() << endl;
+        }
+    }
 
     result_img = new Dialog(this);
     if(camCount > 1){
@@ -488,6 +488,18 @@ void MainWindow::centroid( ImageProcessing::BinaryImage &bin_img,const unsigned 
 }
 
 //-------------------------------EVENTS: PROCESSAMENTO DE IMAGENS----------------------------------------------------------
+
+void MainWindow::on_resizeImg_valueChanged(int value)
+{
+    *mat_complete = ImageProcessing::reScale(*mat_complete,value/1000.0);
+    ui->resultRescale->setText(QString::number(value/1000.0));
+    ui->label_after_red->setPixmap(QPixmap::fromImage(ImageProcessing::RGBImage2QImage(*mat_complete)));
+    QImage temp = ImageProcessing::RGBImage2QImage(*mat_complete);
+    QString fileName =  QDir::currentPath()+"/imageCapturedResize.jpg";
+    if(!fileName.isEmpty()){
+        temp.save(fileName);
+    }
+}
 
 void MainWindow::on_check_saved_img_clicked(bool checked)
 {
@@ -999,5 +1011,6 @@ void MainWindow::on_pushButton_GenSteps_clicked()
 }
 
 // END --------------------------EVENTS: CINEMÁTICA INVERSA------------------------
+
 
 

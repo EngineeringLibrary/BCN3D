@@ -162,6 +162,8 @@ private slots:
 
     void on_ImageProcess_clicked();
 
+    void on_resizeImg_valueChanged(int value);
+
 signals :
 
 private:
