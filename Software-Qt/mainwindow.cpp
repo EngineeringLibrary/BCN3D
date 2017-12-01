@@ -94,8 +94,8 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
-//    if(this->wifi)
-//        delete this->wifi;
+    if(this->wifi)
+        delete this->wifi;
 }
 
 
@@ -180,86 +180,70 @@ void MainWindow::processamentoImagem(){
 
 
     //    PARTE AZUL
+//    histrograma(*gray_blue);
+    *bina_blue = (*gray_blue > 43) && (*gray_blue < 215);
 
-    *bina_blue = (*gray_blue > 9) && (*gray_blue < 140);
-
-    erosion(*bina_blue,false);
-    erosion(*bina_blue,false);
-    erosion(*bina_blue,false);
-    erosion(*bina_blue,false);
-    erosion(*bina_blue,false);
+//    erosion(*bina_blue,false);
+//    erosion(*bina_blue,false);
+//    erosion(*bina_blue,false);
+//    erosion(*bina_blue,false);
+//    erosion(*bina_blue,false);
     //    erosion(*bina_blue,false);
 
 
-    dilation(*bina_blue,false);
-    dilation(*bina_blue,false);
-    dilation(*bina_blue,false);
-    dilation(*bina_blue,false);
-    erosion(*bina_blue,false);
-    erosion(*bina_blue,false);
+//    dilation(*bina_blue,false);
+//    dilation(*bina_blue,false);
+//    dilation(*bina_blue,false);
+//    dilation(*bina_blue,false);
+//    erosion(*bina_blue,false);
+//    erosion(*bina_blue,false);
 
 
 
-    bound(*bina_blue,false);
+//    bound(*bina_blue,false);
     //            std::cout <<"blue: "<< qdt << std::endl;
 
 //    centroid(*bina_blue,false);
     //        envia posições pra renato
-    qDebug() <<"area blue :" <<area_blue[0]<<" : "<< area_blue[1];
+//    qDebug() <<"area blue :" <<area_blue[0]<<" : "<< area_blue[1];
 
-    if(area_blue[0] > area_blue[1]){
-        std::cout << "quadrado blue p:0->" << area_blue[0] << std::endl;
-    }else{
-        std::cout << "quadrado blue p:1->" << area_blue[1] << std::endl;
-    }
+//    if(area_blue[0] > area_blue[1]){
+//        std::cout << "quadrado blue p:0->" << area_blue[0] << std::endl;
+//    }else{
+//        std::cout << "quadrado blue p:1->" << area_blue[1] << std::endl;
+//    }
 
     //    PARTE VERMELHA
 
-    //    histrograma(*gray_red);
-    *bina_red = (*gray_red > 8) && (*gray_red < 114);
+//    histrograma(*gray_red);
+    *bina_red = (*gray_red > 43) && (*gray_red < 215);
 
-    erosion(*bina_red,true);
-    erosion(*bina_red,true);
-    erosion(*bina_red,true);
-    erosion(*bina_red,true);
-    dilation(*bina_red,true);
-    erosion(*bina_red,true);
-    dilation(*bina_red,true);
-    erosion(*bina_red,true);
-    erosion(*bina_red,true);
-    dilation(*bina_red,true);
+//    erosion(*bina_red,true);
+//    erosion(*bina_red,true);
+//    erosion(*bina_red,true);
+//    erosion(*bina_red,true);
+//    dilation(*bina_red,true);
+//    erosion(*bina_red,true);
+//    dilation(*bina_red,true);
+//    erosion(*bina_red,true);
+//    erosion(*bina_red,true);
+//    dilation(*bina_red,true);
 
-    dilation(*bina_red,true);
-    erosion(*bina_red,true);
-    erosion(*bina_red,true);
-    erosion(*bina_red,true);
-    erosion(*bina_red,true);
-    dilation(*bina_red,true);
-    dilation(*bina_red,true);
-    dilation(*bina_red,true);
-    dilation(*bina_red,true);
-    dilation(*bina_red,true);
-    dilation(*bina_red,true);
-    dilation(*bina_red,true);
-    dilation(*bina_red,true);
-    erosion(*bina_red,true);
-    erosion(*bina_red,true);
-    erosion(*bina_red,true);
-    erosion(*bina_red,true);
 
-    bound(*bina_red,true);
+
+//    bound(*bina_red,true);
 
 //    centroid(*bina_red,true);
 
 
-    qDebug() <<"area red :" <<area_red[0]<<" : "<< area_red[1];
+//    qDebug() <<"area red :" <<area_red[0]<<" : "<< area_red[1];
 
-    if(area_red[0] > area_red[1]){
-        std::cout << "quadrado red p:0->" << area_red[0] << std::endl;
-    }else{
-        std::cout << "quadrado red p:1->" << area_red[1] << std::endl;
-    }
-    std::cout << "posicao: " << std::endl << posicao << std::endl;
+//    if(area_red[0] > area_red[1]){
+//        std::cout << "quadrado red p:0->" << area_red[0] << std::endl;
+//    }else{
+//        std::cout << "quadrado red p:1->" << area_red[1] << std::endl;
+//    }
+//    std::cout << "posicao: " << std::endl << posicao << std::endl;
 
     //    FIM
 
@@ -513,6 +497,12 @@ void MainWindow::on_set_saved_img_0_clicked(bool checked)
     set_saved_img(!checked);
 }
 
+void MainWindow::on_actionProcessar_triggered()
+{
+    processamentoImagem();
+}
+
+
 void MainWindow::on_select_blue_0_currentIndexChanged(int index)
 {
     select_blue_0_index = index;
@@ -708,7 +698,7 @@ void MainWindow::on_select_red_1_currentIndexChanged(int index)
 
 void MainWindow::on_button_red_1_clicked()
 {
-    linearizar(*gray_red,ui->filter_red_1->text().toInt(),ui->filter_red_1_0->text().toInt(),false,select_red_1_index);
+    linearizar(*gray_red,ui->filter_red_1->text().toInt(),ui->filter_red_1_0->text().toInt(),true,select_red_1_index);
 }
 
 //BLUE 2
@@ -730,7 +720,7 @@ void MainWindow::on_select_red_2_currentIndexChanged(int index)
 
 void MainWindow::on_button_red_2_clicked()
 {
-    MainWindow::dilation(*bina_red,false);
+    MainWindow::dilation(*bina_red,true);
 }
 
 //BLUE 3
@@ -752,7 +742,7 @@ void MainWindow::on_select_red_3_currentIndexChanged(int index)
 
 void MainWindow::on_button_red_3_clicked()
 {
-    MainWindow::erosion(*bina_red,false);
+    MainWindow::erosion(*bina_red,true);
 }
 
 void MainWindow::on_button_blue_4_clicked()
@@ -1013,6 +1003,7 @@ void MainWindow::on_pushButton_GenSteps_clicked()
 }
 
 // END --------------------------EVENTS: CINEMÁTICA INVERSA------------------------
+
 
 
 

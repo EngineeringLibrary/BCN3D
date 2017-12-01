@@ -164,6 +164,8 @@ private slots:
 
     void on_resizeImg_valueChanged(int value);
 
+    void on_actionProcessar_triggered();
+
 signals :
 
 private:
@@ -197,7 +199,7 @@ private:
     unsigned area_blue[2],area_red[2];
 
 //   VARIAVEIS WIFI
-    QPixmap mypix = (QDir::currentPath()+"/compressedImage.jpg");
+    QPixmap mypix = (QDir::currentPath()+"/imageCaptured.jpg");
     Client *wifi;
     QString dataToSend;
 

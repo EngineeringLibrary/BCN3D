@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.9.0
+** Created by: Qt User Interface Compiler version 5.9.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -44,6 +44,7 @@ public:
     QAction *actionWebcam;
     QAction *actionAlualizar_Imagem;
     QAction *actionusar_imagem_salva;
+    QAction *actionProcessar;
     QWidget *centralWidget;
     QGridLayout *gridLayout_7;
     QScrollArea *scrollArea;
@@ -217,6 +218,8 @@ public:
         actionAlualizar_Imagem->setObjectName(QStringLiteral("actionAlualizar_Imagem"));
         actionusar_imagem_salva = new QAction(MainWindow);
         actionusar_imagem_salva->setObjectName(QStringLiteral("actionusar_imagem_salva"));
+        actionProcessar = new QAction(MainWindow);
+        actionProcessar->setObjectName(QStringLiteral("actionProcessar"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gridLayout_7 = new QGridLayout(centralWidget);
@@ -228,7 +231,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1297, 693));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1283, 792));
         gridLayout_8 = new QGridLayout(scrollAreaWidgetContents);
         gridLayout_8->setSpacing(6);
         gridLayout_8->setContentsMargins(11, 11, 11, 11);
@@ -1037,7 +1040,7 @@ public:
         MainWindow->setStatusBar(statusBar);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1317, 21));
+        menuBar->setGeometry(QRect(0, 0, 1317, 25));
         menuBar->setStyleSheet(QStringLiteral("background-color: rgb(186, 189, 182);"));
         menumenu = new QMenu(menuBar);
         menumenu->setObjectName(QStringLiteral("menumenu"));
@@ -1052,11 +1055,13 @@ public:
         menumenu->addAction(actionAlualizar_Imagem);
         menumenu->addAction(actionusar_imagem_salva);
         menumenu->addSeparator();
+        menumenu->addAction(actionProcessar);
         menumenu->addAction(actionExit);
+        menumenu->addSeparator();
 
         retranslateUi(MainWindow);
 
-        result->setCurrentIndex(2);
+        result->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1070,7 +1075,7 @@ public:
 #endif // QT_NO_TOOLTIP
         actionPreview->setText(QApplication::translate("MainWindow", "Preview", Q_NULLPTR));
 #ifndef QT_NO_SHORTCUT
-        actionPreview->setShortcut(QApplication::translate("MainWindow", "Ctrl+P", Q_NULLPTR));
+        actionPreview->setShortcut(QApplication::translate("MainWindow", "Ctrl+Shift+P", Q_NULLPTR));
 #endif // QT_NO_SHORTCUT
         actionExit->setText(QApplication::translate("MainWindow", "Exit", Q_NULLPTR));
 #ifndef QT_NO_SHORTCUT
@@ -1095,6 +1100,10 @@ public:
         actionusar_imagem_salva->setText(QApplication::translate("MainWindow", "Use Saved Image", Q_NULLPTR));
 #ifndef QT_NO_SHORTCUT
         actionusar_imagem_salva->setShortcut(QApplication::translate("MainWindow", "Ctrl+U", Q_NULLPTR));
+#endif // QT_NO_SHORTCUT
+        actionProcessar->setText(QApplication::translate("MainWindow", "Image Process ", Q_NULLPTR));
+#ifndef QT_NO_SHORTCUT
+        actionProcessar->setShortcut(QApplication::translate("MainWindow", "Ctrl+P", Q_NULLPTR));
 #endif // QT_NO_SHORTCUT
         label_IP->setText(QApplication::translate("MainWindow", "IP:", Q_NULLPTR));
         label_Port->setText(QApplication::translate("MainWindow", "Porta:", Q_NULLPTR));
