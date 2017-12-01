@@ -427,7 +427,7 @@ void MainWindow::centroid( ImageProcessing::BinaryImage &bin_img,const unsigned 
             for(unsigned i =1;i<=qdt(1,1);++i){
                 centroids = ImageProcessing::centroid(segmentedMatrix==(i+1));
                 //              pegando posicoes dos objetos
-                posicao = posicao || ImageProcessing::pixelToWorldMetric(segmentedMatrix,17,37,centroids);
+                posicao = posicao || ImageProcessing::pixelToWorldMetric(segmentedMatrix,24,50,centroids);
                 this->area_blue[(i-1)] = ImageProcessing::area(segmentedMatrix==(i+2));
                 std::cout << "centroid blue " << std::endl;
                 std::cout << centroids << std::endl;
@@ -453,7 +453,7 @@ void MainWindow::centroid( ImageProcessing::BinaryImage &bin_img,const unsigned 
             for(unsigned i =1;i<=qdt(1,1);++i){
                 centroids = ImageProcessing::centroid(segmentedMatrix==(i+1));
                 //              pegando posicoes dos objetos
-                posicao = posicao || ImageProcessing::pixelToWorldMetric(segmentedMatrix,17,37,centroids);
+                posicao = posicao || ImageProcessing::pixelToWorldMetric(segmentedMatrix,24,50,centroids);
                 this->area_red[(i-1)]  = ImageProcessing::area(segmentedMatrix==(i+2));
                 std::cout << "centroid red " << std::endl;
                 std::cout << centroids << std::endl;
