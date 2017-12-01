@@ -175,35 +175,36 @@ void MainWindow::disableTab(int except){
 
 void MainWindow::processamentoImagem(){
 
-    gray_blue->setGray(mat_complete->getRed());//pode parecer errado mais esta certo
-    gray_red->setGray(mat_complete->getBlue());//pode parecer errado mais esta certo
+    gray_blue->setGray(255-mat_complete->getRed());//pode parecer errado mais esta certo
+    gray_red->setGray(255-mat_complete->getBlue());//pode parecer errado mais esta certo
 
 
     //    PARTE AZUL
 //    histrograma(*gray_blue);
+    *gray_blue = ImageProcessing::selfreinforceFilter(*gray_blue,3,2.5);
     *bina_blue = (*gray_blue > 43) && (*gray_blue < 215);
+    //pego a matriz binaria inverto e retorno invertida
+    *bina_blue = ImageProcessing::BinaryImage((!bina_blue[0]).getBinaryImageMatrix());
+    dilation(*bina_blue,false);
+    dilation(*bina_blue,false);
+    dilation(*bina_blue,false);
+    erosion(*bina_blue,false);
+    erosion(*bina_blue,false);
+    erosion(*bina_blue,false);
+    erosion(*bina_blue,false);
+    erosion(*bina_blue,false);
+    erosion(*bina_blue,false);
+    erosion(*bina_blue,false);
+    erosion(*bina_blue,false);
+    erosion(*bina_blue,false);
+    erosion(*bina_blue,false);
+    erosion(*bina_blue,false);
 
-//    erosion(*bina_blue,false);
-//    erosion(*bina_blue,false);
-//    erosion(*bina_blue,false);
-//    erosion(*bina_blue,false);
-//    erosion(*bina_blue,false);
-    //    erosion(*bina_blue,false);
 
+    bound(*bina_blue,false);
+    std::cout <<"blue: "<< qdt << std::endl;
 
-//    dilation(*bina_blue,false);
-//    dilation(*bina_blue,false);
-//    dilation(*bina_blue,false);
-//    dilation(*bina_blue,false);
-//    erosion(*bina_blue,false);
-//    erosion(*bina_blue,false);
-
-
-
-//    bound(*bina_blue,false);
-    //            std::cout <<"blue: "<< qdt << std::endl;
-
-//    centroid(*bina_blue,false);
+    centroid(*bina_blue,false);
     //        envia posições pra renato
 //    qDebug() <<"area blue :" <<area_blue[0]<<" : "<< area_blue[1];
 
@@ -216,24 +217,31 @@ void MainWindow::processamentoImagem(){
     //    PARTE VERMELHA
 
 //    histrograma(*gray_red);
+    *gray_red = ImageProcessing::selfreinforceFilter(*gray_red,3,2.5);
     *bina_red = (*gray_red > 43) && (*gray_red < 215);
+    //pego a matriz binaria inverto e retorno invertida
+    *bina_red = ImageProcessing::BinaryImage((!bina_red[0]).getBinaryImageMatrix());
 
-//    erosion(*bina_red,true);
-//    erosion(*bina_red,true);
-//    erosion(*bina_red,true);
-//    erosion(*bina_red,true);
-//    dilation(*bina_red,true);
-//    erosion(*bina_red,true);
-//    dilation(*bina_red,true);
-//    erosion(*bina_red,true);
-//    erosion(*bina_red,true);
-//    dilation(*bina_red,true);
+    dilation(*bina_red,true);
+    dilation(*bina_red,true);
+    dilation(*bina_red,true);
+    erosion(*bina_red,true);
+    erosion(*bina_red,true);
+    erosion(*bina_red,true);
+    erosion(*bina_red,true);
+    erosion(*bina_red,true);
+    erosion(*bina_red,true);
+    erosion(*bina_red,true);
+    erosion(*bina_red,true);
+    erosion(*bina_red,true);
+    erosion(*bina_red,true);
+    erosion(*bina_red,true);
 
 
 
-//    bound(*bina_red,true);
-
-//    centroid(*bina_red,true);
+    bound(*bina_red,true);
+    std::cout <<"red: "<< qdt << std::endl;
+    centroid(*bina_red,true);
 
 
 //    qDebug() <<"area red :" <<area_red[0]<<" : "<< area_red[1];
@@ -247,8 +255,8 @@ void MainWindow::processamentoImagem(){
 
     //    FIM
 
-    Qimg_blue[0] = ImageProcessing::GrayImage2QImage<unsigned>(*gray_blue);
-    Qimg_red[0] = ImageProcessing::GrayImage2QImage<unsigned>(*gray_red);
+    Qimg_blue[0] = ImageProcessing::BinaryImage2QImage<unsigned>(*bina_blue);
+    Qimg_red[0] = ImageProcessing::BinaryImage2QImage<unsigned>(*bina_red);
     //        mostra imagem em escala de cinza
     result_view(Qimg_blue[0],false,false);
     result_view(Qimg_red[0],false,true);
@@ -433,8 +441,7 @@ void MainWindow::centroid( ImageProcessing::BinaryImage &bin_img,const unsigned 
                 bina_blue[0](centroids(1,1),  centroids(1,2)+1) = 0;
                 bina_blue[0](centroids(1,1)+1,centroids(1,2)+1) = 0;
             }
-            //pego a matriz binaria inverto e retorno invertida
-            *bina_blue = ImageProcessing::BinaryImage((!bina_blue[0]).getBinaryImageMatrix());
+
             //    de binario para escala de cinza
             gray_blue->setGray(this->bina_blue->getBinaryImageMatrix());
             //    expandindo de binario para escala de cinza
@@ -460,8 +467,7 @@ void MainWindow::centroid( ImageProcessing::BinaryImage &bin_img,const unsigned 
                 bina_red[0](centroids(1,1),  centroids(1,2)+1) = 0;
                 bina_red[0](centroids(1,1)+1,centroids(1,2)+1) = 0;
             }
-            //pego a matriz binaria inverto e retorno invertida
-            *bina_red = ImageProcessing::BinaryImage((!bina_red[0]).getBinaryImageMatrix());
+
             //    de binario para escala de cinza
             gray_red->setGray(this->bina_red->getBinaryImageMatrix());
             //    expandindo de binario para escala de cinza
