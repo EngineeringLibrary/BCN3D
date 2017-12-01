@@ -251,6 +251,7 @@ void MainWindow::processamentoImagem(){
 
 //    centroid(*bina_red,true);
 
+
     qDebug() <<"area red :" <<area_red[0]<<" : "<< area_red[1];
 
     if(area_red[0] > area_red[1]){
