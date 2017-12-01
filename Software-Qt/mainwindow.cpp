@@ -94,8 +94,8 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
-    if(this->wifi)
-        delete this->wifi;
+//    if(this->wifi)
+//        delete this->wifi;
 }
 
 
@@ -203,7 +203,7 @@ void MainWindow::processamentoImagem(){
     bound(*bina_blue,false);
     //            std::cout <<"blue: "<< qdt << std::endl;
 
-    centroid(*bina_blue,false);
+//    centroid(*bina_blue,false);
     //        envia posições pra renato
     qDebug() <<"area blue :" <<area_blue[0]<<" : "<< area_blue[1];
 
@@ -249,7 +249,7 @@ void MainWindow::processamentoImagem(){
 
     bound(*bina_red,true);
 
-    centroid(*bina_red,true);
+//    centroid(*bina_red,true);
 
     qDebug() <<"area red :" <<area_red[0]<<" : "<< area_red[1];
 
@@ -295,6 +295,7 @@ void MainWindow::processCaptureImage(int requestId,const QImage& imgs){
     //   mostrando imagem antes do processamento
     result_view(*img,true,true);
     *mat_complete = ImageProcessing::QImage2RGBImage<unsigned>(*img);
+    on_resizeImg_valueChanged(995);
 
 }
 
@@ -493,7 +494,7 @@ void MainWindow::on_resizeImg_valueChanged(int value)
 {
     *mat_complete = ImageProcessing::reScale(*mat_complete,value/1000.0);
     ui->resultRescale->setText(QString::number(value/1000.0));
-    ui->label_after_red->setPixmap(QPixmap::fromImage(ImageProcessing::RGBImage2QImage(*mat_complete)));
+//    ui->label_after_red->setPixmap(QPixmap::fromImage(ImageProcessing::RGBImage2QImage(*mat_complete)));
     QImage temp = ImageProcessing::RGBImage2QImage(*mat_complete);
     QString fileName =  QDir::currentPath()+"/imageCapturedResize.jpg";
     if(!fileName.isEmpty()){
@@ -828,7 +829,7 @@ void MainWindow::on_actionusar_imagem_salva_triggered()
     set_saved_img(true);
 }
 
-// END -------------------------------EVENTS: PROCESSAMENTO DE IMAGENS----------------------------------------------------------
+// END -------------------------------EVENTS:  DE IMAGENS----------------------------------------------------------
 
 //------------------------- WIFI--------------------------------
 
