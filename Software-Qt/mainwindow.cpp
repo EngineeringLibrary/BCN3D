@@ -194,19 +194,13 @@ void MainWindow::processamentoImagem(){
     erosion(*bina_blue,false);
     erosion(*bina_blue,false);
     erosion(*bina_blue,false);
-    erosion(*bina_blue,false);
-    erosion(*bina_blue,false);
-    erosion(*bina_blue,false);
-    erosion(*bina_blue,false);
-    erosion(*bina_blue,false);
+
 
 
     bound(*bina_blue,false);
     std::cout <<"blue: "<< qdt << std::endl;
-
     centroid(*bina_blue,false);
-    //        envia posições pra renato
-//    qDebug() <<"area blue :" <<area_blue[0]<<" : "<< area_blue[1];
+
 
 //    if(area_blue[0] > area_blue[1]){
 //        std::cout << "quadrado blue p:0->" << area_blue[0] << std::endl;
@@ -231,20 +225,12 @@ void MainWindow::processamentoImagem(){
     erosion(*bina_red,true);
     erosion(*bina_red,true);
     erosion(*bina_red,true);
-    erosion(*bina_red,true);
-    erosion(*bina_red,true);
-    erosion(*bina_red,true);
-    erosion(*bina_red,true);
-    erosion(*bina_red,true);
+//    erosion(*bina_red,true);
 
 
 
     bound(*bina_red,true);
-    std::cout <<"red: "<< qdt << std::endl;
     centroid(*bina_red,true);
-
-
-//    qDebug() <<"area red :" <<area_red[0]<<" : "<< area_red[1];
 
 //    if(area_red[0] > area_red[1]){
 //        std::cout << "quadrado red p:0->" << area_red[0] << std::endl;
@@ -427,10 +413,8 @@ void MainWindow::centroid( ImageProcessing::BinaryImage &bin_img,const unsigned 
             for(unsigned i =1;i<=qdt(1,1);++i){
                 centroids = ImageProcessing::centroid(segmentedMatrix==(i+1));
                 //              pegando posicoes dos objetos
-                posicao = posicao || ImageProcessing::pixelToWorldMetric(segmentedMatrix,24,50,centroids);
+                posicao = posicao || ImageProcessing::pixelToWorldMetric(segmentedMatrix,24,50  ,centroids);
                 this->area_blue[(i-1)] = ImageProcessing::area(segmentedMatrix==(i+2));
-                std::cout << "centroid blue " << std::endl;
-                std::cout << centroids << std::endl;
                 //              colocar um ponto no centro da imagem
                 //              bina_blue[0] ->   coloco como ponto zero para pegar posição da memoria do ponteiro
                 bina_blue[0](centroids(1,1)-1,centroids(1,2)-1) = 0;
@@ -455,8 +439,6 @@ void MainWindow::centroid( ImageProcessing::BinaryImage &bin_img,const unsigned 
                 //              pegando posicoes dos objetos
                 posicao = posicao || ImageProcessing::pixelToWorldMetric(segmentedMatrix,24,50,centroids);
                 this->area_red[(i-1)]  = ImageProcessing::area(segmentedMatrix==(i+2));
-                std::cout << "centroid red " << std::endl;
-                std::cout << centroids << std::endl;
                 //               colocar um ponto no centro da imagem
                 //               bina_blue[0] ->   coloco como ponto zero para pegar posição da memoria do ponteiro
                 bina_red[0](centroids(1,1)-1,centroids(1,2)-1) = 0;
