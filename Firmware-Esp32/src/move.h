@@ -73,29 +73,29 @@ void stepControlMotor02(void)
 
 void stepControlMotor03(void)
 {
-  double u = M(linha,2);
-    if(u > 0)
-      motor3->newStep(u, horario, 15);
-    if(u < 0)
-      motor3->newStep(abs(u), antihorario, 15);
+  double u = M(linha,2);// utiliza o valor da linha e da coluna "M(linha, coluna)", da matrix.
+    if(u > 0) // verifica se o valor é positivo.
+      motor3->newStep(u, horario, 15); // rotaciona motor no sentido horario, newStep(valor da linha e coluna matrix, sentido, velocidade);
+    if(u < 0) // verifica se o valor é negativo.
+      motor3->newStep(abs(u), antihorario, 15); // rotaciona motor no sentido antihorario, newStep(valor da linha e coluna matrix, sentido, velocidade) e foi utilizado abs para utilizar o modulo de u;
 }
 
 void stepControlMotor04(void)
 {
-   double u = M(linha,3);
-     if(u > 0)
-       motor4->newStep(u, horario, 15);
-     if(u < 0)
-       motor4->newStep(abs(u), antihorario, 15);
+   double u = M(linha,3); // utiliza o valor da linha e da coluna "M(linha, coluna)", da matrix.
+     if(u > 0) // verifica se o valor é positivo.
+       motor4->newStep(u, horario, 15); // rotaciona motor no sentido horario, newStep(valor da linha e coluna matrix, sentido, velocidade);
+     if(u < 0) // verifica se o valor é negativo.
+       motor4->newStep(abs(u), antihorario, 15); // rotaciona motor no sentido antihorario, newStep(valor da linha e coluna matrix, sentido, velocidade) e foi utilizado abs para utilizar o modulo de u;
 }
 
 void stepControlMotor05(void)
 {
-   double u = M(linha,4);
-     if(u > 0)
-       motor5->newStep(u, horario, 15);
-     if(u < 0)
-       motor5->newStep(abs(u), antihorario,15);
+   double u = M(linha,4); // utiliza o valor da linha e da coluna "M(linha, coluna)", da matrix.
+     if(u > 0) // verifica se o valor é positivo.
+       motor5->newStep(u, horario, 15);// rotaciona motor no sentido horario, newStep(valor da linha e coluna matrix, sentido, velocidade);
+     if(u < 0) // verifica se o valor é negativo.
+       motor5->newStep(abs(u), antihorario,15); // rotaciona motor no sentido antihorario, newStep(valor da linha e coluna matrix, sentido, velocidade) e foi utilizado abs para utilizar o modulo de u;
 }
 
 #endif
