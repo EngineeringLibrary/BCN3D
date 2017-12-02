@@ -53,20 +53,20 @@ void controlMotorGarra(void*arg)
 //Funçãos para controlar os motores de passo
 void stepControlMotor01(void)
 {
-  int u = M(linha,0);
-    if(u > 0)
-      motor1->newStep(u, horario, 15);
-    if(u < 0)
-      motor1->newStep(abs(u), antihorario, 15);
+  int u = M(linha,0); // utiliza o valor da linha e da coluna "M(linha, coluna)", da matrix.
+    if(u > 0) // verifica se o valor é positivo.
+      motor1->newStep(u, horario, 15); // rotaciona motor no sentido horario, newStep(valor da linha e coluna matrix, sentido, velocidade);
+    if(u < 0) // verifica se o valor é negativo.
+      motor1->newStep(abs(u), antihorario, 15); // rotaciona motor no sentido antihorario, newStep(valor da linha e coluna matrix, sentido, velocidade) e foi utilizado abs para utilizar o modulo de u;
 }
 
 void stepControlMotor02(void)
 {
-  int u = M(linha,1);
-     if(u > 0)
-       motor2->newStep(u, horario, 15);
-     if(u < 0)
-       motor2->newStep(abs(u), antihorario, 15);
+  int u = M(linha,1); // utiliza o valor da linha e da coluna "M(linha, coluna)", da matrix.
+     if(u > 0) // verifica se o valor é positivo.
+       motor2->newStep(u, horario, 15); // rotaciona motor no sentido horario, newStep(valor da linha e coluna matrix, sentido, velocidade);
+     if(u < 0) // verifica se o valor é negativo.
+       motor2->newStep(abs(u), antihorario, 15);// rotaciona motor no sentido antihorario, newStep(valor da linha e coluna matrix, sentido, velocidade) e foi utilizado abs para utilizar o modulo de u;
 }
 
 void stepControlMotor03(void)
