@@ -12,18 +12,28 @@
 #include "servomotor.h"
 #include "Matrix.h"
 #include "pid.h"
+#include <cmath>
+#include <time.h>
+#include <string>
+#include <iomanip>
+#include <cstdlib>
+#include <sstream>
+#include <iostream>
+#include <typeinfo>
+#include <algorithm>
 
 //Variavel Global
-ControlHandler::PID<double> pid("1.0,0.0,0.5");
+//ControlHandler::PID<double> pid("1.0,0.0,0.5");
 LinAlg::Matrix<int> M;
-int ref1 = 0, ref2 = 0, ref3 = 0, ref4 = 0, ref5 = 0, linha;
+volatile static int ref1 = 0, ref2 = 0, ref3 = 0, ref4 = 0, ref5 = 0, linha = 0;
 
 bool horario = 1, antihorario = 0;
+volatile static bool flagStartTask[5] = {0, 0, 0, 0, 0};
 
 gpio_num_t  stepPinMotor1 = GPIO_NUM_22, directionPinMotor1 = GPIO_NUM_21,
             stepPinMotor2 = GPIO_NUM_19, directionPinMotor2 = GPIO_NUM_18,
             stepPinMotor3 = GPIO_NUM_17, directionPinMotor3 = GPIO_NUM_16,
-            stepPinMotor4 = GPIO_NUM_25, directionPinMotor4 = GPIO_NUM_26,
+            stepPinMotor4 = GPIO_NUM_26, directionPinMotor4 = GPIO_NUM_27,
             stepPinMotor5 = GPIO_NUM_32, directionPinMotor5 = GPIO_NUM_33,
             servoPin = GPIO_NUM_14;
 
@@ -43,81 +53,67 @@ void controlMotorGarra(void*arg)
 }
 
 //Funçãos para controlar os motores de passo
-void stepControlMotor01(void *pvParameter)
+void stepControlMotor01(void)
 {
-  int u = M(linha,1);
-     if(u > 0){
-       if(u > 800) u = 800;
-       motor1->newStep(u, horario, 15);
-     }
-     if(u < 0){
-       if(u < -800) u = -800;
-       motor1->newStep(u, antihorario,15);
-     }
+  int u = M(linha,0);
+  // while (true) {
+    // while (!flagStartTask[0]){vTaskDelay(5 / portTICK_PERIOD_MS);}
+    if(u > 0)
+      motor1->newStep(u, horario, 15);
+    if(u < 0)
+      motor1->newStep(abs(u), antihorario, 15);
+    // flagStartTask[0] = false;
+  // }
 }
 
-void stepControlMotor02(void *pvParameter)
+void stepControlMotor02(void)
 {
-   int u = M(linha,2);
-     if(u > 0){
-       if(u > 1066) u = 1066;
+   int u = M(linha,1);
+   // while (true) {
+     // while (!flagStartTask[1]);
+     if(u > 0)
        motor2->newStep(u, horario, 15);
-       vTaskDelay(1000 / portTICK_PERIOD_MS);
-     }
-     if(u < 0){
-       if(u < -1066) u = -1066;
-       motor2->newStep(u, antihorario, 15);
-       vTaskDelay(1000 / portTICK_PERIOD_MS);
-     }
-   vTaskDelay(portMAX_DELAY);
+     if(u < 0)
+       motor2->newStep(abs(u), antihorario, 15);
+     // flagStartTask[1] = false;
+
 }
 
-void stepControlMotor03(void *pvParameter)
+void stepControlMotor03(void)
 {
-  double u = M(linha,3);
-    if(u > 0){
-      if(u > 1066) u = 1066;
+  double u = M(linha,2);
+  // while (true) {
+    // while (!flagStartTask[2]);
+    if(u > 0)
       motor3->newStep(u, horario, 15);
-      vTaskDelay(1000 / portTICK_PERIOD_MS);
-    }
-    if(u < 0){
-      if(u < -1066) u = -1066;
-      motor3->newStep(u, antihorario, 15);
-      vTaskDelay(1000 / portTICK_PERIOD_MS);
-    }
-  vTaskDelay(portMAX_DELAY);
+    if(u < 0)
+      motor3->newStep(abs(u), antihorario, 15);
+    // flagStartTask[2] = false;
 }
 
-void stepControlMotor04(void *pvParameter)
+void stepControlMotor04(void)
 {
-   double u = M(linha,4);
-     if(u > 0){
-       if(u > 3200) u = 3200;
+   double u = M(linha,3);
+   // while (true) {
+     // while (!flagStartTask[3]);
+     if(u > 0)
        motor4->newStep(u, horario, 15);
-       vTaskDelay(1000 / portTICK_PERIOD_MS);
-     }
-     if(u < 0){
-       if(u < -3200) u = -3200;
-       motor4->newStep(u, antihorario, 15);
-       vTaskDelay(1000 / portTICK_PERIOD_MS);
-     }
-   vTaskDelay(portMAX_DELAY);
+     if(u < 0)
+       motor4->newStep(abs(u), antihorario, 15);
+     // flagStartTask[3] = false;
+
 }
 
-void stepControlMotor05(void *pvParameter)
+void stepControlMotor05(void)
 {
-  double u = M(linha,5);
-     if(u > 0){
-       if(u > 800) u = 800;
+  double u = M(linha,4);
+  // while (true) {
+    // while (!flagStartTask[4]);
+     if(u > 0)
        motor5->newStep(u, horario, 15);
-       vTaskDelay(1000 / portTICK_PERIOD_MS);
-     }
-     if(u < 0){
-       if(u < -800) u = -800;
-       motor5->newStep(u, antihorario,15);
-       vTaskDelay(1000 / portTICK_PERIOD_MS);
-     }
-   vTaskDelay(portMAX_DELAY);
+     if(u < 0)
+       motor5->newStep(abs(u), antihorario,15);
+     // flagStartTask[4] = false;
 }
 
 #endif
