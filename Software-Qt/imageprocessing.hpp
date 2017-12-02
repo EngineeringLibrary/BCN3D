@@ -145,6 +145,7 @@ LinAlg::Matrix<Type> ImageProcessing::Histogram(const LinAlg::Matrix<Type> &img)
         for(unsigned j = 1; j <= img.getNumberOfColumns(); ++j)
         {
             int k = img(i,j);
+            if(k == 0){ k=1;}
             ret(1,k) += 1;
         }
 

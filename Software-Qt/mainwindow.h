@@ -51,13 +51,13 @@ public slots:
 
 private slots:
 
+    bool checkCameras(void);
+
     void Conectado();
 
     void dataHandler();
 
     void on_pushButton_clicked();
-
-    void timerClock( unsigned clockTime);
 
     void result_view(QImage &img,bool state = true,bool colors=true);
 
@@ -160,8 +160,13 @@ private slots:
 
     void on_pushButton_GenSteps_clicked();
 
+    void on_ImageProcess_clicked();
+
+    void on_resizeImg_valueChanged(int value);
+
+    void on_actionProcessar_triggered();
+
 signals :
-    void emit_result();
 
 private:
     Dialog *result_img;
@@ -187,13 +192,14 @@ private:
 
 
 //    LinAlg::Matrix<unsigned> *centroid;
+    unsigned camCount;
     ImageProcessing::BinaryImage *bina_blue,*bina_red;
     int select_blue_0_index,select_red_0_index;
     int select_blue_1_index,select_red_1_index;
     unsigned area_blue[2],area_red[2];
 
 //   VARIAVEIS WIFI
-    QPixmap mypix = (QDir::currentPath()+"/compressedImage.jpg");
+    QPixmap mypix = (QDir::currentPath()+"/imageCaptured.jpg");
     Client *wifi;
     QString dataToSend;
 

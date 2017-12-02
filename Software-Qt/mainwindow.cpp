@@ -15,10 +15,27 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //     mypix = (QDir::currentPath()+"/imageCaptured.jpg");
     //     ui->label_before->setPixmap(mypix);
+//    if(checkCameras()){
+//        QList<QCameraInfo> cameras = QCameraInfo::availableCameras();
+
+//        foreach (const QCameraInfo &cameraInfo, cameras) {
+//            qDebug() << "Device Name  : " << cameraInfo.deviceName() << endl;
+//            qDebug() << "Description  : " << cameraInfo.description() << endl;
+//            qDebug() << "Position     : " << cameraInfo.position() << endl;
+//            qDebug() << "Cam Default  : " << cameraInfo.defaultCamera() << endl;
+//            qDebug() << "Orientation  : " << cameraInfo.orientation() << endl;
+//        }
+//    }
 
     result_img = new Dialog(this);
-    camera = new QCamera;
+    if(camCount > 1){
+       camera = new QCamera("/dev/video1");
+    }else{
+         camera = new QCamera;
+    }
+
     viewfinder = new QVideoWidget(ui->webcam);
+
 
     mat_complete = new ImageProcessing::RGBImage<unsigned>;
     gray_blue = new ImageProcessing::GrayImage<unsigned>;
@@ -32,17 +49,18 @@ MainWindow::MainWindow(QWidget *parent) :
     Qimg_red_ = new QImage;
     img = new QImage;
 
-    //    ui->webcam->setScaledContents( true );
-    //    ui->webcam->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
-    //    viewfinder->setMinimumSize(
-    //        (ui->webcam->geometry().width()*13),
-    //        (ui->webcam->geometry().height()*17)
-    //    );
+//        ui->webcam->setScaledContents( true );
+        ui->webcam->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
+        viewfinder->setMinimumSize(
+            (ui->webcam->geometry().width()*13),
+            (ui->webcam->geometry().height()*17)
+        );
 
-    viewfinder->setMinimumSize(
-                (ui->webcam->geometry().width()*1.5),
-                (ui->webcam->geometry().height()*1.3)
-                );
+
+//    viewfinder->setMinimumSize(
+//                (ui->webcam->geometry().width()*1.5),
+//                (ui->webcam->geometry().height()*1.3)
+//                );
 
     viewfinder->setMaximumSize(
                 ui->webcam->maximumWidth(),
@@ -53,7 +71,12 @@ MainWindow::MainWindow(QWidget *parent) :
     viewfinder->show();
     imageCapture = new QCameraImageCapture(camera);
     camera->setCaptureMode(QCamera::CaptureStillImage);
-    //    camera->start();
+    camera->start();
+
+    QImageEncoderSettings imageSettings;
+    imageSettings.setCodec("image/jpeg");
+    imageSettings.setResolution(1280, 720);
+    imageCapture->setEncodingSettings(imageSettings);
 
     connect(imageCapture,
             SIGNAL(imageCaptured(int,QImage)),
@@ -75,22 +98,33 @@ MainWindow::~MainWindow()
         delete this->wifi;
 }
 
+
 //------------------------- PROCESSAMENTO DE IMAGENS--------------------------------
+
+bool MainWindow::checkCameras()
+{
+     camCount = QCameraInfo::availableCameras().count();
+    if ( camCount > 0) {
+        qDebug() << "Cameras encontradas: " << camCount << endl;
+        return true;
+    }
+    else {
+        qDebug() << "Nenhuma camera foi detectada!" << endl;
+        return false;
+    }
+}
+
+void MainWindow::on_ImageProcess_clicked()
+{
+    processamentoImagem();//faz todo o processamento da imagem encontra as posicoes reais dos objetos
+}
+
 
 void MainWindow::on_pushButton_clicked()
 {
     camera->searchAndLock();
     imageCapture->capture();
     //    QThread::sleep(2);
-}
-
-void MainWindow::timerClock( unsigned clockTime){
-
-    std::cout << "time: " << QDate::currentDate().toString().toUtf8().toStdString() << std::endl;
-}
-
-void emit_result(){
-    return emit;
 }
 
 void MainWindow::result_view(QImage &img,bool state, bool colors){
@@ -141,92 +175,74 @@ void MainWindow::disableTab(int except){
 
 void MainWindow::processamentoImagem(){
 
+    gray_blue->setGray(255-mat_complete->getRed());//pode parecer errado mais esta certo
+    gray_red->setGray(255-mat_complete->getBlue());//pode parecer errado mais esta certo
+
 
     //    PARTE AZUL
-
-    *bina_blue = (*gray_blue > 9) && (*gray_blue < 140);
-
-    erosion(*bina_blue,false);
-    erosion(*bina_blue,false);
-    erosion(*bina_blue,false);
-    erosion(*bina_blue,false);
-    erosion(*bina_blue,false);
-    //    erosion(*bina_blue,false);
-
-
+//    histrograma(*gray_blue);
+    *gray_blue = ImageProcessing::selfreinforceFilter(*gray_blue,3,2.5);
+    *bina_blue = (*gray_blue > 43) && (*gray_blue < 215);
+    //pego a matriz binaria inverto e retorno invertida
+    *bina_blue = ImageProcessing::BinaryImage((!bina_blue[0]).getBinaryImageMatrix());
     dilation(*bina_blue,false);
     dilation(*bina_blue,false);
     dilation(*bina_blue,false);
-    dilation(*bina_blue,false);
+    erosion(*bina_blue,false);
+    erosion(*bina_blue,false);
+    erosion(*bina_blue,false);
+    erosion(*bina_blue,false);
     erosion(*bina_blue,false);
     erosion(*bina_blue,false);
 
 
 
     bound(*bina_blue,false);
-    //            std::cout <<"blue: "<< qdt << std::endl;
-
+    std::cout <<"blue: "<< qdt << std::endl;
     centroid(*bina_blue,false);
-    //        envia posições pra renato
-    qDebug() <<"area blue :" <<area_blue[0]<<" : "<< area_blue[1];
 
-    if(area_blue[0] > area_blue[1]){
-        std::cout << "quadrado blue p:0->" << area_blue[0] << std::endl;
-    }else{
-        std::cout << "quadrado blue p:1->" << area_blue[1] << std::endl;
-    }
+
+//    if(area_blue[0] > area_blue[1]){
+//        std::cout << "quadrado blue p:0->" << area_blue[0] << std::endl;
+//    }else{
+//        std::cout << "quadrado blue p:1->" << area_blue[1] << std::endl;
+//    }
 
     //    PARTE VERMELHA
 
-    //    histrograma(*gray_red);
-    *bina_red = (*gray_red > 8) && (*gray_red < 114);
-
-    erosion(*bina_red,true);
-    erosion(*bina_red,true);
-    erosion(*bina_red,true);
-    erosion(*bina_red,true);
-    dilation(*bina_red,true);
-    erosion(*bina_red,true);
-    dilation(*bina_red,true);
-    erosion(*bina_red,true);
-    erosion(*bina_red,true);
-    dilation(*bina_red,true);
+//    histrograma(*gray_red);
+    *gray_red = ImageProcessing::selfreinforceFilter(*gray_red,3,2.5);
+    *bina_red = (*gray_red > 43) && (*gray_red < 215);
+    //pego a matriz binaria inverto e retorno invertida
+    *bina_red = ImageProcessing::BinaryImage((!bina_red[0]).getBinaryImageMatrix());
 
     dilation(*bina_red,true);
-    erosion(*bina_red,true);
-    erosion(*bina_red,true);
-    erosion(*bina_red,true);
-    erosion(*bina_red,true);
-    dilation(*bina_red,true);
-    dilation(*bina_red,true);
-    dilation(*bina_red,true);
-    dilation(*bina_red,true);
-    dilation(*bina_red,true);
-    dilation(*bina_red,true);
     dilation(*bina_red,true);
     dilation(*bina_red,true);
     erosion(*bina_red,true);
     erosion(*bina_red,true);
     erosion(*bina_red,true);
     erosion(*bina_red,true);
+    erosion(*bina_red,true);
+    erosion(*bina_red,true);
+//    erosion(*bina_red,true);
+
+
 
     bound(*bina_red,true);
-
     centroid(*bina_red,true);
 
-    qDebug() <<"area red :" <<area_red[0]<<" : "<< area_red[1];
-
-    if(area_red[0] > area_red[1]){
-        std::cout << "quadrado red p:0->" << area_red[0] << std::endl;
-    }else{
-        std::cout << "quadrado red p:1->" << area_red[1] << std::endl;
-    }
+//    if(area_red[0] > area_red[1]){
+//        std::cout << "quadrado red p:0->" << area_red[0] << std::endl;
+//    }else{
+//        std::cout << "quadrado red p:1->" << area_red[1] << std::endl;
+//    }
     std::cout << "posicao: " << std::endl << posicao << std::endl;
 
     //    FIM
 
-    Qimg_blue[0] = ImageProcessing::GrayImage2QImage<unsigned>(*gray_blue);
-    Qimg_red[0] = ImageProcessing::GrayImage2QImage<unsigned>(*gray_red);
+    Qimg_blue[0] = ImageProcessing::BinaryImage2QImage<unsigned>(*bina_blue);
+    Qimg_red[0] = ImageProcessing::BinaryImage2QImage<unsigned>(*bina_red);
     //        mostra imagem em escala de cinza
     result_view(Qimg_blue[0],false,false);
     result_view(Qimg_red[0],false,true);
@@ -241,11 +257,6 @@ void MainWindow::set_saved_img(const bool use)
         *img = ImageProcessing::RGBImage2QImage<unsigned>(*mat_complete);
         result_view(*img,true,true);
         //        passa de rgb para  escala de cinza invertendo as cores
-        gray_blue->setGray(mat_complete->getRed());//pode parecer errado mais esta certo
-        gray_red->setGray(mat_complete->getBlue());//pode parecer errado mais esta certo
-
-        processamentoImagem();//faz todo o processamento da imagem encontra as posicoes reais dos objetos
-
 
     }
 }
@@ -255,7 +266,7 @@ void MainWindow::processCaptureImage(int requestId,const QImage& imgs){
 
     QString fileName =  QDir::currentPath()+"/imageCaptured.jpg";
     if(!fileName.isEmpty()){
-        //       imgs.save(fileName);
+               imgs.save(fileName);
         std::cout << "save";
     }else{
         std::cout << "no save";
@@ -263,10 +274,7 @@ void MainWindow::processCaptureImage(int requestId,const QImage& imgs){
     //   mostrando imagem antes do processamento
     result_view(*img,true,true);
     *mat_complete = ImageProcessing::QImage2RGBImage<unsigned>(*img);
-    gray_blue->setGray(255-mat_complete->getBlue());
-    gray_red->setGray(255-mat_complete->getRed());
-
-    processamentoImagem();
+    on_resizeImg_valueChanged(995);
 
 }
 
@@ -405,10 +413,8 @@ void MainWindow::centroid( ImageProcessing::BinaryImage &bin_img,const unsigned 
             for(unsigned i =1;i<=qdt(1,1);++i){
                 centroids = ImageProcessing::centroid(segmentedMatrix==(i+1));
                 //              pegando posicoes dos objetos
-                posicao = posicao || ImageProcessing::pixelToWorldMetric(segmentedMatrix,22,26,centroids);
+                posicao = posicao || ImageProcessing::pixelToWorldMetric(segmentedMatrix,24,50  ,centroids);
                 this->area_blue[(i-1)] = ImageProcessing::area(segmentedMatrix==(i+2));
-                std::cout << "centroid blue " << std::endl;
-                std::cout << centroids << std::endl;
                 //              colocar um ponto no centro da imagem
                 //              bina_blue[0] ->   coloco como ponto zero para pegar posição da memoria do ponteiro
                 bina_blue[0](centroids(1,1)-1,centroids(1,2)-1) = 0;
@@ -419,8 +425,7 @@ void MainWindow::centroid( ImageProcessing::BinaryImage &bin_img,const unsigned 
                 bina_blue[0](centroids(1,1),  centroids(1,2)+1) = 0;
                 bina_blue[0](centroids(1,1)+1,centroids(1,2)+1) = 0;
             }
-            //pego a matriz binaria inverto e retorno invertida
-            *bina_blue = ImageProcessing::BinaryImage((!bina_blue[0]).getBinaryImageMatrix());
+
             //    de binario para escala de cinza
             gray_blue->setGray(this->bina_blue->getBinaryImageMatrix());
             //    expandindo de binario para escala de cinza
@@ -432,10 +437,8 @@ void MainWindow::centroid( ImageProcessing::BinaryImage &bin_img,const unsigned 
             for(unsigned i =1;i<=qdt(1,1);++i){
                 centroids = ImageProcessing::centroid(segmentedMatrix==(i+1));
                 //              pegando posicoes dos objetos
-                posicao = posicao || ImageProcessing::pixelToWorldMetric(segmentedMatrix,22,26,centroids);
+                posicao = posicao || ImageProcessing::pixelToWorldMetric(segmentedMatrix,24,50,centroids);
                 this->area_red[(i-1)]  = ImageProcessing::area(segmentedMatrix==(i+2));
-                std::cout << "centroid red " << std::endl;
-                std::cout << centroids << std::endl;
                 //               colocar um ponto no centro da imagem
                 //               bina_blue[0] ->   coloco como ponto zero para pegar posição da memoria do ponteiro
                 bina_red[0](centroids(1,1)-1,centroids(1,2)-1) = 0;
@@ -446,8 +449,7 @@ void MainWindow::centroid( ImageProcessing::BinaryImage &bin_img,const unsigned 
                 bina_red[0](centroids(1,1),  centroids(1,2)+1) = 0;
                 bina_red[0](centroids(1,1)+1,centroids(1,2)+1) = 0;
             }
-            //pego a matriz binaria inverto e retorno invertida
-            *bina_red = ImageProcessing::BinaryImage((!bina_red[0]).getBinaryImageMatrix());
+
             //    de binario para escala de cinza
             gray_red->setGray(this->bina_red->getBinaryImageMatrix());
             //    expandindo de binario para escala de cinza
@@ -461,6 +463,18 @@ void MainWindow::centroid( ImageProcessing::BinaryImage &bin_img,const unsigned 
 
 //-------------------------------EVENTS: PROCESSAMENTO DE IMAGENS----------------------------------------------------------
 
+void MainWindow::on_resizeImg_valueChanged(int value)
+{
+    *mat_complete = ImageProcessing::reScale(*mat_complete,value/1000.0);
+    ui->resultRescale->setText(QString::number(value/1000.0));
+//    ui->label_after_red->setPixmap(QPixmap::fromImage(ImageProcessing::RGBImage2QImage(*mat_complete)));
+    QImage temp = ImageProcessing::RGBImage2QImage(*mat_complete);
+    QString fileName =  QDir::currentPath()+"/imageCapturedResize.jpg";
+    if(!fileName.isEmpty()){
+        temp.save(fileName);
+    }
+}
+
 void MainWindow::on_check_saved_img_clicked(bool checked)
 {
     set_saved_img(checked);
@@ -470,6 +484,12 @@ void MainWindow::on_set_saved_img_0_clicked(bool checked)
 {
     set_saved_img(!checked);
 }
+
+void MainWindow::on_actionProcessar_triggered()
+{
+    processamentoImagem();
+}
+
 
 void MainWindow::on_select_blue_0_currentIndexChanged(int index)
 {
@@ -666,7 +686,7 @@ void MainWindow::on_select_red_1_currentIndexChanged(int index)
 
 void MainWindow::on_button_red_1_clicked()
 {
-    linearizar(*gray_red,ui->filter_red_1->text().toInt(),ui->filter_red_1_0->text().toInt(),false,select_red_1_index);
+    linearizar(*gray_red,ui->filter_red_1->text().toInt(),ui->filter_red_1_0->text().toInt(),true,select_red_1_index);
 }
 
 //BLUE 2
@@ -688,7 +708,7 @@ void MainWindow::on_select_red_2_currentIndexChanged(int index)
 
 void MainWindow::on_button_red_2_clicked()
 {
-    MainWindow::dilation(*bina_red,false);
+    MainWindow::dilation(*bina_red,true);
 }
 
 //BLUE 3
@@ -710,7 +730,7 @@ void MainWindow::on_select_red_3_currentIndexChanged(int index)
 
 void MainWindow::on_button_red_3_clicked()
 {
-    MainWindow::erosion(*bina_red,false);
+    MainWindow::erosion(*bina_red,true);
 }
 
 void MainWindow::on_button_blue_4_clicked()
@@ -747,6 +767,8 @@ void MainWindow::on_actionPreview_triggered()
 
 void MainWindow::on_refresh_clicked()
 {
+    QImage temp = ImageProcessing::RGBImage2QImage(*mat_complete);
+    result_view(temp,false,false);
     result_view(*Qimg_blue_,false,false);
     result_view(*Qimg_red_,false,true);
 }
@@ -786,7 +808,7 @@ void MainWindow::on_actionusar_imagem_salva_triggered()
     set_saved_img(true);
 }
 
-// END -------------------------------EVENTS: PROCESSAMENTO DE IMAGENS----------------------------------------------------------
+// END -------------------------------EVENTS:  DE IMAGENS----------------------------------------------------------
 
 //------------------------- WIFI--------------------------------
 
@@ -969,4 +991,7 @@ void MainWindow::on_pushButton_GenSteps_clicked()
 }
 
 // END --------------------------EVENTS: CINEMÁTICA INVERSA------------------------
+
+
+
 
