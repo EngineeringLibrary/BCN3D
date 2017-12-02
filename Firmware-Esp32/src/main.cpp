@@ -23,7 +23,7 @@
 //Está função aguarda o recebimento de dados wifi, caso tenha dados ela será executada.
 void testeReceberWifi(const char* dadosRecebidos){
 
-  M = dadosRecebidos;
+  M = dadosRecebidos; // Matrix de dados recebidos, declarada como global em move.h
 
    for(linha = 0; linha < M.getNumberOfRows(); ++linha){
      stepControlMotor01();
@@ -32,11 +32,11 @@ void testeReceberWifi(const char* dadosRecebidos){
      stepControlMotor04();
      stepControlMotor05();
    }
-   linha = 0;
+   linha = 0; // zera a linha para que no proximo encio de dados recomece do zero.
 }
 
 //Cadastro das funções que vão trabalhar em paralelo
 extern "C" void app_main()
 {
-     wifi_TCP_server_init(testeReceberWifi);
+     wifi_TCP_server_init(testeReceberWifi); // inicia wifi e aguarda o recebimento de dados.
 }
