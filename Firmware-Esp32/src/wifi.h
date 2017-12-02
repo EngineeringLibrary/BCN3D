@@ -37,9 +37,6 @@ static void initialise_wifi_in_ap(void);
 static esp_err_t event_handler   (void *ctx, system_event_t *event);
 void wifi_TCP_server_init(void);
 
-// #include "wifi.h"
-
-
 // print the list of connected stations
 void printStationList()
 {
@@ -172,6 +169,7 @@ static esp_err_t event_handler(void *ctx, system_event_t *event)
     return ESP_OK;
 }
 
+//Função que inicia e espera os dados recebidos do wifi
 void wifi_TCP_server_init(void (*_FunctionToBeCalledWhenADataHasBeenReceived)(const char*) = 0, uint16_t _TCPgate = 4000)
 {
   TCPgate = _TCPgate;
