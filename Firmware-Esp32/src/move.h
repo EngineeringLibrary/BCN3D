@@ -23,12 +23,10 @@
 #include <algorithm>
 
 //Variavel Global
-//ControlHandler::PID<double> pid("1.0,0.0,0.5");
 LinAlg::Matrix<int> M;
-volatile static int ref1 = 0, ref2 = 0, ref3 = 0, ref4 = 0, ref5 = 0, linha = 0;
+volatile static int linha = 0;
 
 bool horario = 1, antihorario = 0;
-volatile static bool flagStartTask[5] = {0, 0, 0, 0, 0};
 
 gpio_num_t  stepPinMotor1 = GPIO_NUM_22, directionPinMotor1 = GPIO_NUM_21,
             stepPinMotor2 = GPIO_NUM_19, directionPinMotor2 = GPIO_NUM_18,
