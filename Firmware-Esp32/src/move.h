@@ -28,6 +28,7 @@ volatile static int linha = 0;
 
 bool horario = 1, antihorario = 0;
 
+// Configurando os pinos de step e o de dir
 gpio_num_t  stepPinMotor1 = GPIO_NUM_22, directionPinMotor1 = GPIO_NUM_21,
             stepPinMotor2 = GPIO_NUM_19, directionPinMotor2 = GPIO_NUM_18,
             stepPinMotor3 = GPIO_NUM_17, directionPinMotor3 = GPIO_NUM_16,
@@ -35,6 +36,7 @@ gpio_num_t  stepPinMotor1 = GPIO_NUM_22, directionPinMotor1 = GPIO_NUM_21,
             stepPinMotor5 = GPIO_NUM_32, directionPinMotor5 = GPIO_NUM_33,
             servoPin = GPIO_NUM_14;
 
+// Inicializando os motores.
 stepperA4988 *motor1=new stepperA4988(stepPinMotor1, directionPinMotor1);
 stepperA4988 *motor2=new stepperA4988(stepPinMotor2, directionPinMotor2);
 stepperA4988 *motor3=new stepperA4988(stepPinMotor3, directionPinMotor3);
