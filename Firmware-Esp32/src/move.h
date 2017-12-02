@@ -56,64 +56,46 @@ void controlMotorGarra(void*arg)
 void stepControlMotor01(void)
 {
   int u = M(linha,0);
-  // while (true) {
-    // while (!flagStartTask[0]){vTaskDelay(5 / portTICK_PERIOD_MS);}
     if(u > 0)
       motor1->newStep(u, horario, 15);
     if(u < 0)
       motor1->newStep(abs(u), antihorario, 15);
-    // flagStartTask[0] = false;
-  // }
 }
 
 void stepControlMotor02(void)
 {
-   int u = M(linha,1);
-   // while (true) {
-     // while (!flagStartTask[1]);
+  int u = M(linha,1);
      if(u > 0)
        motor2->newStep(u, horario, 15);
      if(u < 0)
        motor2->newStep(abs(u), antihorario, 15);
-     // flagStartTask[1] = false;
-
 }
 
 void stepControlMotor03(void)
 {
   double u = M(linha,2);
-  // while (true) {
-    // while (!flagStartTask[2]);
     if(u > 0)
       motor3->newStep(u, horario, 15);
     if(u < 0)
       motor3->newStep(abs(u), antihorario, 15);
-    // flagStartTask[2] = false;
 }
 
 void stepControlMotor04(void)
 {
    double u = M(linha,3);
-   // while (true) {
-     // while (!flagStartTask[3]);
      if(u > 0)
        motor4->newStep(u, horario, 15);
      if(u < 0)
        motor4->newStep(abs(u), antihorario, 15);
-     // flagStartTask[3] = false;
-
 }
 
 void stepControlMotor05(void)
 {
-  double u = M(linha,4);
-  // while (true) {
-    // while (!flagStartTask[4]);
+   double u = M(linha,4);
      if(u > 0)
        motor5->newStep(u, horario, 15);
      if(u < 0)
        motor5->newStep(abs(u), antihorario,15);
-     // flagStartTask[4] = false;
 }
 
 #endif
