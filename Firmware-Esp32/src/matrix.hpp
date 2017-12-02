@@ -130,7 +130,7 @@ void LinAlg::Matrix<Type>::Init (unsigned row, unsigned column)
 }
 
 template<typename Type>
-LinAlg::Matrix<Type>& LinAlg::Matrix<Type>::operator= (const LinAlg::Matrix<Type>& rhs) const
+LinAlg::Matrix<Type> LinAlg::Matrix<Type>::operator= (const LinAlg::Matrix<Type> rhs) const
 {
     if(rhs.rows !=0 || rhs.columns !=0)
         for(unsigned i = 0; i < this->rows; i++)
