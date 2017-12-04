@@ -175,8 +175,6 @@ void MainWindow::disableTab(int except){
 
 void MainWindow::processamentoImagem(){
 
-    gray_blue->setGray(255-mat_complete->getRed());//pode parecer errado mais esta certo
-    gray_red->setGray(255-mat_complete->getBlue());//pode parecer errado mais esta certo
 
 
     //    PARTE AZUL
@@ -256,7 +254,15 @@ void MainWindow::set_saved_img(const bool use)
         *mat_complete = ImageProcessing::QImage2RGBImage<unsigned>(mypix.toImage());
         *img = ImageProcessing::RGBImage2QImage<unsigned>(*mat_complete);
         result_view(*img,true,true);
+
+        gray_blue->setGray(255-mat_complete->getRed());//pode parecer errado mais esta certo
+        gray_red->setGray(255-mat_complete->getBlue());//pode parecer errado mais esta certo
         //        passa de rgb para  escala de cinza invertendo as cores
+        *Qimg_blue_ = ImageProcessing::GrayImage2QImage<unsigned>(*gray_blue);
+        *Qimg_red_ = ImageProcessing::GrayImage2QImage<unsigned>(*gray_red);
+        //        mostra imagem em escala de cinza
+        result_view(*Qimg_blue_,false,false);
+        result_view(*Qimg_red_,false,true);
 
     }
 }
@@ -275,6 +281,15 @@ void MainWindow::processCaptureImage(int requestId,const QImage& imgs){
     result_view(*img,true,true);
     *mat_complete = ImageProcessing::QImage2RGBImage<unsigned>(*img);
     on_resizeImg_valueChanged(995);
+
+    gray_blue->setGray(255-mat_complete->getRed());//pode parecer errado mais esta certo
+    gray_red->setGray(255-mat_complete->getBlue());//pode parecer errado mais esta certo
+    //        passa de rgb para  escala de cinza invertendo as cores
+    *Qimg_blue_ = ImageProcessing::GrayImage2QImage<unsigned>(*gray_blue);
+    *Qimg_red_ = ImageProcessing::GrayImage2QImage<unsigned>(*gray_red);
+    //        mostra imagem em escala de cinza
+    result_view(*Qimg_blue_,false,false);
+    result_view(*Qimg_red_,false,true);
 
 }
 

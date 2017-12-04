@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.9.2
+** Created by: Qt User Interface Compiler version 5.9.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -231,7 +231,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1283, 792));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1297, 693));
         gridLayout_8 = new QGridLayout(scrollAreaWidgetContents);
         gridLayout_8->setSpacing(6);
         gridLayout_8->setContentsMargins(11, 11, 11, 11);
@@ -1040,7 +1040,7 @@ public:
         MainWindow->setStatusBar(statusBar);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1317, 25));
+        menuBar->setGeometry(QRect(0, 0, 1317, 21));
         menuBar->setStyleSheet(QStringLiteral("background-color: rgb(186, 189, 182);"));
         menumenu = new QMenu(menuBar);
         menumenu->setObjectName(QStringLiteral("menumenu"));
@@ -1137,7 +1137,7 @@ public:
          << QApplication::translate("MainWindow", "medianFilter", Q_NULLPTR)
          << QApplication::translate("MainWindow", "selfreinforceFilter", Q_NULLPTR)
         );
-        button_red_0->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
+        button_red_0->setText(QApplication::translate("MainWindow", "filter", Q_NULLPTR));
         label_red_filter_1->setText(QApplication::translate("MainWindow", "scale                  scale2        operador ", Q_NULLPTR));
         filter_red_1->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
         select_red_1->clear();
@@ -1152,13 +1152,13 @@ public:
          << QApplication::translate("MainWindow", "(grayimg > scale) && (grayimg < scale2)", Q_NULLPTR)
          << QApplication::translate("MainWindow", "(grayimg >= scale) && (grayimg <= scale2)", Q_NULLPTR)
         );
-        button_red_1->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
+        button_red_1->setText(QApplication::translate("MainWindow", "scale", Q_NULLPTR));
         label_red_filter_2->setText(QApplication::translate("MainWindow", "dilation", Q_NULLPTR));
         filter_red_2->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
-        button_red_2->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
+        button_red_2->setText(QApplication::translate("MainWindow", "dilation", Q_NULLPTR));
         label_red_filter_3->setText(QApplication::translate("MainWindow", "erosion", Q_NULLPTR));
         filter_red_3->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
-        button_red_3->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
+        button_red_3->setText(QApplication::translate("MainWindow", "erosion", Q_NULLPTR));
         label_red_filter_4->setText(QApplication::translate("MainWindow", "bound", Q_NULLPTR));
         filter_red_4->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
         button_red_4->setText(QApplication::translate("MainWindow", "bound", Q_NULLPTR));
@@ -1182,7 +1182,7 @@ public:
          << QApplication::translate("MainWindow", "medianFilter", Q_NULLPTR)
          << QApplication::translate("MainWindow", "selfreinforceFilter", Q_NULLPTR)
         );
-        button_blue_0->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
+        button_blue_0->setText(QApplication::translate("MainWindow", "filter", Q_NULLPTR));
         label_blue_filter_1->setText(QApplication::translate("MainWindow", "scale                  scale2        operador ", Q_NULLPTR));
         filter_blue_1->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
         filter_blue_1_0->setText(QApplication::translate("MainWindow", "0", Q_NULLPTR));
@@ -1198,13 +1198,13 @@ public:
          << QApplication::translate("MainWindow", "(grayimg > scale) && (grayimg < scale2)", Q_NULLPTR)
          << QApplication::translate("MainWindow", "(grayimg >= scale) && (grayimg <= scale2)", Q_NULLPTR)
         );
-        button_blue_1->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
+        button_blue_1->setText(QApplication::translate("MainWindow", "scale", Q_NULLPTR));
         label_blue_filter_2->setText(QApplication::translate("MainWindow", "dilation", Q_NULLPTR));
         filter_blue_2->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
-        button_blue_2->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
+        button_blue_2->setText(QApplication::translate("MainWindow", "dilation", Q_NULLPTR));
         label_blue_filter_3->setText(QApplication::translate("MainWindow", "erosion", Q_NULLPTR));
         filter_blue_3->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
-        button_blue_3->setText(QApplication::translate("MainWindow", "PushButton", Q_NULLPTR));
+        button_blue_3->setText(QApplication::translate("MainWindow", "erosion", Q_NULLPTR));
         label_blue_filter_4->setText(QApplication::translate("MainWindow", "bound", Q_NULLPTR));
         filter_blue_4->setText(QApplication::translate("MainWindow", "2.5", Q_NULLPTR));
         button_blue_4->setText(QApplication::translate("MainWindow", "bound", Q_NULLPTR));
