@@ -7,7 +7,7 @@
 #include <iomanip>
 #include <cstdlib>
 #include <sstream>
-#include <iostream> 
+#include <iostream>
 #include <typeinfo>
 #include <algorithm>
 
@@ -33,7 +33,7 @@ namespace LinAlg {
             Type  operator() (unsigned  row, unsigned column) const{return this->mat[row][column];}
 
             void operator= (const char* rhs){this->Init(rhs);}
-            LinAlg::Matrix<Type>& operator= (const LinAlg::Matrix<Type>& rhs) const;
+            LinAlg::Matrix<Type> operator= (const LinAlg::Matrix<Type> rhs) const;
 
             LinAlg::Matrix<Type>& operator+= (const Type& rhs /*scalar*/);
             LinAlg::Matrix<Type>& operator+= (const LinAlg::Matrix<Type>& rhs);

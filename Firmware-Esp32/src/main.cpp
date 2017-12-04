@@ -20,36 +20,23 @@
 #include <typeinfo>
 #include <algorithm>
 
+//Está função aguarda o recebimento de dados wifi, caso tenha dados ela será executada.
+void testeReceberWifi(const char* dadosRecebidos){
 
+  M = dadosRecebidos; // Matrix de dados recebidos, declarada como global em move.h
 
-void testeReceberWifi(const char* dadosRecebidos)
-{
-  M = dadosRecebidos;
-  std::cout<< M << std::endl;
-  for(linha = 0; linha < M.getNumberOfRows(); ++linha ){
-    // if(linha == 1){
-    //   //fechar a garra
-    //   xTaskCreate(controlMotorGarra, "controlMotorGarra", configMINIMAL_STACK_SIZE, NULL, 5, NULL);
-    // }
-    // if(linha == 4 && linha == M.getNumberOfRows()){
-    //   //abrir a garra
-    //   xTaskCreate(controlMotorGarra, "controlMotorGarra", configMINIMAL_STACK_SIZE, NULL, 5, NULL);
-    // }
-
-    xTaskCreate(stepControlMotor01, "stepControlMotor01", configMINIMAL_STACK_SIZE, NULL, 4, NULL);
-    // xTaskCreate(stepControlMotor02, "stepControlMotor02", configMINIMAL_STACK_SIZE, NULL, 4, NULL);
-    // xTaskCreate(stepControlMotor03, "stepControlMotor03", configMINIMAL_STACK_SIZE, NULL, 4, NULL);
-    // xTaskCreate(stepControlMotor04, "stepControlMotor04", configMINIMAL_STACK_SIZE, NULL, 4, NULL);
-    // xTaskCreate(stepControlMotor05, "stepControlMotor05", configMINIMAL_STACK_SIZE, NULL, 4, NULL);
-  }
-
+   for(linha = 0; linha < M.getNumberOfRows(); ++linha){
+     stepControlMotor01();
+     stepControlMotor02();
+     stepControlMotor03();
+     stepControlMotor04();
+     stepControlMotor05();
+   }
+   linha = 0; // zera a linha para que no proximo encio de dados recomece do zero.
 }
 
 //Cadastro das funções que vão trabalhar em paralelo
 extern "C" void app_main()
 {
-
-      wifi_TCP_server_init(testeReceberWifi);
-      // xTaskCreate(controlMotorGarra, "controlMotorGarra", configMINIMAL_STACK_SIZE, NULL, 5, NULL);
-
+     wifi_TCP_server_init(testeReceberWifi); // inicia wifi e aguarda o recebimento de dados.
 }
