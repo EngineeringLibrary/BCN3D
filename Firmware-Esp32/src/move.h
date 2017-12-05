@@ -73,7 +73,7 @@ void stepControlMotor02(void)
 
 void stepControlMotor03(void)
 {
-  double u = M(linha,2);// utiliza o valor da linha e da coluna "M(linha, coluna)", da matrix.
+  int u = M(linha,2);// utiliza o valor da linha e da coluna "M(linha, coluna)", da matrix.
     if(u > 0) // verifica se o valor é positivo.
       motor3->newStep(u, horario, 15); // rotaciona motor no sentido horario, newStep(valor da linha e coluna matrix, sentido, velocidade);
     if(u < 0) // verifica se o valor é negativo.
@@ -82,7 +82,7 @@ void stepControlMotor03(void)
 
 void stepControlMotor04(void)
 {
-   double u = M(linha,3); // utiliza o valor da linha e da coluna "M(linha, coluna)", da matrix.
+   int u = M(linha,3); // utiliza o valor da linha e da coluna "M(linha, coluna)", da matrix.
      if(u > 0) // verifica se o valor é positivo.
        motor4->newStep(u, horario, 15); // rotaciona motor no sentido horario, newStep(valor da linha e coluna matrix, sentido, velocidade);
      if(u < 0) // verifica se o valor é negativo.
@@ -91,7 +91,7 @@ void stepControlMotor04(void)
 
 void stepControlMotor05(void)
 {
-   double u = M(linha,4); // utiliza o valor da linha e da coluna "M(linha, coluna)", da matrix.
+   int u = M(linha,4); // utiliza o valor da linha e da coluna "M(linha, coluna)", da matrix.
      if(u > 0) // verifica se o valor é positivo.
        motor5->newStep(u, horario, 15);// rotaciona motor no sentido horario, newStep(valor da linha e coluna matrix, sentido, velocidade);
      if(u < 0) // verifica se o valor é negativo.
