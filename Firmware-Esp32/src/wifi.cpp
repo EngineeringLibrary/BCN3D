@@ -107,11 +107,11 @@
    conn = netconn_new(NETCONN_TCP);  cria um novo identificador de conexão
    netconn_bind(conn,NULL,4000); associa a conexão à porta 4000
    netconn_listen(conn); começa a escutar a conexão
-   //while(1)
-   //{
-     //err = netconn_accept(conn, &newconn);
-     //if(err == ERR_OK)  processando a nova conexão
-     //{
+   while(1)
+   {
+     err = netconn_accept(conn, &newconn);
+     if(err == ERR_OK)  processando a nova conexão
+     {
        struct netbuf *buf;  criando um buffer para armazenar os dados recebidos via wifi
        void *data;
        char *data_char;

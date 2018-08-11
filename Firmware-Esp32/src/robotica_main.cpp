@@ -115,6 +115,6 @@ extern "C" void app_main()
       xTaskCreate(stepControlMotor03, "stepControlMotor03", configMINIMAL_STACK_SIZE, NULL, 3, NULL);
       xTaskCreate(stepControlMotor04, "stepControlMotor04", configMINIMAL_STACK_SIZE, NULL, 4, NULL);
       xTaskCreate(stepControlMotor05, "stepControlMotor05", configMINIMAL_STACK_SIZE, NULL, 5, NULL);
-      sdk_os_delay_ms(10);
+      //sdk_os_delay_ms(10);
     }
 }
